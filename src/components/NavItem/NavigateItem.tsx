@@ -8,7 +8,6 @@ type Props = {
 };
 
 function NavigateItem({ text, active, imgSrc }: Props) {
-  console.log(text, active);
   return (
     <div className={active ? s.item_active : s.item}>
       <img alt={text} width="30px" src={imgSrc} />
