@@ -1,0 +1,28 @@
+$border_color: #0d5dec;
+$background_color: #333333;
+
+@mixin item {
+  margin-top: 24px;
+  width: 114px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.item {
+  @include item;
+}
+
+.item_active {
+  @include item;
+  border: 2px solid $border_color;
+  border-radius: 8px;
+  background-color: $background_color;
+}
+
+.text {
+  margin-top: 10px;
+}
