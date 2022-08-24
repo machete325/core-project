@@ -1,0 +1,55 @@
+header {
+  margin: 29.5px 24px 0px;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  margin: 24px 24px 0px;
+}
+
+.header_container {
+  display: flex;
+  align-items: center;
+}
+
+.title_container {
+  margin-right: 24px;
+}
+
+.title {
+  margin-bottom: 4px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.description {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #a9adbd;
+}
+
+.input_container {
+  padding-right: 24px;
+  border-right: 1px solid #6b6e7b;
+}
+
+.submenu {
+  margin-left: 36px;
+  margin-right: 27px;
+}
+
+.card_container {
+  height: 50px;
+  width: 50px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
