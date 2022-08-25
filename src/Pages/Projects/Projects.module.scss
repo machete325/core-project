@@ -9,15 +9,17 @@ main {
 }
 
 .header_container {
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .title_container {
   margin-right: 24px;
 }
 
-.title {
+.title_page {
   margin-bottom: 4px;
   font-family: 'Open Sans';
   font-style: normal;
@@ -47,9 +49,22 @@ main {
 }
 
 .card_container {
-  height: 50px;
-  width: 50px;
-  border: 1px solid white;
+  width: 267.67px;
+  height: 366px;
+  background: #333333;
+  border-radius: 8px;
   color: white;
+  cursor: pointer;
+}
+
+.title {
+  height: 40px;
+  display: flex;
+  color: #9dcafd;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
   cursor: pointer;
 }

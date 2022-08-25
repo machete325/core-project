@@ -25,7 +25,7 @@ function ProjectsContainer() {
 
   const handleChooseProject = (e: any) => {
     console.log(e.target.id);
-    navigate(`../projects/${e.target.id}`, { replace: true });
+    navigate(`../../project/${e.target.id}`, { replace: false });
   };
 
   return (
@@ -33,30 +33,32 @@ function ProjectsContainer() {
       <header>
         <div className={s.header_container}>
           <div className={s.title_container}>
-            <div className={s.title}>Welcome George, let`s view your active projects.</div>
+            <div className={s.title_page}>Welcome George, let`s view your active projects.</div>
             <div className={s.description}>You have 24 active projects.</div>
           </div>
-          <div className={s.input_container}>
-            <InputField
-              type="text"
-              name="search"
-              placeholder="Search projects"
-              value={value}
-              variant="search"
-              width="972px"
-              onChange={handleChange}
-            />
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div className={s.input_container}>
+              <InputField
+                type="text"
+                name="search"
+                placeholder="Search projects"
+                value={value}
+                variant="search"
+                width="972px"
+                onChange={handleChange}
+              />
+            </div>
+            <div className={s.submenu}>
+              <img alt="submenu" src="/images/icons/Submenu.svg" />
+            </div>
+            <div className={s.user_container}>
+              <img alt="submenu" src="/images/icons/User.svg" />
+            </div>
           </div>
-        </div>
-        <div className={s.submenu}>
-          <img alt="submenu" src="images/icons/Submenu.svg" />
-        </div>
-        <div className={s.user_container}>
-          <img alt="submenu" src="images/icons/User.svg" />
         </div>
       </header>
       <main>
-        <div className={s.tittle}>All projects</div>
+        <div className={s.title}>All projects</div>
         <div className={s.config}>
           <div
             className={s.card_container}
