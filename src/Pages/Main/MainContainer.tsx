@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Main from './Main';
 import packageJson from '../../../package.json';
 import { NavigateConfig } from './types';
@@ -58,7 +58,14 @@ const navigateConfig: NavigateConfig = [
 
 function MainContainer() {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const { version } = packageJson;
+
+  useEffect(() => {
+    if (pathname === '/' || pathname === '/main') {
+      navigate('../main/projects');
+    }
+  }, []);
 
   return <Main pathname={pathname} version={version} navigateConfig={navigateConfig} />;
 }
