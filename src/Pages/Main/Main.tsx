@@ -17,7 +17,7 @@ function Main({ pathname, version, navigateConfig }: Props) {
       <nav className={s.navigation}>
         <div>
           <div className={s.logo}>
-            <img alt="Logo" src="images/logo.svg" />
+            <img alt="Logo" src="/images/logo.svg" />
           </div>
           {navigateConfig.map((link) => (
             <Link
