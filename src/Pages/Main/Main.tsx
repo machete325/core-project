@@ -21,7 +21,9 @@ function Main({ pathname, version, navigateConfig }: Props) {
           </div>
           {navigateConfig.map((link) => (
             <Link
-              className={checkPath(link.path, pathname, '/main/', 'projects') && s.active}
+              className={
+                checkPath(link.path, pathname, '/main/', 'projects') ? s.active : undefined
+              }
               key={link.id}
               to={link.path}
             >

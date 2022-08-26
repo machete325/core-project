@@ -9,6 +9,5 @@ export default function checkPath(
     return true;
   }
   const linkId = `${id}/`;
-  console.log(pathname, `${path}${id ? linkId : ''}${linkPath}`);
   return pathname === `${path}${id ? linkId : ''}${linkPath}`;
 }
