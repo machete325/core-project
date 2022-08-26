@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Link, useLocation, Outlet } from 'react-router-dom';
 
 import NavigateProjectItem from '../../components/NavigateProjectItem/NavigateProjectItem';
+import RecentlyOpened from '../../components/RecentlyOpened/RecentlyOpened';
 import InputField from '../../components/SearchField/InputField';
 import checkPath from '../../helpers/checkPath';
 import s from './Project.module.scss';
@@ -58,6 +59,39 @@ const navigateProjectConfig = [
   },
 ];
 
+const recentlyData = [
+  {
+    id: 1,
+    category: 'experiments',
+    name: 'Experiment 3',
+    check: false,
+  },
+  {
+    id: 2,
+    category: 'experiments',
+    name: 'Experiment 1',
+    check: false,
+  },
+  {
+    id: 3,
+    category: 'experiments',
+    name: 'Experiment 2',
+    check: false,
+  },
+  {
+    id: 4,
+    category: 'datasets',
+    name: 'Odyssey demand',
+    check: false,
+  },
+  {
+    id: 5,
+    category: 'datasets',
+    name: 'Dataset 2.0.3',
+    check: false,
+  },
+];
+
 function ProjectContainer() {
   const { pathname } = useLocation();
   const [value, setValue] = useState('');
@@ -97,7 +131,11 @@ function ProjectContainer() {
         </div>
         <nav className={s.navigation}>
           {navigateProjectConfig.map((link) => (
-            <Link className={checkLinkPath(link.path) && s.active} key={link.id} to={link.path}>
+            <Link
+              className={checkLinkPath(link.path) ? s.active : undefined}
+              key={link.id}
+              to={link.path}
+            >
               <NavigateProjectItem
                 text={link.text}
                 active={checkLinkPath(link.path)}
@@ -106,7 +144,10 @@ function ProjectContainer() {
             </Link>
           ))}
         </nav>
-        <div>Recently</div>
+        <div className={s.recently_container}>
+          <div className={s.recently_title}>Recently opened</div>
+          <RecentlyOpened data={recentlyData} />
+        </div>
       </div>
       <div className={s.content}>
         <Outlet />
