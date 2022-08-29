@@ -19,21 +19,18 @@ const findCategories = (data: IRecently[]) => {
   return uniqeCategories;
 };
 
-const generateRecentlyItems = (data: IRecently[], category: string) => {
-  console.log();
-  return (
-    <div className={s.category_container}>
-      <div className={s.title}>{category}</div>
-      {data.map(
-        (item) => item.category === category && (
-        <div className={s.checkbox_container}>
-          <CheckBox key={item.id} id={item.id} label={item.name} checked={item.check} />
+const generateRecentlyItems = (data: IRecently[], category: string) => (
+  <div className={s.category_container}>
+    <div className={s.title}>{category}</div>
+    {data.map(
+      (item) => item.category === category && (
+        <div key={item.id} className={s.checkbox_container}>
+          <CheckBox id={item.id} label={item.name} checked={item.check} />
         </div>
-        ),
-      )}
-    </div>
-  );
-};
+      ),
+    )}
+  </div>
+);
 
 const generateJSX = (data: IRecently[]) => {
   const categories = useMemo(() => findCategories(data), [data]);
