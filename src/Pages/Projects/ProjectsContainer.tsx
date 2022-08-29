@@ -6,6 +6,7 @@ import { fetchProjects } from '../../core/projects/actions';
 import { projectsSelector } from '../../core/projects/selectors';
 import InputField from '../../components/SearchField/InputField';
 import s from './Projects.module.scss';
+import UserProfile from '../../components/UserProfile/UserProfile';
 
 function ProjectsContainer() {
   const dispacth = useAppDispatch();
@@ -48,12 +49,7 @@ function ProjectsContainer() {
                 onChange={handleChange}
               />
             </div>
-            <div className={s.submenu}>
-              <img alt="submenu" src="/images/icons/Submenu.svg" />
-            </div>
-            <div className={s.user_container}>
-              <img alt="submenu" src="/images/icons/User.svg" />
-            </div>
+            <UserProfile />
           </div>
         </div>
       </header>
