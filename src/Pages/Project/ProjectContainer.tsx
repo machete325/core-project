@@ -1,5 +1,7 @@
-import React, { useMemo, useState } from 'react';
-import { Link, useLocation, Outlet } from 'react-router-dom';
+import React, { useEffect, useMemo, useState } from 'react';
+import {
+  Link, useLocation, Outlet, useParams, useNavigate,
+} from 'react-router-dom';
 
 import NavigateProjectItem from '../../components/NavigateProjectItem/NavigateProjectItem';
 import RecentlyOpened from '../../components/RecentlyOpened/RecentlyOpened';
@@ -94,7 +96,15 @@ const recentlyData = [
 
 function ProjectContainer() {
   const { pathname } = useLocation();
+  const { projectId } = useParams();
+  const navigate = useNavigate();
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    if (pathname === `/project/${projectId}`) {
+      navigate(`../${projectId}/overview`);
+    }
+  }, []);
 
   const checkLinkPath = (linkPath: string) => {
     const memoCheckLinkPath = useMemo(
