@@ -1,56 +1,22 @@
-.wrapper {
-  margin-bottom: 4px;
-  label {
-    display: flex;
-    align-items: center;
-    span {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 22px;
-      color: #ffffff;
-    }
-  }
+.checkbox {
   input[type='checkbox'] {
-    /* removing default appearance */
-    -webkit-appearance: none;
-    appearance: none;
-    /* creating a custom design */
+    display: block;
     width: 18px;
     height: 18px;
-    border-radius: 0.15em;
-    margin-right: 8px;
-    border: 2px solid #6b6e7b;
-    border-radius: 4px;
-    outline: none;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    -webkit-appearance: none;
+    outline: 0;
     cursor: pointer;
-    box-sizing: content-box;
-    &:hover {
-      background: #333333;
-      border-color: #6b6e7b !important;
+    &:not(:checked) {
+      background-image: url(../../../public/images/icons/CheckBox.svg);
     }
-    &:disabled {
-      border-color: #c0c0c0;
-      background-color: #c0c0c0;
+    &:checked {
+      background-image: url(../../../public/images/icons/CheckBoxChecked.svg);
     }
-
-    &:disabled + span {
-      color: #c0c0c0;
+    &:not(:checked):hover {
+      background-image: url(../../../public/images/icons/CheckBoxHover.svg);
     }
   }
-}
-
-.checked {
-  background-color: #0d5dec;
-  border-color: #0d5dec !important;
-  position: relative;
-}
-.checked::before {
-  content: url('../../../public/images/icons/Check.svg');
-  font-size: 1.5em;
-  color: #fff;
-  position: absolute;
-  right: 0.1em;
-  top: -4px;
 }

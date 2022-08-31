@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './CheckBox.module.scss';
 
 type Props = {
-  id: number;
-  label: string;
+  id: number | string;
   checked: boolean;
+  onChange?: (param: any) => void;
 };
 
-function CheckBox({ id, label, checked }: Props) {
+function CheckBox({ id, checked, onChange }: Props) {
   const [isChecked, setIsChecked] = useState(checked);
-  console.log(isChecked);
+
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (onChange) {
+      onChange(event.target.checked);
+    }
+    setIsChecked(event.target.checked);
+  };
+
   return (
-    <div className={s.wrapper}>
-      <label htmlFor="check">
-        <input
-          id={id.toString()}
-          className={isChecked ? s.checked : ''}
-          type="checkbox"
-          onChange={() => setIsChecked((prev) => !prev)}
-        />
-        <span>{label}</span>
+    <div className={s.checkbox}>
+      <label>
+        <input type="checkbox" checked={isChecked} value={id} onChange={handleChange} />
       </label>
     </div>
   );
