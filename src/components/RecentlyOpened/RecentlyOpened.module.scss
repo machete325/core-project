@@ -24,4 +24,16 @@
 
 .checkbox_container {
   margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
 }

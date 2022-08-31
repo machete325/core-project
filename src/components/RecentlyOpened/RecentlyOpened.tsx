@@ -24,9 +24,10 @@ const generateRecentlyItems = (data: IRecently[], category: string) => (
     <div className={s.title}>{category}</div>
     {data.map(
       (item) => item.category === category && (
-        <div key={item.id} className={s.checkbox_container}>
-          <CheckBox id={item.id} label={item.name} checked={item.check} />
-        </div>
+      <div key={item.id} className={s.checkbox_container}>
+        <CheckBox id={item.id} checked={item.check} />
+        <span className={s.name}>{item.name}</span>
+      </div>
       ),
     )}
   </div>
