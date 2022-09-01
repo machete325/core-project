@@ -1,5 +1,5 @@
-import { ExperimentService } from '../services/Experiment.service';
-import { AppThunk, AppDispatch } from '../redux/store';
+import { ExperimentService } from '../../services/Experiment.service';
+import { AppThunk, AppDispatch } from '../store';
 import { experimentSlice } from './reducer';
 
 const { setExperiments, startLoading, setCheckExperiments } = experimentSlice.actions;

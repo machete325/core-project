@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import projectReducer from '../projects/reducer';
-import experimentReducer from '../experiments/reducer';
+import projectReducer from './projects/reducer';
+import experimentReducer from './experiments/reducer';
 
 const rootReducer = combineReducers({
   projects: projectReducer,

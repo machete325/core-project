@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import NavigateItem from '../../components/NavigateItem/NavigateItem';
-import checkPath from '../../helpers/checkPath';
+import checkPath from '../../core/helpers/checkPath';
 import { NavigateConfig } from './types';
 import s from './Main.module.scss';
 

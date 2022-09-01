@@ -6,7 +6,7 @@ import {
 import NavigateProjectItem from '../../components/NavigateProjectItem/NavigateProjectItem';
 import RecentlyOpened from '../../components/RecentlyOpened/RecentlyOpened';
 import InputField from '../../components/SearchField/InputField';
-import checkPath from '../../helpers/checkPath';
+import checkPath from '../../core/helpers/checkPath';
 import s from './Project.module.scss';
 
 const navigateProjectConfig = [

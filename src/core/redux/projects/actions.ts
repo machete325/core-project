@@ -1,5 +1,5 @@
-import { ProjectService } from '../services/Project.service';
-import { AppThunk, AppDispatch } from '../redux/store';
+import { ProjectService } from '../../services/Project.service';
+import { AppThunk, AppDispatch } from '../store';
 import { projectSlice } from './reducer';
 
 const { setProjects, startLoading } = projectSlice.actions;
