@@ -41,7 +41,7 @@ function DropDown() {
             </div>
             <div className={s.experiment_methods}>
               {dropDownConfig.map((method) => (
-                <div className={s.method}>
+                <div key={method.imgSrc} className={s.method}>
                   <img alt={method.text} src={method.imgSrc} />
                   <span>{method.text}</span>
                 </div>
