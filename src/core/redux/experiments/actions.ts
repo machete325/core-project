@@ -10,7 +10,7 @@ const mockExperimentsData = [
     version: '9a0d8999eb3c4f3f95d60e4fc4e5afdd',
     name: 'Experiment_v2.87',
     dataset: {
-      version: 'v2.2.0',
+      version: 'v2.2.01',
       prefix: 'odyssey_sales_forecast',
     },
     project_version: 'a39de25ed7bc491b99ca8b553c3735ee',
