@@ -9,24 +9,6 @@
   justify-content: space-between;
 }
 
-.title_name {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 42px;
-  line-height: 57px;
-  color: #ffffff;
-}
-
-.title_description {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 19px;
-  color: #a9adbd;
-}
-
 .buttons {
   display: flex;
 }
@@ -75,6 +57,9 @@ tbody {
         border-right-style: solid;
         border-bottom-right-radius: 10px;
         border-top-right-radius: 10px;
+      }
+      div {
+        cursor: pointer;
       }
     }
   }
