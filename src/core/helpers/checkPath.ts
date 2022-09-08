@@ -3,7 +3,7 @@ export default function checkPath(
   pathname: string,
   path: string,
   link: string,
-  id?: number | undefined,
+  id?: number | undefined | string,
 ) {
   if (pathname === path && linkPath === link) {
     return true;
