@@ -20,7 +20,7 @@ const findCategories = (data: IRecently[]) => {
 };
 
 const generateRecentlyItems = (data: IRecently[], category: string) => (
-  <div className={s.category_container}>
+  <div key={category} className={s.category_container}>
     <div className={s.title}>{category}</div>
     {data.map(
       (item) => item.category === category && (
