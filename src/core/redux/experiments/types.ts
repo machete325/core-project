@@ -1,4 +1,4 @@
-export interface IExperimentData {
+export interface IExperimentDataF {
   version: string;
   name: string;
   dataset: {
@@ -44,4 +44,72 @@ export interface IExperimentData {
     };
   };
   checked: boolean;
+}
+
+interface IMetric {
+  id: string;
+  name: string;
+  displayName: string;
+  display: boolean;
+  value: number;
+  aggregationOperation: string;
+}
+
+interface IHyperParameters {
+  id: string;
+  name: string;
+  displayName: string;
+  display: boolean;
+  value: number;
+}
+
+export interface IExperiment {
+  id: string;
+  name: string;
+  version: string;
+  projectName: string;
+  description: string;
+  target: string;
+  dataset: {
+    id: string;
+    name: string;
+    version: string;
+    prefix: unknown | null;
+    tag: string;
+  };
+  metrics: {
+    items: { [key: string]: IMetric };
+  };
+  configuration: {
+    items: {
+      runner: {
+        models: {
+          lightgbm: {
+            parameters: {
+              hyper_parameters: {
+                [key: string]: IHyperParameters;
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  infrastructure: {
+    trainingTime: number;
+    usedBudget: number;
+    totalBudget: number;
+    currency: string;
+    usedMachines: number;
+    totalMachines: number;
+  };
+  code: {
+    commitMessage: unknown | null;
+  };
+  status: string;
+  checked: boolean;
+}
+
+export interface IExperimentData {
+  [key: string]: IExperiment;
 }

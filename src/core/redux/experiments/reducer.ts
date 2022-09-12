@@ -4,13 +4,13 @@ import { IExperimentData } from './types';
 export type ExperimentsState = {
   loading: boolean;
   hasErrors: boolean;
-  data: IExperimentData[];
+  data: IExperimentData;
 };
 //
 export const initialState: ExperimentsState = {
   loading: false,
   hasErrors: false,
-  data: [],
+  data: {},
 };
 // A slice
 export const experimentSlice = createSlice({
@@ -18,8 +18,9 @@ export const experimentSlice = createSlice({
   initialState,
   reducers: {
     setExperiments: (state, action: PayloadAction<any>) => {
-      action.payload.forEach((experiment: IExperimentData) => {
-        experiment.checked = false;
+      const data = action.payload;
+      Object.keys(data).forEach((key: string) => {
+        data[key].checked = false;
       });
       state.data = action.payload;
     },
@@ -27,8 +28,8 @@ export const experimentSlice = createSlice({
       state.loading = true;
     },
     setCheckExperiments: (state, action: PayloadAction<boolean>) => {
-      state.data.forEach((experiment: IExperimentData) => {
-        experiment.checked = action.payload;
+      Object.keys(state.data).forEach((key: string) => {
+        state.data[key].checked = action.payload;
       });
     },
   },
