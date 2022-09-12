@@ -60,7 +60,7 @@ function ProjectsContainer() {
             className={s.card_container}
             role="presentation"
             onClick={handleChooseProject}
-            id="1"
+            id="SalesPredictionKaggle"
           >
             Card
           </div>
