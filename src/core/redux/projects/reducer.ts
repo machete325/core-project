@@ -3,13 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export type ProjectsState = {
   loading: boolean;
   hasErrors: boolean;
-  projects: unknown[];
+  data: unknown[];
 };
 //
 export const initialState: ProjectsState = {
   loading: false,
   hasErrors: false,
-  projects: [],
+  data: [],
 };
 // A slice
 export const projectSlice = createSlice({
@@ -17,7 +17,7 @@ export const projectSlice = createSlice({
   initialState,
   reducers: {
     setProjects: (state, action: PayloadAction<any>) => {
-      state.projects.push(action.payload);
+      state.data.push(action.payload);
     },
     startLoading: (state) => {
       state.loading = true;

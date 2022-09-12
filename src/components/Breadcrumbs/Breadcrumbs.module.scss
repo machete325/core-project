@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  height: 19px;
+}
+
+.name {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #a9adbd;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.separator {
+  color: #a9adbd;
+  margin-left: 22px;
+  margin-right: 21px;
+}
+
+.active {
+  color: #ffff;
+}
+
+.separator {
+  display: flex;
+  width: 16px;
+  height: 16px;
+}

@@ -1,3 +1,3 @@
-import { RootState } from '../redux/slices';
+import { RootState } from '../slices';
 
 export const projectsSelector = (state: RootState) => state.projects;

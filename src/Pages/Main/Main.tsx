@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import NavigateItem from '../../components/NavItem/NavigateItem';
-import checkPath from '../../helpers/checkPath';
+import NavigateItem from '../../components/NavigateItem/NavigateItem';
+import checkPath from '../../core/helpers/checkPath';
 import { NavigateConfig } from './types';
 import s from './Main.module.scss';
 
@@ -21,13 +21,15 @@ function Main({ pathname, version, navigateConfig }: Props) {
           </div>
           {navigateConfig.map((link) => (
             <Link
-              className={checkPath(link.path, pathname) && s.active}
+              className={
+                checkPath(link.path, pathname, '/main/', 'projects') ? s.active : undefined
+              }
               key={link.id}
               to={link.path}
             >
               <NavigateItem
                 text={link.text}
-                active={checkPath(link.path, pathname)}
+                active={checkPath(link.path, pathname, '/main/', 'projects')}
                 imgSrc={link.imgSrc}
               />
             </Link>

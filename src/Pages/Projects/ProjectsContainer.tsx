@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../core/redux/store';
-import { fetchProjects } from '../../core/projects/actions';
-import { projectsSelector } from '../../core/projects/selectors';
+import { fetchProjects } from '../../core/redux/projects/actions';
+import { projectsSelector } from '../../core/redux/projects/selectors';
 import InputField from '../../components/SearchField/InputField';
 import s from './Projects.module.scss';
+import UserProfile from '../../components/UserProfile/UserProfile';
 
 function ProjectsContainer() {
   const dispacth = useAppDispatch();
@@ -48,12 +49,7 @@ function ProjectsContainer() {
                 onChange={handleChange}
               />
             </div>
-            <div className={s.submenu}>
-              <img alt="submenu" src="/images/icons/Submenu.svg" />
-            </div>
-            <div className={s.user_container}>
-              <img alt="submenu" src="/images/icons/User.svg" />
-            </div>
+            <UserProfile />
           </div>
         </div>
       </header>
@@ -64,7 +60,7 @@ function ProjectsContainer() {
             className={s.card_container}
             role="presentation"
             onClick={handleChooseProject}
-            id="1"
+            id="SalesPredictionKaggle"
           >
             Card
           </div>
