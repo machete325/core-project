@@ -3,10 +3,14 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import s from './ProjectTabs.module.scss';
+import { getTabContent } from '../../core/helpers/getTabContent';
+import { IExperiment } from '../../core/redux/experiments/types';
 
 interface Props {
   config: { [key: string]: any };
   defaultTab: string | undefined;
+  data: IExperiment | undefined;
 }
 
 interface TabPanelProps {
@@ -54,6 +58,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
+      className={s.tab_panel}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -64,7 +69,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function ProjectTabs({ config, defaultTab }: Props) {
+function ProjectTabs({ config, defaultTab, data }: Props) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -89,7 +94,7 @@ function ProjectTabs({ config, defaultTab }: Props) {
       </Box>
       {Object.keys(config).map((tab, index) => (
         <TabPanel key={tab} value={value} index={index}>
-          {config[tab].name}
+          {getTabContent({ type: tab, path: config[tab].path }, data)}
         </TabPanel>
       ))}
     </Box>
