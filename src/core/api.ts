@@ -4,10 +4,16 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 const api = async (method: 'GET' | 'POST' | 'PUT' | 'DELETE', data: any, url: string) => {
   try {
-    const res = await axios(baseURL + url, {
-      method,
-      data,
-    });
+    const res = method === 'GET'
+      ? await axios({
+        method,
+        url: baseURL + url,
+      })
+      : await axios({
+        method,
+        url: baseURL + url,
+        data,
+      });
     return res;
   } catch (err) {
     if (axios.isAxiosError(err)) {
