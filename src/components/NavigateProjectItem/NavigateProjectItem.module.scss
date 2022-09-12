@@ -1,0 +1,41 @@
+$background_color: #4e4e52;
+$active: #ffffff;
+$disable: #6b6e7b;
+
+@mixin item {
+  width: 294px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.item {
+  @include item;
+  color: $disable !important;
+}
+
+.item_active {
+  @include item;
+  color: $active !important;
+  background-color: $background_color;
+  img {
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(1000%);
+  }
+}
+
+.icon {
+  margin-left: 12px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+}

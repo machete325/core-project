@@ -1,0 +1,22 @@
+.checkbox {
+  input[type='checkbox'] {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    -webkit-appearance: none;
+    outline: 0;
+    cursor: pointer;
+    &:not(:checked) {
+      background-image: url(../../../public/images/icons/CheckBox.svg);
+    }
+    &:checked {
+      background-image: url(../../../public/images/icons/CheckBoxChecked.svg);
+    }
+    &:not(:checked):hover {
+      background-image: url(../../../public/images/icons/CheckBoxHover.svg);
+    }
+  }
+}

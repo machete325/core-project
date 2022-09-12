@@ -1,0 +1,64 @@
+header {
+  margin: 29.5px 24px 0px;
+  display: flex;
+  align-items: center;
+}
+
+main {
+  margin: 24px 24px 0px;
+}
+
+.header_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title_container {
+  margin-right: 24px;
+}
+
+.title_page {
+  margin-bottom: 4px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.description {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: #a9adbd;
+}
+
+.input_container {
+  margin-right: 24px;
+}
+
+.card_container {
+  width: 267.67px;
+  height: 366px;
+  background: #333333;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.title {
+  height: 40px;
+  display: flex;
+  color: #9dcafd;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  cursor: pointer;
+}
