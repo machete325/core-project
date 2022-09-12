@@ -1,11 +1,21 @@
 import api from '../api';
 
 const getBaseUrl = (projectVersion: string, version: string) => `/projects/${projectVersion}/experiments/${version}`;
+const getAdditionalParams = (display?: boolean, page?: number, size?: number) => {
+  let url = display ? '?display=true' : '?display=false';
+  if (page) {
+    url += `&page=${page}`;
+  }
+  if (size) {
+    url += `&size=${size}`;
+  }
+  return url;
+};
 
 export const ExperimentService = {
   getAllExperiments: () => api('GET', [], '/experiments'),
   getExperimentsMinimal: () => api('GET', [], '/experiments/minimal'),
-  getProjectExperiments: (projectVersion: string) => api('GET', [], `/projects/${projectVersion}/experiments`),
+  getProjectExperiments: (projectVersion: string, display?: boolean, page?: number, size?: number) => api('GET', [], `/projects/${projectVersion}/experiments${getAdditionalParams(display, page, size)}`),
   getProjectExperimentsMinimal: (projectVersion: string) => api('GET', [], `/projects/${projectVersion}/experiments/minimal`),
   getExperiment: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}`),
   getExperimentPlots: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots`),
