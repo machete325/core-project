@@ -108,7 +108,7 @@ function ProjectContainer() {
 
   const checkLinkPath = (linkPath: string) => {
     const memoCheckLinkPath = useMemo(
-      () => checkPath(linkPath, pathname, '/project/', 'overview', 1),
+      () => checkPath(linkPath, pathname, '/project/', 'overview', 'SalesPredictionKaggle'),
       [linkPath, pathname],
     );
     return memoCheckLinkPath;
