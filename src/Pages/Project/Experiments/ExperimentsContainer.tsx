@@ -14,13 +14,13 @@ import ProjectTitle from '../../../components/ProjectTitle/ProjectTitle';
 import ProjectStatus from '../../../components/ProjectStatus/ProjectStatus';
 
 const mockProjectData = [
-  { id: '1', name: 'Demand Forecasting' },
+  { id: 'SalesPredictionKaggle', name: 'Demand Forecasting' },
   { id: '2', name: 'Proj2' },
   { id: '3', name: 'Proj3' },
 ];
 
 const projectData = {
-  id: '1',
+  id: 'SalesPredictionKaggle',
   name: 'Demand Forecasting',
   page: 'experiment',
   description: '1 out of 3 experiments running',
@@ -37,15 +37,15 @@ function ProjectExperimentsContainer() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchExperiments());
+    dispatch(fetchExperiments(mockProjectData[0].id));
   }, []);
 
   const handleCheckAll = (checked: boolean) => {
     dispatch(checkExperiments(checked));
   };
 
-  const handleOpenModal = (activeTab: string, version: string | undefined) => {
-    const experiment = data.find((item) => item.version === version);
+  const handleOpenModal = (activeTab: string, id: string) => {
+    const experiment = data[id];
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
@@ -57,14 +57,14 @@ function ProjectExperimentsContainer() {
   const genTableDataMark = (
     model: Object | string | number,
     activeTab: string,
-    version: string | undefined,
+    id: string,
     isTitle: boolean = true,
   ) => {
     const marking = (key: any, value: any) => (
       <div
         key={key}
         role="presentation"
-        onClick={() => handleOpenModal(activeTab, version)}
+        onClick={() => handleOpenModal(activeTab, id)}
         className={typeof model === 'object' ? s.obj_container : ''}
       >
         {isTitle && (
@@ -73,43 +73,101 @@ function ProjectExperimentsContainer() {
           :
         </span>
         )}
-        {value}
+        {value || 'null'}
       </div>
     );
-    const result = typeof model === 'object'
+
+    const result = typeof model === 'object' && model !== null
       ? Object.entries(model).map(([key, value]) => marking(key, value))
       : marking(1, model);
     return <td key={activeTab}>{result}</td>;
   };
 
   const experimentConfig = {
-    description: { name: 'Description', path: '.description' },
-    target: { name: 'Target', path: '.target' },
-    dataset: { name: 'Data', path: '.dataset' },
-    metrics: { name: 'Main Metrics', path: '.metrics' },
-    configuration: { name: 'Model configuration', path: '.configuration' },
-    infrastructure: { name: 'Infrastructure', path: '.infrastructure' },
-    last_commit: { name: 'Commit Description', path: '.commit.last_commit.description' },
+    description: {
+      name: 'Description',
+      path: '.description',
+      requiredFields: [],
+      length: undefined,
+    },
+    target: {
+      name: 'Target',
+      path: '.target',
+      requiredFields: [],
+      length: undefined,
+    },
+    dataset: {
+      name: 'Data',
+      path: '.dataset.name',
+      requiredFields: [],
+      length: undefined,
+    },
+    metrics: {
+      name: 'Main Metrics',
+      path: '.metrics.items',
+      requiredFields: ['displayName', 'value'],
+      length: 3,
+    },
+    configuration: {
+      name: 'Model configuration',
+      path: '.configuration.items.runner.models.lightgbm.parameters.hyper_parameters',
+      requiredFields: ['display_name', 'value'],
+      length: 3,
+    },
+    infrastructure: {
+      name: 'Infrastructure',
+      path: '.infrastructure',
+      requiredFields: [],
+      length: undefined,
+    },
+    last_commit: {
+      name: 'Commit Description',
+      path: '.code.commitMessage',
+      requiredFields: [],
+      length: undefined,
+    },
   };
 
   const genTableData = (
-    config: { [key: string]: { name: string; path: string } },
-    version: string,
+    config: {
+      [key: string]: {
+        name: string;
+        path: string;
+        requiredFields: any[];
+        length: number | undefined;
+      };
+    },
+    id: string,
   ) => {
     const arr: any[] = [];
-    const experimentData = data.find((experiment) => experiment.version === version);
+    const experimentData = data[id];
+
+    const formatObject = (obj: any, requiredFields: string[], length: number | undefined) => {
+      const keys = typeof obj === 'object' ? obj !== null && Object.keys(obj) : false;
+      const isObj = keys && typeof obj[keys[0]] === 'object';
+      if (isObj) {
+        const tempData: { [key: string]: any } = {};
+        Object.keys(obj).forEach((item, index) => {
+          if (typeof length !== 'undefined' && index > length - 1) {
+            return null;
+          }
+          tempData[obj[item][requiredFields[0]]] = obj[item][requiredFields[1]];
+          return tempData;
+        });
+        return tempData;
+      }
+      return obj;
+    };
+
     Object.entries(config).forEach((item) => {
       const [key, value] = item;
-      const tableData = convertToString(experimentData, value.path);
-      const isTitle = typeof tableData === 'object';
-      arr.push(
-        genTableDataMark(
-          tableData,
-          key,
-          experimentData?.version,
-          key === 'dataset' ? false : isTitle,
-        ),
+      const tableData = formatObject(
+        convertToString(experimentData, value.path),
+        value.requiredFields,
+        value.length,
       );
+      const isTitle = typeof tableData === 'object';
+      arr.push(genTableDataMark(tableData, key, id, isTitle));
     });
     return arr;
   };
@@ -156,16 +214,16 @@ function ProjectExperimentsContainer() {
             </tr>
           </thead>
           <tbody>
-            {data.length !== 0
-              && data.map((experiment, index) => (
-                <tr key={experiment.version}>
+            {Object.keys(data).length !== 0
+              && Object.keys(data).map((key, index) => (
+                <tr key={key}>
                   <td>
-                    <CheckBox id={index} checked={experiment.checked} />
+                    <CheckBox id={key} checked={data[key].checked} />
                   </td>
                   <td>{index + 1}</td>
-                  {genTableData(experimentConfig, experiment.version)}
+                  {genTableData(experimentConfig, key)}
                   <td>
-                    <ProjectStatus status={experiment.status} />
+                    <ProjectStatus status={data[key].status} />
                   </td>
                   <td>
                     <DropDown />
