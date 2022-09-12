@@ -3,7 +3,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 WORKDIR /app
 # install dependencies
-COPY package.json .
+COPY package.json package-lock.json ./
 RUN npm install
 COPY . ./
 
@@ -12,4 +12,4 @@ RUN npm run build
 
 
 FROM nginx:latest as serving-stage
-COPY --from=build-stage /app/dist/corecontrol/ /usr/share/nginx/html
+COPY --from=build-stage /app/build /usr/share/nginx/html
