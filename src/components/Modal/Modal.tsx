@@ -5,7 +5,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { TransitionProps } from '@mui/material/transitions';
-import { IExperimentData } from '../../core/redux/experiments/types';
+import { IExperiment } from '../../core/redux/experiments/types';
 import ProjectTitle from '../ProjectTitle/ProjectTitle';
 import ProjectStatus from '../ProjectStatus/ProjectStatus';
 import OpenButton from '../OpenButton/OpenButton';
@@ -22,7 +22,7 @@ const Transition = React.forwardRef(
 
 export type ChoosedTab = {
   type: string | undefined;
-  data: IExperimentData | undefined;
+  data: IExperiment | undefined;
   page: string;
 };
 
@@ -88,7 +88,7 @@ function Modal({
           </div>
         </DialogTitle>
         <DialogContent>
-          <ProjectTabs config={config} defaultTab={data.type} />
+          <ProjectTabs config={config} defaultTab={data.type} data={data.data} />
         </DialogContent>
       </Dialog>
     </ThemeProvider>
