@@ -15,12 +15,21 @@ const getAdditionalParams = (display?: boolean, page?: number, size?: number) =>
 export const ExperimentService = {
   getAllExperiments: () => api('GET', [], '/experiments'),
   getExperimentsMinimal: () => api('GET', [], '/experiments/minimal'),
-  getProjectExperiments: (projectVersion: string, display?: boolean, page?: number, size?: number) => api('GET', [], `/projects/${projectVersion}/experiments${getAdditionalParams(display, page, size)}`),
+  getProjectExperiments: (
+    projectVersion: string,
+    display?: boolean,
+    page?: number,
+    size?: number,
+  ) => api(
+    'GET',
+    [],
+    `/projects/${projectVersion}/experiments${getAdditionalParams(display, page, size)}`,
+  ),
   getProjectExperimentsMinimal: (projectVersion: string) => api('GET', [], `/projects/${projectVersion}/experiments/minimal`),
   getExperiment: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}`),
   getExperimentPlots: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots`),
   getExperimentPlotsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots${_id}`),
-  getExperimentMetrics: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics`),
+  getExperimentMetrics: (projectVersion: string, version: string, display: boolean) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${display ? '' : '?display=false'}`),
   getExperimentMetricsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${_id}`),
   getExperimentConfiguration: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/configuration`),
   getExperimentDatasets: (projectVersion: string, version: string, prefix_value: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/datasets?prefix=${prefix_value}`),
