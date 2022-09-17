@@ -1,11 +1,13 @@
 import React from 'react';
+import { IProjectData } from '../../../../components/Modal/types';
 
 interface Props {
   data: any;
+  projectData: IProjectData;
 }
 
-function Infrastructure({ data }: Props) {
-  console.log(data);
+function Infrastructure({ data, projectData }: Props) {
+  console.log(data, projectData);
   return <div>Infrastructure</div>;
 }
 
