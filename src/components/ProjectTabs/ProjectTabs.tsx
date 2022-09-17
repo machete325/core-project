@@ -6,11 +6,13 @@ import { styled } from '@mui/material/styles';
 import s from './ProjectTabs.module.scss';
 import { getTabContent } from '../../core/helpers/getTabContent';
 import { IExperiment } from '../../core/redux/experiments/types';
+import { IProjectData } from '../Modal/types';
 
 interface Props {
   config: { [key: string]: any };
   defaultTab: string | undefined;
   data: IExperiment | undefined;
+  projectData: IProjectData;
 }
 
 interface TabPanelProps {
@@ -69,7 +71,9 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-function ProjectTabs({ config, defaultTab, data }: Props) {
+function ProjectTabs({
+  config, defaultTab, data, projectData,
+}: Props) {
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -94,7 +98,7 @@ function ProjectTabs({ config, defaultTab, data }: Props) {
       </Box>
       {Object.keys(config).map((tab, index) => (
         <TabPanel key={tab} value={value} index={index}>
-          {getTabContent({ type: tab, path: config[tab].path }, data)}
+          {getTabContent({ type: tab, path: config[tab].path }, data, projectData)}
         </TabPanel>
       ))}
     </Box>
