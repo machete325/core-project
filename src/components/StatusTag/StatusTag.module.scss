@@ -1,0 +1,35 @@
+.status_tag {
+  display: inline-block;
+  border-radius: 3px;
+  height: 22px;
+  min-width: 65px;
+  text-align: center;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 21px;
+}
+
+.status_tag_2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  min-width: 65px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+  &:nth-child(1) {
+    margin-right: 24px;
+  }
+}
+
+.value_2 {
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+}

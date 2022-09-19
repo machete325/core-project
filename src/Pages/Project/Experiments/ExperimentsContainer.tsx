@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import DropDown from '../../../components/DropDown/DropDown';
-import Modal, { ChoosedTab } from '../../../components/Modal/Modal';
+import Modal from '../../../components/Modal/Modal';
+import { ChoosedTab } from '../../../components/Modal/types';
 import { checkExperiments, fetchExperiments } from '../../../core/redux/experiments/actions';
 import { experimentsSelector } from '../../../core/redux/experiments/selectors';
 import { useAppDispatch } from '../../../core/redux/store';
@@ -12,6 +13,7 @@ import { convertToString } from '../../../core/helpers/convertPath';
 import s from './Experiments.module.scss';
 import ProjectTitle from '../../../components/ProjectTitle/ProjectTitle';
 import ProjectStatus from '../../../components/ProjectStatus/ProjectStatus';
+import StatusTag from '../../../components/StatusTag/StatusTag';
 
 const mockProjectData = [
   { id: 'SalesPredictionKaggle', name: 'Demand Forecasting' },
@@ -58,73 +60,138 @@ function ProjectExperimentsContainer() {
     model: Object | string | number,
     activeTab: string,
     id: string,
-    isTitle: boolean = true,
+    isTitle: boolean,
   ) => {
-    const marking = (key: any, value: any) => (
-      <div
-        key={key}
-        role="presentation"
-        onClick={() => handleOpenModal(activeTab, id)}
-        className={typeof model === 'object' ? s.obj_container : ''}
-      >
-        {isTitle && (
-        <span className={s.title_key}>
-          {key}
-          :
-        </span>
-        )}
-        {value || 'null'}
-      </div>
-    );
-
+    const marking = (key: any, value: any) => {
+      switch (activeTab) {
+        case 'infrastructure':
+          return (
+            <div
+              key={key}
+              role="presentation"
+              onClick={() => handleOpenModal(activeTab, id)}
+              className={s.obj_container}
+            >
+              {value.value}
+            </div>
+          );
+        default:
+          return (
+            <div
+              key={key}
+              role="presentation"
+              onClick={() => handleOpenModal(activeTab, id)}
+              className={typeof model === 'object' ? s.obj_container : ''}
+            >
+              {isTitle && (
+              <span className={s.title_key}>
+                {key}
+                :
+              </span>
+              )}
+              {value || 'null'}
+            </div>
+          );
+      }
+    };
     const result = typeof model === 'object' && model !== null
       ? Object.entries(model).map(([key, value]) => marking(key, value))
       : marking(1, model);
     return <td key={activeTab}>{result}</td>;
   };
 
+  /* {
+      name: name of experiment section,
+      path: path to information on experiment data,
+      mainInfoFields: fields for showing main information,
+      length: amount of fields for showing
+    }
+  */
+
   const experimentConfig = {
     description: {
       name: 'Description',
       path: '.description',
-      requiredFields: [],
+      mainInfoFields: [],
       length: undefined,
+      formattingFunction: undefined,
+      isTitle: false,
     },
     target: {
       name: 'Target',
       path: '.target',
-      requiredFields: [],
+      mainInfoFields: [],
       length: undefined,
+      formattingFunction: undefined,
+      isTitle: false,
     },
     dataset: {
       name: 'Data',
       path: '.dataset.name',
-      requiredFields: [],
+      mainInfoFields: [],
       length: undefined,
+      formattingFunction: undefined,
+      isTitle: false,
     },
     metrics: {
       name: 'Main Metrics',
       path: '.metrics.items',
-      requiredFields: ['displayName', 'value'],
+      mainInfoFields: ['displayName', 'value'],
       length: 3,
+      formattingFunction: undefined,
+      isTitle: true,
     },
     configuration: {
       name: 'Model configuration',
       path: '.configuration.items.runner.models.lightgbm.parameters.hyper_parameters',
-      requiredFields: ['display_name', 'value'],
+      mainInfoFields: ['display_name', 'value'],
       length: 3,
+      formattingFunction: undefined,
+      isTitle: true,
     },
     infrastructure: {
       name: 'Infrastructure',
       path: '.infrastructure',
-      requiredFields: [],
+      mainInfoFields: [],
       length: undefined,
+      formattingFunction: (infrastructure: any) => {
+        const tempObj = {
+          trained: { value: <>1</>, isTitle: true },
+          avg: { value: <>1</>, isTitle: true },
+          used: { value: <>1</>, isTitle: false },
+        };
+        tempObj.trained.value = (
+          <>
+            <span className={s.title_key}>Trained in:</span>
+            {` ${infrastructure.trainingTime}`}
+          </>
+        );
+        tempObj.avg.value = (
+          <>
+            <span className={s.title_key}>Avg. cost:</span>
+            <StatusTag
+              usedValue={infrastructure.usedBudget}
+              totalValue={infrastructure.totalBudget}
+            />
+          </>
+        );
+        tempObj.used.value = (
+          <span className={s.title_key}>
+            {`Used ${infrastructure.usedMachines}/${infrastructure.totalMachines} VMs`}
+          </span>
+        );
+        return tempObj;
+      },
+
+      isTitle: false,
     },
     last_commit: {
       name: 'Commit Description',
       path: '.code.commitMessage',
-      requiredFields: [],
+      mainInfoFields: [],
       length: undefined,
+      formattingFunction: undefined,
+      isTitle: false,
     },
   };
 
@@ -133,8 +200,10 @@ function ProjectExperimentsContainer() {
       [key: string]: {
         name: string;
         path: string;
-        requiredFields: any[];
+        mainInfoFields: any[];
         length: number | undefined;
+        formattingFunction: ((field: any) => void) | undefined;
+        isTitle: boolean;
       };
     },
     id: string,
@@ -142,7 +211,7 @@ function ProjectExperimentsContainer() {
     const arr: any[] = [];
     const experimentData = data[id];
 
-    const formatObject = (obj: any, requiredFields: string[], length: number | undefined) => {
+    const formatObject = (obj: any, mainInfoFields: string[], length: number | undefined) => {
       const keys = typeof obj === 'object' ? obj !== null && Object.keys(obj) : false;
       const isObj = keys && typeof obj[keys[0]] === 'object';
       if (isObj) {
@@ -151,7 +220,7 @@ function ProjectExperimentsContainer() {
           if (typeof length !== 'undefined' && index > length - 1) {
             return null;
           }
-          tempData[obj[item][requiredFields[0]]] = obj[item][requiredFields[1]];
+          tempData[obj[item][mainInfoFields[0]]] = obj[item][mainInfoFields[1]];
           return tempData;
         });
         return tempData;
@@ -163,11 +232,17 @@ function ProjectExperimentsContainer() {
       const [key, value] = item;
       const tableData = formatObject(
         convertToString(experimentData, value.path),
-        value.requiredFields,
+        value.mainInfoFields,
         value.length,
       );
-      const isTitle = typeof tableData === 'object';
-      arr.push(genTableDataMark(tableData, key, id, isTitle));
+      arr.push(
+        genTableDataMark(
+          value.formattingFunction ? value.formattingFunction(tableData) : tableData,
+          key,
+          id,
+          value.isTitle,
+        ),
+      );
     });
     return arr;
   };
