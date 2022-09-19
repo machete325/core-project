@@ -34,11 +34,8 @@ function Metrics({ data, projectData }: Props) {
   useEffect(() => {
     fetchData();
     fetchDataExpand();
-  }, []);
+  }, [data.id]);
 
-  console.log(data, projectData);
-  console.log(metricsData);
-  console.log(metricsDataExpand);
   return (
     <div className={s.wrapper}>
       {metricsData && metricsDataExpand && (
@@ -60,7 +57,7 @@ function Metrics({ data, projectData }: Props) {
             </div>
           </div>
           {Object.keys(metricsDataExpand).map((metric) => (
-            <Chart data={metricsDataExpand[metric]} />
+            <Chart key={metricsDataExpand[metric].id} data={metricsDataExpand[metric]} />
           ))}
         </>
       )}
