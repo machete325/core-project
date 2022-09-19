@@ -68,7 +68,7 @@ function StatusTag({
         width,
       }}
     >
-      {`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}
+      {`${Number.isInteger(usedValue) ? usedValue : usedValue?.toFixed(2) || '-'} / ${totalValue}`}
     </span>
   );
 }
