@@ -6,9 +6,10 @@ import s from './Chart.module.scss';
 
 type Props = {
   data: any;
+  isFill?: boolean;
 };
 
-function Chart({ data }: Props) {
+function Chart({ data, isFill }: Props) {
   const chartRef = useRef<HTMLDivElement>(null);
 
   const genDataset = (x: any[], y: any[]) => {
@@ -55,8 +56,8 @@ function Chart({ data }: Props) {
         name: data.value[item].name,
         type: 'line',
         showSymbol: false,
-        stack: 'Total',
         data: [...genDataset(data.value[item].x, data.value[item].y)],
+        areaStyle: { opacity: isFill ? 0.2 : 0 },
       };
       chartData.legend.push(data.value[item].name);
       chartData.series.push(series);
@@ -64,8 +65,6 @@ function Chart({ data }: Props) {
     option.legend.data = chartData.legend;
     option.series = chartData.series;
   };
-
-  console.log(option);
 
   let chart: ECharts | undefined;
   useEffect(() => {
@@ -77,7 +76,12 @@ function Chart({ data }: Props) {
     }
   }, []);
 
-  return <div className={s.wrapper} ref={chartRef} />;
+  return (
+    <div className={s.wrapper}>
+      <div className={s.title}>{data.displayName}</div>
+      <div className={s.chart} ref={chartRef} />
+    </div>
+  );
 }
 
 export default Chart;
