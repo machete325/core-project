@@ -1,0 +1,1006 @@
+{
+  "items": {
+    "runner": {
+      "models": {
+        "persistence": {
+          "name": {
+            "id": "de901e24-d086-484d-9933-859594acf60a",
+            "name": "name",
+            "displayName": "NAME",
+            "display": false,
+            "value": "persistence"
+          },
+          "parameters": {
+            "hyper_parameters": {
+              "predict_column": {
+                "id": "26eec09f-e3a7-44cc-ba3e-2ad0e3433a42",
+                "name": "predict_column",
+                "displayName": "PREDICT_COLUMN",
+                "display": false,
+                "value": "shop_item_sales_lag_1"
+              }
+            }
+          }
+        },
+        "lightgbm": {
+          "name": {
+            "id": "1e9d05b7-f1b0-46e1-9d73-7d0d69e34394",
+            "name": "name",
+            "displayName": "NAME",
+            "display": false,
+            "value": "lightgbm"
+          },
+          "parameters": {
+            "hyper_parameters": {
+              "objective": {
+                "id": "489a24a6-c722-42ae-9b30-9715be1a47ee",
+                "name": "objective",
+                "displayName": "OBJECTIVE",
+                "display": false,
+                "value": "mse"
+              },
+              "metric": {
+                "id": "598e8353-93be-492e-a07c-0a7cfef4f83c",
+                "name": "metric",
+                "displayName": "METRIC",
+                "display": false,
+                "value": "rmse"
+              },
+              "num_boost_round": {
+                "id": "1d5ddfa7-e27c-4713-adbb-66108cb9ea47",
+                "name": "num_boost_round",
+                "displayName": "NUM_BOOST_ROUND",
+                "display": true,
+                "value": 3000
+              },
+              "num_leaves": {
+                "id": "6aebcc62-150c-42d3-837a-5c3704fa244f",
+                "name": "num_leaves",
+                "displayName": "NUM_LEAVES",
+                "display": true,
+                "value": 127
+              },
+              "learning_rate": {
+                "id": "36115050-8b51-4349-a954-12352183db8a",
+                "name": "learning_rate",
+                "displayName": "LEARNING_RATE",
+                "display": true,
+                "value": 0.005
+              },
+              "feature_fraction": {
+                "id": "e1508327-a63f-405c-8bc9-4ba37940d3f1",
+                "name": "feature_fraction",
+                "displayName": "FEATURE_FRACTION",
+                "display": false,
+                "value": 0.75
+              },
+              "bagging_fraction": {
+                "id": "e8977390-5f63-48f7-9d3d-ac77e1697f1d",
+                "name": "bagging_fraction",
+                "displayName": "BAGGING_FRACTION",
+                "display": false,
+                "value": 0.75
+              },
+              "bagging_freq": {
+                "id": "b15dfa96-215f-4927-857b-27bb513948bc",
+                "name": "bagging_freq",
+                "displayName": "BAGGING_FREQ",
+                "display": false,
+                "value": 5
+              }
+            },
+            "meta_parameters": {
+              "early_stopping_rounds": {
+                "id": "1d9403f5-f549-464a-ba21-4e10b6978b80",
+                "name": "early_stopping_rounds",
+                "displayName": "EARLY_STOPPING_ROUNDS",
+                "display": false,
+                "value": 100
+              },
+              "evaluation_period": {
+                "id": "6d78845a-5496-47e6-a3d6-32b36d1820a8",
+                "name": "evaluation_period",
+                "displayName": "EVALUATION_PERIOD",
+                "display": false,
+                "value": 5
+              }
+            }
+          }
+        }
+      },
+      "dataset": {
+        "pipeline": {
+          "name": {
+            "id": "1aada59b-3c27-4fcf-b7bf-74fa3a8ab17c",
+            "name": "name",
+            "displayName": "NAME",
+            "display": false,
+            "value": "monthly_sales_prediction"
+          },
+          "parameters": {
+            "operations": [
+              {
+                "name": {
+                  "id": "b5124443-20db-40a4-9b43-b6ba1f2725b6",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "time"
+                }
+              },
+              {
+                "name": {
+                  "id": "11cc7541-7cff-4cfb-bbb6-6168ea5b2e38",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "city"
+                }
+              },
+              {
+                "name": {
+                  "id": "f7a90e88-3c1b-40ae-bc8e-93d5f2de7497",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "is_new_item"
+                }
+              },
+              {
+                "name": {
+                  "id": "4a8ac801-228c-45c1-91da-1c735919a821",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "is_first_shop_transaction"
+                }
+              },
+              {
+                "name": {
+                  "id": "b143b878-cfe9-40f1-a068-25ef12f09843",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "average_daily_sales"
+                }
+              },
+              {
+                "name": {
+                  "id": "97a5c489-d2e4-4f77-bb59-d15dcc3dc5f6",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "age"
+                }
+              },
+              {
+                "name": {
+                  "id": "cf26ed87-e1b4-42d2-97a2-b3a780993e18",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "last_sale"
+                }
+              },
+              {
+                "name": {
+                  "id": "40be4592-dc7a-4263-ae23-596a69dd5bfe",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "product_item"
+                }
+              },
+              {
+                "name": {
+                  "id": "b5075dcb-f6c1-4c69-b504-7db45812e06d",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "product_category"
+                }
+              },
+              {
+                "name": {
+                  "id": "854c74f0-ce89-4c5f-af1e-6f57fe8f1a71",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "price_percentage_change"
+                }
+              },
+              {
+                "name": {
+                  "id": "60ab69d2-db69-4b9f-a127-a074ae414e49",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "sales_percentage_change"
+                }
+              },
+              {
+                "name": {
+                  "id": "4eced04f-4ff1-4d0f-ad09-dd6fc9249835",
+                  "name": "name",
+                  "displayName": "NAME",
+                  "display": false,
+                  "value": "lags"
+                },
+                "parameters": {
+                  "average_daily_shop_item_sales": {
+                    "lags": [
+                      {
+                        "id": "70fb3058-d777-4d1c-a0ad-459a82a19414",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "5fc96de9-73d6-4966-bdb8-49734c28ec09",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "879a33ed-9806-40c0-ae22-4b4708454787",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      },
+                      {
+                        "id": "5a08c732-c1d9-4f00-b277-05be2b95b1bc",
+                        "name": "lags_3",
+                        "displayName": "LAGS_3",
+                        "display": false,
+                        "value": 12
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "4ae45ad5-5631-4bea-b661-c16c16776f29",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "shop_item_price": {
+                    "lags": [
+                      {
+                        "id": "fcdd0071-2484-413e-b3df-a368bf9f8ddd",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "bdf87e5c-42ed-4999-99fe-45f61edb15b8",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "0f37e044-b5b7-4396-8dfb-7383d8be91bf",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      },
+                      {
+                        "id": "42a8e323-fc36-438c-bc4f-78ade8d42342",
+                        "name": "lags_3",
+                        "displayName": "LAGS_3",
+                        "display": false,
+                        "value": 12
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "db1219b3-12f4-4944-96dc-f50e4a5e1d4c",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "shop_item_sales": {
+                    "lags": [
+                      {
+                        "id": "4fac65ab-975d-43ab-97de-a580644549e0",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "9ccc599a-3c34-4ff8-953c-389eb3a03d8a",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "6723d1a1-92cf-4985-be23-6a3e716e6276",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      },
+                      {
+                        "id": "ce30a6b2-0935-4114-8879-bf8e4f3e20e0",
+                        "name": "lags_3",
+                        "displayName": "LAGS_3",
+                        "display": false,
+                        "value": 12
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "b5c0c249-6cc6-49ca-8412-0c96c0d9ba66",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_shop_category_price": {
+                    "lags": [
+                      {
+                        "id": "58351af0-0b7b-443f-a375-254da8e8f6f5",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "6372b071-efb3-4dc1-9a74-882527325982",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "c586dcf0-21c9-4ffa-a13c-e99808a2cf88",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "b6fda470-2a28-4a08-8b86-45bac2dcc384",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_shop_category_sales": {
+                    "lags": [
+                      {
+                        "id": "ba8abee3-c767-4409-b9a4-89aa1fbed978",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "45d0f575-15dd-467e-9cb0-0896b9eef428",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "84d465cb-9cdc-404f-9b06-d0174ef15872",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "78fc574c-55c2-4650-96e0-b94e17ab0c99",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_city_item_price": {
+                    "lags": [
+                      {
+                        "id": "8003a3a3-1875-4699-a24d-4dfb1b1c8e12",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "93a93496-96a5-4f18-9b21-9142309bed99",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "1fb6df02-d748-455e-86ae-281f5fa01b92",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "a4ec7b1a-a381-4412-b04f-325b38e189f9",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_city_item_sales": {
+                    "lags": [
+                      {
+                        "id": "707468d8-9b5f-40ec-9591-75e18e668a7a",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "45fb5b1f-61bf-4144-8e95-75babf5f332d",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "2ea96d21-a95b-45e1-ae4e-35a8abf459fe",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "3f24dc39-62b5-498f-b126-8ac90673f361",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_city_category_price": {
+                    "lags": [
+                      {
+                        "id": "074396b2-f9b3-4fc9-af52-e47028fb6bf6",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "7aa41099-36f5-40a2-9d3c-f36145be8994",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "e2271af7-ce45-4a54-983d-9c6afe8139d8",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "0738c804-0342-4479-b41a-c46ef7e83f12",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_city_category_sales": {
+                    "lags": [
+                      {
+                        "id": "8f237b94-8484-442c-a115-81588d724d02",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "7efa9ea9-8c4d-418a-a426-97dda4f1674e",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "5a743f0f-11c4-433e-ab57-f2556479dce0",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "bd45e367-7af0-4e9c-a53b-0367687515ec",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_company_item_price": {
+                    "lags": [
+                      {
+                        "id": "4de1bade-4d60-4439-aaf8-da087ec1427e",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "b1f9cf10-5c7b-4596-984c-f331ec4977c5",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "00ff9f1a-3fe0-469b-a403-aa322aa574cd",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "a78a42d4-4301-4a76-8019-ba8eb2dc61f8",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_company_item_sales": {
+                    "lags": [
+                      {
+                        "id": "e3efdc21-144c-485a-b0be-426d558f3e28",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "81785121-ad27-4d5d-a2b5-fa0036da6ee4",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "a8d75afc-851e-4e23-8945-2e74e9e254ed",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "773dce07-3dc1-4156-a7e7-bed3e5093eed",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_company_category_price": {
+                    "lags": [
+                      {
+                        "id": "9555581a-9747-4b05-9a4e-ca11ae205e16",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "8651d9a5-d0c4-4327-b253-356f4adcafb1",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "352500ed-2a09-40aa-a4a8-194e2ca4db87",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "1a0263d3-4da2-4a2b-a966-b14dc1f6ab8f",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "average_company_category_sales": {
+                    "lags": [
+                      {
+                        "id": "c2d01959-50aa-426f-9a5d-9bd1afeca181",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "65c2cb7a-97ff-4978-93e1-2df92b057e3e",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "7f34f03b-302b-46a9-bde1-5f165dabff1f",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "b4d6469d-56bd-4fab-8b61-5de3782ef965",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "shop_company_item_price_change": {
+                    "lags": [
+                      {
+                        "id": "9ff614d2-3ad1-4a47-8f68-70f43387bd26",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "e53716aa-5f4e-439f-bd2c-92d6463ce758",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "2ac9dff8-af61-47f2-9c25-8c31afe3c904",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "26960eb3-6735-4eea-81bd-293dabd23d41",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  },
+                  "shop_company_item_sales_change": {
+                    "lags": [
+                      {
+                        "id": "b93d872a-7887-4656-9466-6734da5f1700",
+                        "name": "lags_0",
+                        "displayName": "LAGS_0",
+                        "display": false,
+                        "value": 1
+                      },
+                      {
+                        "id": "c2acb479-1d97-4a3f-a521-7be245ad61e2",
+                        "name": "lags_1",
+                        "displayName": "LAGS_1",
+                        "display": false,
+                        "value": 2
+                      },
+                      {
+                        "id": "8e688e21-db20-4236-8cb9-346b3add2ed3",
+                        "name": "lags_2",
+                        "displayName": "LAGS_2",
+                        "display": false,
+                        "value": 3
+                      }
+                    ],
+                    "fill_value": {
+                      "id": "d1cfe8e0-ea94-4884-adb6-8a7089e0bf36",
+                      "name": "fill_value",
+                      "displayName": "FILL_VALUE",
+                      "display": false,
+                      "value": 0
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "name": {
+          "id": "72e013cc-ce48-40c1-8417-e6b363943dcf",
+          "name": "name",
+          "displayName": "NAME",
+          "display": false,
+          "value": "monthly_sales_prediction"
+        },
+        "parameters": {
+          "local_directory": {
+            "id": "ad77b04c-07d2-4bbd-8869-0fef216bf204",
+            "name": "local_directory",
+            "displayName": "LOCAL_DIRECTORY",
+            "display": false,
+            "value": "../data"
+          },
+          "use_feature_store": {
+            "id": "349d9976-9e20-4116-8674-90e79ce7d777",
+            "name": "use_feature_store",
+            "displayName": "USE_FEATURE_STORE",
+            "display": false,
+            "value": true
+          },
+          "shuffle": {
+            "id": "002a1290-0880-4a02-b6b9-e6cb298eb376",
+            "name": "shuffle",
+            "displayName": "SHUFFLE",
+            "display": false,
+            "value": true
+          },
+          "split_info": {
+            "validation": {
+              "id": "40b97121-964b-4611-998e-36f3c733f8b8",
+              "name": "validation",
+              "displayName": "VALIDATION",
+              "display": false,
+              "value": 32
+            },
+            "test": {
+              "id": "1278b6ed-3084-4ea2-a775-a5d55b748bf1",
+              "name": "test",
+              "displayName": "TEST",
+              "display": false,
+              "value": 33
+            }
+          },
+          "categorical_features_encoding": {
+            "id": "d5e243f5-1fa6-4d64-9eb8-08a7d565865f",
+            "name": "categorical_features_encoding",
+            "displayName": "CATEGORICAL_FEATURES_ENCODING",
+            "display": false,
+            "value": "None"
+          },
+          "categorical_features": [
+            {
+              "id": "5d086b4c-8553-4dd4-af90-ffa6ab1d1feb",
+              "name": "categorical_features_0",
+              "displayName": "CATEGORICAL_FEATURES_0",
+              "display": false,
+              "value": "shop_id"
+            },
+            {
+              "id": "4fe5a419-3adb-4c02-b57c-5988b2542cd2",
+              "name": "categorical_features_1",
+              "displayName": "CATEGORICAL_FEATURES_1",
+              "display": false,
+              "value": "item_id"
+            },
+            {
+              "id": "ff7c3f00-eed8-4e94-8f72-81c416ac0258",
+              "name": "categorical_features_2",
+              "displayName": "CATEGORICAL_FEATURES_2",
+              "display": false,
+              "value": "item_category_id"
+            },
+            {
+              "id": "d3c4d3d6-bba2-4616-901c-13d5ff1fc1ec",
+              "name": "categorical_features_3",
+              "displayName": "CATEGORICAL_FEATURES_3",
+              "display": false,
+              "value": "city_id"
+            },
+            {
+              "id": "73750d2e-ea13-4dd8-b07c-b6b8eb8f0573",
+              "name": "categorical_features_4",
+              "displayName": "CATEGORICAL_FEATURES_4",
+              "display": false,
+              "value": "country_part"
+            },
+            {
+              "id": "a0f80559-bd42-4d06-8003-ab14c9438e05",
+              "name": "categorical_features_5",
+              "displayName": "CATEGORICAL_FEATURES_5",
+              "display": false,
+              "value": "month"
+            },
+            {
+              "id": "02d0def7-0fee-41a1-bd94-218a264a03e0",
+              "name": "categorical_features_6",
+              "displayName": "CATEGORICAL_FEATURES_6",
+              "display": false,
+              "value": "is_new_item"
+            },
+            {
+              "id": "6fbfb7ba-efeb-47ee-bc23-e8f95526aca6",
+              "name": "categorical_features_7",
+              "displayName": "CATEGORICAL_FEATURES_7",
+              "display": false,
+              "value": "is_first_shop_transaction"
+            }
+          ],
+          "drop_rows_rule": {
+            "id": "dcceebcd-63f9-4ecf-b88c-46f6b506fa7d",
+            "name": "drop_rows_rule",
+            "displayName": "DROP_ROWS_RULE",
+            "display": false,
+            "value": 3
+          },
+          "drop_column_names": [
+            {
+              "id": "a17e9b69-4dd0-41c0-b138-9911087939b3",
+              "name": "drop_column_names_0",
+              "displayName": "DROP_COLUMN_NAMES_0",
+              "display": false,
+              "value": "date_block_num"
+            },
+            {
+              "id": "d391d444-4eeb-40f6-9638-f59a9e0fc273",
+              "name": "drop_column_names_1",
+              "displayName": "DROP_COLUMN_NAMES_1",
+              "display": false,
+              "value": "item_name"
+            },
+            {
+              "id": "21889bc4-1fa5-4cc0-9b8a-3acce4c4e31a",
+              "name": "drop_column_names_2",
+              "displayName": "DROP_COLUMN_NAMES_2",
+              "display": false,
+              "value": "item_category_name"
+            },
+            {
+              "id": "4c3d7796-f814-41f4-8eb8-d8297441c90a",
+              "name": "drop_column_names_3",
+              "displayName": "DROP_COLUMN_NAMES_3",
+              "display": false,
+              "value": "shop_name"
+            },
+            {
+              "id": "879ddcd7-3c93-4657-b98c-f838270f53aa",
+              "name": "drop_column_names_4",
+              "displayName": "DROP_COLUMN_NAMES_4",
+              "display": false,
+              "value": "city_name"
+            },
+            {
+              "id": "ad962992-d59d-42ff-8555-43a956e032f8",
+              "name": "drop_column_names_5",
+              "displayName": "DROP_COLUMN_NAMES_5",
+              "display": false,
+              "value": "date"
+            },
+            {
+              "id": "d9e035e7-1ee7-4160-82be-aa6adf5ebd7a",
+              "name": "drop_column_names_6",
+              "displayName": "DROP_COLUMN_NAMES_6",
+              "display": false,
+              "value": "average_daily_shop_item_sales"
+            },
+            {
+              "id": "60fc2b95-0da3-423c-b980-10a05eb93087",
+              "name": "drop_column_names_7",
+              "displayName": "DROP_COLUMN_NAMES_7",
+              "display": false,
+              "value": "shop_item_sales"
+            },
+            {
+              "id": "05b6e3ed-72bf-432d-bb8b-5f65cee635b3",
+              "name": "drop_column_names_8",
+              "displayName": "DROP_COLUMN_NAMES_8",
+              "display": false,
+              "value": "average_shop_category_sales"
+            },
+            {
+              "id": "f835443a-f884-43ad-a4ba-7f6f4072ee70",
+              "name": "drop_column_names_9",
+              "displayName": "DROP_COLUMN_NAMES_9",
+              "display": false,
+              "value": "average_city_item_sales"
+            },
+            {
+              "id": "3189b7cb-a15a-4f02-bb42-0091134c81c8",
+              "name": "drop_column_names_10",
+              "displayName": "DROP_COLUMN_NAMES_10",
+              "display": false,
+              "value": "average_city_category_sales"
+            },
+            {
+              "id": "ffac75ad-43f0-4206-bd8c-7631bb841564",
+              "name": "drop_column_names_11",
+              "displayName": "DROP_COLUMN_NAMES_11",
+              "display": false,
+              "value": "average_company_item_sales"
+            },
+            {
+              "id": "f34f383b-a983-43a0-85c3-11a95bae971e",
+              "name": "drop_column_names_12",
+              "displayName": "DROP_COLUMN_NAMES_12",
+              "display": false,
+              "value": "average_company_category_sales"
+            },
+            {
+              "id": "5a32c70c-c603-4741-9910-d904e076a511",
+              "name": "drop_column_names_13",
+              "displayName": "DROP_COLUMN_NAMES_13",
+              "display": false,
+              "value": "shop_company_item_sales_change"
+            },
+            {
+              "id": "bf57722f-6573-4a02-aee5-ecafcefd12c5",
+              "name": "drop_column_names_14",
+              "displayName": "DROP_COLUMN_NAMES_14",
+              "display": false,
+              "value": "shop_city_item_sales_change"
+            },
+            {
+              "id": "432be18d-6109-40da-a3ee-8aef0fa08739",
+              "name": "drop_column_names_15",
+              "displayName": "DROP_COLUMN_NAMES_15",
+              "display": false,
+              "value": "shop_category_item_sales_change"
+            },
+            {
+              "id": "dc27acd7-2ae4-42c0-acb8-152288999bd3",
+              "name": "drop_column_names_16",
+              "displayName": "DROP_COLUMN_NAMES_16",
+              "display": false,
+              "value": "shop_city_category_sales_change"
+            },
+            {
+              "id": "4741045d-2d3e-4e63-b4e4-d3db60dd23d5",
+              "name": "drop_column_names_17",
+              "displayName": "DROP_COLUMN_NAMES_17",
+              "display": false,
+              "value": "shop_company_category_sales_change"
+            }
+          ]
+        }
+      },
+      "seed": {
+        "id": "d4ef8b4c-cd78-4d7a-aa0d-9af447f26d50",
+        "name": "seed",
+        "displayName": "SEED",
+        "display": false,
+        "value": 1
+      },
+      "run_test": {
+        "id": "5a045534-7575-4416-b557-36942015b40a",
+        "name": "run_test",
+        "displayName": "RUN_TEST",
+        "display": false,
+        "value": true
+      },
+      "use_corecontrol": {
+        "id": "a2611d70-832a-4a65-9fd9-3c02c34524bd",
+        "name": "use_corecontrol",
+        "displayName": "USE_CORECONTROL",
+        "display": false,
+        "value": true
+      }
+    }
+  }
+}
