@@ -4,10 +4,18 @@ html {
   box-sizing: border-box;
 }
 
-body{
+body {
   height: 100%;
 }
 
-#root{
+#root {
   height: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: #0e0e0e;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #4e4e52;
+  }
 }
