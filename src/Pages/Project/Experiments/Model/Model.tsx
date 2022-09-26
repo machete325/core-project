@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { IProjectData } from '../../../../components/Modal/types';
 import InputField from '../../../../components/SearchField/InputField';
-import config from './conf.json';
 import s from './Model.module.scss';
-import formatConfiguration from './formatConfiguration';
-
-const configuration = config.items;
+import formatConfiguration from '../../../../core/helpers/formatConfiguration';
+import { ExperimentService } from '../../../../core/services/Experiment.service';
 
 interface Props {
   data: any;
@@ -15,23 +13,41 @@ interface Props {
 function Model({ data, projectData }: Props) {
   const [searchValue, setSearchValue] = useState('');
   const [formattedData, setFormattedData] = useState<any>([]);
+  const [configurationData, setConfigurationData] = useState<any>([]);
 
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
   };
 
+  const handleGetConfiguration = async () => {
+    const configuration = await ExperimentService.getExperimentConfiguration(
+      data.projectName,
+      data.id,
+    );
+    const formatted = formatConfiguration(configuration.data.items);
+    setFormattedData(formatted);
+  };
+
   console.log(data, projectData);
 
   useEffect(() => {
-    setFormattedData(formatConfiguration(configuration));
+    handleGetConfiguration();
   }, []);
 
-  // const marking = (
-  //   <div className={s.config_line} key={index}>
-  //     <div className={s.key}>{key}</div>
-  //     <div className={s.value}>{typeof value === 'boolean' ? `${value}` : value || '-'}</div>
-  //   </div>
-  // );
+  useEffect(() => {
+    setConfigurationData(formattedData);
+  }, [formattedData]);
+
+  useEffect(() => {
+    const filteredLinks = formattedData.filter(
+      (item: any) =>
+        // eslint-disable-next-line implicit-arrow-linebreak
+        item.key.toLowerCase().startsWith(searchValue.toLowerCase()),
+      // eslint-disable-next-line function-paren-newline
+    );
+    setConfigurationData([...filteredLinks]);
+  }, [searchValue]);
+
   return (
     <div>
       <div className={s.search}>
@@ -45,8 +61,10 @@ function Model({ data, projectData }: Props) {
           onChange={handleChange}
         />
       </div>
-      {formattedData.map(({ id, key, value }: any) => (
-        <div className={s.config_line} key={id}>
+      {configurationData.map(({
+        id, key, value, margin,
+      }: any) => (
+        <div className={s.config_line} style={{ marginLeft: margin }} key={id}>
           <div className={s.key}>{key}</div>
           <div className={s.value}>{value}</div>
         </div>
