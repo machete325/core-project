@@ -31,7 +31,7 @@ export const ExperimentService = {
   getExperimentPlotsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots${_id}`),
   getExperimentMetrics: (projectVersion: string, version: string, display: boolean) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${display ? '' : '?display=false'}`),
   getExperimentMetricsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${_id}`),
-  getExperimentConfiguration: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/configuration`),
+  getExperimentConfiguration: (projectVersion: string, version: string, display?:boolean) => api('GET', [], `${getBaseUrl(projectVersion, version)}/configuration${display ? '' : '?display=false'}`),
   getExperimentDatasets: (projectVersion: string, version: string, prefix_value: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/datasets?prefix=${prefix_value}`),
   getExperimentCode: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/code`),
   getExperimentModels: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/models`),
