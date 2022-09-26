@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Button from '../../../components/Button/Button';
 import CheckBox from '../../../components/CheckBox/CheckBox';
 import DropDown from '../../../components/DropDown/DropDown';
 import Modal from '../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../components/Modal/types';
 import { checkExperiments, fetchExperiments } from '../../../core/redux/experiments/actions';
-// import { experimentsSelector } from '../../../core/redux/experiments/selectors';
+import { experimentsSelector } from '../../../core/redux/experiments/selectors';
 import { useAppDispatch } from '../../../core/redux/store';
 import Navigation from '../Navigation/Navigation';
 import { convertToString } from '../../../core/helpers/convertPath';
@@ -28,126 +28,9 @@ const projectData = {
   description: '1 out of 3 experiments running',
 };
 
-const data:any = {
-  additionalProp1: {
-    id: 'string',
-    name: 'string',
-    version: 'string',
-    projectName: 'string',
-    description: 'string',
-    target: 'string',
-    dataset: {
-      id: 'string',
-      name: 'string',
-      displayName: 'string',
-      version: 'string',
-      prefix: 'string',
-      tag: 'string',
-    },
-    metrics: {
-      items: {},
-    },
-    configuration: {
-      items: {},
-    },
-    infrastructure: {
-      trainingTime: 5220,
-      usedBudget: 200,
-      totalBudget: 500,
-      currency: 'USD',
-      usedMachines: 2,
-      totalMachines: 3,
-    },
-    code: {
-      commitMessage: 'string',
-    },
-    status: 'string',
-    isUpdatable: true,
-    software: 'string',
-    hardware: 'string',
-    hostname: 'string',
-  },
-  additionalProp2: {
-    id: 'string',
-    name: 'string',
-    version: 'string',
-    projectName: 'string',
-    description: 'string',
-    target: 'string',
-    dataset: {
-      id: 'string',
-      name: 'string',
-      displayName: 'string',
-      version: 'string',
-      prefix: 'string',
-      tag: 'string',
-    },
-    metrics: {
-      items: {},
-    },
-    configuration: {
-      items: {},
-    },
-    infrastructure: {
-      trainingTime: 5220,
-      usedBudget: 200,
-      totalBudget: 500,
-      currency: 'USD',
-      usedMachines: 2,
-      totalMachines: 3,
-    },
-    code: {
-      commitMessage: 'string',
-    },
-    status: 'string',
-    isUpdatable: true,
-    software: 'string',
-    hardware: 'string',
-    hostname: 'string',
-  },
-  additionalProp3: {
-    id: 'string',
-    name: 'string',
-    version: 'string',
-    projectName: 'string',
-    description: 'string',
-    target: 'string',
-    dataset: {
-      id: 'string',
-      name: 'string',
-      displayName: 'string',
-      version: 'string',
-      prefix: 'string',
-      tag: 'string',
-    },
-    metrics: {
-      items: {},
-    },
-    configuration: {
-      items: {},
-    },
-    infrastructure: {
-      trainingTime: 5220,
-      usedBudget: 200,
-      totalBudget: 500,
-      currency: 'USD',
-      usedMachines: 2,
-      totalMachines: 3,
-    },
-    code: {
-      commitMessage: 'string',
-    },
-    status: 'string',
-    isUpdatable: true,
-    software: 'string',
-    hardware: 'string',
-    hostname: 'string',
-  },
-};
-
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
-  // const { data } = useSelector(experimentsSelector);
+  const { data } = useSelector(experimentsSelector);
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
@@ -261,7 +144,7 @@ function ProjectExperimentsContainer() {
     configuration: {
       name: 'Model configuration',
       path: '.configuration.items.runner.models.lightgbm.parameters.hyper_parameters',
-      mainInfoFields: ['display_name', 'value'],
+      mainInfoFields: ['displayName', 'value'],
       length: 3,
       formattingFunction: undefined,
       isTitle: true,
