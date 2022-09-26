@@ -4,8 +4,10 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 const api = async (method: 'GET' | 'POST' | 'PUT' | 'DELETE', data: any, url: string) => {
   try {
+    const token = localStorage.getItem('accessToken');
     const headers = {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
     };
     const res = method === 'GET'
       ? await axios({
