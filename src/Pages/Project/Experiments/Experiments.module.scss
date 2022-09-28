@@ -85,7 +85,11 @@ table {
 
 .obj_container {
   margin-bottom: 4px;
+  height: 22px;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
+  font-size: 12px;
   &:nth-last-child(1) {
     margin-bottom: 0;
   }

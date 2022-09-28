@@ -1,7 +1,6 @@
 .config_line {
   margin-bottom: 8px;
   display: flex;
-  justify-content: space-between;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
@@ -23,4 +22,5 @@
 .value {
   font-weight: 600;
   color: #ffffff;
+  margin-left: 10px;
 }
