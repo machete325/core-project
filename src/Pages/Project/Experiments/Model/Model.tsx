@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { IProjectData } from '../../../../components/Modal/types';
 import InputField from '../../../../components/SearchField/InputField';
 import s from './Model.module.scss';
 import formatConfiguration from '../../../../core/helpers/formatConfiguration';
@@ -7,10 +6,9 @@ import { ExperimentService } from '../../../../core/services/Experiment.service'
 
 interface Props {
   data: any;
-  projectData: IProjectData;
 }
 
-function Model({ data, projectData }: Props) {
+function Model({ data }: Props) {
   const [searchValue, setSearchValue] = useState('');
   const [formattedData, setFormattedData] = useState<any>([]);
   const [configurationData, setConfigurationData] = useState<any>([]);
@@ -27,8 +25,6 @@ function Model({ data, projectData }: Props) {
     const formatted = formatConfiguration(configuration.data.items);
     setFormattedData(formatted);
   };
-
-  console.log(data, projectData);
 
   useEffect(() => {
     handleGetConfiguration();
