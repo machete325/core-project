@@ -4,16 +4,27 @@ export default function formatConfiguration(configuration: any) {
 
   // checkObjectKey: Checking object key which not consider 'name', '0', any numbers.
 
-  const checkObjectKey = (key: any, value: any = null, id?: any, deep?: number) => {
+  const checkObjectKey = (
+    key: any,
+    value: any = null,
+    id?: any,
+    deep?: number,
+    isArray?: boolean,
+  ) => {
     // eslint-disable-next-line no-plusplus
     const index = id || arrKey++;
     const margin = deep && deep === 5 ? 0 : deep && deep * 3;
 
-    if (Number(key) !== 0 && !!Number(key) !== true && key !== 'name') {
+    if ((isArray || (Number(key) !== 0 && !!Number(key) !== true)) && key !== 'name') {
       formattedData.push({
         id: index,
-        key,
-        value: typeof value === 'boolean' ? `${value}` : value || '-',
+        key: isArray ? '' : `${key}:`,
+        // eslint-disable-next-line no-nested-ternary
+        value: isArray
+          ? `- ${key}`
+          : typeof value === 'boolean' || typeof value === 'number'
+            ? `${value}`
+            : value || '',
         margin: `${margin}px`,
       });
     }
@@ -25,7 +36,7 @@ export default function formatConfiguration(configuration: any) {
     let obj: any = {};
     Object.keys(field).forEach((key: any) => {
       obj = { ...field[key] };
-      checkObjectKey(key, null, null, deep);
+      checkObjectKey(key, null, null, deep + 5);
     });
     // eslint-disable-next-line no-plusplus
     return obj;
@@ -43,8 +54,8 @@ export default function formatConfiguration(configuration: any) {
     // if we got array, array goes through and push into formattedData
     if (Array.isArray(items)) {
       items.forEach((item) => {
-        const { displayName, value, id } = item;
-        checkObjectKey(displayName, value, id, deep);
+        const { value, id } = item;
+        checkObjectKey(value, null, id, deep, true);
       });
     } else {
       if (Object.prototype.hasOwnProperty.call(items, 'displayName')) {
