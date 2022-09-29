@@ -1,12 +1,16 @@
 import React from 'react';
+import s from './Target.module.scss';
+import { IExperiment } from '../../../../core/redux/experiments/types';
+import { IProjectData } from '../../../../components/Modal/types';
 
 interface Props {
-  data: any;
+  data: IExperiment;
+  projectData: IProjectData;
 }
 
-function Target({ data }: Props) {
-  console.log(data);
-  return <div>Target</div>;
+function Target({ data, projectData }: Props) {
+  console.log(projectData);
+  return <div className={s.wrapper}>{data && data.target}</div>;
 }
 
 export default Target;

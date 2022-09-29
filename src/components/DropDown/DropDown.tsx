@@ -9,15 +9,15 @@ function DropDown() {
   const dropDownConfig = [
     {
       text: 'Clone experiment',
-      imgSrc: '/images/icons/Copy.svg',
+      imgSrc: '/images/icons/Copy.png',
     },
     {
       text: 'Rerun experiment',
-      imgSrc: '/images/icons/PlayCircle.svg',
+      imgSrc: '/images/icons/PlayCircle.png',
     },
     {
       text: 'Add to compare',
-      imgSrc: '/images/icons/PlusWhite.svg',
+      imgSrc: '/images/icons/PlusWhite.png',
     },
   ];
 
@@ -29,14 +29,14 @@ function DropDown() {
           className={s.image_container}
           onClick={() => setVisible((prev) => !prev)}
         >
-          <img alt="Dots" src="/images/icons/DotsThree.svg" />
+          <img alt="Dots" src="/images/icons/DotsThree.png" />
         </div>
       )}
       {visible && (
         <div className={s.dropdown} ref={ref}>
           <div className={s.container}>
             <div className={s.open}>
-              <img alt="open" src="/images/icons/ArrowSquareUpRight.svg" />
+              <img alt="open" src="/images/icons/ArrowSquareUpRight.png" />
               <span>Open</span>
             </div>
             <div className={s.experiment_methods}>
@@ -48,7 +48,7 @@ function DropDown() {
               ))}
             </div>
             <div className={s.archive}>
-              <img alt="open" src="/images/icons/TrashSimple.svg" />
+              <img alt="open" src="/images/icons/TrashSimple.png" />
               <span>Archive</span>
             </div>
           </div>
