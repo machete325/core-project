@@ -7,7 +7,7 @@ function MachineDetails() {
       <div className={s.title}>Machine details</div>
       <div className={s.content}>
         <div>
-          <img src="/images/machine.svg" alt="machine" />
+          <img src="/images/machine.png" alt="machine" />
         </div>
       </div>
     </div>

@@ -23,7 +23,7 @@ export const getTabContent = (
     case 'metrics':
       return <Metrics data={data} projectData={projectData} />;
     case 'configuration':
-      return <Model data={data} projectData={projectData} />;
+      return <Model data={data} />;
     case 'infrastructure':
       return <Infrastructure data={data} projectData={projectData} />;
     case 'last_commit':
