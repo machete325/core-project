@@ -1,6 +1,7 @@
 version: '3.5'
 services:
-  web-corecontrol:
+
+  web-corecontrol-prod:
     build: .
     ports:
       - "80:80"
