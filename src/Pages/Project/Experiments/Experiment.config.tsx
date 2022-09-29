@@ -42,7 +42,7 @@ const experimentConfig = {
         if ((isArray || (Number(key) !== 0 && !!Number(key) !== true)) && key !== 'name') {
           formattedData.push({
             id: index,
-            displayName: isArray ? '' : `${key}:`,
+            displayName: isArray ? '' : `${key}`,
             // eslint-disable-next-line no-nested-ternary
             value: isArray
               ? `- ${key}`

@@ -79,12 +79,12 @@ function ProjectExperimentsContainer() {
           className={s.obj_container}
         >
           {key !== 'infrastructure' && (
-          <span className={s.title_key}>
+          <div className={s.title_key}>
             {displayName}
             :
-          </span>
+          </div>
           )}
-          <span>{value}</span>
+          <div>{value}</div>
         </div>
       );
 
