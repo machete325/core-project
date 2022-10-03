@@ -1,0 +1,8 @@
+version: '3.5'
+services:
+
+  web-corecontrol-prod:
+    build: .
+    ports:
+      - "80:80"
+    restart: always

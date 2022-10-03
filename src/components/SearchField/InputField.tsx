@@ -7,7 +7,7 @@ type Props = {
   name: string;
   placeholder: string;
   type: string;
-  variant: 'search' | 'regular';
+  variant: 'search' | 'regular'; // variant "search" it is a input field with search icon
   onChange: ChangeEventHandler<HTMLInputElement>;
   width?: string;
   height?: string;
