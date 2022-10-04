@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IRecently } from './types';
 
-export type ProjectsState = {
+export type InitialState = {
   loading: boolean;
   hasErrors: boolean;
   data: unknown[];
+  recentlyOpenedData: IRecently[];
 };
 //
-export const initialState: ProjectsState = {
+export const initialState: InitialState = {
   loading: false,
   hasErrors: false,
   data: [],
+  recentlyOpenedData: [],
 };
 // A slice
 export const projectSlice = createSlice({
@@ -21,6 +24,9 @@ export const projectSlice = createSlice({
     },
     startLoading: (state) => {
       state.loading = true;
+    },
+    setRecentlyData: (state, action: PayloadAction<any>) => {
+      state.recentlyOpenedData = action.payload;
     },
   },
 });
