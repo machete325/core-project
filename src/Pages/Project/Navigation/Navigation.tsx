@@ -8,10 +8,12 @@ import s from './Navigation.module.scss';
 interface IDdata {
   id: string;
   name: string;
+  page: string;
+  description: string;
 }
 
 type Props = {
-  data: IDdata[];
+  data: IDdata;
 };
 
 function Navigation({ data }: Props) {
