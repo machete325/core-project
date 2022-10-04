@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import StatusTag from '../../../components/StatusTag/StatusTag';
 import s from './Experiments.module.scss';
+
+interface IInfrastructure {
+  currency:string,
+  totalBudget:number,
+  totalMachines:number,
+  trainingTime:number,
+  usedBudget:number,
+  usedMachines:number,
+}
+
+/* {
+      name: name of experiment section,
+      path: path to information on experiment data,
+      mainInfoFields: fields for showing main information,
+      formattingFunction: function for formatting data,
+    }
+  */
 
 const experimentConfig = {
   description: {
@@ -31,31 +48,39 @@ const experimentConfig = {
     name: 'Model configuration',
     path: '.configuration.items',
     mainInfoFields: ['displayName', 'value'],
-    formattingFunction: (configuration: any) => {
-      const formattedData: any = [];
-      let arrKey: any = 11885133;
+    formattingFunction: (configuration: unknown) => {
+      interface IFormattedData {
+        displayName:string,
+        id:string,
+        value:string | number
+      }
+
+      const formattedData: IFormattedData[] = [];
+      let arrKey: number = 11885133;
+
+      const handleActualValue = (isArray:boolean | undefined, key:any, value:any) => {
+        if (isArray) {
+          return `- ${key}`;
+        } if (typeof value === 'boolean' || typeof value === 'number') {
+          return `${value}`;
+        }
+        return value || '';
+      };
 
       const checkObjectKey = (key: any, value: any = null, id?: any, isArray?: boolean) => {
-        // eslint-disable-next-line no-plusplus
         const index = id || arrKey++;
-
         if ((isArray || (Number(key) !== 0 && !!Number(key) !== true)) && key !== 'name') {
           formattedData.push({
             id: index,
             displayName: isArray ? '' : `${key}`,
-            // eslint-disable-next-line no-nested-ternary
-            value: isArray
-              ? `- ${key}`
-              : typeof value === 'boolean' || typeof value === 'number'
-                ? `${value}`
-                : value || '',
+            value: handleActualValue(isArray, key, value),
           });
         }
       };
 
-      const unfoldObject = (field: any) => {
-        let obj: any = {};
-        Object.keys(field).forEach((key: any) => {
+      const unfoldObject = (field: { [key:string | number]: any }) => {
+        let obj: { [key:string | number]: any } = {};
+        Object.keys(field).forEach((key: string | number) => {
           obj = { ...field[key] };
         });
         return obj;
@@ -103,8 +128,14 @@ const experimentConfig = {
     name: 'Infrastructure',
     path: '.infrastructure',
     mainInfoFields: [],
-    formattingFunction: (infrastructure: any) => {
-      const tempObj: any = {
+    formattingFunction: (infrastructure: IInfrastructure) => {
+      interface ITempObj {
+        trained: { value:ReactNode, isTitle:boolean },
+        avg:{ value:ReactNode, isTitle:boolean },
+        used:{ value:ReactNode, isTitle:boolean }
+      }
+
+      const tempObj: ITempObj = {
         trained: { value: null, isTitle: true },
         avg: { value: null, isTitle: true },
         used: { value: null, isTitle: false },
