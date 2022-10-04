@@ -3,7 +3,7 @@ import Description from '../../Pages/Project/Experiments/Description/Description
 import Target from '../../Pages/Project/Experiments/Target/Target';
 import Dataset from '../../Pages/Project/Experiments/Dataset/Dataset';
 import Metrics from '../../Pages/Project/Experiments/Metrics/Metrics';
-import Model from '../../Pages/Project/Experiments/Model/Model';
+import Configuration from '../../Pages/Project/Experiments/Configuration/Configuration';
 import Infrastructure from '../../Pages/Project/Experiments/Infrastructure/Infrastructure';
 import Commit from '../../Pages/Project/Experiments/Commit/Commit';
 import { IProjectData } from '../../components/Modal/types';
@@ -23,7 +23,7 @@ export const getTabContent = (
     case 'metrics':
       return <Metrics data={data} projectData={projectData} />;
     case 'configuration':
-      return <Model data={data} />;
+      return <Configuration data={data} />;
     case 'infrastructure':
       return <Infrastructure data={data} projectData={projectData} />;
     case 'last_commit':
