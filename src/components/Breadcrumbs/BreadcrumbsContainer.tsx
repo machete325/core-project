@@ -11,10 +11,12 @@ interface IBreadcrumb {
 interface IData {
   id: string;
   name: string;
+  page: string;
+  description: string;
 }
 
 type Props = {
-  data: IData[];
+  data: IData;
 };
 
 function BreadcrumbsContainer({ data }: Props) {
@@ -24,7 +26,7 @@ function BreadcrumbsContainer({ data }: Props) {
   const getBreadcrumbs = () => {
     const breadcrumbs = pathname.split('/');
     breadcrumbs.shift();
-    const arr: IBreadcrumb[] = [];
+    const pathsArr: IBreadcrumb[] = [];
     breadcrumbs.forEach((path) => {
       let obj: IBreadcrumb = {
         name: '',
@@ -32,17 +34,17 @@ function BreadcrumbsContainer({ data }: Props) {
         active: false,
       };
       if (path === breadcrumbs[1]) {
-        const name = data.find((project) => project.id === path)?.name;
+        const { name } = data;
         obj = { ...obj, name, href: `/project/${path}/overview` };
       } else if (path === 'project') {
         obj = { ...obj, name: 'Projects', href: '/main/projects' };
       } else {
-        obj = { ...obj, name: path, href: `${arr[1].href}/${path}` };
+        obj = { ...obj, name: path, href: `${pathsArr[1].href}/${path}` };
       }
-      arr.push(obj);
+      pathsArr.push(obj);
     });
-    arr[arr.length - 1].active = true;
-    return arr;
+    pathsArr[pathsArr.length - 1].active = true;
+    return pathsArr;
   };
 
   const handleNavigate = (e: React.MouseEvent) => {
@@ -58,7 +60,7 @@ function BreadcrumbsContainer({ data }: Props) {
 
   return (
     <>
-      {Object.values(breadcrumbs).map((breadcrumb) => (
+      {breadcrumbs.map((breadcrumb) => (
         <Breadcrumbs
           key={breadcrumb.href}
           href={breadcrumb.href}
