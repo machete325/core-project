@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Button from '../../../components/Button/Button';
-import CheckBox from '../../../components/CheckBox/CheckBox';
-import DropDown from '../../../components/DropDown/DropDown';
 import Modal from '../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../components/Modal/types';
-import { checkExperiments, fetchExperiments } from '../../../core/redux/experiments/actions';
+import {
+  checkExperiments,
+  fetchExperiments,
+} from '../../../core/redux/experiments/actions';
 import { experimentsSelector } from '../../../core/redux/experiments/selectors';
 import { useAppDispatch } from '../../../core/redux/store';
+import { getRecentlyData } from '../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
 import { convertToString } from '../../../core/helpers/convertPath';
-import s from './Experiments.module.scss';
 import ProjectTitle from '../../../components/ProjectTitle/ProjectTitle';
-import ProjectStatus from '../../../components/ProjectStatus/ProjectStatus';
 import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../core/helpers/updateRecentlyOpened';
-
-const mockProjectData = [
-  { id: 'SalesPredictionKaggle', name: 'Demand Forecasting' },
-  { id: '2', name: 'Proj2' },
-  { id: '3', name: 'Proj3' },
-];
+import Experiments from './Experiments';
+import s from './Experiments.module.scss';
 
 const projectData = {
   id: 'SalesPredictionKaggle',
@@ -40,7 +36,7 @@ function ProjectExperimentsContainer() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchExperiments(mockProjectData[0].id));
+    dispatch(fetchExperiments(projectData.id));
   }, []);
 
   const handleCheckAll = (checked: boolean) => {
@@ -49,7 +45,13 @@ function ProjectExperimentsContainer() {
 
   const handleOpenModal = (activeTab: string, id: string) => {
     const experiment = data[id];
-    updateRecentlyOpened(experiment.id, 'experiment', experiment.name);
+    updateRecentlyOpened(
+      experiment.id,
+      projectData.page,
+      experiment.name,
+      projectData.id,
+    );
+    dispatch(getRecentlyData(projectData.id));
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
@@ -58,20 +60,12 @@ function ProjectExperimentsContainer() {
     setOpen(false);
   };
 
-  /* {
-      name: name of experiment section,
-      path: path to information on experiment data,
-      mainInfoFields: fields for showing main information,
-    }
-  */
-
-  const rebuildData = (config: any, id: string) => {
-    // eslint-disable-next-line no-debugger
+  const rebuildData = (config: typeof experimentConfig, id: string) => {
     const arr: any = [];
-
-    const markFunction = (formattedData: any, key: any) => {
+    // function for generating JSX markup
+    const markupFunction = (formattedData: any, key: string) => {
       let result = null;
-      const markObj = (value: any, index: any, displayName?: any) => (
+      const markupObj = (value: any, index: string, displayName?: string) => (
         <div
           key={index}
           role="presentation"
@@ -79,34 +73,41 @@ function ProjectExperimentsContainer() {
           className={s.obj_container}
         >
           {key !== 'infrastructure' && (
-          <div className={s.title_key}>
-            {displayName}
-            :
-          </div>
+            <div className={s.title_key}>
+              {displayName}
+              :
+            </div>
           )}
           <div>{value}</div>
         </div>
       );
 
-      const markString = (value: any) => (
-        <div key={key} role="presentation" onClick={() => handleOpenModal(key, id)}>
+      const markupString = (value: string) => (
+        <div
+          key={key}
+          role="presentation"
+          onClick={() => handleOpenModal(key, id)}
+        >
           {value}
         </div>
       );
 
       if (typeof formattedData === 'string') {
-        result = markString(formattedData);
+        result = markupString(formattedData);
       } else {
-        result = Object.entries(formattedData).map(([itemKey, itemValue]: any) => {
-          if (key === 'infrastructure') {
-            return markObj(itemValue.value, itemKey);
-          }
-          return markObj(itemValue.value, itemKey, itemValue.displayName);
-        });
+        result = Object.entries(formattedData).map(
+          ([itemKey, itemValue]: any) => {
+            if (key === 'infrastructure') {
+              return markupObj(itemValue.value, itemKey);
+            }
+            return markupObj(itemValue.value, itemKey, itemValue.displayName);
+          },
+        );
       }
       return <td key={key}>{result}</td>;
     };
 
+    // function for checking formatting function in config for certain field
     const checkIsExistFormatFunction = (obj: any, objConfig: any) => {
       let tempArr: any = [];
       if (objConfig.formattingFunction) {
@@ -130,10 +131,10 @@ function ProjectExperimentsContainer() {
       const experimentData = data[id];
       Object.entries(config).forEach(([key, value]: any) => {
         const currentField = convertToString(experimentData, value.path);
-        const markData = typeof currentField !== 'object' || currentField === null
+        const markupData = typeof currentField !== 'object' || currentField === null
           ? `${currentField}`
           : checkIsExistFormatFunction(currentField, value);
-        arr.push(markFunction(markData, key));
+        arr.push(markupFunction(markupData, key));
       });
     }
     return arr;
@@ -148,7 +149,7 @@ function ProjectExperimentsContainer() {
         projectData={projectData}
         config={experimentConfig}
       />
-      <Navigation data={mockProjectData} />
+      <Navigation data={projectData} />
       <div className={s.header}>
         <ProjectTitle data={projectData} />
         <div className={s.buttons}>
@@ -162,44 +163,11 @@ function ProjectExperimentsContainer() {
           </Button>
         </div>
       </div>
-      <div className={s.content}>
-        <table>
-          <thead>
-            <tr>
-              <td>
-                <CheckBox onChange={handleCheckAll} id="1" checked={false} />
-              </td>
-              <td>#</td>
-              <td>Description</td>
-              <td>Target</td>
-              <td>Data</td>
-              <td>Main Metrics</td>
-              <td>Model configuration</td>
-              <td>Infrastructure</td>
-              <td>Commit Description</td>
-              <td style={{ textAlign: 'center' }}>Status</td>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.keys(data).length !== 0
-              && Object.keys(data).map((key, index) => (
-                <tr key={key}>
-                  <td>
-                    <CheckBox id={key} checked={data[key].checked} />
-                  </td>
-                  <td>{index + 1}</td>
-                  {rebuildData(experimentConfig, key)}
-                  <td>
-                    <ProjectStatus status={data[key].status} />
-                  </td>
-                  <td>
-                    <DropDown />
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
-      </div>
+      <Experiments
+        handleCheckAll={handleCheckAll}
+        rebuildData={rebuildData}
+        data={data}
+      />
     </div>
   );
 }
