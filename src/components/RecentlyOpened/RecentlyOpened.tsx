@@ -10,11 +10,14 @@ interface IRecently {
 }
 
 type Props = {
-  data: IRecently[];
+  data: IRecently[] | undefined;
 };
 
 const findCategories = (data: IRecently[]) => {
-  const categories = data.reduce((acc: any, elem: any) => [...acc, elem.category], []);
+  const categories = data.reduce(
+    (acc: any, elem: any) => [...acc, elem.category],
+    [],
+  );
   const uniqeCategories = new Set(categories);
   return uniqeCategories;
 };
@@ -35,17 +38,13 @@ const generateRecentlyItems = (data: IRecently[], category: string) => (
 
 const generateJSX = (data: IRecently[]) => {
   const categories = useMemo(() => findCategories(data), [data]);
-  const arr = [];
-  /* eslint-disable-next-line */
-  for (const category of categories.values()) {
-    arr.push(generateRecentlyItems(data, category));
-  }
-
-  return arr;
+  const markup: any = [];
+  categories.forEach((category) => markup.push(generateRecentlyItems(data, category)));
+  return markup;
 };
 
 function RecentlyOpened({ data }: Props) {
-  return <div className={s.wrapper}>{generateJSX(data)}</div>;
+  return <div className={s.wrapper}>{data && generateJSX(data)}</div>;
 }
 
 export default RecentlyOpened;
