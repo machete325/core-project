@@ -1,12 +1,19 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Link, useLocation, Outlet, useParams, useNavigate,
+  Link,
+  useLocation,
+  Outlet,
+  useParams,
+  useNavigate,
 } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
+import { recentlyOpenedData } from '../../core/redux/projects/selectors';
+import { useAppDispatch } from '../../core/redux/store';
 import NavigateProjectItem from '../../components/NavigateProjectItem/NavigateProjectItem';
 import RecentlyOpened from '../../components/RecentlyOpened/RecentlyOpened';
 import InputField from '../../components/SearchField/InputField';
 import checkPath from '../../core/helpers/checkPath';
+import { getRecentlyData } from '../../core/redux/projects/actions';
 import s from './Project.module.scss';
 
 const navigateProjectConfig = [
@@ -61,43 +68,19 @@ const navigateProjectConfig = [
   },
 ];
 
-const recentlyData = [
-  {
-    id: 1,
-    category: 'experiments',
-    name: 'Experiment 3',
-    check: false,
-  },
-  {
-    id: 2,
-    category: 'experiments',
-    name: 'Experiment 1',
-    check: false,
-  },
-  {
-    id: 3,
-    category: 'experiments',
-    name: 'Experiment 2',
-    check: false,
-  },
-  {
-    id: 4,
-    category: 'datasets',
-    name: 'Odyssey demand',
-    check: false,
-  },
-  {
-    id: 5,
-    category: 'datasets',
-    name: 'Dataset 2.0.3',
-    check: false,
-  },
-];
+const projectData = {
+  id: 'SalesPredictionKaggle',
+  name: 'Demand Forecasting',
+  page: 'experiment',
+  description: '1 out of 3 experiments running',
+};
 
 function ProjectContainer() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const recentlyOpened = useSelector(recentlyOpenedData);
   const { pathname } = useLocation();
   const { projectId } = useParams();
-  const navigate = useNavigate();
   const [value, setValue] = useState('');
 
   useEffect(() => {
@@ -106,9 +89,19 @@ function ProjectContainer() {
     }
   }, []);
 
+  useEffect(() => {
+    dispatch(getRecentlyData(projectData.id));
+  }, []);
+
   const checkLinkPath = (linkPath: string) => {
     const memoCheckLinkPath = useMemo(
-      () => checkPath(linkPath, pathname, '/project/', 'overview', 'SalesPredictionKaggle'),
+      () => checkPath(
+        linkPath,
+        pathname,
+        '/project/',
+        'overview',
+        'SalesPredictionKaggle',
+      ),
       [linkPath, pathname],
     );
     return memoCheckLinkPath;
@@ -156,7 +149,7 @@ function ProjectContainer() {
         </nav>
         <div className={s.recently_container}>
           <div className={s.recently_title}>Recently opened</div>
-          <RecentlyOpened data={recentlyData} />
+          <RecentlyOpened data={recentlyOpened} />
         </div>
       </div>
       <div className={s.content}>
