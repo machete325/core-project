@@ -16,6 +16,6 @@
     }],
     "@semantic-release/github"
     ],
-  "repositoryUrl": "git@github.com:Coreai-org/corecontrol-web.git"
+  "repositoryUrl": "https://github.com/Coreai-org/corecontrol-web.git"
 
 }
