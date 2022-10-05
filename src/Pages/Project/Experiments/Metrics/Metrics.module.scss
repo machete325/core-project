@@ -1,3 +1,5 @@
+@import '../../../../colors.scss';
+
 .wrrapper {
 }
 
@@ -11,7 +13,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
-  color: #ffffff;
+  color: $white;
 }
 
 .config_line_data {

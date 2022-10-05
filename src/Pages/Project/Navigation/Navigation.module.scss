@@ -1,3 +1,5 @@
+@import '../../../colors.scss';
+
 .wrapper {
   margin-left: 24px;
   margin-top: 36px;
@@ -19,13 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #333333;
+  background: $dark_600;
   border-radius: 8px;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: #ffffff;
+  color: $white;
   cursor: pointer;
 }
 

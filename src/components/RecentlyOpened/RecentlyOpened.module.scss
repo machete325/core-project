@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 .title {
   margin-bottom: 8px;
   font-family: 'Open Sans';
@@ -7,14 +9,14 @@
   line-height: 16px;
   display: flex;
   align-items: center;
-  color: #6b6e7b;
+  color: $dark_400;
   text-transform: capitalize;
 
   &::after {
     content: '';
     margin-left: 8px;
     width: 100%;
-    border: 1px solid #4e4e52;
+    border: 1px solid $dark_500;
   }
 }
 
@@ -35,5 +37,5 @@
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  color: #ffffff;
+  color: $white;
 }

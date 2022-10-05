@@ -1,3 +1,5 @@
+@import '../../../colors.scss';
+
 .navigation {
   display: flex;
 }
@@ -23,7 +25,7 @@ thead {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    color: #d9dce9;
+    color: $dark_200;
     td {
       padding-right: 20px;
       &:first-child {
@@ -37,16 +39,16 @@ tbody {
   tr {
     height: 94px;
     td {
-      border: solid 1px #333333;
+      border: solid 1px $dark_600;
       border-style: solid none;
       padding-right: 20px;
-      background: #333333;
+      background: $dark_600;
       font-family: 'Open Sans';
       font-style: normal;
       font-weight: 400;
       font-size: 14px;
       line-height: 19px;
-      color: #ffffff;
+      color: $white;
       &:first-child {
         padding-left: 20px;
         border-left-style: solid;
@@ -78,7 +80,7 @@ table {
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
-  color: #a9adbd;
+  color: $dark_300;
   text-transform: capitalize;
 }
 
@@ -86,7 +88,7 @@ table {
   margin-bottom: 4px;
   height: 22px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   align-items: center;
   white-space: nowrap;
   font-size: 12px;

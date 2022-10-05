@@ -1,8 +1,10 @@
+@import '../../colors.scss';
+
 .input {
   padding: 13px 30px 13px 12px;
-  border: 1.5px solid #5b75a3;
+  border: 1.5px solid $dark_blue_400;
   border-radius: 32px;
-  color: #5b75a3;
+  color: $dark_blue_400;
   outline-offset: 0px !important;
   outline: none !important;
   box-sizing: border-box;
@@ -12,14 +14,16 @@
   font-size: 16px;
   line-height: 22px;
   &:focus {
-    filter: invert(62%) sepia(46%) saturate(3396%) hue-rotate(194deg) brightness(109%) contrast(95%);
+    filter: invert(62%) sepia(46%) saturate(3396%) hue-rotate(194deg)
+      brightness(109%) contrast(95%);
   }
   &::placeholder {
-    color: #5b75a3;
+    color: $dark_blue_400;
   }
 }
 
 .icon {
-  background: url('../../../public/images/icons/MagnifyingGlass.svg') no-repeat right;
+  background: url('../../../public/images/icons/MagnifyingGlass.svg') no-repeat
+    right;
   background-position-x: calc(100% - 12px);
 }

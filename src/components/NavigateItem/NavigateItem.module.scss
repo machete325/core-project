@@ -1,5 +1,4 @@
-$border_color: #0d5dec;
-$background_color: #333333;
+@import '../../colors.scss';
 
 @mixin item {
   margin-top: 24px;
@@ -18,9 +17,9 @@ $background_color: #333333;
 
 .item_active {
   @include item;
-  border: 2px solid $border_color;
+  border: 2px solid $blue_500;
   border-radius: 8px;
-  background-color: $background_color;
+  background-color: $dark_600;
 }
 
 .text {

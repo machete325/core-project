@@ -1,3 +1,5 @@
+@import '../../colors.scss';
+
 header {
   margin: 29.5px 24px 0px;
   display: flex;
@@ -26,7 +28,7 @@ main {
   font-weight: 600;
   font-size: 22px;
   line-height: 30px;
-  color: #ffffff;
+  color: $white;
 }
 
 .description {
@@ -35,7 +37,7 @@ main {
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  color: #a9adbd;
+  color: $dark_300;
 }
 
 .input_container {
@@ -45,16 +47,16 @@ main {
 .card_container {
   width: 267.67px;
   height: 366px;
-  background: #333333;
+  background: $dark_600;
   border-radius: 8px;
-  color: white;
+  color: $white;
   cursor: pointer;
 }
 
 .title {
   height: 40px;
   display: flex;
-  color: #9dcafd;
+  color: $blue_200;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
