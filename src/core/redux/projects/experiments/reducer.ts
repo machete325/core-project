@@ -27,10 +27,14 @@ export const experimentSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
-    setCheckExperiments: (state, action: PayloadAction<boolean>) => {
+    setCheckAllExperiments: (state, action: PayloadAction<boolean>) => {
       Object.keys(state.data).forEach((key: string) => {
         state.data[key].checked = action.payload;
       });
+    },
+    setCheckExperiment: (state, action: PayloadAction<string>) => {
+      const id = action.payload;
+      state.data[id].checked = !state.data[id].checked;
     },
   },
 });

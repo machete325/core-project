@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
 import { IProjectData } from '../../../../../components/Modal/types';
 import StatusTag from '../../../../../components/StatusTag/StatusTag';
-import { IExperiment } from '../../../../../core/redux/experiments/types';
+import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
 import { ExperimentService } from '../../../../../core/services/Experiment.service';
 import s from './Metrics.module.scss';
 

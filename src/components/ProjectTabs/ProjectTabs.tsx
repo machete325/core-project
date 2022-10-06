@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import s from './ProjectTabs.module.scss';
 import { getTabContent } from '../../core/helpers/getTabContent';
-import { IExperiment } from '../../core/redux/experiments/types';
+import { IExperiment } from '../../core/redux/projects/experiments/types';
 import { IProjectData } from '../Modal/types';
 
 interface Props {
@@ -35,7 +35,9 @@ const AntTabs = styled(Tabs)({
   },
 });
 
-const AntTab = styled((props: StyledTabProps) => <Tab disableRipple {...props} />)(({ theme }) => ({
+const AntTab = styled((props: StyledTabProps) => (
+  <Tab disableRipple {...props} />
+))(({ theme }) => ({
   textTransform: 'none',
   minWidth: 0,
   [theme.breakpoints.up('sm')]: {
@@ -90,7 +92,11 @@ function ProjectTabs({
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <AntTabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <AntTabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
           {Object.keys(config).map((tab) => (
             <AntTab key={tab} label={config[tab].name} />
           ))}
@@ -98,7 +104,11 @@ function ProjectTabs({
       </Box>
       {Object.keys(config).map((tab, index) => (
         <TabPanel key={tab} value={value} index={index}>
-          {getTabContent({ type: tab, path: config[tab].path }, data, projectData)}
+          {getTabContent(
+            { type: tab, path: config[tab].path },
+            data,
+            projectData,
+          )}
         </TabPanel>
       ))}
     </Box>

@@ -1,3 +1,3 @@
-import { RootState } from '../slices';
+import { RootState } from '../../slices';
 
 export const experimentsSelector = (state: RootState) => state.experiments;
