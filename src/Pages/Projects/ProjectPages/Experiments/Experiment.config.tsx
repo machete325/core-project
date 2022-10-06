@@ -1,14 +1,14 @@
 import React, { ReactNode } from 'react';
-import StatusTag from '../../../components/StatusTag/StatusTag';
+import StatusTag from '../../../../components/StatusTag/StatusTag';
 import s from './Experiments.module.scss';
 
 interface IInfrastructure {
-  currency:string,
-  totalBudget:number,
-  totalMachines:number,
-  trainingTime:number,
-  usedBudget:number,
-  usedMachines:number,
+  currency: string;
+  totalBudget: number;
+  totalMachines: number;
+  trainingTime: number;
+  usedBudget: number;
+  usedMachines: number;
 }
 
 /* {
@@ -50,26 +50,39 @@ const experimentConfig = {
     mainInfoFields: ['displayName', 'value'],
     formattingFunction: (configuration: unknown) => {
       interface IFormattedData {
-        displayName:string,
-        id:string,
-        value:string | number
+        displayName: string;
+        id: string;
+        value: string | number;
       }
 
       const formattedData: IFormattedData[] = [];
       let arrKey: number = 11885133;
 
-      const handleActualValue = (isArray:boolean | undefined, key:any, value:any) => {
+      const handleActualValue = (
+        isArray: boolean | undefined,
+        key: any,
+        value: any,
+      ) => {
         if (isArray) {
           return `- ${key}`;
-        } if (typeof value === 'boolean' || typeof value === 'number') {
+        }
+        if (typeof value === 'boolean' || typeof value === 'number') {
           return `${value}`;
         }
         return value || '';
       };
 
-      const checkObjectKey = (key: any, value: any = null, id?: any, isArray?: boolean) => {
+      const checkObjectKey = (
+        key: any,
+        value: any = null,
+        id?: any,
+        isArray?: boolean,
+      ) => {
         const index = id || arrKey++;
-        if ((isArray || (Number(key) !== 0 && !!Number(key) !== true)) && key !== 'name') {
+        if (
+          (isArray || (Number(key) !== 0 && !!Number(key) !== true))
+          && key !== 'name'
+        ) {
           formattedData.push({
             id: index,
             displayName: isArray ? '' : `${key}`,
@@ -78,8 +91,8 @@ const experimentConfig = {
         }
       };
 
-      const unfoldObject = (field: { [key:string | number]: any }) => {
-        let obj: { [key:string | number]: any } = {};
+      const unfoldObject = (field: { [key: string | number]: any }) => {
+        let obj: { [key: string | number]: any } = {};
         Object.keys(field).forEach((key: string | number) => {
           obj = { ...field[key] };
         });
@@ -130,9 +143,9 @@ const experimentConfig = {
     mainInfoFields: [],
     formattingFunction: (infrastructure: IInfrastructure) => {
       interface ITempObj {
-        trained: { value:ReactNode, isTitle:boolean },
-        avg:{ value:ReactNode, isTitle:boolean },
-        used:{ value:ReactNode, isTitle:boolean }
+        trained: { value: ReactNode; isTitle: boolean };
+        avg: { value: ReactNode; isTitle: boolean };
+        used: { value: ReactNode; isTitle: boolean };
       }
 
       const tempObj: ITempObj = {

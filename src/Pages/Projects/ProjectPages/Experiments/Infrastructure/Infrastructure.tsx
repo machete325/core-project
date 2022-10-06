@@ -1,6 +1,6 @@
 import React from 'react';
-import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
-import { IProjectData } from '../../../../components/Modal/types';
+import MachineDetails from '../../../../../components/MachineDetails/MachineDetails';
+import { IProjectData } from '../../../../../components/Modal/types';
 
 interface Props {
   data: any;

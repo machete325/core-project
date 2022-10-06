@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import InputField from '../../../../components/SearchField/InputField';
+import InputField from '../../../../../components/SearchField/InputField';
 import s from './Configuration.module.scss';
-import formatConfiguration from '../../../../core/helpers/formatConfiguration';
-import { ExperimentService } from '../../../../core/services/Experiment.service';
+import formatConfiguration from '../../../../../core/helpers/formatConfiguration';
+import { ExperimentService } from '../../../../../core/services/Experiment.service';
 
 interface Props {
   data: any;

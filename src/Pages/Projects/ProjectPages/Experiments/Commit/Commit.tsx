@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProjectData } from '../../../../components/Modal/types';
+import { IProjectData } from '../../../../../components/Modal/types';
 
 interface Props {
   data: any;

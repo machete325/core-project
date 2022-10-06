@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Chart from '../../../../components/Chart/Chart';
-import { IProjectData } from '../../../../components/Modal/types';
-import StatusTag from '../../../../components/StatusTag/StatusTag';
-import { IExperiment } from '../../../../core/redux/experiments/types';
-import { ExperimentService } from '../../../../core/services/Experiment.service';
+import Chart from '../../../../../components/Chart/Chart';
+import { IProjectData } from '../../../../../components/Modal/types';
+import StatusTag from '../../../../../components/StatusTag/StatusTag';
+import { IExperiment } from '../../../../../core/redux/experiments/types';
+import { ExperimentService } from '../../../../../core/services/Experiment.service';
 import s from './Metrics.module.scss';
 
 interface Props {
@@ -16,7 +16,11 @@ function Metrics({ data, projectData }: Props) {
   const [metricsDataExpand, setMetricsDataExpand] = useState<any>();
 
   const fetchData = async () => {
-    const res = await ExperimentService.getExperimentMetrics(projectData.id, data.version, true);
+    const res = await ExperimentService.getExperimentMetrics(
+      projectData.id,
+      data.version,
+      true,
+    );
     const tempData: any = [];
     Object.keys(res.data.items).forEach((key, index) => {
       if (index <= 1) {
@@ -27,7 +31,11 @@ function Metrics({ data, projectData }: Props) {
   };
 
   const fetchDataExpand = async () => {
-    const res = await ExperimentService.getExperimentMetrics(projectData.id, data.version, false);
+    const res = await ExperimentService.getExperimentMetrics(
+      projectData.id,
+      data.version,
+      false,
+    );
     setMetricsDataExpand(res.data.items);
   };
 
@@ -57,7 +65,10 @@ function Metrics({ data, projectData }: Props) {
             </div>
           </div>
           {Object.keys(metricsDataExpand).map((metric) => (
-            <Chart key={metricsDataExpand[metric].id} data={metricsDataExpand[metric]} />
+            <Chart
+              key={metricsDataExpand[metric].id}
+              data={metricsDataExpand[metric]}
+            />
           ))}
         </>
       )}

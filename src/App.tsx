@@ -5,10 +5,14 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import './App.scss';
 
-const ProjectsContainer = React.lazy(() => import('./Pages/Projects/ProjectsContainer'));
-const ProjectContainer = React.lazy(() => import('./Pages/Project/ProjectContainer'));
+const ProjectsContainer = React.lazy(
+  () => import('./Pages/Projects/ProjectsContainer'),
+);
+const ProjectContainer = React.lazy(
+  () => import('./Pages/Projects/ProjectPages/ProjectContainer'),
+);
 const ProjectExperimentsContainer = React.lazy(
-  () => import('./Pages/Project/Experiments/ExperimentsContainer'),
+  () => import('./Pages/Projects/ProjectPages/Experiments/ExperimentsContainer'),
 );
 const MainContainer = React.lazy(() => import('./Pages/Main/MainContainer'));
 
@@ -63,7 +67,10 @@ function App() {
               <Route path="monitoring" element={<div>Monitoring</div>} />
               <Route path="experiments" element={<div>Experiments</div>} />
               <Route path="datasets" element={<div>Datasets</div>} />
-              <Route path="infrastructure" element={<div>Infrastructure</div>} />
+              <Route
+                path="infrastructure"
+                element={<div>Infrastructure</div>}
+              />
               <Route path="code" element={<div>Code</div>} />
               <Route path="reports" element={<div>Reports</div>} />
             </Route>
@@ -100,7 +107,10 @@ function App() {
                   )}
                 />
                 <Route path="datasets" element={<div>Datasets</div>} />
-                <Route path="infrastructure" element={<div>Infrastructure</div>} />
+                <Route
+                  path="infrastructure"
+                  element={<div>Infrastructure</div>}
+                />
                 <Route path="code" element={<div>Code</div>} />
                 <Route path="reports" element={<div>Reports</div>} />
               </Route>

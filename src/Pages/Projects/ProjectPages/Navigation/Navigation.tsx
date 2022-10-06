@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import BreadcrumbsContainer from '../../../components/Breadcrumbs/BreadcrumbsContainer';
-import GraphNavigation from '../../../components/GraphNavigation/GraphNavigation';
-import UserProfile from '../../../components/UserProfile/UserProfile';
+import BreadcrumbsContainer from '../../../../components/Breadcrumbs/BreadcrumbsContainer';
+import GraphNavigation from '../../../../components/GraphNavigation/GraphNavigation';
+import UserProfile from '../../../../components/UserProfile/UserProfile';
 import s from './Navigation.module.scss';
 
 interface IDdata {
@@ -26,7 +26,11 @@ function Navigation({ data }: Props) {
   return (
     <div className={s.wrapper}>
       <div className={s.navigation}>
-        <div role="presentation" onClick={handleNavigate} className={s.all_projects}>
+        <div
+          role="presentation"
+          onClick={handleNavigate}
+          className={s.all_projects}
+        >
           <div className={s.image}>
             <img alt="CaretLeft" src="/images/icons/CaretLeft.svg" />
           </div>

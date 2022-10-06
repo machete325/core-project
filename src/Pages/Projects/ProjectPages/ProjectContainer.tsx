@@ -7,13 +7,13 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { recentlyOpenedData } from '../../core/redux/projects/selectors';
-import { useAppDispatch } from '../../core/redux/store';
-import NavigateProjectItem from '../../components/NavigateProjectItem/NavigateProjectItem';
-import RecentlyOpened from '../../components/RecentlyOpened/RecentlyOpened';
-import InputField from '../../components/SearchField/InputField';
-import checkPath from '../../core/helpers/checkPath';
-import { getRecentlyData } from '../../core/redux/projects/actions';
+import { recentlyOpenedData } from '../../../core/redux/projects/selectors';
+import { useAppDispatch } from '../../../core/redux/store';
+import NavigateProjectItem from '../../../components/NavigateProjectItem/NavigateProjectItem';
+import RecentlyOpened from '../../../components/RecentlyOpened/RecentlyOpened';
+import InputField from '../../../components/SearchField/InputField';
+import checkPath from '../../../core/helpers/checkPath';
+import { getRecentlyData } from '../../../core/redux/projects/actions';
 import s from './Project.module.scss';
 
 const navigateProjectConfig = [

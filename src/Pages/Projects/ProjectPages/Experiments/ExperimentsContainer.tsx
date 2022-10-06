@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Button from '../../../components/Button/Button';
-import Modal from '../../../components/Modal/Modal';
-import { ChoosedTab } from '../../../components/Modal/types';
+import Button from '../../../../components/Button/Button';
+import Modal from '../../../../components/Modal/Modal';
+import { ChoosedTab } from '../../../../components/Modal/types';
 import {
   checkExperiments,
   fetchExperiments,
-} from '../../../core/redux/experiments/actions';
-import { experimentsSelector } from '../../../core/redux/experiments/selectors';
-import { useAppDispatch } from '../../../core/redux/store';
-import { getRecentlyData } from '../../../core/redux/projects/actions';
+} from '../../../../core/redux/experiments/actions';
+import { experimentsSelector } from '../../../../core/redux/experiments/selectors';
+import { useAppDispatch } from '../../../../core/redux/store';
+import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
-import { convertToString } from '../../../core/helpers/convertPath';
-import ProjectTitle from '../../../components/ProjectTitle/ProjectTitle';
+import { convertToString } from '../../../../core/helpers/convertPath';
+import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
-import updateRecentlyOpened from '../../../core/helpers/updateRecentlyOpened';
+import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
 
