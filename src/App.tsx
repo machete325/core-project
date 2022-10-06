@@ -16,6 +16,8 @@ const ProjectExperimentsContainer = React.lazy(
 );
 const MainContainer = React.lazy(() => import('./Pages/Main/MainContainer'));
 
+const baseURL = process.env.REACT_APP_API_URL;
+
 function App() {
   const loginHandle = async () => {
     try {
@@ -25,7 +27,7 @@ function App() {
       };
       const response = await axios({
         method: 'post',
-        url: 'http://3.126.123.50:8000/api/v1/login',
+        url: `${baseURL}/login`,
         headers: {
           'Content-Type': 'application/json',
         },

@@ -44,7 +44,12 @@ main {
   margin-right: 24px;
 }
 
+.card_wrapper {
+  display: flex;
+}
+
 .card_container {
+  margin-right: 24px;
   width: 267.67px;
   height: 366px;
   background: $dark_600;

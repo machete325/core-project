@@ -18,16 +18,11 @@ import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
-
-const projectData = {
-  id: 'SalesPredictionKaggle',
-  name: 'Demand Forecasting',
-  page: 'experiment',
-  description: '1 out of 3 experiments running',
-};
+import { oneProjectData } from '../../../../core/redux/projects/selectors';
 
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
+  const projectData = useSelector(oneProjectData);
   const { data } = useSelector(experimentsSelector);
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
@@ -37,8 +32,10 @@ function ProjectExperimentsContainer() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchExperiments(projectData.id));
-  }, []);
+    if (projectData) {
+      dispatch(fetchExperiments(projectData.id));
+    }
+  }, [projectData]);
 
   const handleCheckAll = (checked: boolean) => {
     dispatch(checkAllExperiments(checked));
@@ -52,7 +49,7 @@ function ProjectExperimentsContainer() {
     const experiment = data[id];
     updateRecentlyOpened(
       experiment.id,
-      projectData.page,
+      'experiment',
       experiment.name,
       projectData.id,
     );
@@ -147,33 +144,37 @@ function ProjectExperimentsContainer() {
 
   return (
     <div className={s.wrapper}>
-      <Modal
-        open={open}
-        handleClose={handleClose}
-        data={choosedTab}
-        projectData={projectData}
-        config={experimentConfig}
-      />
-      <Navigation data={projectData} />
-      <div className={s.header}>
-        <ProjectTitle data={projectData} />
-        <div className={s.buttons}>
-          <Button disabled style={{ marginRight: '20px' }}>
-            <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
-            Compare experiments
-          </Button>
-          <Button>
-            <img alt="Plus" src="/images/icons/Plus.svg" />
-            New experiment
-          </Button>
-        </div>
-      </div>
-      <Experiments
-        handleCheckAll={handleCheckAll}
-        handleCheck={handleCheck}
-        rebuildData={rebuildData}
-        data={data}
-      />
+      {projectData ? (
+        <>
+          <Modal
+            open={open}
+            handleClose={handleClose}
+            data={choosedTab}
+            projectData={projectData}
+            config={experimentConfig}
+          />
+          <Navigation data={projectData} />
+          <div className={s.header}>
+            <ProjectTitle data={projectData} page="experiments" />
+            <div className={s.buttons}>
+              <Button disabled style={{ marginRight: '20px' }}>
+                <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
+                Compare experiments
+              </Button>
+              <Button>
+                <img alt="Plus" src="/images/icons/Plus.svg" />
+                New experiment
+              </Button>
+            </div>
+          </div>
+          <Experiments
+            handleCheckAll={handleCheckAll}
+            handleCheck={handleCheck}
+            rebuildData={rebuildData}
+            data={data}
+          />
+        </>
+      ) : null}
     </div>
   );
 }

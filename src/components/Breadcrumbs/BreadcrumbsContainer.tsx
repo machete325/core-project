@@ -59,17 +59,19 @@ function BreadcrumbsContainer({ data }: Props) {
   const breadcrumbs = getBreadcrumbs();
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {breadcrumbs.map((breadcrumb) => (
-        <Breadcrumbs
-          key={breadcrumb.href}
-          href={breadcrumb.href}
-          name={breadcrumb.name}
-          active={breadcrumb.active}
-          separator={!breadcrumb.active ? '/images/icons/CaretRight.svg' : ''}
-          onClick={handleNavigate}
-        />
-      ))}
+      {Object.keys(data).length !== 0
+        && breadcrumbs.map((breadcrumb) => (
+          <Breadcrumbs
+            key={breadcrumb.href}
+            href={breadcrumb.href}
+            name={breadcrumb.name}
+            active={breadcrumb.active}
+            separator={!breadcrumb.active ? '/images/icons/CaretRight.svg' : ''}
+            onClick={handleNavigate}
+          />
+        ))}
     </>
   );
 }

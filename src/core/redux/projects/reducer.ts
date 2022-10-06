@@ -4,14 +4,16 @@ import { IRecently } from './types';
 export type InitialState = {
   loading: boolean;
   hasErrors: boolean;
-  data: unknown[];
+  data: any;
+  projectData: any;
   recentlyOpenedData: IRecently[];
 };
 //
 export const initialState: InitialState = {
   loading: false,
   hasErrors: false,
-  data: [],
+  data: {},
+  projectData: null,
   recentlyOpenedData: [],
 };
 // A slice
@@ -20,13 +22,26 @@ export const projectSlice = createSlice({
   initialState,
   reducers: {
     setProjects: (state, action: PayloadAction<any>) => {
-      state.data.push(action.payload);
+      state.data = action.payload;
     },
     startLoading: (state) => {
       state.loading = true;
     },
-    setRecentlyData: (state, action: PayloadAction<any>) => {
+    setRecentlyData: (state, action: PayloadAction<IRecently[]>) => {
       state.recentlyOpenedData = action.payload;
+    },
+    setCheckRecentlyData: (state, action: PayloadAction<any>) => {
+      const stateCopy = state.recentlyOpenedData.map((item) => {
+        if (item.id === action.payload) {
+          item.check = !item.check;
+          return item;
+        }
+        return item;
+      });
+      state.recentlyOpenedData = [...stateCopy];
+    },
+    setProjectData: (state, action: PayloadAction<any>) => {
+      state.projectData = action.payload;
     },
   },
 });

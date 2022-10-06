@@ -5,17 +5,17 @@ type Props = {
   data: {
     id: string;
     name: string;
-    page: string;
     description: string;
   };
+  page?: string;
   size?: 'small' | 'large';
 };
 
-function ProjectTitle({ data, size = 'large' }: Props) {
+function ProjectTitle({ data, page, size = 'large' }: Props) {
   return (
     <div className={s.title}>
       <div className={`${s.name} ${size === 'small' ? s.name_sm : s.name_lg}`}>
-        {`${data.name} ${data.page}`}
+        {`${data.name} ${page}`}
       </div>
       <div className={s.description}>{data.description}</div>
     </div>

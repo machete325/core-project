@@ -13,14 +13,18 @@ import NavigateProjectItem from '../../../components/NavigateProjectItem/Navigat
 import RecentlyOpened from '../../../components/RecentlyOpened/RecentlyOpened';
 import InputField from '../../../components/SearchField/InputField';
 import checkPath from '../../../core/helpers/checkPath';
-import { getRecentlyData } from '../../../core/redux/projects/actions';
+import {
+  getRecentlyData,
+  checkRecentlyData,
+  getProjectData,
+} from '../../../core/redux/projects/actions';
 import s from './Project.module.scss';
 
 const navigateProjectConfig = [
   {
     id: 1,
     path: 'overview',
-    text: 'Projects',
+    text: 'Overview',
     imgSrc: '/images/project/overview.svg',
     active: true,
   },
@@ -68,13 +72,6 @@ const navigateProjectConfig = [
   },
 ];
 
-const projectData = {
-  id: 'SalesPredictionKaggle',
-  name: 'Demand Forecasting',
-  page: 'experiment',
-  description: '1 out of 3 experiments running',
-};
-
 function ProjectContainer() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -85,23 +82,22 @@ function ProjectContainer() {
 
   useEffect(() => {
     if (pathname === `/project/${projectId}`) {
-      navigate(`../${projectId}/overview`);
+      navigate(`../${projectId}/experiments`);
     }
   }, []);
 
   useEffect(() => {
-    dispatch(getRecentlyData(projectData.id));
+    dispatch(getProjectData(projectId!));
+    dispatch(getRecentlyData(projectId!));
   }, []);
+
+  const handleCheckRecentyOpened = (id: string) => {
+    dispatch(checkRecentlyData(id));
+  };
 
   const checkLinkPath = (linkPath: string) => {
     const memoCheckLinkPath = useMemo(
-      () => checkPath(
-        linkPath,
-        pathname,
-        '/project/',
-        'overview',
-        'SalesPredictionKaggle',
-      ),
+      () => checkPath(linkPath, pathname, '/project/', 'overview', projectId),
       [linkPath, pathname],
     );
     return memoCheckLinkPath;
@@ -149,7 +145,10 @@ function ProjectContainer() {
         </nav>
         <div className={s.recently_container}>
           <div className={s.recently_title}>Recently opened</div>
-          <RecentlyOpened data={recentlyOpened} />
+          <RecentlyOpened
+            data={recentlyOpened}
+            handleCheckRecentyOpened={handleCheckRecentyOpened}
+          />
         </div>
       </div>
       <div className={s.content}>
