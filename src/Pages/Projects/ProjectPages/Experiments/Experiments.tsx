@@ -3,16 +3,22 @@ import CheckBox from '../../../../components/CheckBox/CheckBox';
 import DropDown from '../../../../components/ExperimentsDropDown/DropDown';
 import ProjectStatus from '../../../../components/ProjectStatus/ProjectStatus';
 import experimentConfig from './Experiment.config';
-import { IExperimentData } from '../../../../core/redux/experiments/types';
+import { IExperimentData } from '../../../../core/redux/projects/experiments/types';
 import s from './Experiments.module.scss';
 
 type Props = {
   data: IExperimentData;
   rebuildData: any;
   handleCheckAll: any;
+  handleCheck: any;
 };
 
-function ProjectExperiments({ handleCheckAll, data, rebuildData }: Props) {
+function ProjectExperiments({
+  handleCheckAll,
+  handleCheck,
+  data,
+  rebuildData,
+}: Props) {
   return (
     <div className={s.content}>
       <table>
@@ -37,7 +43,11 @@ function ProjectExperiments({ handleCheckAll, data, rebuildData }: Props) {
             && Object.keys(data).map((key, index) => (
               <tr key={key}>
                 <td>
-                  <CheckBox id={key} checked={data[key].checked} />
+                  <CheckBox
+                    id={key}
+                    checked={data[key].checked}
+                    onChange={() => handleCheck(key)}
+                  />
                 </td>
                 <td>{index + 1}</td>
                 {rebuildData(experimentConfig, key)}

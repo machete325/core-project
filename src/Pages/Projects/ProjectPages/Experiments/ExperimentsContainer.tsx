@@ -4,10 +4,11 @@ import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 import {
-  checkExperiments,
+  checkAllExperiments,
   fetchExperiments,
-} from '../../../../core/redux/experiments/actions';
-import { experimentsSelector } from '../../../../core/redux/experiments/selectors';
+  checkExperiment,
+} from '../../../../core/redux/projects/experiments/actions';
+import { experimentsSelector } from '../../../../core/redux/projects/experiments/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
@@ -40,7 +41,11 @@ function ProjectExperimentsContainer() {
   }, []);
 
   const handleCheckAll = (checked: boolean) => {
-    dispatch(checkExperiments(checked));
+    dispatch(checkAllExperiments(checked));
+  };
+
+  const handleCheck = (id: string) => {
+    dispatch(checkExperiment(id));
   };
 
   const handleOpenModal = (activeTab: string, id: string) => {
@@ -165,6 +170,7 @@ function ProjectExperimentsContainer() {
       </div>
       <Experiments
         handleCheckAll={handleCheckAll}
+        handleCheck={handleCheck}
         rebuildData={rebuildData}
         data={data}
       />
