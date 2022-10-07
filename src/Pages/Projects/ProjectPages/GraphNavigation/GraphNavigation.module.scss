@@ -1,4 +1,4 @@
-@import '../../colors.scss';
+@import '../../../../colors.scss';
 
 .wrapper {
   margin-right: 24px;
@@ -9,6 +9,7 @@
   justify-content: center;
   background: $dark_600;
   border-radius: 8px;
+  cursor: pointer;
 }
 
 .map {
@@ -17,5 +18,9 @@
 }
 
 .caret {
+  display: flex;
+}
+
+.card_container {
   display: flex;
 }
