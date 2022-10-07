@@ -21,7 +21,12 @@ const Transition = React.forwardRef(
 );
 
 function Modal({
-  open, handleClose, data, fullScreen = false, projectData, config,
+  open,
+  handleClose,
+  data,
+  fullScreen = false,
+  projectData,
+  config,
 }: Props) {
   const theme = createTheme({
     components: {

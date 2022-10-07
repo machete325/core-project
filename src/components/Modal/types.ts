@@ -11,6 +11,7 @@ export interface IProjectData {
   name: string;
   page: string;
   description: string;
+  created: string;
 }
 
 export type Props = {
