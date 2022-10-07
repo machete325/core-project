@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 
 interface IBreadcrumb {
@@ -21,7 +21,7 @@ type Props = {
 
 function BreadcrumbsContainer({ data }: Props) {
   const { pathname } = useLocation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const getBreadcrumbs = () => {
     const breadcrumbs = pathname.split('/');
@@ -53,8 +53,7 @@ function BreadcrumbsContainer({ data }: Props) {
     if (active === 'true') {
       return;
     }
-    console.log(`../${value}`);
-    // navigate(`../${value}`);
+    navigate(`../${value}`);
   };
   const breadcrumbs = getBreadcrumbs();
 
