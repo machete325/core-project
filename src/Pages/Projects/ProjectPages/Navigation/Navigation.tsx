@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import BreadcrumbsContainer from '../../../../components/Breadcrumbs/BreadcrumbsContainer';
-import GraphNavigation from '../../../../components/GraphNavigation/GraphNavigation';
+import GraphNavigation from '../GraphNavigation/GraphNavigation';
 import UserProfile from '../../../../components/UserProfile/UserProfile';
 import s from './Navigation.module.scss';
 
@@ -10,6 +10,8 @@ interface IDdata {
   name: string;
   page: string;
   description: string;
+  created: string;
+  isArchive: boolean;
 }
 
 type Props = {
@@ -39,7 +41,7 @@ function Navigation({ data }: Props) {
         <BreadcrumbsContainer data={data} />
       </div>
       <div className={s.user_container}>
-        <GraphNavigation />
+        <GraphNavigation data={data} />
         <UserProfile />
       </div>
     </div>
