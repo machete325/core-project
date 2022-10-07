@@ -12,11 +12,39 @@ const {
 } = projectSlice.actions;
 const { getAllProjects, getOneProject } = ProjectService;
 
+const mockProjectsData = {
+  items: {
+    SalesPredictionKaggle: {
+      id: 'SalesPredictionKaggle',
+      name: 'DevOps Services',
+      description: 'DevOps Services',
+      created: '2022-10-05T10:20:58.935480',
+      isArchived: false,
+    },
+    Apifix: {
+      id: 'Apifix',
+      name: 'Apifix Services',
+      description: 'Apifix Services',
+      created: '2022-10-05T10:20:58.935480',
+      isArchived: false,
+    },
+    ChurnPrediction: {
+      id: 'ChurnPrediction',
+      name: 'ChurnPrediction Services',
+      description: 'ChurnPrediction Services',
+      created: '2022-10-05T10:20:58.935480',
+      isArchived: false,
+    },
+  },
+};
+
 export const fetchProjects = (): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
     const responce = await getAllProjects();
-    dispatch(setProjects(responce.data.items));
+    console.log(responce);
+    // dispatch(setProjects(responce.data.items));
+    dispatch(setProjects(mockProjectsData.items));
   } catch (e) {
     console.log(e);
   }
@@ -37,7 +65,9 @@ export const getProjectData = (id: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
     const responce = await getOneProject(id);
-    dispatch(setProjectData(responce.data));
+    console.log(responce);
+    dispatch(setProjectData(mockProjectsData.items.SalesPredictionKaggle));
+    // dispatch(setProjectData(responce.data));
   } catch (e) {
     console.log(e);
   }

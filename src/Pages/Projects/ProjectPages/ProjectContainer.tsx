@@ -7,7 +7,10 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { recentlyOpenedData } from '../../../core/redux/projects/selectors';
+import {
+  oneProjectData,
+  recentlyOpenedData,
+} from '../../../core/redux/projects/selectors';
 import { useAppDispatch } from '../../../core/redux/store';
 import NavigateProjectItem from '../../../components/NavigateProjectItem/NavigateProjectItem';
 import RecentlyOpened from '../../../components/RecentlyOpened/RecentlyOpened';
@@ -19,6 +22,7 @@ import {
   getProjectData,
 } from '../../../core/redux/projects/actions';
 import s from './Project.module.scss';
+import StatusIndicator from '../../../components/StatusIndicator/StatusIndicator';
 
 const navigateProjectConfig = [
   {
@@ -76,6 +80,7 @@ function ProjectContainer() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const recentlyOpened = useSelector(recentlyOpenedData);
+  const projectData = useSelector(oneProjectData);
   const { pathname } = useLocation();
   const { projectId } = useParams();
   const [value, setValue] = useState('');
@@ -115,7 +120,7 @@ function ProjectContainer() {
             <div className={s.title_name}>Demand Forecasting</div>
             <div className={s.title_date}>Created in 20.12.2022</div>
           </div>
-          <div className={s.title_status}>Active</div>
+          <StatusIndicator isArchive={projectData && projectData.isArchive} />
         </div>
         <div className={s.search_container}>
           <InputField
