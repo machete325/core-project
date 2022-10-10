@@ -47,6 +47,7 @@ function GraphModal({
       MuiDialogContent: {
         styleOverrides: {
           root: {
+            overflow: 'hidden',
             '&::-webkit-scrollbar': {
               width: '8px',
               backgroundColor: '#0e0e0e',
