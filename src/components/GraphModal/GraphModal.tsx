@@ -4,6 +4,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { DialogActions } from '@mui/material';
+import { Xwrapper } from 'react-xarrows';
 import { Props } from './types';
 import BreadcrumbsContainer from '../Breadcrumbs/BreadcrumbsContainer';
 import s from './GraphModal.module.scss';
@@ -38,9 +39,18 @@ function GraphModal({
             width: '100%',
             height: '100%',
             margin: '0 !important',
+            position: 'initial',
             maxHeight: '100% !important',
             maxWidth: '100% !important',
             background: '#1D1E23',
+            '&::-webkit-scrollbar': {
+              width: '8px',
+              height: '8px',
+              backgroundColor: '#0e0e0e',
+            },
+            '&::-webkit-scrollbar-thumb': {
+              backgroundColor: '#4e4e52',
+            },
           },
         },
       },
@@ -48,8 +58,12 @@ function GraphModal({
         styleOverrides: {
           root: {
             overflow: 'hidden',
+            minWidth: '1872px',
+            minHeight: '1000px',
+            position: 'relative',
             '&::-webkit-scrollbar': {
               width: '8px',
+              height: '8px',
               backgroundColor: '#0e0e0e',
             },
             '&::-webkit-scrollbar-thumb': {
@@ -94,9 +108,11 @@ function GraphModal({
             <ProjectTitle data={projectData} created />
             <StatusIndicator isArchive={projectData.isArchive} />
           </div>
-          <div className={s.content_container}>
-            <Content />
-          </div>
+          <Xwrapper>
+            <div className={s.content_container}>
+              <Content />
+            </div>
+          </Xwrapper>
         </DialogContent>
       </Dialog>
     </ThemeProvider>

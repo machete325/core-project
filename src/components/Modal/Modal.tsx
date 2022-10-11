@@ -64,6 +64,7 @@ function Modal({
           root: {
             '&::-webkit-scrollbar': {
               width: '8px',
+              height: '8px',
               backgroundColor: '#0e0e0e',
             },
             '&::-webkit-scrollbar-thumb': {

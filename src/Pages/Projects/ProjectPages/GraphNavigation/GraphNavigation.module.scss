@@ -38,7 +38,6 @@
 }
 
 .card_container {
-  margin: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,6 +45,7 @@
   border: 1px solid $dark_500;
   backdrop-filter: blur(25px);
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .image_container {
@@ -85,4 +85,17 @@
   border-radius: 0px 8px 8px 8px;
   box-sizing: border-box;
   text-transform: capitalize;
+}
+
+.card_content_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.card_content_text {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
 }
