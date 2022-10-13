@@ -41,7 +41,9 @@ function BreadcrumbsContainer({ data }: Props) {
       } else {
         obj = { ...obj, name: path, href: `${pathsArr[1].href}/${path}` };
       }
-      pathsArr.push(obj);
+      if (obj.name !== 'overview') {
+        pathsArr.push(obj);
+      }
     });
     pathsArr[pathsArr.length - 1].active = true;
     return pathsArr;
