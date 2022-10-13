@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useMemo, useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
+import { convertToString } from '../../../../core/helpers/convertPath';
 import s from './GraphNavigation.module.scss';
-
-// {
-//   start: '', end: '', startAnchor: '', endAnchor: '',
-// },
 
 const configuration = {
   infrastructure: {
-    dataset: {
+    datasets: {
       marginLeft: '252px',
       width: '218px',
       height: '186px',
@@ -20,6 +18,7 @@ const configuration = {
       text: 'Data Version Control',
       bottomBar: true,
       barColor: '#9A86FD',
+      href: 'datasets',
       arrowConfig: [
         {
           end: 'graph-navigation-database',
@@ -51,6 +50,8 @@ const configuration = {
       text: 'Experiment control',
       bottomBar: true,
       barColor: '#0D5DEC',
+      indicatorColor: '#468BF3',
+      href: 'experiments',
       arrowConfig: [
         {
           end: 'graph-navigation-ml_model',
@@ -227,6 +228,7 @@ const configuration = {
           text: 'Code versions',
           bottomBar: true,
           barColor: '#1DF580',
+          href: 'code',
           arrowConfig: null,
         },
         infrastructure: {
@@ -240,6 +242,8 @@ const configuration = {
           text: 'FinOPS',
           bottomBar: true,
           barColor: '#B7CFEF',
+          indicatorColor: '#87A4D1',
+          href: 'infrastructure',
           arrowConfig: null,
         },
       },
@@ -321,11 +325,12 @@ const configuration = {
       img: '/images/project/graph/data_monitoring.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
-      isClickable: false,
+      isClickable: true,
       backgroundColor: '#333333',
       text: 'Data monitoring',
       bottomBar: true,
       barColor: '#57DAD7',
+      href: 'reports',
       arrowConfig: [
         {
           end: 'graph-navigation-monitoring',
@@ -349,6 +354,7 @@ const configuration = {
       text: 'Model monitoring',
       bottomBar: true,
       barColor: '#F51D44',
+      href: 'monitoring',
       arrowConfig: null,
     },
     model_serving: {
@@ -358,34 +364,110 @@ const configuration = {
       img: '/images/project/graph/model_serving.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
-      isClickable: false,
+      isClickable: true,
       backgroundColor: '#333333',
       text: 'Model serving',
       bottomBar: true,
       barColor: '#FFD600',
+      href: 'overview',
       arrowConfig: null,
     },
   },
 };
 
+const pageConfiguration: { [key: string]: string } = {
+  overview: '.production.model_serving',
+  monitoring: '.production.monitoring',
+  experiments: '.infrastructure.experiments',
+  datasets: '.infrastructure.datasets',
+  infrastructure: '.research.ml_model.content.infrastructure',
+  code: '.research.ml_model.content.code',
+  reports: '.production.data_monitoring',
+};
+
 function Graph() {
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const [cardConfiguration, setCardConfiguration] = useState(configuration);
+  const [page, setPage] = useState<undefined | string>(undefined);
+
+  const getActualPage = () => {
+    const splitedPath = pathname.split('/');
+    // the splitedPath.length > 3 because we must have path which consist of four elements
+    if (splitedPath.length > 3) {
+      const actualPage = splitedPath[splitedPath.length - 1];
+      const configurationCopy = JSON.parse(JSON.stringify(configuration));
+      const card = convertToString(
+        configurationCopy,
+        pageConfiguration[actualPage],
+      );
+      card.isActive = true;
+      setCardConfiguration(configurationCopy);
+      setPage(actualPage);
+    }
+  };
+
+  const handleNavigate = (path: string, isClickable: boolean) => {
+    if (isClickable) {
+      if (page === path) {
+        return;
+      }
+      navigate(`../${path}`);
+    }
+  };
+
+  useEffect(() => {
+    getActualPage();
+  }, [page]);
+
+  const hexToRgbNew = (hex: string, opacity: string) => {
+    const arrBuff = new ArrayBuffer(4);
+    const vw = new DataView(arrBuff);
+    vw.setUint32(0, parseInt(hex.substring(1), 16), false);
+    const arrByte = new Uint8Array(arrBuff);
+    return `${arrByte[1]},${arrByte[2]},${arrByte[3]},${opacity}`;
+  };
+
   const formContainer = (cards: any) => (
     <div className={s.card_content_wrapper}>
       {Object.entries(cards).map(([key, card]: any) => (
         <div
+          role="presentation"
           key={`container-${key}`}
           id={`graph-navigation-${key}`}
-          className={`${s.card_container} ${
-            card.isClickable && s.cursor_pointer
-          }`}
+          className={`${
+            card.isActive ? s.card_container_active : s.card_container
+          } ${card.isClickable && s.cursor_pointer}`}
           style={{
             width: card.width,
             height: card.height,
+            marginLeft: card.marginLeft,
             backgroundColor: card.backgroundColor
               ? card.backgroundColor
               : 'inherit',
+            border: card.isActive
+              ? `2px solid ${card.barColor}`
+              : '1px solid #4e4e52',
+            boxShadow: card.isActive
+              ? `0px 4px 50px rgba(${hexToRgbNew(card.barColor, '0.35')})`
+              : 'none',
           }}
+          onClick={() => handleNavigate(card.href, card.isClickable)}
         >
+          {card.isActive && (
+            <span
+              className={s.card_indicator}
+              style={{
+                backgroundColor: card.indicatorColor
+                  ? card.indicatorColor
+                  : card.barColor,
+                boxShadow: `0px 3px 11px rgba(${hexToRgbNew(
+                  card.barColor,
+                  '0.8',
+                )})`,
+              }}
+            />
+          )}
           <div
             className={s.image_container}
             style={{
@@ -434,10 +516,11 @@ function Graph() {
               />
             ))}
           <div
+            role="presentation"
             id={`graph-navigation-${key}`}
-            className={`${s.card_container} ${
-              card.isClickable && s.cursor_pointer
-            }`}
+            className={`${
+              card.isActive ? s.card_container_active : s.card_container
+            } ${card.isClickable && s.cursor_pointer}`}
             style={{
               width: card.width,
               height: card.height,
@@ -445,8 +528,29 @@ function Graph() {
               backgroundColor: card.backgroundColor
                 ? card.backgroundColor
                 : 'inherit',
+              border: card.isActive
+                ? `2px solid ${card.barColor}`
+                : '1px solid #4e4e52',
+              boxShadow: card.isActive
+                ? `0px 4px 50px rgba(${hexToRgbNew(card.barColor, '0.35')})`
+                : 'none',
             }}
+            onClick={() => handleNavigate(card.href, card.isClickable)}
           >
+            {card.isActive && (
+              <span
+                className={s.card_indicator}
+                style={{
+                  backgroundColor: card.indicatorColor
+                    ? card.indicatorColor
+                    : card.barColor,
+                  boxShadow: `0px 3px 11px rgba(${hexToRgbNew(
+                    card.barColor,
+                    '0.8',
+                  )})`,
+                }}
+              />
+            )}
             <div
               className={s.image_container}
               style={{
@@ -531,7 +635,12 @@ function Graph() {
     return jsx;
   };
 
-  return <div>{generateJSX(configuration)}</div>;
+  const jsxData = useMemo(
+    () => generateJSX(cardConfiguration),
+    [cardConfiguration, page],
+  );
+
+  return <div>{page && jsxData}</div>;
 }
 
 export default Graph;

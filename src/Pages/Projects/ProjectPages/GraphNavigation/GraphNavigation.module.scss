@@ -48,6 +48,37 @@
   box-sizing: border-box;
 }
 
+.card_container_active {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(25px);
+  border-radius: 8px;
+  box-sizing: border-box;
+  &::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    top: 13px;
+    right: 13px;
+    border-radius: 100%;
+    background: #d9d9d9;
+    z-index: 2;
+  }
+}
+
+.card_indicator {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 8px;
+  right: 8px;
+  border-radius: 100%;
+}
+
 .image_container {
   display: flex;
   justify-content: center;
