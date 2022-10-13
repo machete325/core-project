@@ -30,6 +30,7 @@ function GraphModal({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            minWidth: '1872px',
           },
         },
       },
