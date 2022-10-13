@@ -20,7 +20,7 @@ function ProjectTitle({
   return (
     <div className={s.title}>
       <div className={`${s.name} ${size === 'small' ? s.name_sm : s.name_lg}`}>
-        {`${data.name} ${page || ''}`}
+        {`${data.name} ${(page !== 'overview' && page) || ''}`}
       </div>
       <div className={s.description}>
         {created
