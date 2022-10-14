@@ -10,16 +10,16 @@ interface Props {
 
 function Dataset({ data, projectData }: Props) {
   console.log(projectData);
-  const { dataset } = data;
+  const dataset = data.data;
   return (
     <div className={s.wrapper}>
-      {data && (
+      {dataset && (
         <>
           <div className={s.general_container}>
             <div className={s.general_title}>General information</div>
             <div className={s.config_line}>
               <div className={s.config_line_name}>
-                <div>{dataset.name}</div>
+                <div>{dataset.displayName}</div>
                 <div>{dataset.version}</div>
               </div>
               <div>
