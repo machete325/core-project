@@ -18,12 +18,12 @@ export const getTabContent = (
       return <Description data={data} projectData={projectData} />;
     case 'target':
       return <Target data={data} projectData={projectData} />;
-    case 'dataset':
+    case 'data':
       return <Dataset data={data} projectData={projectData} />;
     case 'metrics':
       return <Metrics data={data} projectData={projectData} />;
     case 'configuration':
-      return <Configuration data={data} />;
+      return <Configuration data={data} projectData={projectData} />;
     case 'infrastructure':
       return <Infrastructure data={data} projectData={projectData} />;
     case 'last_commit':
