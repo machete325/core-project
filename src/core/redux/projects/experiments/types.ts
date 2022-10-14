@@ -14,9 +14,10 @@ export interface IExperiment {
   projectName: string;
   description: string;
   target: string;
-  dataset: {
+  data: {
     id: string;
     name: string;
+    displayName: string;
     version: string;
     prefix: unknown | null;
     tag: string;
@@ -25,7 +26,7 @@ export interface IExperiment {
     items: { [key: string]: IMetric };
   };
   configuration: {
-    items: any
+    items: any;
   };
   infrastructure: {
     trainingTime: number;
