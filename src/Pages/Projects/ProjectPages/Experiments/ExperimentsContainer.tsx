@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { CircularProgress } from '@mui/material';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
@@ -23,7 +24,7 @@ import { oneProjectData } from '../../../../core/redux/projects/selectors';
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
-  const { data } = useSelector(experimentsSelector);
+  const { data, loading } = useSelector(experimentsSelector);
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
@@ -153,6 +154,7 @@ function ProjectExperimentsContainer() {
             projectData={projectData}
             config={experimentConfig}
           />
+
           <Navigation data={projectData} />
           <div className={s.header}>
             <ProjectTitle data={projectData} page="experiments" />
@@ -167,12 +169,18 @@ function ProjectExperimentsContainer() {
               </Button>
             </div>
           </div>
-          <Experiments
-            handleCheckAll={handleCheckAll}
-            handleCheck={handleCheck}
-            rebuildData={rebuildData}
-            data={data}
-          />
+          {loading ? (
+            <div className={s.loader_container}>
+              <CircularProgress color="inherit" />
+            </div>
+          ) : (
+            <Experiments
+              handleCheckAll={handleCheckAll}
+              handleCheck={handleCheck}
+              rebuildData={rebuildData}
+              data={data}
+            />
+          )}
         </>
       ) : null}
     </div>

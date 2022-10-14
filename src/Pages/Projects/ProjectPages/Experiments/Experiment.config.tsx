@@ -32,9 +32,9 @@ const experimentConfig = {
     mainInfoFields: [],
     formattingFunction: undefined,
   },
-  dataset: {
+  data: {
     name: 'Data',
-    path: '.dataset.name',
+    path: '.data.displayName',
     mainInfoFields: [],
     formattingFunction: undefined,
   },
