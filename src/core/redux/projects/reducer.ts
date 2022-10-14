@@ -43,6 +43,9 @@ export const projectSlice = createSlice({
     setProjectData: (state, action: PayloadAction<any>) => {
       state.projectData = action.payload;
     },
+    clearProjectData: (state) => {
+      state.projectData = initialState.projectData;
+    },
   },
 });
 

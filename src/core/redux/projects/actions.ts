@@ -9,10 +9,11 @@ const {
   setRecentlyData,
   setCheckRecentlyData,
   setProjectData,
+  clearProjectData,
 } = projectSlice.actions;
 const { getAllProjects, getOneProject } = ProjectService;
 
-const mockProjectsData = {
+const mockProjectsData: any = {
   items: {
     SalesPredictionKaggle: {
       id: 'SalesPredictionKaggle',
@@ -41,10 +42,12 @@ const mockProjectsData = {
 export const fetchProjects = (): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
-    const responce = await getAllProjects();
-    console.log(responce);
-    // dispatch(setProjects(responce.data.items));
-    dispatch(setProjects(mockProjectsData.items));
+    const response = await getAllProjects();
+    if (process.env.NODE_ENV === 'production') {
+      dispatch(setProjects(mockProjectsData.items));
+    } else {
+      dispatch(setProjects(response.data.items));
+    }
   } catch (e) {
     console.log(e);
   }
@@ -64,11 +67,17 @@ export const checkRecentlyData = (id: string) => (dispatch: AppDispatch) => {
 export const getProjectData = (id: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
-    const responce = await getOneProject(id);
-    console.log(responce);
-    dispatch(setProjectData(mockProjectsData.items.SalesPredictionKaggle));
-    // dispatch(setProjectData(responce.data));
+    const response = await getOneProject(id);
+    if (process.env.NODE_ENV === 'production') {
+      dispatch(setProjectData(mockProjectsData.items[id]));
+    } else {
+      dispatch(setProjectData(response.data));
+    }
   } catch (e) {
     console.log(e);
   }
+};
+
+export const clearOneProjectData = () => (dispatch: AppDispatch) => {
+  dispatch(clearProjectData());
 };

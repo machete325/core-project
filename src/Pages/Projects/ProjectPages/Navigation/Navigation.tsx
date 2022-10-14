@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import BreadcrumbsContainer from '../../../../components/Breadcrumbs/BreadcrumbsContainer';
 import GraphNavigation from '../GraphNavigation/GraphNavigation';
 import UserProfile from '../../../../components/UserProfile/UserProfile';
+import { useAppDispatch } from '../../../../core/redux/store';
 import s from './Navigation.module.scss';
+import { clearExperimentsData } from '../../../../core/redux/projects/experiments/actions';
+import { clearOneProjectData } from '../../../../core/redux/projects/actions';
 
 interface IDdata {
   id: string;
@@ -20,9 +23,12 @@ type Props = {
 
 function Navigation({ data }: Props) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleNavigate = () => {
     navigate('/main/projects');
+    dispatch(clearExperimentsData());
+    dispatch(clearOneProjectData());
   };
 
   return (
