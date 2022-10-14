@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 import { convertToString } from '../../../../core/helpers/convertPath';
+import { hexToRgba } from '../../../../core/helpers/colors';
 import s from './GraphNavigation.module.scss';
 
 const configuration = {
@@ -325,12 +326,12 @@ const configuration = {
       img: '/images/project/graph/data_monitoring.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
-      isClickable: true,
+      isClickable: false,
       backgroundColor: '#333333',
       text: 'Data monitoring',
       bottomBar: true,
       barColor: '#57DAD7',
-      href: 'reports',
+      href: 'monitoring',
       arrowConfig: [
         {
           end: 'graph-navigation-monitoring',
@@ -364,25 +365,25 @@ const configuration = {
       img: '/images/project/graph/model_serving.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
-      isClickable: true,
+      isClickable: false,
       backgroundColor: '#333333',
       text: 'Model serving',
       bottomBar: true,
       barColor: '#FFD600',
-      href: 'overview',
+      href: 'monitoring',
       arrowConfig: null,
     },
   },
 };
 
 const pageConfiguration: { [key: string]: string } = {
-  overview: '.production.model_serving',
+  'model-serving': '.production.model_serving',
   monitoring: '.production.monitoring',
   experiments: '.infrastructure.experiments',
   datasets: '.infrastructure.datasets',
   infrastructure: '.research.ml_model.content.infrastructure',
   code: '.research.ml_model.content.code',
-  reports: '.production.data_monitoring',
+  'data-monitoring': '.production.data_monitoring',
 };
 
 function Graph() {
@@ -396,13 +397,17 @@ function Graph() {
     // the splitedPath.length > 3 because we must have path which consist of four elements
     if (splitedPath.length > 3) {
       const actualPage = splitedPath[splitedPath.length - 1];
-      const configurationCopy = JSON.parse(JSON.stringify(configuration));
-      const card = convertToString(
-        configurationCopy,
-        pageConfiguration[actualPage],
-      );
-      card.isActive = true;
-      setCardConfiguration(configurationCopy);
+      if (pageConfiguration[actualPage]) {
+        const configurationCopy = JSON.parse(JSON.stringify(configuration));
+        const card = convertToString(
+          configurationCopy,
+          pageConfiguration[actualPage],
+        );
+        setCardConfiguration(configurationCopy);
+        card.isActive = true;
+      } else {
+        setCardConfiguration(configuration);
+      }
       setPage(actualPage);
     }
   };
@@ -419,14 +424,6 @@ function Graph() {
   useEffect(() => {
     getActualPage();
   }, [page]);
-
-  const hexToRgbNew = (hex: string, opacity: string) => {
-    const arrBuff = new ArrayBuffer(4);
-    const vw = new DataView(arrBuff);
-    vw.setUint32(0, parseInt(hex.substring(1), 16), false);
-    const arrByte = new Uint8Array(arrBuff);
-    return `${arrByte[1]},${arrByte[2]},${arrByte[3]},${opacity}`;
-  };
 
   const formContainer = (cards: any) => (
     <div className={s.card_content_wrapper}>
@@ -449,7 +446,7 @@ function Graph() {
               ? `2px solid ${card.barColor}`
               : '1px solid #4e4e52',
             boxShadow: card.isActive
-              ? `0px 4px 50px rgba(${hexToRgbNew(card.barColor, '0.35')})`
+              ? `0px 4px 50px rgba(${hexToRgba(card.barColor, '0.35')})`
               : 'none',
           }}
           onClick={() => handleNavigate(card.href, card.isClickable)}
@@ -461,7 +458,7 @@ function Graph() {
                 backgroundColor: card.indicatorColor
                   ? card.indicatorColor
                   : card.barColor,
-                boxShadow: `0px 3px 11px rgba(${hexToRgbNew(
+                boxShadow: `0px 3px 11px rgba(${hexToRgba(
                   card.barColor,
                   '0.8',
                 )})`,
@@ -532,7 +529,7 @@ function Graph() {
                 ? `2px solid ${card.barColor}`
                 : '1px solid #4e4e52',
               boxShadow: card.isActive
-                ? `0px 4px 50px rgba(${hexToRgbNew(card.barColor, '0.35')})`
+                ? `0px 4px 50px rgba(${hexToRgba(card.barColor, '0.35')})`
                 : 'none',
             }}
             onClick={() => handleNavigate(card.href, card.isClickable)}
@@ -544,7 +541,7 @@ function Graph() {
                   backgroundColor: card.indicatorColor
                     ? card.indicatorColor
                     : card.barColor,
-                  boxShadow: `0px 3px 11px rgba(${hexToRgbNew(
+                  boxShadow: `0px 3px 11px rgba(${hexToRgba(
                     card.barColor,
                     '0.8',
                   )})`,
