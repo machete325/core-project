@@ -6,9 +6,10 @@ import { ExperimentService } from '../../../../../core/services/Experiment.servi
 
 interface Props {
   data: any;
+  projectData: any;
 }
 
-function Configuration({ data }: Props) {
+function Configuration({ data, projectData }: Props) {
   const [searchValue, setSearchValue] = useState('');
   const [formattedData, setFormattedData] = useState<any>([]);
   const [configurationData, setConfigurationData] = useState<any>([]);
@@ -19,7 +20,7 @@ function Configuration({ data }: Props) {
 
   const handleGetConfiguration = async () => {
     const configuration = await ExperimentService.getExperimentConfiguration(
-      data.projectName,
+      projectData.id,
       data.id,
     );
     const formatted = formatConfiguration(configuration.data.items);
