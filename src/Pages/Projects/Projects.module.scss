@@ -49,6 +49,7 @@ main {
 }
 
 .card_container {
+  position: relative;
   margin-right: 24px;
   width: 267.67px;
   height: 366px;
@@ -68,4 +69,98 @@ main {
   font-size: 18px;
   line-height: 25px;
   cursor: pointer;
+}
+
+.status_indicator {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.content_container {
+  margin: 12px 16px 0;
+}
+
+.project_title {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.total_experiments {
+  margin-top: 10px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: $dark_300;
+}
+
+.model_configuration {
+  margin-top: 6px;
+  padding-bottom: 14px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: $dark_300;
+  border-bottom: 1px solid $dark_500;
+  div {
+    height: 22px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.budget_container {
+  margin-top: 14px;
+  height: 22px;
+  div {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    color: $dark_300;
+  }
+}
+
+.project_date_container {
+  margin-top: 6px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid $dark_500;
+}
+
+.project_date {
+  margin-bottom: 2px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: $dark_400;
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+.actions_container {
+  margin: 12px 16px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
 }

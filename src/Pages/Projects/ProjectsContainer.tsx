@@ -7,14 +7,16 @@ import { projectsData } from '../../core/redux/projects/selectors';
 import InputField from '../../components/SearchField/InputField';
 import s from './Projects.module.scss';
 import UserProfile from '../../components/UserProfile/UserProfile';
+import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
+import { geFormattedDate } from '../../core/helpers/formatDate';
 
 function ProjectsContainer() {
-  const dispacth = useAppDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [value, setValue] = useState('');
 
   useEffect(() => {
-    dispacth(fetchProjects());
+    dispatch(fetchProjects());
   }, []);
 
   const data = useSelector(projectsData);
@@ -23,8 +25,13 @@ function ProjectsContainer() {
     setValue(e.target.value);
   };
 
-  const handleChooseProject = (e: any) => {
-    navigate(`../../project/${e.target.id}`, { replace: false });
+  const handleChooseProject = (id: string) => {
+    navigate(`../../project/${id}`, { replace: false });
+  };
+
+  const handleFavourite = (e: any) => {
+    e.stopPropagation();
+    console.log(e.target);
   };
 
   return (
@@ -58,12 +65,68 @@ function ProjectsContainer() {
         <div className={s.card_wrapper}>
           {Object.values(data).map((project: any) => (
             <div
+              key={project.id}
               className={s.card_container}
               role="presentation"
-              onClick={handleChooseProject}
+              onClick={() => handleChooseProject(project.id)}
               id={project.id}
             >
-              {project.name}
+              <img src="/images/project/projectImage.png" alt={project.name} />
+              <span className={s.status_indicator}>
+                <StatusIndicator isArchive={project.isArchive} />
+              </span>
+              <div className={s.content_container}>
+                <div className={s.project_title}>{project.name}</div>
+                <div className={s.total_experiments}>Total experiments</div>
+                <div className={s.model_configuration}>
+                  <div>RMSE</div>
+                  <div>RRSE</div>
+                </div>
+                <div className={s.additional_information}>
+                  <div className={s.budget_container}>
+                    <div>Budget</div>
+                  </div>
+                  <div className={s.project_date_container}>
+                    <div className={s.project_date}>
+                      {`Created ${geFormattedDate(project.created)}`}
+                    </div>
+                    <div className={s.project_date}>
+                      {`Created ${geFormattedDate(project.created)}`}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={s.actions_container}>
+                <div>
+                  <img
+                    id={project.id}
+                    role="presentation"
+                    src="/images/icons/Star.svg"
+                    alt="Star"
+                    onClick={handleFavourite}
+                  />
+                </div>
+                <div className={s.actions}>
+                  <div>
+                    <img
+                      id={project.id}
+                      role="presentation"
+                      src="/images/icons/Copy.svg"
+                      alt="Copy"
+                      onClick={handleFavourite}
+                    />
+                  </div>
+                  <div>
+                    <img
+                      id={project.id}
+                      role="presentation"
+                      src="/images/icons/TrashSimple.svg"
+                      alt="TrashSimple"
+                      onClick={handleFavourite}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
