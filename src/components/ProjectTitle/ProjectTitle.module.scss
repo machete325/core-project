@@ -1,8 +1,10 @@
+@import '../../colors.scss';
+
 .name {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  color: #ffffff;
+  color: $white;
 }
 
 .name_sm {
@@ -21,5 +23,5 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 19px;
-  color: #a9adbd;
+  color: $dark_300;
 }

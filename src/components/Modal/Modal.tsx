@@ -21,7 +21,12 @@ const Transition = React.forwardRef(
 );
 
 function Modal({
-  open, handleClose, data, fullScreen = false, projectData, config,
+  open,
+  handleClose,
+  data,
+  fullScreen = false,
+  projectData,
+  config,
 }: Props) {
   const theme = createTheme({
     components: {
@@ -59,6 +64,7 @@ function Modal({
           root: {
             '&::-webkit-scrollbar': {
               width: '8px',
+              height: '8px',
               backgroundColor: '#0e0e0e',
             },
             '&::-webkit-scrollbar-thumb': {

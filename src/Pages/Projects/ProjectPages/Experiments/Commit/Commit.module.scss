@@ -1,0 +1,33 @@
+@import '../../../../../colors.scss';
+
+.wrapper {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+  div {
+    margin-bottom: 8px;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.content_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 400;
+  color: $dark_300;
+}
+
+.link_container {
+  display: flex;
+}
+
+.link {
+  color: $blue_300;
+}

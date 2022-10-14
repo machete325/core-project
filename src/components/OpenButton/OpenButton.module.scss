@@ -1,16 +1,18 @@
+@import '../../colors.scss';
+
 .wrapper {
   margin-left: 16px;
   padding-left: 16px;
   height: 27.5px;
   display: flex;
   align-items: center;
-  border-left: 1px solid #6b6e7b;
+  border-left: 1px solid $dark_400;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
-  color: #ffffff;
+  color: $white;
   cursor: pointer;
 }
 

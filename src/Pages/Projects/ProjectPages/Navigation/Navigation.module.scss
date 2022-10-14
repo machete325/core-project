@@ -1,0 +1,46 @@
+@import '../../../../colors.scss';
+
+.wrapper {
+  margin-left: 24px;
+  margin-top: 36px;
+  margin-right: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.all_projects {
+  margin-right: 24px;
+  width: 170px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $dark_600;
+  border-radius: 8px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: $white;
+  cursor: pointer;
+}
+
+.image {
+  width: 24px;
+  height: 24px;
+}
+
+.text {
+  margin-left: 8px;
+}
+
+.user_container {
+  display: flex;
+  align-items: center;
+}

@@ -1,3 +1,5 @@
+@import 'colors';
+
 html {
   width: 100%;
   height: 100%;
@@ -13,9 +15,10 @@ body {
   overflow: auto;
   &::-webkit-scrollbar {
     width: 8px;
-    background-color: #0e0e0e;
+    height: 8px;
+    background-color: $dark_900;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #4e4e52;
+    background-color: $dark_500;
   }
 }

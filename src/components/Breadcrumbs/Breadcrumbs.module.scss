@@ -1,6 +1,9 @@
+@import '../../colors.scss';
+
 .wrapper {
   display: flex;
   height: 19px;
+  align-items: center;
 }
 
 .name {
@@ -8,19 +11,19 @@
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
-  color: #a9adbd;
+  color: $dark_300;
   text-transform: capitalize;
   cursor: pointer;
 }
 
 .separator {
-  color: #a9adbd;
+  color: $dark_300;
   margin-left: 22px;
   margin-right: 21px;
 }
 
 .active {
-  color: #ffff;
+  color: $white;
 }
 
 .separator {
