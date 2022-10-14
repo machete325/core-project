@@ -1,0 +1,25 @@
+@import '../../../../../colors.scss';
+
+.config_line {
+  margin-bottom: 8px;
+  display: flex;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 25px;
+  color: $dark_300;
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+.search {
+  margin-bottom: 24px;
+}
+
+.value {
+  font-weight: 600;
+  color: $white;
+  margin-left: 10px;
+}

@@ -1,6 +1,4 @@
-$background_color: #4e4e52;
-$active: #ffffff;
-$disable: #6b6e7b;
+@import '../../colors.scss';
 
 @mixin item {
   width: 294px;
@@ -13,15 +11,16 @@ $disable: #6b6e7b;
 
 .item {
   @include item;
-  color: $disable !important;
+  color: $dark_400 !important;
 }
 
 .item_active {
   @include item;
-  color: $active !important;
-  background-color: $background_color;
+  color: $white !important;
+  background-color: $dark_500;
   img {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(1000%);
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg)
+      brightness(103%) contrast(1000%);
   }
 }
 

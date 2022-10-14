@@ -12,13 +12,16 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
     "echarts": "^5.3.3",
+    "env-cmd": "^10.1.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-xarrows": "^2.0.2",
     "sass": "^1.54.5",
     "typescript": "^4.7.4",
     "util": "^0.12.4",
@@ -26,17 +29,27 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-qa": "env-cmd -f .env.qa react-scripts start",
+    "start-prod": "env-cmd -f .env.production react-scripts start",
     "build": "react-scripts build",
+    "build-dev": "env-cmd -f .env.development react-scripts build",
+    "build-qa": "env-cmd -f .env.qa react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "npx eslint src",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "commit": "git-cz"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
     ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "browserslist": {
     "production": [
@@ -60,11 +73,14 @@
     "@types/jest": "^28.1.7",
     "@types/node": "^18.7.9",
     "@types/react": "^18.0.17",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "^18.0.6",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "@typescript-eslint/parser": "^5.33.1",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.22.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",

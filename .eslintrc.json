@@ -17,16 +17,11 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "linebreak-style": 0,
-    "no-param-reassign": [
-      "error",
-      {
-        "props": true,
-        "ignorePropertyModificationsFor": ["state", "experiment"]
-      }
-    ],
+    "no-param-reassign": "off",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "jsx-a11y/label-has-associated-control": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "no-plusplus": "off"
   }
 }
