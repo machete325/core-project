@@ -71,7 +71,12 @@ function ProjectsContainer() {
               onClick={() => handleChooseProject(project.id)}
               id={project.id}
             >
-              <img src="/images/project/projectImage.png" alt={project.name} />
+              <img
+                src="/images/project/projectImage.png"
+                width="268px"
+                height="100px"
+                alt={project.name}
+              />
               <span className={s.status_indicator}>
                 <StatusIndicator isArchive={project.isArchive} />
               </span>
