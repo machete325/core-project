@@ -13,41 +13,11 @@ const {
 } = projectSlice.actions;
 const { getAllProjects, getOneProject } = ProjectService;
 
-const mockProjectsData: any = {
-  items: {
-    SalesPredictionKaggle: {
-      id: 'SalesPredictionKaggle',
-      name: 'DevOps Services',
-      description: 'DevOps Services',
-      created: '2022-10-05T10:20:58.935480',
-      isArchived: false,
-    },
-    Apifix: {
-      id: 'Apifix',
-      name: 'Apifix Services',
-      description: 'Apifix Services',
-      created: '2022-10-05T10:20:58.935480',
-      isArchived: false,
-    },
-    ChurnPrediction: {
-      id: 'ChurnPrediction',
-      name: 'ChurnPrediction Services',
-      description: 'ChurnPrediction Services',
-      created: '2022-10-05T10:20:58.935480',
-      isArchived: false,
-    },
-  },
-};
-
 export const fetchProjects = (): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
     const response = await getAllProjects();
-    if (process.env.NODE_ENV === 'production') {
-      dispatch(setProjects(mockProjectsData.items));
-    } else {
-      dispatch(setProjects(response.data.items));
-    }
+    dispatch(setProjects(response.data.items));
   } catch (e) {
     console.log(e);
   }
@@ -68,11 +38,7 @@ export const getProjectData = (id: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading);
     const response = await getOneProject(id);
-    if (process.env.NODE_ENV === 'production') {
-      dispatch(setProjectData(mockProjectsData.items[id]));
-    } else {
-      dispatch(setProjectData(response.data));
-    }
+    dispatch(setProjectData(response.data));
   } catch (e) {
     console.log(e);
   }
