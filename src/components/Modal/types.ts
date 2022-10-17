@@ -1,4 +1,4 @@
-import { IExperiment } from '../../core/redux/experiments/types';
+import { IExperiment } from '../../core/redux/projects/experiments/types';
 
 export type ChoosedTab = {
   type: string | undefined;
@@ -11,6 +11,7 @@ export interface IProjectData {
   name: string;
   page: string;
   description: string;
+  created: string;
 }
 
 export type Props = {

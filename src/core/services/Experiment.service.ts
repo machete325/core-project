@@ -1,7 +1,11 @@
 import api from '../api';
 
 const getBaseUrl = (projectVersion: string, version: string) => `/projects/${projectVersion}/experiments/${version}`;
-const getAdditionalParams = (display?: boolean, page?: number, size?: number) => {
+const getAdditionalParams = (
+  display?: boolean,
+  page?: number,
+  size?: number,
+) => {
   let url = display ? '?display=true' : '?display=false';
   if (page) {
     url += `&page=${page}`;
@@ -23,17 +27,67 @@ export const ExperimentService = {
   ) => api(
     'GET',
     [],
-    `/projects/${projectVersion}/experiments${getAdditionalParams(display, page, size)}`,
+    `/projects/${projectVersion}/experiments${getAdditionalParams(
+      display,
+      page,
+      size,
+    )}`,
   ),
   getProjectExperimentsMinimal: (projectVersion: string) => api('GET', [], `/projects/${projectVersion}/experiments/minimal`),
   getExperiment: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}`),
   getExperimentPlots: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots`),
-  getExperimentPlotsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots${_id}`),
-  getExperimentMetrics: (projectVersion: string, version: string, display: boolean) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${display ? '' : '?display=false'}`),
-  getExperimentMetricsWish: (projectVersion: string, version: string, _id: string | number) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${_id}`),
-  getExperimentConfiguration: (projectVersion: string, version: string, display?:boolean) => api('GET', [], `${getBaseUrl(projectVersion, version)}/configuration${display ? '' : '?display=false'}`),
-  getExperimentDatasets: (projectVersion: string, version: string, prefix_value: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/datasets?prefix=${prefix_value}`),
-  getExperimentCode: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/code`),
+  getExperimentPlotsWish: (
+    projectVersion: string,
+    version: string,
+    _id: string | number,
+  ) => api('GET', [], `${getBaseUrl(projectVersion, version)}/plots${_id}`),
+  getExperimentMetrics: (
+    projectVersion: string,
+    version: string,
+    display: boolean,
+  ) => api(
+    'GET',
+    [],
+    `${getBaseUrl(projectVersion, version)}/metrics${
+      display ? '' : '?display=false'
+    }`,
+  ),
+  getExperimentMetricsWish: (
+    projectVersion: string,
+    version: string,
+    _id: string | number,
+  ) => api('GET', [], `${getBaseUrl(projectVersion, version)}/metrics${_id}`),
+  getExperimentConfiguration: (
+    projectVersion: string,
+    version: string,
+    display?: boolean,
+  ) => api(
+    'GET',
+    [],
+    `${getBaseUrl(projectVersion, version)}/configuration${
+      display ? '' : '?display=false'
+    }`,
+  ),
+  getExperimentDatasets: (
+    projectVersion: string,
+    version: string,
+    prefix_value: string,
+  ) => api(
+    'GET',
+    [],
+    `${getBaseUrl(projectVersion, version)}/datasets?prefix=${prefix_value}`,
+  ),
+  getExperimentCode: (
+    projectVersion: string,
+    version: string,
+    display: boolean,
+  ) => api(
+    'GET',
+    [],
+    `${getBaseUrl(projectVersion, version)}/code${
+      display ? '' : '?display=false'
+    }`,
+  ),
   getExperimentModels: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}/models`),
 };
 

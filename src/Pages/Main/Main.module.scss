@@ -1,4 +1,4 @@
-$main_color: #0e0e0e;
+@import './../../colors';
 
 .wrapper {
   display: flex;
@@ -15,7 +15,7 @@ $main_color: #0e0e0e;
   font-weight: 600;
   font-size: 12px;
   line-height: 16px;
-  background-color: $main_color;
+  background-color: $dark_900;
   a {
     &:active {
       color: gray;

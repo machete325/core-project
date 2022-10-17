@@ -10,13 +10,13 @@
     outline: 0;
     cursor: pointer;
     &:not(:checked) {
-      background-image: url(../../../public/images/icons/CheckBox.svg);
+      background-image: url(../../../public/images/icons/CheckBox.png);
     }
     &:checked {
-      background-image: url(../../../public/images/icons/CheckBoxChecked.svg);
+      background-image: url(../../../public/images/icons/CheckBoxChecked.png);
     }
     &:not(:checked):hover {
-      background-image: url(../../../public/images/icons/CheckBoxHover.svg);
+      background-image: url(../../../public/images/icons/CheckBoxHover.png);
     }
   }
 }
