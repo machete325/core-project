@@ -8,7 +8,7 @@ import InputField from '../../components/SearchField/InputField';
 import s from './Projects.module.scss';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
-import { geFormattedDate } from '../../core/helpers/formatDate';
+import { getFormattedDate } from '../../core/helpers/dateMethods';
 
 function ProjectsContainer() {
   const dispatch = useAppDispatch();
@@ -93,10 +93,10 @@ function ProjectsContainer() {
                   </div>
                   <div className={s.project_date_container}>
                     <div className={s.project_date}>
-                      {`Created ${geFormattedDate(project.created)}`}
+                      {`Created ${getFormattedDate(project.created)}`}
                     </div>
                     <div className={s.project_date}>
-                      {`Created ${geFormattedDate(project.created)}`}
+                      {`Created ${getFormattedDate(project.created)}`}
                     </div>
                   </div>
                 </div>

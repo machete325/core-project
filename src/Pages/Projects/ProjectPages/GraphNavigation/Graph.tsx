@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
-import { convertToString } from '../../../../core/helpers/convertPath';
-import { hexToRgba } from '../../../../core/helpers/colors';
+import { convertToString } from '../../../../core/helpers/objectMethods';
+import { hexToRgba } from '../../../../core/helpers/colorMethods';
 import s from './GraphNavigation.module.scss';
 
 const configuration = {

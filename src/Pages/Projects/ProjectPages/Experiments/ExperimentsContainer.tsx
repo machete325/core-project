@@ -13,7 +13,7 @@ import { experimentsSelector } from '../../../../core/redux/projects/experiments
 import { useAppDispatch } from '../../../../core/redux/store';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
-import { convertToString } from '../../../../core/helpers/convertPath';
+import { convertToString } from '../../../../core/helpers/objectMethods';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';

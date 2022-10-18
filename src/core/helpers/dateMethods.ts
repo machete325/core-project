@@ -1,4 +1,4 @@
-export const geFormattedDate = (timeStamp: string) => {
+export const getFormattedDate = (timeStamp: string) => {
   const formatDigits = (digit: number) => {
     if (digit < 10) {
       return `0${digit}`;
@@ -7,7 +7,8 @@ export const geFormattedDate = (timeStamp: string) => {
   };
   const date = new Date(timeStamp);
   const year = date.getFullYear();
-  const month = formatDigits(date.getMonth());
-  const day = formatDigits(date.getDay());
+  const actualMonth = date.getMonth() + 1;
+  const month = formatDigits(actualMonth);
+  const day = formatDigits(date.getDate());
   return `${day}.${month}.${year}`;
 };
