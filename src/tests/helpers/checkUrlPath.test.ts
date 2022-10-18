@@ -1,6 +1,6 @@
-import checkPath from '../../core/helpers/checkPath';
+import checkUrlPath from '../../core/helpers/checkUrlPath';
 
-test('Check checkPath function', () => {
+test('Check checkUrlPath function', () => {
   const arr = [
     {
       linkPath: 'projects',
@@ -36,8 +36,8 @@ test('Check checkPath function', () => {
     },
   ];
   arr.forEach((item) => {
-    expect(checkPath(item.linkPath, item.pathName, item.path, item.link, item.id)).toBe(
-      item.expect,
-    );
+    expect(
+      checkUrlPath(item.linkPath, item.pathName, item.path, item.link, item.id),
+    ).toBe(item.expect);
   });
 });

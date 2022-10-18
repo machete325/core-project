@@ -1,4 +1,4 @@
-import { convertToString } from '../../core/helpers/convertPath';
+import { convertToString } from '../../core/helpers/objectMethods';
 
 test('Check valid path for object', () => {
   const mockObj = {
