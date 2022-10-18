@@ -3,9 +3,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Xarrow from 'react-xarrows';
 import { convertToString } from '../../../../core/helpers/objectMethods';
 import { hexToRgba } from '../../../../core/helpers/colorMethods';
+import { IConfiguration } from './types';
 import s from './GraphNavigation.module.scss';
 
-const configuration = {
+const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
   infrastructure: {
     datasets: {
       marginLeft: '252px',
@@ -425,7 +426,7 @@ function Graph() {
     getActualPage();
   }, [page]);
 
-  const formContainer = (cards: any) => (
+  const formAdditionalContent = (cards: any) => (
     <div className={s.card_content_wrapper}>
       {Object.entries(cards).map(([key, card]: any) => (
         <div
@@ -487,7 +488,7 @@ function Graph() {
     </div>
   );
 
-  const cardMaker = (card: any, key: any) => {
+  const handleCreateCard = (card: any, key: any) => {
     if (card.img) {
       return (
         <div key={key}>
@@ -614,30 +615,30 @@ function Graph() {
               style={{ backgroundColor: card.barColor }}
             />
           )}
-          {card.content && formContainer(card.content)}
+          {card.content && formAdditionalContent(card.content)}
         </div>
       </div>
     );
   };
 
-  const generateJSX = (config: any) => {
+  const generateMarkup = (config: any) => {
     const jsx = Object.keys(config).map((key) => (
       <div key={key} className={s.graph_content}>
         <div className={s.status_tag_container}>{key}</div>
         <div className={s.card_wrapper}>
-          {Object.keys(config[key]).map((item) => cardMaker(config[key][item], item))}
+          {Object.keys(config[key]).map((item) => handleCreateCard(config[key][item], item))}
         </div>
       </div>
     ));
     return jsx;
   };
 
-  const jsxData = useMemo(
-    () => generateJSX(cardConfiguration),
+  const markup = useMemo(
+    () => generateMarkup(cardConfiguration),
     [cardConfiguration, page],
   );
 
-  return <div>{page && jsxData}</div>;
+  return <div>{page && markup}</div>;
 }
 
 export default Graph;
