@@ -4,15 +4,33 @@ import type { ECharts } from 'echarts';
 import dark from './dark.project.json';
 import s from './Chart.module.scss';
 
+interface IChartData {
+  [key: string]: {
+    name: string;
+    x: number[];
+    y: number[];
+  };
+}
+
+interface IData {
+  id: string;
+  name: string;
+  displayName: string;
+  display: boolean;
+  value: IChartData;
+  threshold: number;
+  aggregationOperation: any;
+}
+
 type Props = {
-  data: any;
+  data: IData;
   isFill?: boolean;
 };
 
 function Chart({ data, isFill }: Props) {
   const chartRef = useRef<HTMLDivElement>(null);
 
-  const genDataset = (x: any[], y: any[]) => {
+  const genDataset = (x: number[], y: number[]) => {
     const dataset = x.map((item, index) => [item, y[index]]);
     return dataset;
   };

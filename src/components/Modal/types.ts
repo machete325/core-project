@@ -14,11 +14,18 @@ export interface IProjectData {
   created: string;
 }
 
+interface IConfig {
+  formattingFunction: any;
+  name: string;
+  path: string;
+  mainInfoFields: string[];
+}
+
 export type Props = {
   open: boolean;
   handleClose: () => void;
   data: ChoosedTab;
   fullScreen?: boolean;
   projectData: IProjectData;
-  config: Object;
+  config: { [key: string]: IConfig };
 };

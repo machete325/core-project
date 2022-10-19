@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import useComponentVisible from '../../core/hooks/useComponentVisible';
 import s from './DropDown.module.scss';
 
+interface IDropDownConfig {
+  text: string;
+  imgSrc: string;
+}
+
 function DropDown() {
   const [visible, setVisible] = useState(false);
   const { ref } = useComponentVisible(true, setVisible);
 
-  const dropDownConfig = [
+  const dropDownConfig: IDropDownConfig[] = [
     {
       text: 'Clone experiment',
       imgSrc: '/images/icons/Copy.png',
