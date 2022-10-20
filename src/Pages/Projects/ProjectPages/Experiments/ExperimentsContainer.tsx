@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CircularProgress } from '@mui/material';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
@@ -20,6 +19,7 @@ import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened'
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
+import Loader from '../../../../components/Loader/Loader';
 
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
@@ -73,15 +73,15 @@ function ProjectExperimentsContainer() {
           key={index}
           role="presentation"
           onClick={() => handleOpenModal(key, id)}
-          className={s.obj_container}
+          className={key !== 'data' ? s.obj_container : ''}
         >
-          {key !== 'infrastructure' && (
+          {key !== 'infrastructure' && key !== 'data' && (
             <div className={s.title_key}>
               {displayName}
               :
             </div>
           )}
-          <div>{value}</div>
+          <div className={s.text_container}>{value}</div>
         </div>
       );
 
@@ -170,9 +170,7 @@ function ProjectExperimentsContainer() {
             </div>
           </div>
           {loading ? (
-            <div className={s.loader_container}>
-              <CircularProgress color="inherit" />
-            </div>
+            <Loader />
           ) : (
             <Experiments
               handleCheckAll={handleCheckAll}
