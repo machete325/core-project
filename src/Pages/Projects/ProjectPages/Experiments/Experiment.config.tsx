@@ -34,9 +34,12 @@ const experimentConfig = {
   },
   data: {
     name: 'Data',
-    path: '.data.displayName',
+    path: '.data',
     mainInfoFields: [],
-    formattingFunction: undefined,
+    formattingFunction: (data: any) => {
+      const { displayName, prefix, version } = data;
+      return [{ value: `${displayName} ${prefix || ''} ${version || ''}` }];
+    },
   },
   metrics: {
     name: 'Main Metrics',
@@ -134,6 +137,7 @@ const experimentConfig = {
         }
       };
       formatConfiguration(configuration);
+
       return formattedData;
     },
   },
