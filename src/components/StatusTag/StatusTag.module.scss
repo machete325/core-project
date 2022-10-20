@@ -1,14 +1,17 @@
 .status_tag {
-  display: inline-block;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 3px;
   height: 22px;
   min-width: 65px;
-  text-align: center;
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 21px;
+  box-sizing: border-box;
 }
 
 .status_tag_2 {

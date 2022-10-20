@@ -3,23 +3,40 @@ import s from './StatusTag.module.scss';
 
 type Props = {
   usedValue: number | undefined | null;
-  totalValue: number;
+  totalValue: number | undefined | null;
   height?: string;
   width?: string;
   type?: string;
   displayName?: string;
+  currency?: string;
 };
 
 function StatusTag({
-  usedValue, totalValue, height, width, type, displayName,
+  usedValue,
+  totalValue,
+  height,
+  width,
+  type,
+  displayName,
+  currency,
 }: Props) {
   const [colors, setColors] = useState({
     backgroundColor: '#4E4E52',
     textColor: '',
   });
 
+  const defineCurrency = (currencyType: string) => {
+    switch (currencyType) {
+      case 'USD': {
+        return '$';
+      }
+      default:
+        return '';
+    }
+  };
+
   const checkStatus = () => {
-    if (usedValue) {
+    if (usedValue && totalValue) {
       if (usedValue / totalValue >= 0.5) {
         setColors({
           ...colors,
@@ -54,7 +71,9 @@ function StatusTag({
         }}
       >
         <div>{displayName}</div>
-        <div className={s.value_2}>{`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}</div>
+        <div className={s.value_2}>
+          {`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}
+        </div>
       </div>
     );
   }
@@ -68,7 +87,9 @@ function StatusTag({
         width,
       }}
     >
-      {`${Number.isInteger(usedValue) ? usedValue : usedValue?.toFixed(2) || '-'} / ${totalValue}`}
+      {`${currency ? defineCurrency(currency) : ''}${
+        Number.isInteger(usedValue) ? usedValue : usedValue?.toFixed(2) || '-'
+      } / ${currency ? defineCurrency(currency) : ''}${totalValue || '-'}`}
     </span>
   );
 }
