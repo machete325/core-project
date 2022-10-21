@@ -68,20 +68,26 @@ function ProjectExperimentsContainer() {
     // function for generating JSX markup
     const markupFunction = (formattedData: any, key: string) => {
       let result = null;
-      const markupObj = (value: any, index: string, displayName?: string) => (
+      const markupObj = (
+        value: any,
+        index: string,
+        className: string,
+        textClass: string,
+        displayName?: string,
+      ) => (
         <div
           key={index}
           role="presentation"
           onClick={() => handleOpenModal(key, id)}
-          className={key !== 'data' ? s.obj_container : ''}
+          className={className || s.obj_container}
         >
-          {key !== 'infrastructure' && key !== 'data' && (
+          {key !== 'infrastructure' && key !== 'data' && key !== 'metrics' && (
             <div className={s.title_key}>
               {displayName}
               :
             </div>
           )}
-          <div className={s.text_container}>{value}</div>
+          <div className={textClass || s.text_container}>{value}</div>
         </div>
       );
 
@@ -101,9 +107,20 @@ function ProjectExperimentsContainer() {
         result = Object.entries(formattedData).map(
           ([itemKey, itemValue]: any) => {
             if (key === 'infrastructure') {
-              return markupObj(itemValue.value, itemKey);
+              return markupObj(
+                itemValue.value,
+                itemKey,
+                itemValue.className,
+                itemValue.textClass,
+              );
             }
-            return markupObj(itemValue.value, itemKey, itemValue.displayName);
+            return markupObj(
+              itemValue.value,
+              itemKey,
+              itemValue.className,
+              itemValue.textClass,
+              itemValue.displayName,
+            );
           },
         );
       }
