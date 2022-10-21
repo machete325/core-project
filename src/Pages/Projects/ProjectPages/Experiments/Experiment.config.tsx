@@ -11,6 +11,12 @@ interface IInfrastructure {
   usedMachines: number;
 }
 
+interface IFormattedData {
+  displayName: string;
+  id: string;
+  value: string | number;
+}
+
 /* {
       name: name of experiment section,
       path: path to information on experiment data,
@@ -38,26 +44,47 @@ const experimentConfig = {
     mainInfoFields: [],
     formattingFunction: (data: any) => {
       const { displayName, prefix, version } = data;
-      return [{ value: `${displayName} ${prefix || ''} ${version || ''}` }];
+      return [
+        {
+          value: `${displayName} ${prefix || ''} ${version || ''}`,
+          className: '',
+        },
+      ];
     },
   },
   metrics: {
     name: 'Main Metrics',
     path: '.metrics.items',
     mainInfoFields: ['displayName', 'value'],
-    formattingFunction: undefined,
+    formattingFunction: (metrics: any) => {
+      const data: any = {};
+      Object.values(metrics).forEach((metric: any) => {
+        if (metric.display) {
+          const value = (
+            <>
+              <span className={s.title_metrics}>{metric.displayName}</span>
+              <StatusTag
+                usedValue={metric.value}
+                totalValue={metric.threshold}
+              />
+            </>
+          );
+          data[metric.id] = {
+            value,
+            isTitle: false,
+            textClass: s.metrics_text,
+          };
+        }
+        return null;
+      });
+      return data;
+    },
   },
   configuration: {
     name: 'Model configuration',
     path: '.configuration.items',
     mainInfoFields: ['displayName', 'value'],
     formattingFunction: (configuration: unknown) => {
-      interface IFormattedData {
-        displayName: string;
-        id: string;
-        value: string | number;
-      }
-
       const formattedData: IFormattedData[] = [];
       let arrKey: number = 11885133;
 
@@ -169,6 +196,7 @@ const experimentConfig = {
           <StatusTag
             usedValue={infrastructure.usedBudget}
             totalValue={infrastructure.totalBudget}
+            currency={infrastructure.currency}
           />
         </>
       );
