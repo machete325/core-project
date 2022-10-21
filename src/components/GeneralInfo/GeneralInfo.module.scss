@@ -1,0 +1,54 @@
+@import '../../colors.scss';
+
+.config_line {
+  margin-bottom: 32px;
+  display: flex;
+}
+
+.config_line_name {
+  margin-right: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: $white;
+}
+
+.status_tag {
+  margin-right: 24px;
+  width: 225px;
+  height: 68px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: $dark_600;
+  border-radius: 8px;
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
+}
+
+.tag_value {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  color: #ffffff;
+}
+
+.tag_name {
+  margin-top: 4px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.general_info {
+  display: flex;
+}
