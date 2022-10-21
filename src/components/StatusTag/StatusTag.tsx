@@ -37,7 +37,7 @@ function StatusTag({
 
   const checkStatus = () => {
     if (usedValue && totalValue) {
-      if (usedValue / totalValue >= 0.5) {
+      if (usedValue / totalValue >= 0.5 && usedValue / totalValue <= 1) {
         setColors({
           ...colors,
           backgroundColor: '#57DAD7',
