@@ -71,11 +71,13 @@ export const ExperimentService = {
   getExperimentDatasets: (
     projectVersion: string,
     version: string,
-    prefix_value: string,
+    display: boolean,
   ) => api(
     'GET',
     [],
-    `${getBaseUrl(projectVersion, version)}/datasets?prefix=${prefix_value}`,
+    `${getBaseUrl(projectVersion, version)}/data${
+      display ? '?display=true' : '?display=false'
+    }`,
   ),
   getExperimentCode: (
     projectVersion: string,
