@@ -1,8 +1,16 @@
 @import '../../colors.scss';
 
+@mixin text($weight, $size) {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+}
+
 .config_line {
   margin-bottom: 32px;
   display: flex;
+  justify-content: space-between;
 }
 
 .config_line_name {
@@ -10,10 +18,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
+  @include text(400, 14px);
   color: $white;
 }
 
@@ -33,19 +38,13 @@
 }
 
 .tag_value {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
+  @include text(600, 22px);
   color: #ffffff;
 }
 
 .tag_name {
   margin-top: 4px;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
+  @include text(400, 16px);
   color: #ffffff;
 }
 

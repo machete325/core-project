@@ -1,7 +1,18 @@
 import React from 'react';
 import s from './GeneralInfo.module.scss';
 
-function GeneralInfo({ tagsData, displayName, version }: any) {
+interface ITagsData {
+  displayName: string;
+  value: number | string;
+}
+
+type Props = {
+  tagsData: ITagsData[];
+  displayName: string;
+  version: string;
+};
+
+function GeneralInfo({ tagsData, displayName, version }: Props) {
   return (
     <div className={s.config_line}>
       <div className={s.config_line_name}>
