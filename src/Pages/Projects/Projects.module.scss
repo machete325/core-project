@@ -122,7 +122,9 @@ main {
 .budget_container {
   margin-top: 14px;
   height: 22px;
+  display: flex;
   div {
+    margin-right: 8px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -163,4 +165,15 @@ main {
 
 .actions {
   display: flex;
+}
+
+.metric_title {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.project_loader {
+  height: 48px !important;
+  display: flex;
+  justify-content: center;
 }

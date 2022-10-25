@@ -1,41 +1,46 @@
 @import '../../../../../colors.scss';
 
-.wrapper {
+@mixin text($weight, $size) {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
 }
 
-.general_title {
+.title {
   margin-bottom: 8px;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
+  @include text(600, 18px);
   color: $white;
 }
 
-.config_line {
-  margin-bottom: 32px;
-  display: flex;
+.statistic {
+  margin-top: 32px;
 }
 
-.config_line_name {
-  margin-right: 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  color: $white;
+.outliers {
+  margin-top: 32px;
 }
 
-.status_tag {
-  width: 225px;
-  height: 68px;
+.outliers_title {
+  margin-right: 10px;
+  @include text(400, 18px);
+  color: #a9adbd;
+}
+
+.outliers_value {
+  max-width: 830px;
+  @include text(600, 18px);
+  color: #ffffff;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: end;
+}
+
+.outliers_container {
+  margin-bottom: 8px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: $dark_600;
-  border-radius: 8px;
+  justify-content: space-between;
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
 }

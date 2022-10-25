@@ -1,4 +1,4 @@
-import { ExperimentService } from '../../../services/Experiment.service';
+import { ExperimentService } from '../../../services/projects/Experiment.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { experimentSlice } from './reducer';
 

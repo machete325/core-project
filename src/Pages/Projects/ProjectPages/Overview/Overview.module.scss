@@ -4,3 +4,17 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.header_buttons {
+  display: flex;
+  align-items: center;
+}
+
+.content {
+  padding: 24px 24px 0;
+}
+
+.tags_container {
+  display: flex;
+  justify-content: space-between;
+}

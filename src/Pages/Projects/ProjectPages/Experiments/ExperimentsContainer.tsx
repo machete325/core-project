@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CircularProgress } from '@mui/material';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
@@ -13,13 +12,14 @@ import { experimentsSelector } from '../../../../core/redux/projects/experiments
 import { useAppDispatch } from '../../../../core/redux/store';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
-import { convertToString } from '../../../../core/helpers/convertPath';
+import { convertToString } from '../../../../core/helpers/objectMethods';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
+import Loader from '../../../../components/Loader/Loader';
 
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
@@ -68,20 +68,26 @@ function ProjectExperimentsContainer() {
     // function for generating JSX markup
     const markupFunction = (formattedData: any, key: string) => {
       let result = null;
-      const markupObj = (value: any, index: string, displayName?: string) => (
+      const markupObj = (
+        value: any,
+        index: string,
+        className: string,
+        textClass: string,
+        displayName?: string,
+      ) => (
         <div
           key={index}
           role="presentation"
           onClick={() => handleOpenModal(key, id)}
-          className={s.obj_container}
+          className={className || s.obj_container}
         >
-          {key !== 'infrastructure' && (
+          {key !== 'infrastructure' && key !== 'data' && key !== 'metrics' && (
             <div className={s.title_key}>
               {displayName}
               :
             </div>
           )}
-          <div>{value}</div>
+          <div className={textClass || s.text_container}>{value}</div>
         </div>
       );
 
@@ -101,9 +107,20 @@ function ProjectExperimentsContainer() {
         result = Object.entries(formattedData).map(
           ([itemKey, itemValue]: any) => {
             if (key === 'infrastructure') {
-              return markupObj(itemValue.value, itemKey);
+              return markupObj(
+                itemValue.value,
+                itemKey,
+                itemValue.className,
+                itemValue.textClass,
+              );
             }
-            return markupObj(itemValue.value, itemKey, itemValue.displayName);
+            return markupObj(
+              itemValue.value,
+              itemKey,
+              itemValue.className,
+              itemValue.textClass,
+              itemValue.displayName,
+            );
           },
         );
       }
@@ -170,9 +187,7 @@ function ProjectExperimentsContainer() {
             </div>
           </div>
           {loading ? (
-            <div className={s.loader_container}>
-              <CircularProgress color="inherit" />
-            </div>
+            <Loader />
           ) : (
             <Experiments
               handleCheckAll={handleCheckAll}
