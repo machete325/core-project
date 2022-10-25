@@ -1,4 +1,4 @@
-import api from '../api';
+import api from '../../api';
 
 const getBaseUrl = (projectVersion: string, version: string) => `/projects/${projectVersion}/experiments/${version}`;
 const getAdditionalParams = (
