@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IProjectData } from '../../../../../components/Modal/types';
-import { ExperimentService } from '../../../../../core/services/Experiment.service';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import { textSlicer } from '../../../../../core/helpers/textMethods';
 import s from './CommitDescription.module.scss';
 import Loader from '../../../../../components/Loader/Loader';

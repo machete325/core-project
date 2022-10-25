@@ -4,7 +4,7 @@ import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
 import { getFormattedDate } from '../../core/helpers/dateMethods';
 import { IMetric, IOverview, IProject } from './types';
 import s from './Projects.module.scss';
-import { ProjectService } from '../../core/services/Project.service';
+import { ProjectService } from '../../core/services/projects/Project.service';
 import StatusTag from '../../components/StatusTag/StatusTag';
 
 type Props = {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InputField from '../../../../../components/SearchField/InputField';
-import formatConfiguration from '../../../../../core/helpers/formatConfiguration';
-import { ExperimentService } from '../../../../../core/services/Experiment.service';
+import { formatConfigurationSimilarYaml } from '../../../../../core/helpers/formatConfiguration';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import s from './ModelConfiguration.module.scss';
 
 interface Props {
@@ -23,7 +23,7 @@ function ModelConfiguration({ data, projectData }: Props) {
       projectData.id,
       data.id,
     );
-    const formatted = formatConfiguration(configuration.data.items);
+    const formatted = formatConfigurationSimilarYaml(configuration.data.items);
     setFormattedData(formatted);
   };
 

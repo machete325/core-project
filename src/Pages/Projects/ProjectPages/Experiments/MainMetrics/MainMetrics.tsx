@@ -3,7 +3,7 @@ import Chart from '../../../../../components/Chart/Chart';
 import { IProjectData } from '../../../../../components/Modal/types';
 import StatusTag from '../../../../../components/StatusTag/StatusTag';
 import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
-import { ExperimentService } from '../../../../../core/services/Experiment.service';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import s from './MainMetrics.module.scss';
 
 interface Props {
