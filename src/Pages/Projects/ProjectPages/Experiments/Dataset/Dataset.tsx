@@ -3,10 +3,11 @@ import s from './Dataset.module.scss';
 import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
 import { IProjectData } from '../../../../../components/Modal/types';
 import GeneralInfo from '../../../../../components/GeneralInfo/GeneralInfo';
-import { ExperimentService } from '../../../../../core/services/Experiment.service';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import StatisticProperties from '../../../../../components/StatisticProperties/StatisticProperties';
+import { IExpandDataset, ITagsData } from './types';
 
-interface Props {
+export interface Props {
   data: IExperiment;
   projectData: IProjectData;
 }
@@ -134,14 +135,14 @@ const mockData = {
 };
 
 function Dataset({ data, projectData }: Props) {
-  const [expandData, setExpandData] = useState<undefined | any>();
-  const [tagsData, setTagsData] = useState<undefined | any>();
+  const [expandData, setExpandData] = useState<undefined | IExpandDataset>();
+  const [tagsData, setTagsData] = useState<undefined | ITagsData[]>();
   const dataset = data.data;
 
   const getTagsData = () => {
     if (expandData) {
       const { generalInformation } = expandData.statistics;
-      const tags = [
+      const tags: ITagsData[] = [
         {
           value: generalInformation.total_number_of_samples,
           displayName: 'samples',
@@ -173,16 +174,22 @@ function Dataset({ data, projectData }: Props) {
     }
   };
 
+  // Return Outliers markup
   const getOutliers = () => {
-    const markup = Object.entries(expandData.statistics.outliers).map(
-      (item) => (
-        <div key={item[0]} className={s.outliers_container}>
-          <div className={s.outliers_title}>{`'${item[0]}':`}</div>
-          <div className={s.outliers_value}>{`${JSON.stringify(item[1])}`}</div>
-        </div>
-      ),
-    );
-    return markup;
+    if (expandData) {
+      const markup = Object.entries(expandData.statistics.outliers).map(
+        (item) => (
+          <div key={item[0]} className={s.outliers_container}>
+            <div className={s.outliers_title}>{`'${item[0]}':`}</div>
+            <div className={s.outliers_value}>
+              {`${JSON.stringify(item[1])}`}
+            </div>
+          </div>
+        ),
+      );
+      return markup;
+    }
+    return null;
   };
 
   useEffect(() => {
