@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useComponentVisible from '../../core/hooks/useComponentVisible';
+import useComponentVisible from '../../../core/hooks/useComponentVisible';
 import s from './DropDown.module.scss';
 
 interface IDropDownConfig {
@@ -7,24 +7,24 @@ interface IDropDownConfig {
   imgSrc: string;
 }
 
+const dropDownConfig: IDropDownConfig[] = [
+  {
+    text: 'Clone experiment',
+    imgSrc: '/images/icons/Copy.svg',
+  },
+  {
+    text: 'Rerun experiment',
+    imgSrc: '/images/icons/PlayCircle.svg',
+  },
+  {
+    text: 'Add to compare',
+    imgSrc: '/images/icons/PlusWhite.svg',
+  },
+];
+
 function DropDown() {
   const [visible, setVisible] = useState(false);
   const { ref } = useComponentVisible(true, setVisible);
-
-  const dropDownConfig: IDropDownConfig[] = [
-    {
-      text: 'Clone experiment',
-      imgSrc: '/images/icons/Copy.png',
-    },
-    {
-      text: 'Rerun experiment',
-      imgSrc: '/images/icons/PlayCircle.png',
-    },
-    {
-      text: 'Add to compare',
-      imgSrc: '/images/icons/PlusWhite.png',
-    },
-  ];
 
   return (
     <div className={s.wrapper}>
@@ -34,14 +34,14 @@ function DropDown() {
           className={s.image_container}
           onClick={() => setVisible((prev) => !prev)}
         >
-          <img alt="Dots" src="/images/icons/DotsThree.png" />
+          <img alt="Dots" src="/images/icons/DotsThree.svg" />
         </div>
       )}
       {visible && (
         <div className={s.dropdown} ref={ref}>
           <div className={s.container}>
             <div className={s.open}>
-              <img alt="open" src="/images/icons/ArrowSquareUpRight.png" />
+              <img alt="open" src="/images/icons/ArrowSquareUpRight.svg" />
               <span>Open</span>
             </div>
             <div className={s.experiment_methods}>
@@ -53,7 +53,7 @@ function DropDown() {
               ))}
             </div>
             <div className={s.archive}>
-              <img alt="open" src="/images/icons/TrashSimple.png" />
+              <img alt="open" src="/images/icons/TrashSimple.svg" />
               <span>Archive</span>
             </div>
           </div>

@@ -1,4 +1,4 @@
-@import '../../colors.scss';
+@import '../../../colors.scss';
 
 .wrapper {
   position: relative;
@@ -9,11 +9,12 @@
 }
 
 .dropdown {
+  top: 0;
   position: absolute;
   right: 3%;
   z-index: 1;
-  width: 205px;
-  height: 248px;
+  width: 266px;
+  height: 192px;
   background: $dark_700;
   box-shadow: 0px 8px 30px rgba(14, 14, 14, 0.5);
   border-radius: 6px;
