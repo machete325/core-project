@@ -20,7 +20,7 @@ function StatisticProperties({ data }: any) {
         </thead>
         <tbody className={s.tbody}>
           {tbodyConf.map((key) => (
-            <tr>
+            <tr key={key}>
               <th className={s.vertical_head} scope="row">
                 {key}
               </th>
