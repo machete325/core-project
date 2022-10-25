@@ -1,4 +1,4 @@
-import { ProjectService } from '../../services/Project.service';
+import { ProjectService } from '../../services/projects/Project.service';
 import { AppThunk, AppDispatch } from '../store';
 import { projectSlice } from './reducer';
 import { getFromLocalStorage } from '../../helpers/localStorageMethods';
