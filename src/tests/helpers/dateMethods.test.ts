@@ -1,4 +1,4 @@
-import { getFormattedDate } from '../../core/helpers/dateMethods';
+import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
 
 const timeStamps = [
   { value: '2022-10-17T10:02:32.239863', expectValue: '17.10.2022' },
@@ -10,7 +10,7 @@ const timeStamps = [
 
 test('Check on right format date', () => {
   timeStamps.forEach((date) => {
-    const result = getFormattedDate(date.value);
+    const result = getFormattedDateFromTimeStamp(date.value);
     expect(result).toBe(date.expectValue);
   });
 });
