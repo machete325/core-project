@@ -4,31 +4,15 @@ import type { ECharts } from 'echarts';
 import dark from './dark.project.json';
 import s from './Chart.module.scss';
 
-interface IChartData {
-  [key: string]: {
-    name: string;
-    x: number[];
-    y: number[];
-  };
-}
-
-interface IData {
-  id: string;
-  name: string;
-  displayName: string;
-  display: boolean;
-  value: IChartData;
-  threshold: number;
-  aggregationOperation: any;
-}
-
 type Props = {
-  data: IData;
+  data: any;
   isFill?: boolean;
+  type: 'bar' | 'line' | 'pie';
 };
 
-function Chart({ data, isFill }: Props) {
+function Chart({ data, isFill, type }: Props) {
   const chartRef = useRef<HTMLDivElement>(null);
+  let chart: ECharts | undefined;
 
   const genDataset = (x: number[], y: number[]) => {
     const dataset = x.map((item, index) => [item, y[index]]);
@@ -67,7 +51,7 @@ function Chart({ data, isFill }: Props) {
     series: [],
   };
 
-  const genChartData = () => {
+  const genLineChartData = () => {
     const chartData: any = { legend: [], series: [] };
     Object.keys(data.value).forEach((item) => {
       const series = {
@@ -84,9 +68,72 @@ function Chart({ data, isFill }: Props) {
     option.series = chartData.series;
   };
 
-  let chart: ECharts | undefined;
+  const genBarChartData = () => {
+    const chartData: any = {
+      xAxis: {
+        splitLine: {
+          show: false,
+        },
+        showGrid: false,
+        type: 'category',
+        data: [],
+      },
+      series: {
+        type: 'bar',
+        showSymbol: false,
+        data: [],
+      },
+    };
+    Object.entries(data).forEach(([key, value]) => {
+      chartData.xAxis.data.push(key);
+      chartData.series.data.push(value);
+    });
+    option.legend.data = chartData.legend;
+    option.series = chartData.series;
+    option.xAxis = chartData.xAxis;
+  };
+
+  const genPieData = () => {
+    const chartData: any = {
+      legend: {
+        top: '5%',
+        left: 'center',
+      },
+      series: {
+        radius: ['40%', '70%'],
+        type: 'pie',
+        showSymbol: false,
+        data: [],
+      },
+    };
+    Object.entries(data).forEach(([key, value]) => {
+      chartData.series.data.push({ value, name: key });
+    });
+    option.series = chartData.series;
+    option.tooltip.trigger = 'item';
+    option.legend = chartData.legend;
+  };
+
+  const defineChartType = (typeChart: string) => {
+    switch (typeChart) {
+      case 'line':
+        return genLineChartData();
+      case 'bar':
+        return genBarChartData();
+      case 'pie':
+        return genPieData();
+      default: {
+        return null;
+      }
+    }
+  };
+
+  window.addEventListener('resize', () => {
+    chart?.resize();
+  });
+
   useEffect(() => {
-    genChartData();
+    defineChartType(type);
     if (chartRef.current !== null) {
       registerTheme('core', JSON.parse(JSON.stringify(dark)));
       chart = init(chartRef.current, 'core');

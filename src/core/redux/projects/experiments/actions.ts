@@ -15,7 +15,7 @@ const { getProjectExperiments } = ExperimentService;
 export const fetchExperiments = (projectId: string): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading());
-    const response = await getProjectExperiments(projectId, true);
+    const response = await getProjectExperiments(projectId, true, 5);
     dispatch(setExperiments(response.data.items));
     dispatch(finishLoading());
   } catch (e) {

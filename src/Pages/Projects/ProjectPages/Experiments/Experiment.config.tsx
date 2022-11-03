@@ -42,7 +42,6 @@ const experimentConfig = {
       return [
         {
           value: `${displayName} ${prefix || ''} ${version || ''}`,
-          className: '',
         },
       ];
     },

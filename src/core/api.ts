@@ -27,6 +27,7 @@ const api = async (
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   data: any,
   url: string,
+  signal?: any,
 ) => {
   try {
     const token = localStorage.getItem('accessToken');
@@ -37,12 +38,14 @@ const api = async (
     };
     const res = method === 'GET'
       ? await axios({
+        signal,
         method,
         url: baseURL + url,
         headers,
         withCredentials: true,
       })
       : await axios({
+        signal,
         method,
         url: baseURL + url,
         headers,

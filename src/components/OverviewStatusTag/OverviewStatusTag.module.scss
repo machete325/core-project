@@ -5,7 +5,6 @@
   padding: 8px 16px;
   height: 68px;
   width: 100%;
-  min-width: 100px;
   max-width: 287px;
   background: $dark_600;
   border-radius: 8px;
@@ -17,6 +16,8 @@
 .content_bar {
   height: 100%;
   width: 4px;
+  min-width: 4px;
+  max-width: 4px;
   border-radius: 100px;
   background-color: $dark_400;
 }

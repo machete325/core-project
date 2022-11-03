@@ -6,6 +6,7 @@ import GeneralInfo from '../../../../../components/GeneralInfo/GeneralInfo';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import StatisticProperties from '../../../../../components/StatisticProperties/StatisticProperties';
 import { IExpandDataset, ITagsData } from './types';
+import Loader from '../../../../../components/Loader/Loader';
 
 export interface Props {
   data: IExperiment;
@@ -137,6 +138,7 @@ const mockData = {
 function Dataset({ data, projectData }: Props) {
   const [expandData, setExpandData] = useState<undefined | IExpandDataset>();
   const [tagsData, setTagsData] = useState<undefined | ITagsData[]>();
+  const [loading, setLoading] = useState(false);
   const dataset = data.data;
 
   const getTagsData = () => {
@@ -162,15 +164,18 @@ function Dataset({ data, projectData }: Props) {
 
   const fetchExpandData = async () => {
     try {
+      setLoading(true);
       const response = await ExperimentService.getExperimentDatasets(
         projectData.id,
         data.id,
         true,
       );
-      console.log(response);
+      console.log(response.data.items);
       setExpandData(mockData.items['1c876c78-22ab-4d93-b381-569f75843a05']);
+      setLoading(false);
     } catch (e) {
       console.log(e);
+      setLoading(false);
     }
   };
 
@@ -205,10 +210,12 @@ function Dataset({ data, projectData }: Props) {
 
   return (
     <div className={s.wrapper}>
-      {expandData && (
+      {loading ? (
+        <Loader />
+      ) : (
         <>
           <div className={s.title}>General information</div>
-          {tagsData && (
+          {tagsData && dataset && (
             <GeneralInfo
               displayName={dataset.displayName}
               version={dataset.version}
@@ -216,10 +223,14 @@ function Dataset({ data, projectData }: Props) {
             />
           )}
           <div className={s.statistic}>
-            <div className={s.title}>Statistic Properties</div>
-            <StatisticProperties
-              data={expandData.statistics.statisticProperties}
-            />
+            {expandData && (
+              <>
+                <div className={s.title}>Statistic Properties</div>
+                <StatisticProperties
+                  data={expandData.statistics.statisticProperties}
+                />
+              </>
+            )}
           </div>
           <div className={s.outliers}>
             <div className={s.title}>Outliers</div>

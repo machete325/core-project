@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Loader from '../../../../../components/Loader/Loader';
 import InputField from '../../../../../components/SearchField/InputField';
 import { formatConfigurationSimilarYaml } from '../../../../../core/helpers/formatConfiguration';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
@@ -13,18 +14,28 @@ function ModelConfiguration({ data, projectData }: Props) {
   const [searchValue, setSearchValue] = useState('');
   const [formattedData, setFormattedData] = useState<any>([]);
   const [configurationData, setConfigurationData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = (e: any) => {
     setSearchValue(e.target.value);
   };
 
   const handleGetConfiguration = async () => {
-    const configuration = await ExperimentService.getExperimentConfiguration(
-      projectData.id,
-      data.id,
-    );
-    const formatted = formatConfigurationSimilarYaml(configuration.data.items);
-    setFormattedData(formatted);
+    try {
+      setLoading(true);
+      const configuration = await ExperimentService.getExperimentConfiguration(
+        projectData.id,
+        data.id,
+      );
+      const formatted = formatConfigurationSimilarYaml(
+        configuration.data.items,
+      );
+      setFormattedData(formatted);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -58,14 +69,22 @@ function ModelConfiguration({ data, projectData }: Props) {
           onChange={handleChange}
         />
       </div>
-      {configurationData.map(({
-        id, key, value, margin,
-      }: any) => (
-        <div className={s.config_line} style={{ marginLeft: margin }} key={id}>
-          <div className={s.key}>{key}</div>
-          <div className={s.value}>{value}</div>
-        </div>
-      ))}
+      {loading ? (
+        <Loader />
+      ) : (
+        configurationData.map(({
+          id, key, value, margin,
+        }: any) => (
+          <div
+            className={s.config_line}
+            style={{ marginLeft: margin }}
+            key={id}
+          >
+            <div className={s.key}>{key}</div>
+            <div className={s.value}>{value}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 }

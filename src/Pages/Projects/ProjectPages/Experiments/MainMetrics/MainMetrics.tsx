@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
+import Loader from '../../../../../components/Loader/Loader';
 import { IProjectData } from '../../../../../components/Modal/types';
 import StatusTag from '../../../../../components/StatusTag/StatusTag';
 import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
@@ -14,6 +15,7 @@ interface Props {
 function MainMetrics({ data, projectData }: Props) {
   const [metricsData, setMetricsData] = useState<any>();
   const [metricsDataExpand, setMetricsDataExpand] = useState<any>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const fetchData = async () => {
     const res = await ExperimentService.getExperimentMetrics(
@@ -31,12 +33,19 @@ function MainMetrics({ data, projectData }: Props) {
   };
 
   const fetchDataExpand = async () => {
-    const res = await ExperimentService.getExperimentMetrics(
-      projectData.id,
-      data.version,
-      false,
-    );
-    setMetricsDataExpand(res.data.items);
+    try {
+      setLoading(true);
+      const res = await ExperimentService.getExperimentMetrics(
+        projectData.id,
+        data.version,
+        false,
+      );
+      setMetricsDataExpand(res.data.items);
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -50,31 +59,39 @@ function MainMetrics({ data, projectData }: Props) {
 
   return (
     <div className={s.wrapper}>
-      {metricsData && metricsDataExpand && (
-        <>
-          <div className={s.config_line}>
-            <div className={s.config_line_title}>Metrics</div>
-            <div className={s.config_line_data}>
-              {metricsData.map((metric: any) => (
-                <StatusTag
-                  key={metric.id}
-                  usedValue={metric.value}
-                  totalValue={2}
-                  displayName={metric.displayName}
-                  width="100%"
-                  height="68px"
-                  type="2"
-                />
-              ))}
+      {loading ? (
+        <Loader />
+      ) : (
+        metricsData
+        && metricsDataExpand && (
+          <>
+            <div className={s.config_line}>
+              <div className={s.config_line_title}>Metrics</div>
+              <div className={s.config_line_data}>
+                {metricsData.map((metric: any) => (
+                  <StatusTag
+                    key={metric.id}
+                    usedValue={metric.value}
+                    totalValue={2}
+                    displayName={metric.displayName}
+                    width="100%"
+                    height="68px"
+                    type="2"
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-          {Object.keys(metricsDataExpand).map((metric) => (
-            <Chart
-              key={metricsDataExpand[metric].id}
-              data={metricsDataExpand[metric]}
-            />
-          ))}
-        </>
+            {Object.keys(metricsDataExpand).map((metric) => (
+              <div style={{ marginBottom: '32px' }}>
+                <Chart
+                  key={metricsDataExpand[metric].id}
+                  data={metricsDataExpand[metric]}
+                  type="line"
+                />
+              </div>
+            ))}
+          </>
+        )
       )}
     </div>
   );

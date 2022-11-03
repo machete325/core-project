@@ -1,3 +1,5 @@
+@import '../../../../colors.scss';
+
 .header {
   margin: 40px 24px 0px 24px;
   display: flex;
@@ -11,10 +13,110 @@
 }
 
 .content {
-  padding: 24px 24px 0;
+  height: 100%;
+  padding: 24px;
 }
 
 .tags_container {
   display: flex;
   justify-content: space-between;
+}
+
+.info_container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  margin-right: 24px;
+  width: 100%;
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
+}
+
+.info_content {
+  padding: 24px;
+  height: 345px;
+  border-radius: 8px;
+  background-color: $dark_600;
+}
+
+.info_title {
+  margin-bottom: 8px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.experiment_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+.experiment_content {
+  margin-top: 13px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #ffffff;
+  div {
+    margin-bottom: 8px;
+  }
+}
+
+.charts_container {
+  margin-top: 48px;
+  display: flex;
+}
+
+.chart_title {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.experiment_activity {
+  margin-right: 24px;
+  width: 100%;
+}
+
+.experiment_status {
+  width: 100%;
+  max-width: 494px;
+}
+
+.modal_call {
+  cursor: pointer;
+}
+
+.vm_content {
+  display: flex;
+  padding: 24px;
+  height: 345px;
+  border-radius: 8px;
+  background-color: $dark_600;
+}
+
+.vm_image {
+  margin-right: 16px;
+  padding-top: 105px;
+  background: #4e4e52;
+  border-radius: 8px;
+}
+
+.vm_text {
+  margin-top: 58px;
 }

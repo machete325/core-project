@@ -92,7 +92,16 @@
 
 .content {
   width: 100%;
+  overflow: auto;
   background-color: $dark_700;
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: $dark_900;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $dark_500;
+  }
 }
 
 @media screen and (min-height: 720px) {

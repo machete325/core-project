@@ -8,7 +8,7 @@ interface IMetrics {
   aggregationOperation: string;
 }
 
-interface IOverview {
+export interface IOverviewData {
   imageUrl: string;
   totalNumberOfExperiments: number;
   latestExperiment: {
@@ -73,8 +73,4 @@ interface IOverview {
   experimentStatusDistribution: {
     completed: number;
   };
-}
-
-export interface IOverviewData {
-  [key: string]: IOverview;
 }
