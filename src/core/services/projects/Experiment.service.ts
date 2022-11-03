@@ -8,7 +8,7 @@ const getAdditionalParams = (
 ) => {
   let url = display ? '?display=true' : '?display=false';
   if (page) {
-    url += `&page=${page}`;
+    url += `&page_size=${page}`;
   }
   if (size) {
     url += `&size=${size}`;
