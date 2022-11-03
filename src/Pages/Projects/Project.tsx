@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress } from '@mui/material';
+import { Skeleton } from '@mui/material';
 import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
-import { getFormattedDate } from '../../core/helpers/dateMethods';
-import { IMetric, IOverview, IProject } from './types';
+import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
+import { IOverview, IProject } from './types';
 import s from './Projects.module.scss';
 import { ProjectService } from '../../core/services/projects/Project.service';
 import StatusTag from '../../components/StatusTag/StatusTag';
+import MetricsInfo from '../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
 
 type Props = {
   data: IProject;
   handleChooseProject: (id: string) => void;
   handleFavourite: (e: React.MouseEvent<HTMLImageElement>) => void;
+  signal: any;
 };
 
-function Projects({ data, handleChooseProject, handleFavourite }: Props) {
+function Projects({
+  data,
+  handleChooseProject,
+  handleFavourite,
+  signal,
+}: Props) {
   const [overview, setOverview] = useState<IOverview | undefined>(undefined);
   const [loading, setLoading] = useState(false);
 
   const fetchOverview = async () => {
     try {
       setLoading(true);
-      const response = await ProjectService.getProjectOverview(data.id, true);
+      const response = await ProjectService.getProjectOverview(
+        data.id,
+        true,
+        signal,
+      );
       setOverview(response.data);
       setLoading(false);
     } catch (e) {
@@ -33,39 +44,77 @@ function Projects({ data, handleChooseProject, handleFavourite }: Props) {
     fetchOverview();
   }, []);
 
+  const returnTotalExperiments = () => {
+    if (loading) {
+      return (
+        <Skeleton
+          variant="rounded"
+          width="100%"
+          animation="wave"
+          height="19px"
+        />
+      );
+    }
+    if (overview) {
+      return `${overview.totalNumberOfExperiments} ${
+        overview.totalNumberOfExperiments
+        && overview.totalNumberOfExperiments > 1
+          ? 'experiments'
+          : 'experiment'
+      }`;
+    }
+    return 'No data about experiments';
+  };
+
   const returnTags = () => {
     if (
       overview
       && Object.keys(overview.latestExperiment.metrics.items).length !== 0
     ) {
-      const metrics = overview.latestExperiment.metrics.items;
-      const markup = Object.values(metrics).map((metric: IMetric, index) => {
-        if (index <= 1) {
-          return (
-            <div key={metric.id}>
-              <span className={s.metric_title}>{metric.displayName}</span>
-              <StatusTag
-                usedValue={metric.value}
-                totalValue={metric.threshold}
+      return (
+        <div className={s.model_configuration}>
+          {loading ? (
+            <div className={s.project_loader}>
+              <Skeleton
+                variant="rounded"
+                width="100%"
+                animation="wave"
+                height="100%"
               />
             </div>
-          );
-        }
-        return null;
-      });
-      return markup;
+          ) : (
+            <MetricsInfo
+              data={overview.latestExperiment.metrics.items}
+              limiter={2}
+            />
+          )}
+        </div>
+      );
     }
     return (
-      <>
-        <div key={1}>
-          <span className={s.metric_title}>Metric</span>
-          <StatusTag usedValue={undefined} totalValue={undefined} />
-        </div>
-        <div key={2}>
-          <span className={s.metric_title}>Metric</span>
-          <StatusTag usedValue={undefined} totalValue={undefined} />
-        </div>
-      </>
+      <div className={s.model_configuration_mock}>
+        {loading ? (
+          <div className={s.project_loader}>
+            <Skeleton
+              variant="rounded"
+              width="100%"
+              animation="wave"
+              height="100%"
+            />
+          </div>
+        ) : (
+          <>
+            <div key={1}>
+              <span className={s.metric_title}>Not available</span>
+              <StatusTag usedValue={undefined} totalValue={undefined} />
+            </div>
+            <div key={2}>
+              <span className={s.metric_title}>Not available</span>
+              <StatusTag usedValue={undefined} totalValue={undefined} />
+            </div>
+          </>
+        )}
+      </div>
     );
   };
 
@@ -88,39 +137,34 @@ function Projects({ data, handleChooseProject, handleFavourite }: Props) {
       </span>
       <div className={s.content_container}>
         <div className={s.project_title}>{data.name}</div>
-        <div className={s.total_experiments}>
-          {`${overview ? overview.totalNumberOfExperiments : ''} ${
-            overview
-            && overview.totalNumberOfExperiments
-            && overview.totalNumberOfExperiments > 1
-              ? 'experiments'
-              : 'experiment'
-          }`}
-        </div>
-        <div className={s.model_configuration}>
-          {loading ? (
-            <div className={s.project_loader}>
-              <CircularProgress color="inherit" />
-            </div>
-          ) : (
-            returnTags()
-          )}
-        </div>
+        <div className={s.total_experiments}>{returnTotalExperiments()}</div>
+        {returnTags()}
         <div className={s.additional_information}>
           <div className={s.budget_container}>
-            <div>Budget</div>
-            <StatusTag
-              usedValue={overview?.latestInfrastructure.usedBudget}
-              totalValue={overview?.latestInfrastructure.totalBudget}
-              currency={overview?.latestInfrastructure.currency}
-            />
+            {loading ? (
+              <Skeleton
+                variant="rounded"
+                width="100%"
+                animation="wave"
+                height="22px"
+              />
+            ) : (
+              <>
+                <div>Budget</div>
+                <StatusTag
+                  usedValue={overview?.latestInfrastructure.usedBudget}
+                  totalValue={overview?.latestInfrastructure.totalBudget}
+                  currency={overview?.latestInfrastructure.currency}
+                />
+              </>
+            )}
           </div>
           <div className={s.project_date_container}>
             <div className={s.project_date}>
-              {`Created ${getFormattedDate(data.created)}`}
+              {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
             <div className={s.project_date}>
-              {`Created ${getFormattedDate(data.created)}`}
+              {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
           </div>
         </div>
