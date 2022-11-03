@@ -1,3 +1,59 @@
+# [1.1.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.0.0...v1.1.0) (2022-11-03)
+
+
+### Bug Fixes
+
+* **experiment.service.tsx:** fixed page param to page_size param ([5b9fcbf](https://github.com/Coreai-org/corecontrol-web/commit/5b9fcbfa973ae12a1e503142b84f0de8500cbb2f))
+* **overviewstatustag:** fixed bar width ([537cdb9](https://github.com/Coreai-org/corecontrol-web/commit/537cdb9d261200080f5606a689f6484fc2d921b0))
+* **statustag:** fixed color display ([8fccff4](https://github.com/Coreai-org/corecontrol-web/commit/8fccff44a9018480d92677401a742d763de3cde7))
+* **updaterecentlyopened.ts:** fixed amount recently opened objects ([c2b0234](https://github.com/Coreai-org/corecontrol-web/commit/c2b02345e42794c71fdac7f80cfe07b9cb76e20f))
+
+
+### Features
+
+* **alert:** added Alert component ([c329d7e](https://github.com/Coreai-org/corecontrol-web/commit/c329d7e42ba96a1fe7f680d6f05d2df506eda3de))
+* **api.ts:** added signal for requests ([5702846](https://github.com/Coreai-org/corecontrol-web/commit/57028460550d1dae8c70efec663b9bde79da43f2))
+* **api:** added loginHanle ([d5d98a7](https://github.com/Coreai-org/corecontrol-web/commit/d5d98a7025138c6c1db0d31bab0865ff065c8028))
+* **chart:** added pie chart logic and UI ([ed714fb](https://github.com/Coreai-org/corecontrol-web/commit/ed714fbdc74a9a490726d53671ea022d5b8840ef))
+* **commitdescription.tsx:** replace null to Not available ([83ce57d](https://github.com/Coreai-org/corecontrol-web/commit/83ce57d0de4ca424b722987e88a0633343fab2f3))
+* **components:** renamed components and added new deps ([59d051e](https://github.com/Coreai-org/corecontrol-web/commit/59d051e330967bb7631f4731dc9c111895bcfbb1))
+* **dataset:** added logic and styles for Dataset ([b88f989](https://github.com/Coreai-org/corecontrol-web/commit/b88f989dd5778f3eb60b2bacf735baa0f99e7df6))
+* **dataset:** added types and conditions ([95b8c91](https://github.com/Coreai-org/corecontrol-web/commit/95b8c912d20d3c709ec6c14bef11b6b302b791f1))
+* **datemethods.ts:** added getFormattedDateFromSeconds ([ae2b0ad](https://github.com/Coreai-org/corecontrol-web/commit/ae2b0adb6dab97c4ca8b75b15fe4ee8764565160))
+* **dropdown:** added Overview dropdown ([12790e7](https://github.com/Coreai-org/corecontrol-web/commit/12790e7cab98c724a8a25d8e1f2c0a90e1fcba94))
+* **experiment tabs:** added loading logic ([6b3359d](https://github.com/Coreai-org/corecontrol-web/commit/6b3359db4e8b2a3bd65dafab99b6a78905ffc725))
+* **experiment.config.tsx:** added formattingFunction for metrics ([48eb0b1](https://github.com/Coreai-org/corecontrol-web/commit/48eb0b1fbfb627a8d04bd4837f5370de80fe92a1))
+* **experiment.config:** added formatting function ([bd3d22f](https://github.com/Coreai-org/corecontrol-web/commit/bd3d22f715fadc76c7a922b945fccf8d887bd476))
+* **experiment.service.tsx:** added display for  getExperimentDatasets ([cb8fc28](https://github.com/Coreai-org/corecontrol-web/commit/cb8fc28622594adf15a3867227ac8fb89c7ebaaa))
+* **experiment:** remove className ([0658a7a](https://github.com/Coreai-org/corecontrol-web/commit/0658a7aa37a16f470b57b7af37c7295ff454d98e))
+* **experimentscontainer:** added loader ([9ab2ef6](https://github.com/Coreai-org/corecontrol-web/commit/9ab2ef64fa69480932ab644025c50c1c044681b2))
+* **experiments:** fixed styles and markup ([bb42c58](https://github.com/Coreai-org/corecontrol-web/commit/bb42c583a9c72102bc2f21cd7db11ea2cdf5baf1))
+* **generalinfo:** added GeneralInfo ([ae242bb](https://github.com/Coreai-org/corecontrol-web/commit/ae242bb0cb57b6f63047bf0e1b572974df9d9bab))
+* **generalinfo:** added types and mixins ([ce834fd](https://github.com/Coreai-org/corecontrol-web/commit/ce834fda335b054b5c2651016141a1e694c58dfb))
+* **graph.ts:** added types for Graph.tsx ([b30a762](https://github.com/Coreai-org/corecontrol-web/commit/b30a762bf75e87c28ce782541d9c950e2bcdb85f))
+* **infrastructureinfo.tsx:** added InfrastructureInfo component ([2e009ca](https://github.com/Coreai-org/corecontrol-web/commit/2e009ca9215c4a1e76a333437a095832bfe2d94e))
+* **inputfield:** added min-width for input ([7126ff5](https://github.com/Coreai-org/corecontrol-web/commit/7126ff5125e1ff2f1570efbdf41af16bcb391aa1))
+* **loader:** added Loader component ([ce70a2f](https://github.com/Coreai-org/corecontrol-web/commit/ce70a2fedcb3a50c1be69aebf2e277d4e733240f))
+* **metricsinfo.tsx:** added MetrcisInfo component ([6a34c6c](https://github.com/Coreai-org/corecontrol-web/commit/6a34c6cf01ded2bb34dde16f06649615555debba))
+* **modelconfiguration.tsx:** added ModelConfiguration component ([061d0a5](https://github.com/Coreai-org/corecontrol-web/commit/061d0a5f3869d1d8b2b7295aceeb696a2b0e95c2))
+* **overview.service:** added Overview service ([fc0b3fb](https://github.com/Coreai-org/corecontrol-web/commit/fc0b3fbbda59e3f1acadd0186d621cb881c073ff))
+* **overview:** added markup and OverviewStatusTag ([7f08723](https://github.com/Coreai-org/corecontrol-web/commit/7f087237857dee15c196d77116554f3ebaf0505e))
+* **overview:** added overview logic for redux ([5c427e9](https://github.com/Coreai-org/corecontrol-web/commit/5c427e98d584089907441698b0a2f45215f05bb2))
+* **overviewcontainer:** added logic and UI for Overview page ([a0f6e90](https://github.com/Coreai-org/corecontrol-web/commit/a0f6e90b32cd160ac09ceb10471386c4bfbcaf94))
+* **overviewstatustag:** added OverviewStatusTag ([8dadb3e](https://github.com/Coreai-org/corecontrol-web/commit/8dadb3e1eaaa23512a2b1bfc639be16babfcc4de))
+* **project.module.scss:** added scrollbar styles ([3416172](https://github.com/Coreai-org/corecontrol-web/commit/3416172d3998cc47fc431ba6199fbf7628099ca5))
+* **project.service.ts:** added signal for request ([479eff3](https://github.com/Coreai-org/corecontrol-web/commit/479eff3af7b205822bfe68a66bf2186e94e1865f))
+* **project.service.tsx:** added getProjectOverview ([2857b5b](https://github.com/Coreai-org/corecontrol-web/commit/2857b5bd4b0192a5ee772b097bc02ab260679ddf))
+* **project:** added Skeleton loader and resposive UI ([24741fe](https://github.com/Coreai-org/corecontrol-web/commit/24741fe00fa3b48210d78508438d3f6e3108dc0a))
+* **projects:** added logic and metrics for project cards ([4d4c670](https://github.com/Coreai-org/corecontrol-web/commit/4d4c6706e3e9dd2413f804b848986408771ce4c1))
+* **projectscontainer:** added loading logic and signal trigger ([8e38943](https://github.com/Coreai-org/corecontrol-web/commit/8e38943b81ca8450cd121df545bf3f89adc15e1f))
+* **projectstatus.tsx:** added new cases for checkStatus ([1723237](https://github.com/Coreai-org/corecontrol-web/commit/172323740cc2d4cf832fdd6db8ed445b05944554))
+* **projecttitle.tsx:** added getFormattedDateFromTimeStamp ([eb7f9ef](https://github.com/Coreai-org/corecontrol-web/commit/eb7f9ef45a3cca62223efec0fc8b2ca324a14858))
+* **redux:** added loader and errors logic ([f9729e6](https://github.com/Coreai-org/corecontrol-web/commit/f9729e663a68aeaf73e5a28fd2ede432de3e0652))
+* **statisticproperties:** added StatisticProperties ([d9d3fb7](https://github.com/Coreai-org/corecontrol-web/commit/d9d3fb7a2c505953847ffe1aa099a2a76ada81e9))
+* **statustag:** added currency to status tag ([3a8306f](https://github.com/Coreai-org/corecontrol-web/commit/3a8306f231c2695342243bd6b96a5ac35c4e0fe2))
+* **textmethods.ts:** added formDatasetText ([40d3eff](https://github.com/Coreai-org/corecontrol-web/commit/40d3effc95900d8c67e3460fb6a0f46074c5a3a0))
+
 # 1.0.0 (2022-10-17)
 
 
