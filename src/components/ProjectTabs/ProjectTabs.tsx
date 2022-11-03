@@ -8,8 +8,15 @@ import { getTabContent } from '../../core/helpers/getTabContent';
 import { IExperiment } from '../../core/redux/projects/experiments/types';
 import { IProjectData } from '../Modal/types';
 
+interface IConfig {
+  formattingFunction: any;
+  name: string;
+  path: string;
+  mainInfoFields: string[];
+}
+
 interface Props {
-  config: { [key: string]: any };
+  config: { [key: string]: IConfig };
   defaultTab: string | undefined;
   data: IExperiment | undefined;
   projectData: IProjectData;

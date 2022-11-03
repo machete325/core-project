@@ -15,7 +15,7 @@ import { useAppDispatch } from '../../../core/redux/store';
 import NavigateProjectItem from '../../../components/NavigateProjectItem/NavigateProjectItem';
 import RecentlyOpened from '../../../components/RecentlyOpened/RecentlyOpened';
 import InputField from '../../../components/SearchField/InputField';
-import checkPath from '../../../core/helpers/checkPath';
+import checkUrlPath from '../../../core/helpers/checkUrlPath';
 import {
   getRecentlyData,
   checkRecentlyData,
@@ -102,7 +102,7 @@ function ProjectContainer() {
 
   const checkLinkPath = (linkPath: string) => {
     const memoCheckLinkPath = useMemo(
-      () => checkPath(linkPath, pathname, '/project/', 'overview', projectId),
+      () => checkUrlPath(linkPath, pathname, '/project/', 'overview', projectId),
       [linkPath, pathname],
     );
     return memoCheckLinkPath;

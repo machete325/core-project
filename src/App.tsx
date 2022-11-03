@@ -1,5 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
-import axios from 'axios';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -22,34 +21,7 @@ const ProjectExperimentsContainer = React.lazy(
 );
 const MainContainer = React.lazy(() => import('./Pages/Main/MainContainer'));
 
-const baseURL = process.env.REACT_APP_API_URL;
-
 function App() {
-  const loginHandle = async () => {
-    try {
-      const data = {
-        username: 'evgeny',
-        password: 'coreai-blabla',
-      };
-      const response = await axios({
-        method: 'post',
-        url: `${baseURL}/login`,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-        data,
-      });
-      localStorage.setItem('accessToken', response.data.accessToken);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    loginHandle();
-  }, []);
-
   return (
     <div className="App">
       <BrowserRouter>

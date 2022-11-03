@@ -41,16 +41,19 @@ main {
 }
 
 .input_container {
+  width: 100%;
   margin-right: 24px;
 }
 
 .card_wrapper {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .card_container {
   position: relative;
   margin-right: 24px;
+  margin-bottom: 24px;
   width: 267.67px;
   height: 366px;
   background: $dark_600;
@@ -100,6 +103,25 @@ main {
 }
 
 .model_configuration {
+  padding-bottom: 9px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: $dark_300;
+  border-bottom: 1px solid $dark_500;
+  div {
+    height: 22px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.model_configuration_mock {
   margin-top: 6px;
   padding-bottom: 14px;
   font-family: 'Open Sans';
@@ -122,7 +144,9 @@ main {
 .budget_container {
   margin-top: 14px;
   height: 22px;
+  display: flex;
   div {
+    margin-right: 8px;
     height: 100%;
     display: flex;
     align-items: center;
@@ -163,4 +187,15 @@ main {
 
 .actions {
   display: flex;
+}
+
+.metric_title {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.project_loader {
+  height: 48px !important;
+  display: flex;
+  justify-content: center;
 }

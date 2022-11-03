@@ -1,4 +1,4 @@
-export default function formatConfiguration(configuration: any) {
+export function formatConfigurationSimilarYaml(configuration: any) {
   const formattedData: any = [];
   let arrKey: any = 1124214121;
 
@@ -15,7 +15,10 @@ export default function formatConfiguration(configuration: any) {
     const index = id || arrKey++;
     const margin = deep && deep === 5 ? 0 : deep && deep * 3;
 
-    if ((isArray || (Number(key) !== 0 && !!Number(key) !== true)) && key !== 'name') {
+    if (
+      (isArray || (Number(key) !== 0 && !!Number(key) !== true))
+      && key !== 'name'
+    ) {
       formattedData.push({
         id: index,
         key: isArray ? '' : `${key}:`,
@@ -81,5 +84,98 @@ export default function formatConfiguration(configuration: any) {
 
   getConfiguration(configuration);
 
+  return formattedData;
+}
+
+/*-----------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------*/
+
+interface IFormattedData {
+  displayName: string;
+  id: string;
+  value: string | number;
+}
+
+export function showDisplayData(configuration: unknown) {
+  const formattedData: IFormattedData[] = [];
+  let arrKey: number = 11885133;
+
+  const handleActualValue = (
+    isArray: boolean | undefined,
+    key: any,
+    value: any,
+  ) => {
+    if (isArray) {
+      return `- ${key}`;
+    }
+    if (typeof value === 'boolean' || typeof value === 'number') {
+      return `${value}`;
+    }
+    return value || '';
+  };
+
+  const checkObjectKey = (
+    key: any,
+    value: any = null,
+    id?: any,
+    isArray?: boolean,
+  ) => {
+    const index = id || arrKey++;
+    if (
+      (isArray || (Number(key) !== 0 && !!Number(key) !== true))
+      && key !== 'name'
+    ) {
+      formattedData.push({
+        id: index,
+        displayName: isArray ? '' : `${key}`,
+        value: handleActualValue(isArray, key, value),
+      });
+    }
+  };
+
+  const unfoldObject = (field: { [key: string | number]: any }) => {
+    let obj: { [key: string | number]: any } = {};
+    Object.keys(field).forEach((key: string | number) => {
+      obj = { ...field[key] };
+    });
+    return obj;
+  };
+
+  const formatConfiguration = (items: any) => {
+    if (Array.isArray(items)) {
+      items.forEach((item) => {
+        const {
+          displayName, value, id, display,
+        } = item;
+        if (display) {
+          checkObjectKey(displayName, value, id);
+        }
+      });
+    } else if (Object.prototype.hasOwnProperty.call(items, 'displayName')) {
+      const {
+        displayName, value, id, display,
+      } = items;
+      if (display) {
+        checkObjectKey(displayName, value, id);
+      }
+    } else {
+      const result = Object.keys(items).length === 1 ? unfoldObject(items) : items;
+      const keys = Object.keys(result);
+      if (Object.prototype.hasOwnProperty.call(result, 'displayName')) {
+        const {
+          displayName, value, id, display,
+        } = result;
+        if (display) {
+          checkObjectKey(displayName, value, id);
+        }
+      } else if (keys.length > 1) {
+        keys.forEach((item) => formatConfiguration(result[item]));
+      } else if (keys.length === 1) {
+        formatConfiguration(result);
+      }
+    }
+  };
+  formatConfiguration(configuration);
   return formattedData;
 }

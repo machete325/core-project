@@ -1,5 +1,5 @@
 import React from 'react';
-import { geFormattedDate } from '../../core/helpers/formatDate';
+import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
 import s from './ProjectTitle.module.scss';
 
 type Props = {
@@ -24,7 +24,7 @@ function ProjectTitle({
       </div>
       <div className={s.description}>
         {created
-          ? `Created in ${geFormattedDate(data.created)}`
+          ? `Created in ${getFormattedDateFromTimeStamp(data.created)}`
           : data.description}
       </div>
     </div>
