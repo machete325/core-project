@@ -4,3 +4,11 @@ export const textSlicer = (text: string, limit: number) => {
   }
   return text;
 };
+
+export const formDatasetText = (data: any) => {
+  if (data) {
+    const { displayName, prefix, version } = data;
+    return `${displayName} ${prefix || ''} ${version || ''}`;
+  }
+  return 'Not available';
+};
