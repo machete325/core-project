@@ -10,16 +10,19 @@ const {
   setCheckRecentlyData,
   setProjectData,
   clearProjectData,
+  finishLoading,
 } = projectSlice.actions;
 const { getAllProjects, getOneProject } = ProjectService;
 
 export const fetchProjects = (): AppThunk => async (dispatch: AppDispatch) => {
   try {
-    dispatch(startLoading);
+    dispatch(startLoading());
     const response = await getAllProjects();
     dispatch(setProjects(response.data.items));
+    dispatch(finishLoading());
   } catch (e) {
     console.log(e);
+    dispatch(finishLoading());
   }
 };
 
@@ -36,7 +39,6 @@ export const checkRecentlyData = (id: string) => (dispatch: AppDispatch) => {
 
 export const getProjectData = (id: string) => async (dispatch: AppDispatch) => {
   try {
-    dispatch(startLoading);
     const response = await getOneProject(id);
     dispatch(setProjectData(response.data));
   } catch (e) {
