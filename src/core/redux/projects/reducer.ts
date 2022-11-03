@@ -27,6 +27,9 @@ export const projectSlice = createSlice({
     startLoading: (state) => {
       state.loading = true;
     },
+    finishLoading: (state) => {
+      state.loading = false;
+    },
     setRecentlyData: (state, action: PayloadAction<IRecently[]>) => {
       state.recentlyOpenedData = action.payload;
     },

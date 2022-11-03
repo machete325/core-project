@@ -1,4 +1,4 @@
-import { ExperimentService } from '../../../services/Experiment.service';
+import { ExperimentService } from '../../../services/projects/Experiment.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { experimentSlice } from './reducer';
 
@@ -15,7 +15,7 @@ const { getProjectExperiments } = ExperimentService;
 export const fetchExperiments = (projectId: string): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading());
-    const response = await getProjectExperiments(projectId, true);
+    const response = await getProjectExperiments(projectId, true, 5);
     dispatch(setExperiments(response.data.items));
     dispatch(finishLoading());
   } catch (e) {

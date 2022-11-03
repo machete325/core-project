@@ -4,7 +4,7 @@ import s from './CheckBox.module.scss';
 type Props = {
   id: number | string;
   checked: boolean;
-  onChange?: (param: any) => void;
+  onChange?: (param: boolean) => void;
 };
 
 function CheckBox({ id, checked, onChange }: Props) {
@@ -24,7 +24,12 @@ function CheckBox({ id, checked, onChange }: Props) {
   return (
     <div className={s.checkbox}>
       <label>
-        <input type="checkbox" checked={isChecked} value={id} onChange={handleChange} />
+        <input
+          type="checkbox"
+          checked={isChecked}
+          value={id}
+          onChange={handleChange}
+        />
       </label>
     </div>
   );

@@ -14,7 +14,7 @@ export const initialState: ExperimentsState = {
 };
 // A slice
 export const experimentSlice = createSlice({
-  name: 'experiments',
+  name: 'projectExperiments',
   initialState,
   reducers: {
     setExperiments: (state, action: PayloadAction<any>) => {
@@ -45,5 +45,5 @@ export const experimentSlice = createSlice({
   },
 });
 
-const experimentReducer = experimentSlice.reducer;
-export default experimentReducer;
+const projectExperimentReducer = experimentSlice.reducer;
+export default projectExperimentReducer;

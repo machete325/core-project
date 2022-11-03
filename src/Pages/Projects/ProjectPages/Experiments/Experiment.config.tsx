@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import StatusTag from '../../../../components/StatusTag/StatusTag';
+import { showDisplayData } from '../../../../core/helpers/formatConfiguration';
 import s from './Experiments.module.scss';
 
 interface IInfrastructure {
@@ -34,108 +35,50 @@ const experimentConfig = {
   },
   data: {
     name: 'Data',
-    path: '.data.displayName',
+    path: '.data',
     mainInfoFields: [],
-    formattingFunction: undefined,
+    formattingFunction: (data: any) => {
+      const { displayName, prefix, version } = data;
+      return [
+        {
+          value: `${displayName} ${prefix || ''} ${version || ''}`,
+        },
+      ];
+    },
   },
   metrics: {
     name: 'Main Metrics',
     path: '.metrics.items',
     mainInfoFields: ['displayName', 'value'],
-    formattingFunction: undefined,
+    formattingFunction: (metrics: any) => {
+      const data: any = {};
+      Object.values(metrics).forEach((metric: any) => {
+        if (metric.display) {
+          const value = (
+            <>
+              <span className={s.title_metrics}>{metric.displayName}</span>
+              <StatusTag
+                usedValue={metric.value}
+                totalValue={metric.threshold}
+              />
+            </>
+          );
+          data[metric.id] = {
+            value,
+            isTitle: false,
+            textClass: s.metrics_text,
+          };
+        }
+        return null;
+      });
+      return data;
+    },
   },
   configuration: {
     name: 'Model configuration',
     path: '.configuration.items',
     mainInfoFields: ['displayName', 'value'],
-    formattingFunction: (configuration: unknown) => {
-      interface IFormattedData {
-        displayName: string;
-        id: string;
-        value: string | number;
-      }
-
-      const formattedData: IFormattedData[] = [];
-      let arrKey: number = 11885133;
-
-      const handleActualValue = (
-        isArray: boolean | undefined,
-        key: any,
-        value: any,
-      ) => {
-        if (isArray) {
-          return `- ${key}`;
-        }
-        if (typeof value === 'boolean' || typeof value === 'number') {
-          return `${value}`;
-        }
-        return value || '';
-      };
-
-      const checkObjectKey = (
-        key: any,
-        value: any = null,
-        id?: any,
-        isArray?: boolean,
-      ) => {
-        const index = id || arrKey++;
-        if (
-          (isArray || (Number(key) !== 0 && !!Number(key) !== true))
-          && key !== 'name'
-        ) {
-          formattedData.push({
-            id: index,
-            displayName: isArray ? '' : `${key}`,
-            value: handleActualValue(isArray, key, value),
-          });
-        }
-      };
-
-      const unfoldObject = (field: { [key: string | number]: any }) => {
-        let obj: { [key: string | number]: any } = {};
-        Object.keys(field).forEach((key: string | number) => {
-          obj = { ...field[key] };
-        });
-        return obj;
-      };
-
-      const formatConfiguration = (items: any) => {
-        if (Array.isArray(items)) {
-          items.forEach((item) => {
-            const {
-              displayName, value, id, display,
-            } = item;
-            if (display) {
-              checkObjectKey(displayName, value, id);
-            }
-          });
-        } else if (Object.prototype.hasOwnProperty.call(items, 'displayName')) {
-          const {
-            displayName, value, id, display,
-          } = items;
-          if (display) {
-            checkObjectKey(displayName, value, id);
-          }
-        } else {
-          const result = Object.keys(items).length === 1 ? unfoldObject(items) : items;
-          const keys = Object.keys(result);
-          if (Object.prototype.hasOwnProperty.call(result, 'displayName')) {
-            const {
-              displayName, value, id, display,
-            } = result;
-            if (display) {
-              checkObjectKey(displayName, value, id);
-            }
-          } else if (keys.length > 1) {
-            keys.forEach((item) => formatConfiguration(result[item]));
-          } else if (keys.length === 1) {
-            formatConfiguration(result);
-          }
-        }
-      };
-      formatConfiguration(configuration);
-      return formattedData;
-    },
+    formattingFunction: (configuration: unknown) => showDisplayData(configuration),
   },
   infrastructure: {
     name: 'Infrastructure',
@@ -165,6 +108,7 @@ const experimentConfig = {
           <StatusTag
             usedValue={infrastructure.usedBudget}
             totalValue={infrastructure.totalBudget}
+            currency={infrastructure.currency}
           />
         </>
       );

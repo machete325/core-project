@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
-import DropDown from '../../../../components/ExperimentsDropDown/DropDown';
+import DropDown from '../../../../components/DropDown/ExperimentsDropDown/DropDown';
 import ProjectStatus from '../../../../components/ProjectStatus/ProjectStatus';
 import experimentConfig from './Experiment.config';
 import { IExperimentData } from '../../../../core/redux/projects/experiments/types';
@@ -21,8 +21,8 @@ function ProjectExperiments({
 }: Props) {
   return (
     <div className={s.content}>
-      <table>
-        <thead>
+      <table className={s.table}>
+        <thead className={s.thead}>
           <tr>
             <td>
               <CheckBox onChange={handleCheckAll} id="1" checked={false} />
@@ -38,7 +38,7 @@ function ProjectExperiments({
             <td style={{ textAlign: 'center' }}>Status</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={s.tbody}>
           {Object.keys(data).length !== 0
             && Object.keys(data).map((key, index) => (
               <tr key={key}>
