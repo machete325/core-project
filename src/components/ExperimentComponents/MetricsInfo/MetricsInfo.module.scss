@@ -1,0 +1,31 @@
+@import '../../../colors.scss';
+
+.wrapper {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  color: $dark_300;
+  border-spacing: 0px 4px;
+  div {
+    height: 22px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    &:nth-last-child(1) {
+      margin-bottom: 0;
+    }
+  }
+  tr {
+    vertical-align: baseline;
+  }
+}
+
+.metric_title {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.modal_call {
+  cursor: pointer;
+}
