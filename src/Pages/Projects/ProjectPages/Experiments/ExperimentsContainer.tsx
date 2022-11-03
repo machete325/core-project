@@ -71,7 +71,6 @@ function ProjectExperimentsContainer() {
       const markupObj = (
         value: any,
         index: string,
-        className: string,
         textClass: string,
         displayName?: string,
       ) => (
@@ -79,7 +78,7 @@ function ProjectExperimentsContainer() {
           key={index}
           role="presentation"
           onClick={() => handleOpenModal(key, id)}
-          className={className || s.obj_container}
+          className={key !== 'data' ? s.obj_container : ''}
         >
           {key !== 'infrastructure' && key !== 'data' && key !== 'metrics' && (
             <div className={s.title_key}>
@@ -107,17 +106,11 @@ function ProjectExperimentsContainer() {
         result = Object.entries(formattedData).map(
           ([itemKey, itemValue]: any) => {
             if (key === 'infrastructure') {
-              return markupObj(
-                itemValue.value,
-                itemKey,
-                itemValue.className,
-                itemValue.textClass,
-              );
+              return markupObj(itemValue.value, itemKey, itemValue.textClass);
             }
             return markupObj(
               itemValue.value,
               itemKey,
-              itemValue.className,
               itemValue.textClass,
               itemValue.displayName,
             );
@@ -171,7 +164,6 @@ function ProjectExperimentsContainer() {
             projectData={projectData}
             config={experimentConfig}
           />
-
           <Navigation data={projectData} />
           <div className={s.header}>
             <ProjectTitle data={projectData} page="experiments" />
