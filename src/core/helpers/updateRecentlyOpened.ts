@@ -9,7 +9,10 @@ export default function updateRecentlyOpened(
   projectId: string,
 ) {
   const recently = {
-    id, category, name, check: false,
+    id,
+    category,
+    name,
+    check: false,
   };
   const storageData = getFromLocalStorage('recentlyOpened');
   // Check on is exist key and any data
@@ -17,27 +20,31 @@ export default function updateRecentlyOpened(
     const currentData = JSON.parse(storageData);
     let currentProjectData = currentData[projectId];
     if (currentProjectData) {
-    // Check if the data is an Array
+      // Check if the data is an Array
       if (Array.isArray(currentProjectData)) {
-      // Check if data length < 5 we will add new element
+        // Check if data length < 5 we will add new element
         if (currentProjectData.length < 5) {
-        // Check if "recently" object is already exist in array
-          currentProjectData = currentProjectData.filter((item) => item.id !== id);
+          // Check if "recently" object is already exist in array
+          currentProjectData = currentProjectData.filter(
+            (item) => item.id !== id,
+          );
           currentProjectData.push(recently);
           currentData[projectId] = currentProjectData;
           saveToLocalStorage('recentlyOpened', currentData);
         } else {
-        // Check if "recently" object is already exist in array
-          currentProjectData = currentProjectData.filter((item) => item.id !== id);
+          // Check if "recently" object is already exist in array
+          currentProjectData = currentProjectData.filter(
+            (item) => item.id !== id,
+          );
           // if data length > 5 we will delete first element after this we will add new element
-          if (currentProjectData.length > 5) {
+          if (currentProjectData.length >= 5) {
             currentProjectData.shift();
             currentProjectData.push(recently);
             currentData[projectId] = currentProjectData;
             saveToLocalStorage('recentlyOpened', currentData);
           } else {
-          // If data length < 5 we will add new element
-            currentData.push(recently);
+            // If data length < 5 we will add new element
+            currentProjectData.push(recently);
             currentData[projectId] = currentProjectData;
             saveToLocalStorage('recentlyOpened', currentData);
           }
@@ -45,10 +52,16 @@ export default function updateRecentlyOpened(
       }
     } else {
       // Create key with new data
-      localStorage.setItem('recentlyOpened', JSON.stringify({ ...currentData, [projectId]: [recently] }));
+      localStorage.setItem(
+        'recentlyOpened',
+        JSON.stringify({ ...currentData, [projectId]: [recently] }),
+      );
     }
   } else {
     // Create key with new data
-    localStorage.setItem('recentlyOpened', JSON.stringify({ [projectId]: [recently] }));
+    localStorage.setItem(
+      'recentlyOpened',
+      JSON.stringify({ [projectId]: [recently] }),
+    );
   }
 }
