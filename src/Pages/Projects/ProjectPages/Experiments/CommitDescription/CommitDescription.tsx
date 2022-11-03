@@ -77,7 +77,7 @@ function CommitDescription({ data, projectData }: Props) {
             </div>
             <div>
               <div className={s.title}>Git diff:</div>
-              <div>null</div>
+              <div>Not available</div>
             </div>
           </>
         )
