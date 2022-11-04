@@ -76,18 +76,14 @@ function Chart({ data, isFill, type }: Props) {
         },
         showGrid: false,
         type: 'category',
-        data: [],
+        data: [...data.x],
       },
       series: {
         type: 'bar',
         showSymbol: false,
-        data: [],
+        data: [...data.y],
       },
     };
-    Object.entries(data).forEach(([key, value]) => {
-      chartData.xAxis.data.push(key);
-      chartData.series.data.push(value);
-    });
     option.legend.data = chartData.legend;
     option.series = chartData.series;
     option.xAxis = chartData.xAxis;
@@ -106,9 +102,10 @@ function Chart({ data, isFill, type }: Props) {
         data: [],
       },
     };
-    Object.entries(data).forEach(([key, value]) => {
-      chartData.series.data.push({ value, name: key });
+    data.x.forEach((item: any, index: number) => {
+      chartData.series.data.push({ value: data.y[index], name: item });
     });
+
     option.series = chartData.series;
     option.tooltip.trigger = 'item';
     option.legend = chartData.legend;
