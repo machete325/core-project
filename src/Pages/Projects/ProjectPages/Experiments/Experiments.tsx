@@ -5,12 +5,14 @@ import ProjectStatus from '../../../../components/ProjectStatus/ProjectStatus';
 import experimentConfig from './Experiment.config';
 import { IExperimentData } from '../../../../core/redux/projects/experiments/types';
 import s from './Experiments.module.scss';
+import Loader from '../../../../components/Loader/Loader';
 
 type Props = {
   data: IExperimentData;
   rebuildData: any;
   handleCheckAll: any;
   handleCheck: any;
+  fetching: boolean;
 };
 
 function ProjectExperiments({
@@ -18,6 +20,7 @@ function ProjectExperiments({
   handleCheck,
   data,
   rebuildData,
+  fetching,
 }: Props) {
   return (
     <div className={s.content}>
@@ -61,6 +64,7 @@ function ProjectExperiments({
             ))}
         </tbody>
       </table>
+      {fetching && <Loader variant="down" />}
     </div>
   );
 }
