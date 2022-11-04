@@ -26,14 +26,6 @@ import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 
-const mockPieData = {
-  experimentStatusDistribution: {
-    stopped: 0.35,
-    failed: 0.1,
-    completed: 0.55,
-  },
-};
-
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
@@ -141,14 +133,11 @@ function ProjectOverviewContainer() {
               <div className={s.charts_container}>
                 <div className={s.experiment_activity}>
                   <div className={s.chart_title}>Experiments activity</div>
-                  <Chart data={data.experimentActivityFrequency} type="bar" />
+                  <Chart data={data.experimentActivity} type="bar" />
                 </div>
                 <div className={s.experiment_status}>
                   <div className={s.chart_title}>Experiments status</div>
-                  <Chart
-                    data={mockPieData.experimentStatusDistribution}
-                    type="pie"
-                  />
+                  <Chart data={data.experimentStatusFrequency} type="pie" />
                 </div>
               </div>
               <div className={s.info_container}>
