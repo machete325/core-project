@@ -7,6 +7,8 @@ import {
   checkAllExperiments,
   fetchExperiments,
   checkExperiment,
+  setExperimentsFetching,
+  clearExperimentsData,
 } from '../../../../core/redux/projects/experiments/actions';
 import { experimentsSelector } from '../../../../core/redux/projects/experiments/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
@@ -24,19 +26,54 @@ import Loader from '../../../../components/Loader/Loader';
 function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
-  const { data, loading } = useSelector(experimentsSelector);
+  const {
+    data, loading, currentPage, fetching, isExistData,
+  } = useSelector(experimentsSelector);
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
     page: 'experiment',
   });
   const [open, setOpen] = useState(false);
+  const pageSize = 10;
 
   useEffect(() => {
     if (projectData) {
-      dispatch(fetchExperiments(projectData.id));
+      dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
     }
+    return () => {
+      dispatch(clearExperimentsData());
+    };
   }, [projectData]);
+
+  useEffect(() => {
+    if (fetching && isExistData) {
+      dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
+    }
+  }, [fetching]);
+
+  const scrollHandler = (e: any) => {
+    if (
+      e.target.scrollHeight - (e.target.scrollTop + window.innerHeight)
+      < 100
+    ) {
+      if (isExistData && !fetching) {
+        dispatch(setExperimentsFetching(true));
+      }
+    }
+  };
+
+  useEffect(() => {
+    const contentContainer = document.querySelector('#project_content');
+    if (contentContainer) {
+      contentContainer.addEventListener('scroll', scrollHandler);
+    }
+    return () => {
+      if (contentContainer) {
+        contentContainer.removeEventListener('scroll', scrollHandler);
+      }
+    };
+  }, []);
 
   const handleCheckAll = (checked: boolean) => {
     dispatch(checkAllExperiments(checked));
@@ -185,6 +222,7 @@ function ProjectExperimentsContainer() {
               handleCheckAll={handleCheckAll}
               handleCheck={handleCheck}
               rebuildData={rebuildData}
+              fetching={fetching}
               data={data}
             />
           )}
