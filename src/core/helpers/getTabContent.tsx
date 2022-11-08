@@ -1,7 +1,7 @@
 import React from 'react';
 import Description from '../../Pages/Projects/ProjectPages/Experiments/Description/Description';
 import Target from '../../Pages/Projects/ProjectPages/Experiments/Target/Target';
-import Dataset from '../../Pages/Projects/ProjectPages/Experiments/Dataset/Dataset';
+import DatasetContainer from '../../Pages/Projects/ProjectPages/Experiments/Dataset/DatasetContainer';
 import MainMetrics from '../../Pages/Projects/ProjectPages/Experiments/MainMetrics/MainMetrics';
 import ModelConfiguration from '../../Pages/Projects/ProjectPages/Experiments/ModelConfiguration/ModelConfiguration';
 import Infrastructure from '../../Pages/Projects/ProjectPages/Experiments/Infrastructure/Infrastructure';
@@ -19,7 +19,7 @@ export const getTabContent = (
     case 'target':
       return <Target data={data} projectData={projectData} />;
     case 'data':
-      return <Dataset data={data} projectData={projectData} />;
+      return <DatasetContainer data={data} projectData={projectData} />;
     case 'metrics':
       return <MainMetrics data={data} projectData={projectData} />;
     case 'configuration':

@@ -12,7 +12,11 @@ import ProjectTitle from '../ProjectTitle/ProjectTitle';
 import StatusIndicator from '../StatusIndicator/StatusIndicator';
 
 function GraphModal({
-  open, handleClose, projectData, Content,
+  open,
+  handleClose,
+  projectData,
+  Content,
+  contentProps,
 }: Props) {
   const theme = createTheme({
     components: {
@@ -30,7 +34,6 @@ function GraphModal({
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
-            minWidth: '1872px',
           },
         },
       },
@@ -59,8 +62,7 @@ function GraphModal({
         styleOverrides: {
           root: {
             overflow: 'hidden',
-            minWidth: '1872px',
-            minHeight: '1000px',
+            height: '100%',
             position: 'relative',
             '&::-webkit-scrollbar': {
               width: '8px',
@@ -111,7 +113,12 @@ function GraphModal({
           </div>
           <Xwrapper>
             <div className={s.content_container}>
-              <Content />
+              <Content
+                cardContainerSize={contentProps.cardContainerSize}
+                handleGetCardContainerSize={
+                  contentProps.handleGetCardContainerSize
+                }
+              />
             </div>
           </Xwrapper>
         </DialogContent>

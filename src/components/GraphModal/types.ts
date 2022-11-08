@@ -12,4 +12,5 @@ export type Props = {
   handleClose: () => void;
   projectData: IProjectData;
   Content: any;
+  contentProps: any;
 };

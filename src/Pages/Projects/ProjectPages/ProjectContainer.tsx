@@ -156,7 +156,7 @@ function ProjectContainer() {
           />
         </div>
       </div>
-      <div className={s.content}>
+      <div id="project_content" className={s.content}>
         <Outlet />
       </div>
     </div>
