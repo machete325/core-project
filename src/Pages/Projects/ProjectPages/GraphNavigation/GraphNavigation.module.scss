@@ -22,7 +22,8 @@
 }
 
 .graph_content {
-  height: 290px;
+  height: 27.4%;
+  width: 100%;
   display: flex;
   font-family: 'Open Sans';
   font-style: normal;
@@ -33,6 +34,7 @@
 }
 
 .card_wrapper {
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -129,4 +131,36 @@
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
+}
+
+.navigation_wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (min-width: 1200px) {
+  .card_content_text {
+    font-size: 10px;
+  }
+  .card_text {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .card_content_text {
+    font-size: 12px;
+  }
+  .card_text {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .card_content_text {
+    font-size: 16px;
+  }
+  .card_text {
+    font-size: 16px;
+  }
 }
