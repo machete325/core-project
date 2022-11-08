@@ -9,9 +9,9 @@ import s from './GraphNavigation.module.scss';
 const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
   infrastructure: {
     datasets: {
-      marginLeft: '252px',
-      width: '218px',
-      height: '186px',
+      marginLeft: 0.136,
+      width: 0.116,
+      height: 0.641,
       img: '/images/project/graph/dataset.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -41,9 +41,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     experiments: {
-      marginLeft: '600px',
-      width: '218px',
-      height: '186px',
+      marginLeft: 0.32,
+      width: 0.116,
+      height: 0.641,
       img: '/images/project/graph/experiments.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -68,9 +68,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
   },
   research: {
     maintenance: {
-      marginLeft: '24px',
-      width: '218px',
-      height: '82px',
+      marginLeft: 0.012,
+      width: 0.116,
+      height: 0.286,
       img: null,
       isActive: false,
       isClickable: false,
@@ -86,9 +86,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
           showTail: true,
           showHead: true,
           path: 'grid',
-          cpy1Offset: 220,
-          cpy2Offset: 220,
-          extendSVGcanvas: 50,
+          cpy1Offset: 0.78,
+          cpy2Offset: 0.78,
+          extendSVGcanvas: 2000,
         },
         {
           end: 'graph-navigation-database',
@@ -101,9 +101,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     database: {
-      marginLeft: '76px',
-      width: '152px',
-      height: '177px',
+      marginLeft: 0.04,
+      width: 0.081,
+      height: 0.618,
       img: '/images/project/graph/database.svg',
       imageBackgroundColor: '#1D1E23',
       isActive: false,
@@ -123,9 +123,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     data_labeling_web: {
-      marginLeft: '36px',
-      width: '218px',
-      height: '82px',
+      marginLeft: 0.019,
+      width: 0.116,
+      height: 0.286,
       img: null,
       isActive: false,
       isClickable: false,
@@ -149,8 +149,8 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
           showTail: true,
           showHead: true,
           path: 'grid',
-          cpy1Offset: -395,
-          cpy2Offset: -395,
+          cpy1Offset: -1.36,
+          cpy2Offset: -1.36,
           extendSVGcanvas: 100,
           strokeWidth: 0.5,
           headSize: 12,
@@ -159,9 +159,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     data_exploration: {
-      marginLeft: '36px',
-      width: '218px',
-      height: '82px',
+      marginLeft: 0.019,
+      width: 0.116,
+      height: 0.286,
       img: null,
       isActive: false,
       isClickable: false,
@@ -189,9 +189,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     ml_model: {
-      marginLeft: '36px',
-      width: '396px',
-      height: '248px',
+      marginLeft: 0.019,
+      width: 0.211,
+      height: 0.867,
       img: null,
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -220,8 +220,8 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
       content: {
         code: {
-          width: '170px',
-          height: '186px',
+          width: 0.09,
+          height: 0.65,
           img: '/images/project/graph/code.png',
           imageBackgroundColor: '#4e4e52',
           isActive: false,
@@ -234,8 +234,8 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
           arrowConfig: null,
         },
         infrastructure: {
-          width: '170px',
-          height: '186px',
+          width: 0.09,
+          height: 0.65,
           img: '/images/project/graph/infrastructure.png',
           imageBackgroundColor: '#4e4e52',
           isActive: false,
@@ -251,9 +251,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       },
     },
     evaluation: {
-      marginLeft: '124px',
-      width: '218px',
-      height: '82px',
+      marginLeft: 0.066,
+      width: 0.116,
+      height: 0.286,
       img: null,
       isActive: false,
       isClickable: false,
@@ -269,22 +269,12 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
           showTail: true,
           showHead: false,
           path: 'grid',
-          cpy1Offset: -393,
-          cpy2Offset: -393,
-          extendSVGcanvas: 100,
+          cpy1Offset: -1.35,
+          cpy2Offset: -1.35,
+          extendSVGcanvas: 2000,
           strokeWidth: 0.5,
           headSize: 12,
           tailSize: 12,
-        },
-        {
-          end: 'graph-navigation-monitoring',
-          startAnchor: 'bottom',
-          endAnchor: 'top',
-          showTail: false,
-          showHead: true,
-          path: 'grid',
-          cpy1Offset: 50,
-          cpy2Offset: 50,
         },
         {
           end: 'graph-navigation-model_serving',
@@ -299,9 +289,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
   },
   production: {
     api_data: {
-      marginLeft: '304px',
-      width: '152px',
-      height: '177px',
+      marginLeft: 0.162,
+      width: 0.081,
+      height: 0.618,
       img: '/images/project/graph/api_data.svg',
       imageBackgroundColor: '#1D1E23',
       isActive: false,
@@ -321,9 +311,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     data_monitoring: {
-      marginLeft: '291px',
-      width: '218px',
-      height: '186px',
+      marginLeft: 0.155,
+      width: 0.116,
+      height: 0.641,
       img: '/images/project/graph/data_monitoring.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -345,9 +335,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       ],
     },
     monitoring: {
-      marginLeft: '125px',
-      width: '218px',
-      height: '186px',
+      marginLeft: 0.066,
+      width: 0.116,
+      height: 0.641,
       img: '/images/project/graph/monitoring.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -360,9 +350,9 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       arrowConfig: null,
     },
     model_serving: {
-      marginLeft: '213px',
-      width: '218px',
-      height: '186px',
+      marginLeft: 0.113,
+      width: 0.116,
+      height: 0.641,
       img: '/images/project/graph/model_serving.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
@@ -372,7 +362,18 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       bottomBar: true,
       barColor: '#FFD600',
       href: 'monitoring',
-      arrowConfig: null,
+      arrowConfig: [
+        {
+          end: 'graph-navigation-monitoring',
+          startAnchor: 'top',
+          endAnchor: 'top',
+          showTail: true,
+          showHead: false,
+          path: 'grid',
+          cpy1Offset: -0.1,
+          cpy2Offset: -0.1,
+        },
+      ],
     },
   },
 };
@@ -387,7 +388,7 @@ const pageConfiguration: { [key: string]: string } = {
   'data-monitoring': '.production.data_monitoring',
 };
 
-function Graph() {
+function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [cardConfiguration, setCardConfiguration] = useState(configuration);
@@ -423,6 +424,7 @@ function Graph() {
   };
 
   useEffect(() => {
+    handleGetCardContainerSize();
     getActualPage();
   }, [page]);
 
@@ -437,9 +439,9 @@ function Graph() {
             card.isActive ? s.card_container_active : s.card_container
           } ${card.isClickable && s.cursor_pointer}`}
           style={{
-            width: card.width,
-            height: card.height,
-            marginLeft: card.marginLeft,
+            width: `${cardContainerSize.width * card.width}px`,
+            height: `${cardContainerSize.height * card.height}px`,
+            marginLeft: `${cardContainerSize.width * card.marginLeft}px`,
             backgroundColor: card.backgroundColor
               ? card.backgroundColor
               : 'inherit',
@@ -470,11 +472,19 @@ function Graph() {
             className={s.image_container}
             style={{
               backgroundColor: card.imageBackgroundColor,
+              width: `${cardContainerSize.width * card.width * 0.47}px`,
+              height: `${cardContainerSize.height * card.height * 0.43}px`,
             }}
           >
-            <img className={s.card_image} src={card.img} alt={card.text} />
+            <img
+              width={`${cardContainerSize.width * card.width * 0.35}px`}
+              height={`${cardContainerSize.height * card.height * 0.32}px`}
+              className={s.card_image}
+              src={card.img}
+              alt={card.text}
+            />
           </div>
-          <div className={s.card_text} style={{ marginTop: '24px' }}>
+          <div className={s.card_text} style={{ marginTop: '11%' }}>
             {card.text}
           </div>
           {card.bottomBar && (
@@ -508,11 +518,16 @@ function Graph() {
                 end={item.end}
                 showTail={item.showTail}
                 showHead={item.showHead}
-                _cpy1Offset={item.cpy1Offset || 0}
-                _cpy2Offset={item.cpy2Offset || 0}
+                _cpy1Offset={
+                  Math.ceil(cardContainerSize.height * item.cpy1Offset) || 0
+                }
+                _cpy2Offset={
+                  Math.ceil(cardContainerSize.height * item.cpy2Offset) || 0
+                }
                 _extendSVGcanvas={item.extendSVGcanvas || 0}
               />
             ))}
+
           <div
             role="presentation"
             id={`graph-navigation-${key}`}
@@ -520,9 +535,9 @@ function Graph() {
               card.isActive ? s.card_container_active : s.card_container
             } ${card.isClickable && s.cursor_pointer}`}
             style={{
-              width: card.width,
-              height: card.height,
-              marginLeft: card.marginLeft,
+              width: `${cardContainerSize.width * card.width}px`,
+              height: `${cardContainerSize.height * card.height}px`,
+              marginLeft: `${cardContainerSize.width * card.marginLeft}px`,
               backgroundColor: card.backgroundColor
                 ? card.backgroundColor
                 : 'inherit',
@@ -553,11 +568,24 @@ function Graph() {
               className={s.image_container}
               style={{
                 backgroundColor: card.imageBackgroundColor,
+                width: `${cardContainerSize.width * card.width * 0.36}px`,
+                height: `${cardContainerSize.height * card.height * 0.43}px`,
               }}
             >
-              <img className={s.card_image} src={card.img} alt={card.text} />
+              <img
+                width={`${cardContainerSize.width * card.width * 0.275}px`}
+                height={`${cardContainerSize.height * card.height * 0.32}px`}
+                className={s.card_image}
+                src={card.img}
+                alt={card.text}
+              />
             </div>
-            <div className={s.card_text} style={{ marginTop: '24px' }}>
+            <div
+              className={s.card_text}
+              style={{
+                marginTop: '11%',
+              }}
+            >
               {card.text}
             </div>
             {card.bottomBar && (
@@ -588,8 +616,12 @@ function Graph() {
               end={item.end}
               showTail={item.showTail}
               showHead={item.showHead}
-              _cpy1Offset={item.cpy1Offset || 0}
-              _cpy2Offset={item.cpy2Offset || 0}
+              _cpy1Offset={
+                Math.ceil(cardContainerSize.height * item.cpy1Offset) || 0
+              }
+              _cpy2Offset={
+                Math.ceil(cardContainerSize.height * item.cpy2Offset) || 0
+              }
               _extendSVGcanvas={item.extendSVGcanvas || 0}
             />
           ))}
@@ -597,9 +629,9 @@ function Graph() {
           id={`graph-navigation-${key}`}
           className={s.card_container}
           style={{
-            width: card.width,
-            height: card.height,
-            marginLeft: card.marginLeft,
+            width: `${cardContainerSize.width * card.width}px`,
+            height: `${cardContainerSize.height * card.height}px`,
+            marginLeft: `${cardContainerSize.width * card.marginLeft}px`,
             backgroundColor: card.backgroundColor
               ? card.backgroundColor
               : 'inherit',
@@ -623,7 +655,7 @@ function Graph() {
 
   const generateMarkup = (config: any) => {
     const jsx = Object.keys(config).map((key) => (
-      <div key={key} className={s.graph_content}>
+      <div id="graph-content" key={key} className={s.graph_content}>
         <div className={s.status_tag_container}>{key}</div>
         <div className={s.card_wrapper}>
           {Object.keys(config[key]).map((item) => handleCreateCard(config[key][item], item))}
@@ -635,10 +667,10 @@ function Graph() {
 
   const markup = useMemo(
     () => generateMarkup(cardConfiguration),
-    [cardConfiguration, page],
+    [cardConfiguration, page, cardContainerSize],
   );
 
-  return <div>{page && markup}</div>;
+  return <div className={s.navigation_wrapper}>{page && markup}</div>;
 }
 
 export default Graph;

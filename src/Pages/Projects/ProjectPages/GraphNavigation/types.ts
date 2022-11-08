@@ -1,7 +1,7 @@
 export interface IConfiguration {
-  marginLeft?: string;
-  width: string;
-  height: string;
+  marginLeft?: string | number;
+  width: string | number;
+  height: string | number;
   img: string | null;
   imageBackgroundColor?: string;
   isActive: boolean;
