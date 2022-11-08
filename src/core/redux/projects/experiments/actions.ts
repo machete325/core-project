@@ -10,8 +10,8 @@ const {
   setCheckExperiment,
   setFetching,
   setCurrentPage,
-  setIsExistData,
   clearData,
+  setTotalCount,
 } = experimentSlice.actions;
 const { getProjectExperiments } = ExperimentService;
 
@@ -30,8 +30,7 @@ export const fetchExperiments = (projectId: string, currentPage: number, pageSiz
     if (Object.keys(response.data.items).length !== 0) {
       dispatch(setExperiments(response.data.items));
       dispatch(setCurrentPage(currentPage + 1));
-    } else {
-      dispatch(setIsExistData(false));
+      dispatch(setTotalCount(response.data.metadata.totalCount));
     }
   } catch (e) {
     console.log(e);
