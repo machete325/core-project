@@ -10,7 +10,10 @@ import {
   setExperimentsFetching,
   clearExperimentsData,
 } from '../../../../core/redux/projects/experiments/actions';
-import { experimentsSelector } from '../../../../core/redux/projects/experiments/selectors';
+import {
+  experimentsSelector,
+  getTotalCountExperiments,
+} from '../../../../core/redux/projects/experiments/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
@@ -27,8 +30,9 @@ function ProjectExperimentsContainer() {
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
   const {
-    data, loading, currentPage, fetching, isExistData,
+    data, loading, currentPage, fetching,
   } = useSelector(experimentsSelector);
+  const totalCount = useSelector(getTotalCountExperiments);
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
@@ -47,19 +51,21 @@ function ProjectExperimentsContainer() {
   }, [projectData]);
 
   useEffect(() => {
-    if (fetching && isExistData) {
+    if (fetching) {
       dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
     }
   }, [fetching]);
 
   const scrollHandler = (e: any) => {
+    const amountExperiments = Object.keys(data).length;
+    console.log(amountExperiments);
+    console.log(totalCount);
+    console.log(amountExperiments !== totalCount);
     if (
-      e.target.scrollHeight - (e.target.scrollTop + window.innerHeight)
-      < 100
+      e.target.scrollHeight - (e.target.scrollTop + window.innerHeight) < 100
+      && amountExperiments < totalCount
     ) {
-      if (isExistData && !fetching) {
-        dispatch(setExperimentsFetching(true));
-      }
+      dispatch(setExperimentsFetching(true));
     }
   };
 
@@ -73,7 +79,7 @@ function ProjectExperimentsContainer() {
         contentContainer.removeEventListener('scroll', scrollHandler);
       }
     };
-  }, []);
+  }, [totalCount, data]);
 
   const handleCheckAll = (checked: boolean) => {
     dispatch(checkAllExperiments(checked));

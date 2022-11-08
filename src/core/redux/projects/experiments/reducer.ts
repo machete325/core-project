@@ -6,7 +6,7 @@ export type ExperimentsState = {
   hasErrors: boolean;
   fetching: boolean;
   currentPage: number;
-  isExistData: boolean;
+  totalCount: number;
   data: IExperimentData;
 };
 //
@@ -15,7 +15,7 @@ export const initialState: ExperimentsState = {
   hasErrors: false,
   fetching: false,
   currentPage: 0,
-  isExistData: true,
+  totalCount: 0,
   data: {},
 };
 // A slice
@@ -36,6 +36,9 @@ export const experimentSlice = createSlice({
     finishLoading: (state) => {
       state.loading = false;
     },
+    setTotalCount: (state, action: PayloadAction<number>) => {
+      state.totalCount = action.payload;
+    },
     setCheckAllExperiments: (state, action: PayloadAction<boolean>) => {
       Object.keys(state.data).forEach((key: string) => {
         state.data[key].checked = action.payload;
@@ -50,9 +53,6 @@ export const experimentSlice = createSlice({
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
-    },
-    setIsExistData: (state, action: PayloadAction<boolean>) => {
-      state.isExistData = action.payload;
     },
     clearData: () => initialState,
   },

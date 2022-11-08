@@ -1,7 +1,7 @@
 import api from '../../api';
 
 export const ProjectService = {
-  getAllProjects: () => api('GET', [], '/projects?page_size=7'),
+  getAllProjects: () => api('GET', [], '/projects?page_size=5'),
   getOneProject: (version: string) => api('GET', [], `/projects/${version}`),
   getProjectOverview: (version: string, display: boolean, signal: any) => api(
     'GET',
