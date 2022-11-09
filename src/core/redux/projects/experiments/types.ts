@@ -4,6 +4,7 @@ interface IMetric {
   displayName: string;
   display: boolean;
   value: number;
+  threshold: number;
   aggregationOperation: string;
 }
 
@@ -37,7 +38,7 @@ export interface IExperiment {
     totalMachines: number;
   };
   code: {
-    commitMessage: unknown | null;
+    commitMessage: string | null;
   };
   status: string;
   checked: boolean;

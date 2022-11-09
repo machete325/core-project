@@ -8,7 +8,19 @@ interface IData {
   value: ReactNode;
 }
 
-function InfrastructureInfo({ data, modalHandler }: any) {
+type Props = {
+  data: any;
+  modalHandler: ((arg: string, key?: string) => void) | undefined;
+  modalKey?: string;
+  marginBottom: string;
+};
+
+function InfrastructureInfo({
+  data,
+  modalHandler,
+  modalKey,
+  marginBottom = '0px',
+}: Props) {
   const infrastructure: IData[] = [
     {
       id: 1,
@@ -47,11 +59,14 @@ function InfrastructureInfo({ data, modalHandler }: any) {
       {infrastructure.map((item) => (
         <div
           role="presentation"
-          className={`${s.container} ${modalHandler ? s.modal_call : null}`}
           key={item.id}
           onClick={
-            modalHandler ? () => modalHandler('infrastructure') : undefined
+            modalHandler
+              ? () => modalHandler('infrastructure', modalKey)
+              : undefined
           }
+          style={{ marginBottom }}
+          className={`${s.container} ${modalHandler ? s.modal_call : null}`}
         >
           {item.value}
         </div>

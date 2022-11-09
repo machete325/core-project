@@ -7,8 +7,12 @@
 }
 
 .container {
+  height: 16px;
   display: flex;
   align-items: center;
+  &:nth-last-child(1) {
+    margin-bottom: 0 !important;
+  }
 }
 
 .title {

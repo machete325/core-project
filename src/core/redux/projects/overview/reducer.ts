@@ -9,7 +9,7 @@ export type OverviewState = {
 export const initialState: OverviewState = {
   loading: false,
   hasErrors: true,
-  data: undefined,
+  data: {},
 };
 // A slice
 export const overviewSlice = createSlice({
@@ -28,9 +28,7 @@ export const overviewSlice = createSlice({
     finishLoading: (state) => {
       state.loading = false;
     },
-    clearData: (state) => {
-      state.data = initialState.data;
-    },
+    clearData: () => initialState,
   },
 });
 

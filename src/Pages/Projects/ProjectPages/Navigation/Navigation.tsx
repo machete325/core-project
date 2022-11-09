@@ -7,6 +7,7 @@ import { useAppDispatch } from '../../../../core/redux/store';
 import s from './Navigation.module.scss';
 import { clearExperimentsData } from '../../../../core/redux/projects/experiments/actions';
 import { clearOneProjectData } from '../../../../core/redux/projects/actions';
+import { clearOverview } from '../../../../core/redux/projects/overview/actions';
 
 interface IDdata {
   id: string;
@@ -27,6 +28,7 @@ function Navigation({ data }: Props) {
 
   const handleNavigate = () => {
     navigate('/main/projects');
+    dispatch(clearOverview());
     dispatch(clearExperimentsData());
     dispatch(clearOneProjectData());
   };

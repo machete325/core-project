@@ -8,7 +8,6 @@ import {
   fetchExperiments,
   checkExperiment,
   setExperimentsFetching,
-  clearExperimentsData,
 } from '../../../../core/redux/projects/experiments/actions';
 import {
   experimentsSelector,
@@ -17,7 +16,6 @@ import {
 import { useAppDispatch } from '../../../../core/redux/store';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
-import { convertToString } from '../../../../core/helpers/objectMethods';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
@@ -42,12 +40,9 @@ function ProjectExperimentsContainer() {
   const pageSize = 10;
 
   useEffect(() => {
-    if (projectData) {
+    if (projectData && Object.keys(data).length === 0 && !loading) {
       dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
     }
-    return () => {
-      dispatch(clearExperimentsData());
-    };
   }, [projectData]);
 
   useEffect(() => {
@@ -58,9 +53,6 @@ function ProjectExperimentsContainer() {
 
   const scrollHandler = (e: any) => {
     const amountExperiments = Object.keys(data).length;
-    console.log(amountExperiments);
-    console.log(totalCount);
-    console.log(amountExperiments !== totalCount);
     if (
       e.target.scrollHeight - (e.target.scrollTop + window.innerHeight) < 100
       && amountExperiments < totalCount
@@ -106,96 +98,6 @@ function ProjectExperimentsContainer() {
     setOpen(false);
   };
 
-  const rebuildData = (config: typeof experimentConfig, id: string) => {
-    const arr: any = [];
-    // function for generating JSX markup
-    const markupFunction = (formattedData: any, key: string) => {
-      let result = null;
-      const markupObj = (
-        value: any,
-        index: string,
-        textClass: string,
-        displayName?: string,
-      ) => (
-        <div
-          key={index}
-          role="presentation"
-          onClick={() => handleOpenModal(key, id)}
-          className={key !== 'data' ? s.obj_container : ''}
-        >
-          {key !== 'infrastructure' && key !== 'data' && key !== 'metrics' && (
-            <div className={s.title_key}>
-              {displayName}
-              :
-            </div>
-          )}
-          <div className={textClass || s.text_container}>{value}</div>
-        </div>
-      );
-
-      const markupString = (value: string) => (
-        <div
-          key={key}
-          role="presentation"
-          onClick={() => handleOpenModal(key, id)}
-        >
-          {value}
-        </div>
-      );
-
-      if (typeof formattedData === 'string') {
-        result = markupString(formattedData);
-      } else {
-        result = Object.entries(formattedData).map(
-          ([itemKey, itemValue]: any) => {
-            if (key === 'infrastructure') {
-              return markupObj(itemValue.value, itemKey, itemValue.textClass);
-            }
-            return markupObj(
-              itemValue.value,
-              itemKey,
-              itemValue.textClass,
-              itemValue.displayName,
-            );
-          },
-        );
-      }
-      return <td key={key}>{result}</td>;
-    };
-
-    // function for checking formatting function in config for certain field
-    const checkIsExistFormatFunction = (obj: any, objConfig: any) => {
-      let tempArr: any = [];
-      if (objConfig.formattingFunction) {
-        const objData = objConfig.formattingFunction(obj);
-        if (Array.isArray(objData)) {
-          tempArr = objData;
-        } else {
-          Object.keys(objData).forEach((key) => {
-            tempArr.push(objData[key]);
-          });
-        }
-      } else {
-        Object.values(obj).forEach((item) => {
-          tempArr.push(item);
-        });
-      }
-      return tempArr;
-    };
-
-    if (data && Object.keys(data).length !== 0) {
-      const experimentData = data[id];
-      Object.entries(config).forEach(([key, value]: any) => {
-        const currentField = convertToString(experimentData, value.path);
-        const markupData = typeof currentField !== 'object' || currentField === null
-          ? `${currentField}`
-          : checkIsExistFormatFunction(currentField, value);
-        arr.push(markupFunction(markupData, key));
-      });
-    }
-    return arr;
-  };
-
   return (
     <div className={s.wrapper}>
       {projectData ? (
@@ -225,9 +127,9 @@ function ProjectExperimentsContainer() {
             <Loader />
           ) : (
             <Experiments
+              handleOpenModal={handleOpenModal}
               handleCheckAll={handleCheckAll}
               handleCheck={handleCheck}
-              rebuildData={rebuildData}
               fetching={fetching}
               data={data}
             />

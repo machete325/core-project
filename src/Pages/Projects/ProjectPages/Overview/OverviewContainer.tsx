@@ -51,7 +51,7 @@ function ProjectOverviewContainer() {
   };
 
   useEffect(() => {
-    if (projectData) {
+    if (projectData && Object.keys(data).length === 0 && !loading) {
       dispatch(fetchOverview(projectData.id));
     }
   }, [projectData]);
@@ -179,10 +179,12 @@ function ProjectOverviewContainer() {
                       <ModelConfigurationInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.configuration.items}
+                        marginBottom="4px"
                       />
                       <InfrastructureInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.infrastructure}
+                        marginBottom="4px"
                       />
                     </div>
                   </div>

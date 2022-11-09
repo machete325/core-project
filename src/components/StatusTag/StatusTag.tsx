@@ -44,7 +44,11 @@ function StatusTag({
           textColor: type === '2' ? '#000000' : '#333333',
         });
       } else if (usedValue / totalValue > 1) {
-        setColors({ ...colors, backgroundColor: '#F51D44' });
+        setColors({
+          ...colors,
+          backgroundColor: '#F51D44',
+          textColor: '#FFFFFF',
+        });
       } else {
         setColors({
           ...colors,

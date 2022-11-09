@@ -3,7 +3,7 @@ import { AppThunk, AppDispatch } from '../../store';
 import { overviewSlice } from './reducer';
 
 const {
-  setOverview, startLoading, finishLoading, setErrors,
+  setOverview, startLoading, finishLoading, setErrors, clearData,
 } = overviewSlice.actions;
 const { getProjectOverview } = OverviewService;
 
@@ -19,4 +19,8 @@ export const fetchOverview = (projectId: string): AppThunk => async (dispatch: A
     dispatch(setErrors(true));
     dispatch(finishLoading());
   }
+};
+
+export const clearOverview = () => (dispatch: AppDispatch) => {
+  dispatch(clearData());
 };
