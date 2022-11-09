@@ -15,10 +15,24 @@ export interface IMetric {
 type Props = {
   data: { [key: string]: IMetric };
   limiter: number;
-  modalHandler?: (arg: string) => void;
+  modalHandler?: (arg: string, key?: string) => void;
+  modalKey?: string;
 };
 
-export default function MetricsInfo({ data, limiter, modalHandler }: Props) {
+export default function MetricsInfo({
+  data,
+  limiter,
+  modalHandler,
+  modalKey,
+}: Props) {
+  if (Object.keys(data).length === 0) {
+    return (
+      <table className={s.wrapper}>
+        <td className={s.not_available}>Not available</td>
+      </table>
+    );
+  }
+
   return (
     <table className={s.wrapper}>
       {Object.values(data).map((metric: IMetric, index) => {
@@ -28,7 +42,9 @@ export default function MetricsInfo({ data, limiter, modalHandler }: Props) {
               <tr
                 className={`${modalHandler ? s.modal_call : null}`}
                 onClick={
-                  modalHandler ? () => modalHandler('metrics') : undefined
+                  modalHandler
+                    ? () => modalHandler('metrics', modalKey)
+                    : undefined
                 }
               >
                 <td className={s.metric_title}>{metric.displayName}</td>
