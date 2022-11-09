@@ -8,7 +8,6 @@ import {
   fetchExperiments,
   checkExperiment,
   setExperimentsFetching,
-  clearExperimentsData,
 } from '../../../../core/redux/projects/experiments/actions';
 import {
   experimentsSelector,
@@ -42,12 +41,9 @@ function ProjectExperimentsContainer() {
   const pageSize = 10;
 
   useEffect(() => {
-    if (projectData) {
+    if (projectData && Object.keys(data).length === 0 && !loading) {
       dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
     }
-    return () => {
-      dispatch(clearExperimentsData());
-    };
   }, [projectData]);
 
   useEffect(() => {
@@ -58,9 +54,6 @@ function ProjectExperimentsContainer() {
 
   const scrollHandler = (e: any) => {
     const amountExperiments = Object.keys(data).length;
-    console.log(amountExperiments);
-    console.log(totalCount);
-    console.log(amountExperiments !== totalCount);
     if (
       e.target.scrollHeight - (e.target.scrollTop + window.innerHeight) < 100
       && amountExperiments < totalCount

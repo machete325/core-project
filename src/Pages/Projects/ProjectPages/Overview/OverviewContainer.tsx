@@ -51,7 +51,7 @@ function ProjectOverviewContainer() {
   };
 
   useEffect(() => {
-    if (projectData) {
+    if (projectData && Object.keys(data).length === 0 && !loading) {
       dispatch(fetchOverview(projectData.id));
     }
   }, [projectData]);
