@@ -92,7 +92,7 @@
 
 .card_text {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 10px;
 }
 
 .card_bottom_bar {
@@ -129,7 +129,7 @@
 
 .card_content_text {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 10px;
   margin-bottom: 8px;
 }
 
@@ -138,29 +138,56 @@
   height: 100%;
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1100) {
   .card_content_text {
-    font-size: 10px;
+    font-size: 12px;
   }
   .card_text {
     font-size: 12px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .card_content_text {
+    font-size: 14px;
+  }
+  .card_text {
+    font-size: 14px;
   }
 }
 
 @media screen and (min-width: 1600px) {
   .card_content_text {
-    font-size: 12px;
+    font-size: 16px;
   }
   .card_text {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
-@media screen and (min-width: 1800px) {
+@media screen and (min-width: 2200px) {
   .card_content_text {
-    font-size: 16px;
+    font-size: 20px;
   }
   .card_text {
-    font-size: 16px;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 3000px) {
+  .card_content_text {
+    font-size: 24px;
+  }
+  .card_text {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 4000px) {
+  .card_content_text {
+    font-size: 40px;
+  }
+  .card_text {
+    font-size: 40px;
   }
 }
