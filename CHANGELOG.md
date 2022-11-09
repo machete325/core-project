@@ -1,3 +1,26 @@
+# [1.2.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.1.0...v1.2.0) (2022-11-09)
+
+
+### Features
+
+* **dataset.tsx:** complete dataset tab related to API modifications ([21ad7e8](https://github.com/Coreai-org/corecontrol-web/commit/21ad7e809b788fc221e6a49bcdd0fe9b8c621e9e))
+* **experiment.container.tsx:** refactored logic for table data ([4ae18d5](https://github.com/Coreai-org/corecontrol-web/commit/4ae18d52f7a8e92c80832e5f9d18d3e2e3dc1e29))
+* **experiment.module.scss:** changed table styles ([852f276](https://github.com/Coreai-org/corecontrol-web/commit/852f276f6f68dc6483afa9b80ab0be6a6329e714))
+* **experiment.styles:** changed table styles ([493226c](https://github.com/Coreai-org/corecontrol-web/commit/493226cd5511c275057a59e2f9d8608467746eac))
+* **experiments.types:** changed IExperiment and IMetric types ([7abb488](https://github.com/Coreai-org/corecontrol-web/commit/7abb48861e6fd756c8b987c686884aede92c10c7))
+* **experimentscontainer.tsx:** implement pagination for experiments page ([aa084cd](https://github.com/Coreai-org/corecontrol-web/commit/aa084cde9839064d38a7b49f881cb01f8d5ee5d9))
+* **experiments:** implement pagination logic and UI ([e3eb26c](https://github.com/Coreai-org/corecontrol-web/commit/e3eb26cedf50e2baf7d3ddc1977dbe176996b640))
+* **experimenttabs:** added marginBottom and modalKey ([f300c0b](https://github.com/Coreai-org/corecontrol-web/commit/f300c0b72dc029633b440528e7c8445657d2e864))
+* **graph.tsx:** added logic for responsive design ([b9b1fb4](https://github.com/Coreai-org/corecontrol-web/commit/b9b1fb42d9292a1638ed4aa88677c1c09c2a1989))
+* **graphnavigation.module.scss:** improve media logic ([035dc3c](https://github.com/Coreai-org/corecontrol-web/commit/035dc3c679d4e9b62ec5ed0e07dc6cd7bc74d068))
+* **graphnavigation.tsx:** added styles for responsive design ([8c7d5b8](https://github.com/Coreai-org/corecontrol-web/commit/8c7d5b8c43a6aecd7bd3a78a28be5fcfa9c97f55))
+* **loader:** added new styles for Loader ([433c29b](https://github.com/Coreai-org/corecontrol-web/commit/433c29bc7b5c9b4b3db1ca23004d8434d79d901a))
+* **navigation.tsx:** added clearOverview ([65fd5a5](https://github.com/Coreai-org/corecontrol-web/commit/65fd5a53beb90ddd6bf178bd1a70f36080e2b855))
+* **overview.actions:** added clearOverview action ([0cdea74](https://github.com/Coreai-org/corecontrol-web/commit/0cdea740bfadffa3606c87f65bab281b253c666e))
+* **overview:** implement new logic related to new API ([d9291c9](https://github.com/Coreai-org/corecontrol-web/commit/d9291c93430d09310b6255a1272617d97a2d7f9e))
+* **project pages:** improve pagination logic ([ff542df](https://github.com/Coreai-org/corecontrol-web/commit/ff542df23c81a82edd8a593ffc5f0a56f655e7be))
+* **satustag.tsx:** added textColor ([96299a9](https://github.com/Coreai-org/corecontrol-web/commit/96299a9eb8028634fbe26ba2629e97b39009dce6))
+
 # [1.1.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.0.0...v1.1.0) (2022-11-03)
 
 
