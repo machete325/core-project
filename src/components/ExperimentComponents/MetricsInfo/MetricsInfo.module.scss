@@ -22,6 +22,7 @@
 }
 
 .metric_title {
+  padding: 0 !important;
   display: inline-block;
   margin-right: 8px;
 }
@@ -31,6 +32,7 @@
 }
 
 .not_available {
+  padding: 0 !important;
   font-weight: 400;
   font-size: 14px;
   color: #ffffff;
