@@ -8,18 +8,35 @@ const {
   finishLoading,
   setCheckAllExperiments,
   setCheckExperiment,
+  setFetching,
+  setCurrentPage,
   clearData,
+  setTotalCount,
 } = experimentSlice.actions;
 const { getProjectExperiments } = ExperimentService;
 
-export const fetchExperiments = (projectId: string): AppThunk => async (dispatch: AppDispatch) => {
+// eslint-disable-next-line max-len
+export const fetchExperiments = (projectId: string, currentPage: number, pageSize: number): AppThunk => async (dispatch: AppDispatch) => {
   try {
-    dispatch(startLoading());
-    const response = await getProjectExperiments(projectId, true, 5);
-    dispatch(setExperiments(response.data.items));
-    dispatch(finishLoading());
+    if (currentPage === 0) {
+      dispatch(startLoading());
+    }
+    const response = await getProjectExperiments(
+      projectId,
+      true,
+      currentPage,
+      pageSize,
+    );
+    if (Object.keys(response.data.items).length !== 0) {
+      dispatch(setExperiments(response.data.items));
+      dispatch(setCurrentPage(currentPage + 1));
+      dispatch(setTotalCount(response.data.metadata.totalCount));
+    }
   } catch (e) {
     console.log(e);
+  } finally {
+    dispatch(finishLoading());
+    dispatch(setFetching(false));
   }
 };
 
@@ -33,4 +50,8 @@ export const checkExperiment = (id: string) => (dispatch: AppDispatch) => {
 
 export const clearExperimentsData = () => (dispatch: AppDispatch) => {
   dispatch(clearData());
+};
+
+export const setExperimentsFetching = (fetching: boolean) => (dispatch: AppDispatch) => {
+  dispatch(setFetching(fetching));
 };

@@ -2,9 +2,13 @@ import React from 'react';
 import { CircularProgress } from '@mui/material';
 import s from './Loader.module.scss';
 
-function Loader() {
+type Props = {
+  variant?: 'down';
+};
+
+function Loader({ variant }: Props) {
   return (
-    <div className={s.wrapper}>
+    <div className={`${s.wrapper} ${variant && s[variant]}`}>
       <CircularProgress color="inherit" />
     </div>
   );

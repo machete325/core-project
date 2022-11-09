@@ -7,7 +7,11 @@
 }
 
 .container {
+  height: 16px;
   display: flex;
+  &:nth-last-child(1) {
+    margin-bottom: 0 !important;
+  }
 }
 
 .title {
