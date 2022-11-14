@@ -12,6 +12,7 @@ const {
   setCurrentPage,
   clearData,
   setTotalCount,
+  setErrors,
 } = experimentSlice.actions;
 const { getProjectExperiments } = ExperimentService;
 
@@ -32,7 +33,9 @@ export const fetchExperiments = (projectId: string, currentPage: number, pageSiz
       dispatch(setCurrentPage(currentPage + 1));
       dispatch(setTotalCount(response.data.metadata.totalCount));
     }
+    dispatch(setErrors(false));
   } catch (e) {
+    dispatch(setErrors(true));
     console.log(e);
   } finally {
     dispatch(finishLoading());

@@ -25,6 +25,7 @@ import Alert from '../../../../components/Alert/Alert';
 import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
+import Error from '../../../../components/Error/Error';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -91,36 +92,31 @@ function ProjectOverviewContainer() {
 
   return (
     <div className={s.wrapper}>
-      {projectData ? (
-        <>
-          <Modal
-            open={open}
-            handleClose={handleClose}
-            data={choosedTab}
-            projectData={projectData}
-            config={experimentConfig}
-          />
-          <Navigation data={projectData} />
-          <div className={s.header}>
-            <ProjectTitle data={projectData} page="overview" />
-            <div className={s.header_buttons}>
-              <Button style={{ marginRight: '16px' }}>
-                <img alt="Plus" src="/images/icons/Plus.svg" />
-                New experiment
-              </Button>
-              <DropDown />
-            </div>
-          </div>
-        </>
-      ) : null}
+      <Modal
+        open={open}
+        handleClose={handleClose}
+        data={choosedTab}
+        projectData={projectData}
+        config={experimentConfig}
+      />
+      <Navigation data={projectData} />
+      <div className={s.header}>
+        <ProjectTitle data={projectData} page="overview" />
+        <div className={s.header_buttons}>
+          <Button style={{ marginRight: '16px' }}>
+            <img alt="Plus" src="/images/icons/Plus.svg" />
+            New experiment
+          </Button>
+          <DropDown />
+        </div>
+      </div>
       {loading ? (
         <Loader />
       ) : (
         <div className={s.content}>
-          {hasErrors ? (
-            <div>The request has errors</div>
-          ) : (
+          {Object.keys(data).length !== 0 && (
             <>
+              {hasErrors && <Error />}
               <div className={s.tags_container}>
                 {Object.keys(tagConfig).map((key: any) => (
                   <OverviewStatusTag

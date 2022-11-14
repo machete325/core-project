@@ -54,6 +54,9 @@ export const experimentSlice = createSlice({
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
+    setErrors: (state, action: PayloadAction<boolean>) => {
+      state.hasErrors = action.payload;
+    },
     clearData: () => initialState,
   },
 });

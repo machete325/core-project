@@ -164,7 +164,7 @@ function Projects({
               {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
             <div className={s.project_date}>
-              {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
+              {`Edited ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
           </div>
         </div>

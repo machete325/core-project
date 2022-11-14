@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Skeleton } from '@mui/material';
 import {
   oneProjectData,
   recentlyOpenedData,
@@ -23,6 +24,7 @@ import {
 } from '../../../core/redux/projects/actions';
 import s from './Project.module.scss';
 import StatusIndicator from '../../../components/StatusIndicator/StatusIndicator';
+import { getFormattedDateFromTimeStamp } from '../../../core/helpers/dateMethods';
 
 const navigateProjectConfig = [
   {
@@ -117,8 +119,24 @@ function ProjectContainer() {
       <div className={s.menu}>
         <div className={s.title_container}>
           <div className={s.title}>
-            <div className={s.title_name}>Demand Forecasting</div>
-            <div className={s.title_date}>Created in 20.12.2022</div>
+            {projectData ? (
+              <>
+                <div className={s.title_name}>{projectData.name}</div>
+                <div className={s.title_date}>
+                  {`Created in ${getFormattedDateFromTimeStamp(
+                    projectData.created,
+                  )}`}
+                </div>
+              </>
+            ) : (
+              <Skeleton
+                variant="rounded"
+                width="210px"
+                animation="wave"
+                height="53px"
+                style={{ marginRight: '10px', backgroundColor: '#4e4e52' }}
+              />
+            )}
           </div>
           <StatusIndicator isArchive={projectData && projectData.isArchive} />
         </div>

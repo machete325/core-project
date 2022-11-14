@@ -1,6 +1,5 @@
-/* eslint-disable no-nested-ternary */
-import { Skeleton } from '@mui/material';
 import React from 'react';
+import { Skeleton } from '@mui/material';
 import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
 import s from './ProjectTitle.module.scss';
 

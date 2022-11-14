@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Skeleton } from '@mui/material';
 import BreadcrumbsContainer from '../../../../components/Breadcrumbs/BreadcrumbsContainer';
 import GraphNavigation from '../GraphNavigation/GraphNavigation';
 import UserProfile from '../../../../components/UserProfile/UserProfile';
@@ -47,28 +46,10 @@ function Navigation({ data }: Props) {
           </div>
           <div className={s.text}>All projects</div>
         </div>
-        {data ? (
-          <BreadcrumbsContainer data={data} />
-        ) : (
-          <Skeleton
-            variant="rounded"
-            width="400px"
-            animation="wave"
-            height="40px"
-          />
-        )}
+        <BreadcrumbsContainer data={data} />
       </div>
       <div className={s.user_container}>
-        {data ? (
-          <GraphNavigation data={data} />
-        ) : (
-          <Skeleton
-            variant="rounded"
-            width="88px"
-            animation="wave"
-            height="40px"
-          />
-        )}
+        <GraphNavigation data={data} />
         <UserProfile />
       </div>
     </div>
