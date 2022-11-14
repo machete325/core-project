@@ -100,42 +100,38 @@ function ProjectExperimentsContainer() {
 
   return (
     <div className={s.wrapper}>
-      {projectData ? (
-        <>
-          <Modal
-            open={open}
-            handleClose={handleClose}
-            data={choosedTab}
-            projectData={projectData}
-            config={experimentConfig}
-          />
-          <Navigation data={projectData} />
-          <div className={s.header}>
-            <ProjectTitle data={projectData} page="experiments" />
-            <div className={s.buttons}>
-              <Button disabled style={{ marginRight: '20px' }}>
-                <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
-                Compare experiments
-              </Button>
-              <Button>
-                <img alt="Plus" src="/images/icons/Plus.svg" />
-                New experiment
-              </Button>
-            </div>
-          </div>
-          {loading ? (
-            <Loader />
-          ) : (
-            <Experiments
-              handleOpenModal={handleOpenModal}
-              handleCheckAll={handleCheckAll}
-              handleCheck={handleCheck}
-              fetching={fetching}
-              data={data}
-            />
-          )}
-        </>
-      ) : null}
+      <Modal
+        open={open}
+        handleClose={handleClose}
+        data={choosedTab}
+        projectData={projectData}
+        config={experimentConfig}
+      />
+      <Navigation data={projectData} />
+      <div className={s.header}>
+        <ProjectTitle data={projectData} page="experiments" />
+        <div className={s.buttons}>
+          <Button disabled style={{ marginRight: '20px' }}>
+            <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
+            Compare experiments
+          </Button>
+          <Button>
+            <img alt="Plus" src="/images/icons/Plus.svg" />
+            New experiment
+          </Button>
+        </div>
+      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Experiments
+          handleOpenModal={handleOpenModal}
+          handleCheckAll={handleCheckAll}
+          handleCheck={handleCheck}
+          fetching={fetching}
+          data={data}
+        />
+      )}
     </div>
   );
 }

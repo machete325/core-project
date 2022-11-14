@@ -1,3 +1,5 @@
+/* eslint-disable no-nested-ternary */
+import { Skeleton } from '@mui/material';
 import React from 'react';
 import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
 import s from './ProjectTitle.module.scss';
@@ -19,14 +21,27 @@ function ProjectTitle({
 }: Props) {
   return (
     <div className={s.title}>
-      <div className={`${s.name} ${size === 'small' ? s.name_sm : s.name_lg}`}>
-        {`${data.name} ${(page !== 'overview' && page) || ''}`}
-      </div>
-      <div className={s.description}>
-        {created
-          ? `Created in ${getFormattedDateFromTimeStamp(data.created)}`
-          : data.description}
-      </div>
+      {data ? (
+        <>
+          <div
+            className={`${s.name} ${size === 'small' ? s.name_sm : s.name_lg}`}
+          >
+            {`${data.name} ${(page !== 'overview' && page) || ''}`}
+          </div>
+          <div className={s.description}>
+            {created
+              ? `Created in ${getFormattedDateFromTimeStamp(data.created)}`
+              : data.description}
+          </div>
+        </>
+      ) : (
+        <Skeleton
+          variant="rounded"
+          width="400px"
+          animation="wave"
+          height="75px"
+        />
+      )}
     </div>
   );
 }
