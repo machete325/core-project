@@ -25,6 +25,7 @@ import {
 import s from './Project.module.scss';
 import StatusIndicator from '../../../components/StatusIndicator/StatusIndicator';
 import { getFormattedDateFromTimeStamp } from '../../../core/helpers/dateMethods';
+import { textSlicer } from '../../../core/helpers/textMethods';
 
 const navigateProjectConfig = [
   {
@@ -121,7 +122,9 @@ function ProjectContainer() {
           <div className={s.title}>
             {projectData ? (
               <>
-                <div className={s.title_name}>{projectData.name}</div>
+                <div className={s.title_name} title={projectData.name}>
+                  {textSlicer(projectData.name, 17)}
+                </div>
                 <div className={s.title_date}>
                   {`Created in ${getFormattedDateFromTimeStamp(
                     projectData.created,
