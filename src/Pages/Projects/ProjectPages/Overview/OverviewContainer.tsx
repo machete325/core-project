@@ -114,9 +114,9 @@ function ProjectOverviewContainer() {
         <Loader />
       ) : (
         <div className={s.content}>
+          {hasErrors && <Error />}
           {Object.keys(data).length !== 0 && (
             <>
-              {hasErrors && <Error />}
               <div className={s.tags_container}>
                 {Object.keys(tagConfig).map((key: any) => (
                   <OverviewStatusTag
@@ -144,6 +144,7 @@ function ProjectOverviewContainer() {
                       <div
                         role="presentation"
                         className={s.modal_call}
+                        style={{ marginRight: '10px' }}
                         onClick={() => handleOpenModal('description')}
                       >
                         {data.latestExperiment.description}
