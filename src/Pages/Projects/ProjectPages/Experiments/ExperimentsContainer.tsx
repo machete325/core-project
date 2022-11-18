@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Button from '../../../../components/Button/Button';
 import Modal from '../../../../components/Modal/Modal';
@@ -8,6 +8,7 @@ import {
   fetchExperiments,
   checkExperiment,
   setExperimentsFetching,
+  resetErrors,
 } from '../../../../core/redux/projects/experiments/actions';
 import {
   experimentsSelector,
@@ -36,26 +37,59 @@ function ProjectExperimentsContainer() {
     data: undefined,
     page: 'experiment',
   });
+  const [isExistScroll, setIsExistScroll] = useState(false);
   const [open, setOpen] = useState(false);
-  const pageSize = 10;
+  const [isGetMoreActive, setIsGetMoreActive] = useState(false);
+  const initialPageSize = 3;
+  const pageSize = 3;
+  const amountExperiments = useMemo(() => Object.keys(data).length, [data]);
+
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  const fetchData = (pageSizeArg: number) => {
+    dispatch(
+      fetchExperiments(projectData.id, currentPage, pageSizeArg, signal),
+    );
+  };
+
+  const getMoreHandler = () => {
+    setIsGetMoreActive(true);
+    dispatch(setExperimentsFetching(true));
+    fetchData(pageSize);
+  };
 
   useEffect(() => {
-    if (projectData && Object.keys(data).length === 0 && !loading) {
-      dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
+    dispatch(resetErrors());
+  }, []);
+
+  useEffect(() => {
+    if (projectData && amountExperiments === 0 && !loading) {
+      fetchData(initialPageSize);
     }
+    return () => {
+      controller.abort();
+    };
   }, [projectData]);
 
+  // if isGetMoreActive === true it's mean button "Get More" was clicked
+
   useEffect(() => {
-    if (fetching) {
-      dispatch(fetchExperiments(projectData.id, currentPage, pageSize));
+    if (fetching && !isGetMoreActive) {
+      fetchData(pageSize);
+    }
+    if (!fetching && isGetMoreActive) {
+      setIsGetMoreActive(false);
     }
   }, [fetching]);
 
   const scrollHandler = (e: any) => {
-    const amountExperiments = Object.keys(data).length;
+    if (!isExistScroll) {
+      setIsExistScroll(true);
+    }
     if (
       e.target.scrollHeight - (e.target.scrollTop + window.innerHeight) < 100
-      && amountExperiments < totalCount
+      && amountExperiments < (totalCount || 0)
     ) {
       dispatch(setExperimentsFetching(true));
     }
@@ -129,6 +163,10 @@ function ProjectExperimentsContainer() {
           handleCheckAll={handleCheckAll}
           handleCheck={handleCheck}
           fetching={fetching}
+          isExistScroll={isExistScroll}
+          getMoreHandler={getMoreHandler}
+          projectData={projectData}
+          amountExperiments={amountExperiments}
           data={data}
         />
       )}

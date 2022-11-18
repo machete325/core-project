@@ -13,6 +13,7 @@ import InfrastructureInfo from '../../../../components/ExperimentComponents/Infr
 import Error from '../../../../components/Error/Error';
 import { getErrors } from '../../../../core/redux/projects/experiments/selectors';
 import { checkCodeMessage } from '../../../../core/helpers/objectMethods';
+import GetMore from '../../../../components/GetMore/GetMore';
 
 type Props = {
   data: IExperimentData;
@@ -20,6 +21,10 @@ type Props = {
   handleCheck: any;
   handleOpenModal: any;
   fetching: boolean;
+  isExistScroll: boolean;
+  getMoreHandler: () => void;
+  amountExperiments: number;
+  projectData: any;
 };
 
 function ProjectExperiments({
@@ -28,32 +33,37 @@ function ProjectExperiments({
   data,
   handleOpenModal,
   fetching,
+  isExistScroll,
+  getMoreHandler,
+  amountExperiments,
+  projectData,
 }: Props) {
   const hasErrors = useSelector(getErrors);
 
   return (
     <div className={s.content}>
       {hasErrors && <Error />}
-      <table className={s.table}>
-        <thead className={s.thead}>
-          <tr>
-            <td>
-              <CheckBox onChange={handleCheckAll} id="1" checked={false} />
-            </td>
-            <td>#</td>
-            <td>Description</td>
-            <td>Target</td>
-            <td>Data</td>
-            <td>Main Metrics</td>
-            <td>Model configuration</td>
-            <td>Infrastructure</td>
-            <td>Commit Description</td>
-            <td style={{ textAlign: 'center' }}>Status</td>
-          </tr>
-        </thead>
-        <tbody className={s.tbody}>
-          {Object.keys(data).length !== 0
-            && Object.keys(data).map((key, index) => (
+      {amountExperiments !== 0 && (
+        <table className={s.table}>
+          <thead className={s.thead}>
+            <tr>
+              <td>
+                <CheckBox onChange={handleCheckAll} id="1" checked={false} />
+              </td>
+              <td>#</td>
+              <td>Name</td>
+              <td>Description</td>
+              <td>Target</td>
+              <td>Data</td>
+              <td>Main Metrics</td>
+              <td>Model configuration</td>
+              <td>Infrastructure</td>
+              <td>Commit Description</td>
+              <td style={{ textAlign: 'center' }}>Status</td>
+            </tr>
+          </thead>
+          <tbody className={s.tbody}>
+            {Object.keys(data).map((key, index) => (
               <tr className={s.table_row} key={key}>
                 <td>
                   <CheckBox
@@ -62,7 +72,8 @@ function ProjectExperiments({
                     onChange={() => handleCheck(key)}
                   />
                 </td>
-                <td className={s.table_text}>{index + 1}</td>
+                <td className={s.table_count}>{index + 1}</td>
+                <td className={s.table_text}>{data[key].name}</td>
                 <td>
                   <div
                     role="presentation"
@@ -98,7 +109,6 @@ function ProjectExperiments({
                     limiter={2}
                   />
                 </td>
-
                 <td>
                   <div className={s.obj_container}>
                     <ModelConfigurationInfo
@@ -136,9 +146,13 @@ function ProjectExperiments({
                 </td>
               </tr>
             ))}
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      )}
       {fetching && <Loader variant="down" />}
+      {!isExistScroll && amountExperiments < 10 && !fetching && projectData && (
+        <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
+      )}
     </div>
   );
 }
