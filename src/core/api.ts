@@ -27,21 +27,28 @@ const api = async (
   method: 'GET' | 'POST' | 'PUT' | 'DELETE',
   data: any,
   url: string,
+  additionalHeaders?: { [key: string]: string },
   signal?: any,
 ) => {
   try {
     const token = localStorage.getItem('accessToken');
-    const headers = {
+    const GETheaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
       'Access-Control-Allow-Origin': true,
+      ...additionalHeaders,
+    };
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Access-Control-Allow-Origin': true,
+      ...additionalHeaders,
     };
     const res = method === 'GET'
       ? await axios({
         signal,
         method,
         url: baseURL + url,
-        headers,
+        headers: GETheaders,
         withCredentials: true,
       })
       : await axios({

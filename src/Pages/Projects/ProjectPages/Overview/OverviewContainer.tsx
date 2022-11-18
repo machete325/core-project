@@ -25,6 +25,7 @@ import Alert from '../../../../components/Alert/Alert';
 import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
+import Error from '../../../../components/Error/Error';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -35,6 +36,9 @@ function ProjectOverviewContainer() {
     data: undefined,
     page: 'experiment',
   });
+
+  const controller = new AbortController();
+  const { signal } = controller;
 
   const data = useSelector(getOverviewData);
   const loading = useSelector(getLoading);
@@ -52,8 +56,11 @@ function ProjectOverviewContainer() {
 
   useEffect(() => {
     if (projectData && Object.keys(data).length === 0 && !loading) {
-      dispatch(fetchOverview(projectData.id));
+      dispatch(fetchOverview(projectData.id, signal));
     }
+    return () => {
+      controller.abort();
+    };
   }, [projectData]);
 
   const tagConfig: any = {
@@ -91,35 +98,30 @@ function ProjectOverviewContainer() {
 
   return (
     <div className={s.wrapper}>
-      {projectData ? (
-        <>
-          <Modal
-            open={open}
-            handleClose={handleClose}
-            data={choosedTab}
-            projectData={projectData}
-            config={experimentConfig}
-          />
-          <Navigation data={projectData} />
-          <div className={s.header}>
-            <ProjectTitle data={projectData} page="overview" />
-            <div className={s.header_buttons}>
-              <Button style={{ marginRight: '16px' }}>
-                <img alt="Plus" src="/images/icons/Plus.svg" />
-                New experiment
-              </Button>
-              <DropDown />
-            </div>
-          </div>
-        </>
-      ) : null}
+      <Modal
+        open={open}
+        handleClose={handleClose}
+        data={choosedTab}
+        projectData={projectData}
+        config={experimentConfig}
+      />
+      <Navigation data={projectData} />
+      <div className={s.header}>
+        <ProjectTitle data={projectData} page="overview" />
+        <div className={s.header_buttons}>
+          <Button style={{ marginRight: '16px' }}>
+            <img alt="Plus" src="/images/icons/Plus.svg" />
+            New experiment
+          </Button>
+          <DropDown />
+        </div>
+      </div>
       {loading ? (
         <Loader />
       ) : (
         <div className={s.content}>
-          {hasErrors ? (
-            <div>The request has errors</div>
-          ) : (
+          {hasErrors && <Error />}
+          {Object.keys(data).length !== 0 && (
             <>
               <div className={s.tags_container}>
                 {Object.keys(tagConfig).map((key: any) => (
@@ -148,6 +150,7 @@ function ProjectOverviewContainer() {
                       <div
                         role="presentation"
                         className={s.modal_call}
+                        style={{ marginRight: '10px' }}
                         onClick={() => handleOpenModal('description')}
                       >
                         {data.latestExperiment.description}

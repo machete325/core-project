@@ -44,7 +44,7 @@ function Navigation({ data }: Props) {
           <div className={s.image}>
             <img alt="CaretLeft" src="/images/icons/CaretLeft.svg" />
           </div>
-          <div className={s.text}> All projects</div>
+          <div className={s.text}>All projects</div>
         </div>
         <BreadcrumbsContainer data={data} />
       </div>

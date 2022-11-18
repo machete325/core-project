@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Skeleton } from '@mui/material';
+import { useSelector } from 'react-redux';
 import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
 import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
-import { IOverview, IProject } from './types';
+import { IProject } from './types';
 import s from './Projects.module.scss';
-import { ProjectService } from '../../core/services/projects/Project.service';
 import StatusTag from '../../components/StatusTag/StatusTag';
 import MetricsInfo from '../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
+import { fetchProjectOverview } from '../../core/redux/projects/actions';
+import { useAppDispatch } from '../../core/redux/store';
+import { getProjectOverview } from '../../core/redux/projects/selectors';
 
 type Props = {
   data: IProject;
   handleChooseProject: (id: string) => void;
   handleFavourite: (e: React.MouseEvent<HTMLImageElement>) => void;
-  signal: any;
+  signal: AbortSignal;
 };
 
 function Projects({
@@ -21,27 +24,19 @@ function Projects({
   handleFavourite,
   signal,
 }: Props) {
-  const [overview, setOverview] = useState<IOverview | undefined>(undefined);
+  const dispatch = useAppDispatch();
+  const overview = useSelector(getProjectOverview)[data.id];
   const [loading, setLoading] = useState(false);
 
-  const fetchOverview = async () => {
-    try {
-      setLoading(true);
-      const response = await ProjectService.getProjectOverview(
-        data.id,
-        true,
-        signal,
-      );
-      setOverview(response.data);
-      setLoading(false);
-    } catch (e) {
-      console.log(e);
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    setLoading(false);
+  }, [overview]);
 
   useEffect(() => {
-    fetchOverview();
+    if (!overview) {
+      setLoading(true);
+      dispatch(fetchProjectOverview(data.id, signal));
+    }
   }, []);
 
   const returnTotalExperiments = () => {
@@ -164,7 +159,7 @@ function Projects({
               {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
             <div className={s.project_date}>
-              {`Created ${getFormattedDateFromTimeStamp(data.created)}`}
+              {`Edited ${getFormattedDateFromTimeStamp(data.created)}`}
             </div>
           </div>
         </div>

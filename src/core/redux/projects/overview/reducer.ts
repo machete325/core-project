@@ -8,7 +8,7 @@ export type OverviewState = {
 //
 export const initialState: OverviewState = {
   loading: false,
-  hasErrors: true,
+  hasErrors: false,
   data: {},
 };
 // A slice

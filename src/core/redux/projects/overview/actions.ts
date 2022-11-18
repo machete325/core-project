@@ -7,10 +7,10 @@ const {
 } = overviewSlice.actions;
 const { getProjectOverview } = OverviewService;
 
-export const fetchOverview = (projectId: string): AppThunk => async (dispatch: AppDispatch) => {
+export const fetchOverview = (projectId: string, signal: AbortSignal): AppThunk => async (dispatch: AppDispatch) => {
   try {
     dispatch(startLoading());
-    const response = await getProjectOverview(projectId, false);
+    const response = await getProjectOverview(projectId, false, signal);
     dispatch(setOverview(response.data));
     dispatch(finishLoading());
     dispatch(setErrors(false));

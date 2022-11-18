@@ -1,19 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IRecently } from './types';
+import { IOverview, IRecently } from './types';
 
 export type InitialState = {
   loading: boolean;
+  overviewLoading: boolean;
   hasErrors: boolean;
   data: any;
   projectData: any;
+  overviewProjectData: { [key: string]: IOverview };
   recentlyOpenedData: IRecently[];
 };
 //
 export const initialState: InitialState = {
   loading: false,
+  overviewLoading: false,
   hasErrors: false,
   data: {},
   projectData: null,
+  overviewProjectData: {},
   recentlyOpenedData: [],
 };
 // A slice
@@ -29,6 +33,22 @@ export const projectSlice = createSlice({
     },
     finishLoading: (state) => {
       state.loading = false;
+    },
+    startOverviewLoading: (state) => {
+      state.overviewLoading = true;
+    },
+    finishOverviewLoading: (state) => {
+      state.overviewLoading = false;
+    },
+    setOverviewProjectData: (
+      state,
+      action: PayloadAction<{ id: string; data: any }>,
+    ) => {
+      const project: any = { [action.payload.id]: action.payload.data };
+      state.overviewProjectData = {
+        ...state.overviewProjectData,
+        ...project,
+      };
     },
     setRecentlyData: (state, action: PayloadAction<IRecently[]>) => {
       state.recentlyOpenedData = action.payload;

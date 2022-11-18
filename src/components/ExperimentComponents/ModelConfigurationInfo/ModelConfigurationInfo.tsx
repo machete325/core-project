@@ -18,22 +18,26 @@ function ModelConfigurationInfo({
   const items = useMemo(() => showDisplayData(data), [data]);
   return (
     <div className={s.wrapper}>
-      {items.map((item) => (
-        <div
-          role="presentation"
-          key={item.id}
-          onClick={
-            modalHandler
-              ? () => modalHandler('configuration', modalKey)
-              : undefined
-          }
-          style={{ marginBottom }}
-          className={`${s.container} ${modalHandler ? s.modal_call : null}`}
-        >
-          <div className={s.title}>{`${item.displayName}:`}</div>
-          <div>{item.value}</div>
-        </div>
-      ))}
+      {items.length !== 0 ? (
+        items.map((item) => (
+          <div
+            role="presentation"
+            key={item.id}
+            onClick={
+              modalHandler
+                ? () => modalHandler('configuration', modalKey)
+                : undefined
+            }
+            style={{ marginBottom }}
+            className={`${s.container} ${modalHandler ? s.modal_call : null}`}
+          >
+            <div className={s.title}>{`${item.displayName}:`}</div>
+            <div>{item.value}</div>
+          </div>
+        ))
+      ) : (
+        <div className={s.not_available}>Not available</div>
+      )}
     </div>
   );
 }

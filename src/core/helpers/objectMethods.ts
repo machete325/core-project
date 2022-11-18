@@ -15,3 +15,15 @@ export const convertToString = function (o: any, s: any) {
   }
   return o;
 };
+
+export const checkCodeMessage = (obj: any) => {
+  let commit = 'Not available';
+  if (obj) {
+    if (obj['code']) {
+      if (obj['code']['commitMessage']) {
+        commit = obj['code']['commitMessage'];
+      }
+    }
+  }
+  return commit;
+};

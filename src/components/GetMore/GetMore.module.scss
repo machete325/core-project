@@ -1,0 +1,30 @@
+@import '../../colors.scss';
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  width: 123px;
+  height: 40px;
+  background: $dark_600;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #ffffff;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    transition: 0.3s;
+    background: $dark_500;
+  }
+  &:active {
+    background: $dark_400;
+  }
+}
