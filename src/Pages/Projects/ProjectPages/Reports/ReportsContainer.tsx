@@ -14,7 +14,7 @@ function ProjectReportsContainer() {
         <>
           <Navigation data={projectData} />
           <div className={s.header}>
-            <ProjectTitle data={projectData} page="reports" />
+            <ProjectTitle type="project" data={projectData} page="reports" />
           </div>
         </>
       ) : null}
