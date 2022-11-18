@@ -11,6 +11,7 @@ function Infrastructure({ data, projectData }: Props) {
   console.log(data, projectData);
   return (
     <div>
+      1
       <MachineDetails />
     </div>
   );
