@@ -7,6 +7,7 @@ import {
   useNavigate,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Skeleton } from '@mui/material';
 import {
   oneProjectData,
   recentlyOpenedData,
@@ -23,6 +24,9 @@ import {
 } from '../../../core/redux/projects/actions';
 import s from './Project.module.scss';
 import StatusIndicator from '../../../components/StatusIndicator/StatusIndicator';
+import { getFormattedDateFromTimeStamp } from '../../../core/helpers/dateMethods';
+import { textSlicer } from '../../../core/helpers/textMethods';
+import { getTotalCountExperiments } from '../../../core/redux/projects/experiments/selectors';
 
 const navigateProjectConfig = [
   {
@@ -31,6 +35,7 @@ const navigateProjectConfig = [
     text: 'Overview',
     imgSrc: '/images/project/overview.svg',
     active: true,
+    totalCount: undefined,
   },
   {
     id: 2,
@@ -38,6 +43,7 @@ const navigateProjectConfig = [
     text: 'Monitoring',
     imgSrc: '/images/project/monitoring.svg',
     active: false,
+    totalCount: undefined,
   },
   {
     id: 3,
@@ -45,6 +51,7 @@ const navigateProjectConfig = [
     text: 'Experiments',
     imgSrc: '/images/project/experiments.svg',
     active: false,
+    totalCount: undefined,
   },
   {
     id: 4,
@@ -52,6 +59,7 @@ const navigateProjectConfig = [
     text: 'Datasets',
     imgSrc: '/images/project/datasets.svg',
     active: false,
+    totalCount: undefined,
   },
   {
     id: 5,
@@ -59,6 +67,7 @@ const navigateProjectConfig = [
     text: 'Infrastructure',
     imgSrc: '/images/project/infrastructure.svg',
     active: false,
+    totalCount: undefined,
   },
   {
     id: 6,
@@ -66,6 +75,7 @@ const navigateProjectConfig = [
     text: 'Code',
     imgSrc: '/images/project/code.svg',
     active: false,
+    totalCount: undefined,
   },
   {
     id: 7,
@@ -73,6 +83,7 @@ const navigateProjectConfig = [
     text: 'Reports',
     imgSrc: '/images/project/reports.svg',
     active: false,
+    totalCount: undefined,
   },
 ];
 
@@ -81,9 +92,21 @@ function ProjectContainer() {
   const navigate = useNavigate();
   const recentlyOpened = useSelector(recentlyOpenedData);
   const projectData = useSelector(oneProjectData);
+  const totalExperiments = useSelector(getTotalCountExperiments);
   const { pathname } = useLocation();
   const { projectId } = useParams();
   const [value, setValue] = useState('');
+  const [navigateConfig, setNavigateConfig] = useState(navigateProjectConfig);
+
+  useEffect(() => {
+    const config = JSON.parse(JSON.stringify(navigateProjectConfig));
+    config.forEach((navElement: any) => {
+      if (navElement.path === 'experiments') {
+        navElement.totalCount = totalExperiments;
+      }
+    });
+    setNavigateConfig(config);
+  }, [totalExperiments]);
 
   useEffect(() => {
     if (pathname === `/project/${projectId}`) {
@@ -117,8 +140,26 @@ function ProjectContainer() {
       <div className={s.menu}>
         <div className={s.title_container}>
           <div className={s.title}>
-            <div className={s.title_name}>Demand Forecasting</div>
-            <div className={s.title_date}>Created in 20.12.2022</div>
+            {projectData ? (
+              <>
+                <div className={s.title_name} title={projectData.name}>
+                  {textSlicer(projectData.name, 17)}
+                </div>
+                <div className={s.title_date}>
+                  {`Created in ${getFormattedDateFromTimeStamp(
+                    projectData.created,
+                  )}`}
+                </div>
+              </>
+            ) : (
+              <Skeleton
+                variant="rounded"
+                width="210px"
+                animation="wave"
+                height="53px"
+                style={{ marginRight: '10px', backgroundColor: '#4e4e52' }}
+              />
+            )}
           </div>
           <StatusIndicator isArchive={projectData && projectData.isArchive} />
         </div>
@@ -134,13 +175,14 @@ function ProjectContainer() {
           />
         </div>
         <nav className={s.navigation}>
-          {navigateProjectConfig.map((link) => (
+          {navigateConfig.map((link) => (
             <Link
               className={checkLinkPath(link.path) ? s.active : undefined}
               key={link.id}
               to={link.path}
             >
               <NavigateProjectItem
+                totalCount={link.totalCount}
                 text={link.text}
                 active={checkLinkPath(link.path)}
                 imgSrc={link.imgSrc}

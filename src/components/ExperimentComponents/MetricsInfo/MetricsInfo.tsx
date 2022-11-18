@@ -28,18 +28,23 @@ export default function MetricsInfo({
   if (Object.keys(data).length === 0) {
     return (
       <table className={s.wrapper}>
-        <td className={s.not_available}>Not available</td>
+        <tbody>
+          <tr>
+            <td className={s.not_available}>Not available</td>
+          </tr>
+        </tbody>
       </table>
     );
   }
 
   return (
     <table className={s.wrapper}>
-      {Object.values(data).map((metric: IMetric, index) => {
-        if (index <= limiter - 1) {
-          return (
-            <tbody key={metric.id}>
+      <tbody>
+        {Object.values(data).map((metric: IMetric, index) => {
+          if (index <= limiter - 1) {
+            return (
               <tr
+                key={metric.id}
                 className={`${modalHandler ? s.modal_call : null}`}
                 onClick={
                   modalHandler
@@ -55,11 +60,11 @@ export default function MetricsInfo({
                   />
                 </td>
               </tr>
-            </tbody>
-          );
-        }
-        return null;
-      })}
+            );
+          }
+          return null;
+        })}
+      </tbody>
     </table>
   );
 }

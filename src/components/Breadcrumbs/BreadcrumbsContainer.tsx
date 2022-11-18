@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Skeleton } from '@mui/material';
 import Breadcrumbs from './Breadcrumbs';
 
 interface IBreadcrumb {
@@ -57,13 +58,19 @@ function BreadcrumbsContainer({ data }: Props) {
     }
     navigate(`../${value}`);
   };
-  const breadcrumbs = getBreadcrumbs();
+
+  const breadcrumbs = useMemo(() => {
+    if (data) {
+      return getBreadcrumbs();
+    }
+    return null;
+  }, [data]);
 
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
-      {Object.keys(data).length !== 0
-        && breadcrumbs.map((breadcrumb) => (
+      {breadcrumbs ? (
+        breadcrumbs.map((breadcrumb) => (
           <Breadcrumbs
             key={breadcrumb.href}
             href={breadcrumb.href}
@@ -72,7 +79,15 @@ function BreadcrumbsContainer({ data }: Props) {
             separator={!breadcrumb.active ? '/images/icons/CaretRight.svg' : ''}
             onClick={handleNavigate}
           />
-        ))}
+        ))
+      ) : (
+        <Skeleton
+          variant="rounded"
+          width="400px"
+          animation="wave"
+          height="40px"
+        />
+      )}
     </>
   );
 }
