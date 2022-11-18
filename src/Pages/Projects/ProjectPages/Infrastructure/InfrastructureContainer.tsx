@@ -14,7 +14,11 @@ function ProjectInfrastructureContainer() {
         <>
           <Navigation data={projectData} />
           <div className={s.header}>
-            <ProjectTitle data={projectData} page="infrastructure" />
+            <ProjectTitle
+              type="project"
+              data={projectData}
+              page="infrastructure"
+            />
           </div>
         </>
       ) : null}

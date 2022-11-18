@@ -107,7 +107,7 @@ function ProjectOverviewContainer() {
       />
       <Navigation data={projectData} />
       <div className={s.header}>
-        <ProjectTitle data={projectData} page="overview" />
+        <ProjectTitle type="project" data={projectData} page="overview" />
         <div className={s.header_buttons}>
           <Button style={{ marginRight: '16px' }}>
             <img alt="Plus" src="/images/icons/Plus.svg" />

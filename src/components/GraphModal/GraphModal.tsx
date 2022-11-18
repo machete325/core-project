@@ -108,7 +108,7 @@ function GraphModal({
         </DialogTitle>
         <DialogContent>
           <div className={s.title}>
-            <ProjectTitle data={projectData} created />
+            <ProjectTitle type="project" data={projectData} created />
             {projectData && (
               <StatusIndicator isArchive={projectData.isArchive} />
             )}

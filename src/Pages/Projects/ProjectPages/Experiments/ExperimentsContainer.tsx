@@ -143,7 +143,7 @@ function ProjectExperimentsContainer() {
       />
       <Navigation data={projectData} />
       <div className={s.header}>
-        <ProjectTitle data={projectData} page="experiments" />
+        <ProjectTitle type="project" data={projectData} page="experiments" />
         <div className={s.buttons}>
           <Button disabled style={{ marginRight: '20px' }}>
             <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
