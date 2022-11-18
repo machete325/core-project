@@ -6,7 +6,7 @@ export type ExperimentsState = {
   hasErrors: boolean;
   fetching: boolean;
   currentPage: number;
-  totalCount: number;
+  totalCount: number | undefined;
   data: IExperimentData;
 };
 //
@@ -15,7 +15,7 @@ export const initialState: ExperimentsState = {
   hasErrors: false,
   fetching: false,
   currentPage: 0,
-  totalCount: 0,
+  totalCount: undefined,
   data: {},
 };
 // A slice
@@ -53,6 +53,9 @@ export const experimentSlice = createSlice({
     },
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
+    },
+    setErrors: (state, action: PayloadAction<boolean>) => {
+      state.hasErrors = action.payload;
     },
     clearData: () => initialState,
   },

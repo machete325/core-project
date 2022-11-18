@@ -59,3 +59,20 @@
   align-items: center;
   color: $red;
 }
+
+.image_input {
+  height: 40px;
+  color: white;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  &::file-selector-button {
+    height: 40px;
+    background-color: $dark_600;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    margin-right: 20px;
+  }
+}

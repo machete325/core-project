@@ -24,6 +24,7 @@ export const ExperimentService = {
     display?: boolean,
     page?: number,
     size?: number,
+    signal?: AbortSignal,
   ) => api(
     'GET',
     [],
@@ -32,6 +33,8 @@ export const ExperimentService = {
       page,
       size,
     )}`,
+    {},
+    signal,
   ),
   getProjectExperimentsMinimal: (projectVersion: string) => api('GET', [], `/projects/${projectVersion}/experiments/minimal`),
   getExperiment: (projectVersion: string, version: string) => api('GET', [], `${getBaseUrl(projectVersion, version)}`),

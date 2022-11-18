@@ -5,6 +5,7 @@
   height: 48px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-radius: 8px;
   box-sizing: border-box;
 }
@@ -24,6 +25,11 @@
   }
 }
 
+.navigate {
+  display: flex;
+  align-items: center;
+}
+
 .icon {
   margin-left: 12px;
   margin-right: 8px;
@@ -37,4 +43,24 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
+}
+
+.count {
+  margin-right: 8px;
+  padding: 3px 6px;
+  width: 19px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $blue_500;
+  border-radius: 3px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
 }

@@ -19,12 +19,14 @@ function ProjectsContainer() {
   const controller = new AbortController();
   const { signal } = controller;
 
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, []);
-
   const data: { [key: string]: IProject } = useSelector(projectsData);
   const loading = useSelector(getLoading);
+
+  useEffect(() => {
+    if (Object.keys(data).length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, []);
 
   const handleChange = (e: any) => {
     setValue(e.target.value);

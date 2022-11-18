@@ -11,6 +11,9 @@ const {
   setProjectData,
   clearProjectData,
   finishLoading,
+  setOverviewProjectData,
+  startOverviewLoading,
+  finishOverviewLoading,
 } = projectSlice.actions;
 const { getAllProjects, getOneProject } = ProjectService;
 
@@ -48,4 +51,20 @@ export const getProjectData = (id: string) => async (dispatch: AppDispatch) => {
 
 export const clearOneProjectData = () => (dispatch: AppDispatch) => {
   dispatch(clearProjectData());
+};
+
+export const fetchProjectOverview = (id: string, signal: AbortSignal) => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(startOverviewLoading());
+    const response = await ProjectService.getProjectOverview(
+      id,
+      true,
+      signal,
+    );
+    dispatch(setOverviewProjectData({ id, data: response.data }));
+  } catch (e) {
+    console.log(e);
+  } finally {
+    dispatch(finishOverviewLoading());
+  }
 };
