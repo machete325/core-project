@@ -37,6 +37,9 @@ function ProjectOverviewContainer() {
     page: 'experiment',
   });
 
+  const controller = new AbortController();
+  const { signal } = controller;
+
   const data = useSelector(getOverviewData);
   const loading = useSelector(getLoading);
   const hasErrors = useSelector(getErrors);
@@ -53,8 +56,11 @@ function ProjectOverviewContainer() {
 
   useEffect(() => {
     if (projectData && Object.keys(data).length === 0 && !loading) {
-      dispatch(fetchOverview(projectData.id));
+      dispatch(fetchOverview(projectData.id, signal));
     }
+    return () => {
+      controller.abort();
+    };
   }, [projectData]);
 
   const tagConfig: any = {
