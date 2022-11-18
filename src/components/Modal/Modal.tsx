@@ -85,7 +85,12 @@ function Modal({
         aria-describedby="alert-dialog-slide-description"
       >
         <DialogTitle>
-          <ProjectTitle data={projectData} size="small" />
+          <ProjectTitle
+            type="experiment"
+            data={projectData}
+            experimentData={data.data}
+            size="small"
+          />
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <ProjectStatus status={data.data?.status} />
             <OpenButton />
