@@ -17,7 +17,12 @@ const {
 const { getProjectExperiments } = ExperimentService;
 
 // eslint-disable-next-line max-len
-export const fetchExperiments = (projectId: string, currentPage: number, pageSize: number): AppThunk => async (dispatch: AppDispatch) => {
+export const fetchExperiments = (
+  projectId: string,
+  currentPage: number,
+  pageSize: number,
+  signal: AbortSignal,
+): AppThunk => async (dispatch: AppDispatch) => {
   try {
     if (currentPage === 0) {
       dispatch(startLoading());
@@ -27,6 +32,7 @@ export const fetchExperiments = (projectId: string, currentPage: number, pageSiz
       true,
       currentPage,
       pageSize,
+      signal,
     );
     if (Object.keys(response.data.items).length !== 0) {
       dispatch(setExperiments(response.data.items));
@@ -57,4 +63,8 @@ export const clearExperimentsData = () => (dispatch: AppDispatch) => {
 
 export const setExperimentsFetching = (fetching: boolean) => (dispatch: AppDispatch) => {
   dispatch(setFetching(fetching));
+};
+
+export const resetErrors = () => (dispatch: AppDispatch) => {
+  dispatch(setErrors(false));
 };
