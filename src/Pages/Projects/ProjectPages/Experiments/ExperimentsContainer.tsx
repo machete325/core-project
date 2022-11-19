@@ -35,7 +35,7 @@ function ProjectExperimentsContainer() {
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
-    page: 'experiment',
+    page: 'experiments',
   });
   const [isExistScroll, setIsExistScroll] = useState(false);
   const [open, setOpen] = useState(false);
@@ -128,7 +128,7 @@ function ProjectExperimentsContainer() {
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
 
-  const handleClose = () => {
+  const handleCloseModal = () => {
     setOpen(false);
   };
 
@@ -136,7 +136,7 @@ function ProjectExperimentsContainer() {
     <div className={s.wrapper}>
       <Modal
         open={open}
-        handleClose={handleClose}
+        handleClose={handleCloseModal}
         data={choosedTab}
         projectData={projectData}
         config={experimentConfig}
