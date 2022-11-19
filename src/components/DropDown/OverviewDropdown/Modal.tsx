@@ -11,9 +11,9 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useSelector } from 'react-redux';
 import { VariantType, useSnackbar } from 'notistack';
-import s from './DropDown.module.scss';
 import { ProjectService } from '../../../core/services/projects/Project.service';
 import { oneProjectData } from '../../../core/redux/projects/selectors';
+import s from './DropDown.module.scss';
 
 const theme = createTheme({
   components: {
