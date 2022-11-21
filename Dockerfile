@@ -3,7 +3,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 WORKDIR /app
 # install dependencies
-COPY package.json package-lock.json ./
+COPY package.json ./
 RUN npm install
 COPY . ./
 
