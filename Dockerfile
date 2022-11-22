@@ -1,4 +1,4 @@
-FROM node:14.19-alpine as build-stage
+FROM node:16.18.1-alpine3.16 as build-stage
 ENV PATH /app/node_modules/.bin:$PATH
 
 WORKDIR /app
