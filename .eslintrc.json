@@ -24,8 +24,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-props-no-spreading": "off",
     "no-plusplus": "off",
-    "rules": {
-      "react/no-unknown-property": [
+    "react/no-unknown-property": [
         2,
         {
           "ignore": [
@@ -33,6 +32,5 @@
           ]
         }
       ]
-    }
   }
 }
