@@ -1,3 +1,4 @@
+
 # [1.2.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.1.0...v1.2.0) (2022-11-09)
 
 
@@ -24,9 +25,11 @@
 # [1.1.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.0.0...v1.1.0) (2022-11-03)
 
 
+
 ### Bug Fixes
 
 * **experiment.service.tsx:** fixed page param to page_size param ([5b9fcbf](https://github.com/Coreai-org/corecontrol-web/commit/5b9fcbfa973ae12a1e503142b84f0de8500cbb2f))
+
 * **overviewstatustag:** fixed bar width ([537cdb9](https://github.com/Coreai-org/corecontrol-web/commit/537cdb9d261200080f5606a689f6484fc2d921b0))
 * **statustag:** fixed color display ([8fccff4](https://github.com/Coreai-org/corecontrol-web/commit/8fccff44a9018480d92677401a742d763de3cde7))
 * **updaterecentlyopened.ts:** fixed amount recently opened objects ([c2b0234](https://github.com/Coreai-org/corecontrol-web/commit/c2b02345e42794c71fdac7f80cfe07b9cb76e20f))
@@ -114,6 +117,7 @@
 * **projecttitle.tsx:** added condition for overview page ([7ac2d53](https://github.com/Coreai-org/corecontrol-web/commit/7ac2d53f035cf144574a30ac597d34d6fa96aa90))
 * **projecttitle:** added logic for display date ([c7cd453](https://github.com/Coreai-org/corecontrol-web/commit/c7cd453f6a28737b2bb3a1fafff0edd9957476b5))
 * **statusindicator:** added StatusIndicator component ([11c26e5](https://github.com/Coreai-org/corecontrol-web/commit/11c26e56bec862eec05678ca71d6f861c367e3a7))
+
 
 
 ### Reverts
