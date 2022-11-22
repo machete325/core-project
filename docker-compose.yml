@@ -6,3 +6,19 @@ services:
     ports:
       - "80:80"
     restart: always
+    env_file:
+      - .env.production
+  web-corecontrol-qa:
+    build: .
+    ports:
+      - "801:80"
+    restart: always
+    env_file:
+      - .env.qa
+  web-corecontrol-dev:
+    build: .
+    ports:
+      - "802:80"
+    restart: always
+    env_file:
+      - .env.development
