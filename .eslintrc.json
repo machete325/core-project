@@ -23,6 +23,7 @@
     "react/require-default-props": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/no-unknown-property": ["error", { "ignore": ["jsx"] }],
     "no-plusplus": "off"
   }
 }
