@@ -1,3 +1,39 @@
+# [1.3.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.2.0...v1.3.0) (2022-11-22)
+
+
+### Bug Fixes
+
+* **metricsinfo:** fixed table error ([340882a](https://github.com/Coreai-org/corecontrol-web/commit/340882ae26197540ece313e22709b24d4829ae60))
+* **statustag.tsx:** fixed UI bug ([4f56cce](https://github.com/Coreai-org/corecontrol-web/commit/4f56cce0bb24e7733592f6ef6876f65023008142))
+
+
+### Features
+
+* **.eslintrc.json:** max-len rule set is off ([100e8ad](https://github.com/Coreai-org/corecontrol-web/commit/100e8ad47eeb2488c73c09e590612157300f154c))
+* **api.ts:** added headers param ([7a2f209](https://github.com/Coreai-org/corecontrol-web/commit/7a2f209c1064972eaebd842263b4a2808d4b1f44))
+* **app.tsx:** added snackbar logic and UI ([ccf1e30](https://github.com/Coreai-org/corecontrol-web/commit/ccf1e303bb79282edf0200d107e3dd3b0459dc5f))
+* **experiments dropdown:** added fixed sizes for images ([0dcffaf](https://github.com/Coreai-org/corecontrol-web/commit/0dcffaf19c4af96e2b01e5a5daf39abc30e00e6f))
+* **experiments:** added GetMore, loader and controller logic ([4563ee2](https://github.com/Coreai-org/corecontrol-web/commit/4563ee2b6f801d866fd84232bb5acd095ec15131))
+* **experiments:** added logic for get total count of experiments ([f93d1dc](https://github.com/Coreai-org/corecontrol-web/commit/f93d1dcdf31c70b29d5e2aa7e9e8019a0e1bd1ba))
+* **experiments:** added signal for request ([3ce4897](https://github.com/Coreai-org/corecontrol-web/commit/3ce4897d4fa952b174ec3a14d526f7d154167e62))
+* **getmore:** added get more button component ([1865420](https://github.com/Coreai-org/corecontrol-web/commit/1865420d8239becf5824eeb9a0bd03f7fc7a6bd1))
+* **modal for thumbnail:** added modal for thumbnail ([8e64264](https://github.com/Coreai-org/corecontrol-web/commit/8e6426451e403aaf08037c7f1b678c47a799c3db))
+* **navigateprojectitem.tsx:** added UI and logic for total count of experiments ([44177eb](https://github.com/Coreai-org/corecontrol-web/commit/44177eb25a4e5a01e9e1fbabbff823e4096bb12e))
+* **overview dropdown:** added UI and logic for uploading project photo ([e2406e9](https://github.com/Coreai-org/corecontrol-web/commit/e2406e9d34ad1eef9e3613d65f2fe2d4ac29b7b8))
+* **overview:** added controller logic ([ee4c4a0](https://github.com/Coreai-org/corecontrol-web/commit/ee4c4a0aa2df5565517a5e7a53f9d014d7ce62ef))
+* **overview:** added fetchOverview ([00f6cab](https://github.com/Coreai-org/corecontrol-web/commit/00f6cab73d511cbbff2623d7fa521523f11cf5a3))
+* **overview:** fixed UI and Error ([f23f8c7](https://github.com/Coreai-org/corecontrol-web/commit/f23f8c7810f305396a49ecdf4c40be64d8b20867))
+* **project.service:** added uploadProjectPhoto and signal param ([7f5942d](https://github.com/Coreai-org/corecontrol-web/commit/7f5942d502a45c0fda96712dd8fbd8261b9d8592))
+* **project:** added errors logic and improve errors UI, fixed text data ([0bcfd0e](https://github.com/Coreai-org/corecontrol-web/commit/0bcfd0ef310f1abc69a39a479b65a19c009b16c5))
+* **project:** added logic for fetchProjectOverview ([5e4111b](https://github.com/Coreai-org/corecontrol-web/commit/5e4111b92fe5d3e7c8e2aa835ee216e68a90270b))
+* **project:** added logic for total count of experiments ([ef9ed5e](https://github.com/Coreai-org/corecontrol-web/commit/ef9ed5efe8e30d9d1112b5b385994b7e5cf72ef9))
+* **projectcontainer:** added textSlicer function ([3022e77](https://github.com/Coreai-org/corecontrol-web/commit/3022e77c6b7bab245243f5b959486c659f73a574))
+* **project:** improve business logic ([108d2fd](https://github.com/Coreai-org/corecontrol-web/commit/108d2fdd8f833a1cbffc036f8cf90e01ec982b62))
+* **projectstatus.module.scss:** added min width ([e497fa0](https://github.com/Coreai-org/corecontrol-web/commit/e497fa05baefa97728a00a6f4a5850d8e086d9b7))
+* **projecttitle.tsx:** added loader logic ([20ce825](https://github.com/Coreai-org/corecontrol-web/commit/20ce825544c265441fdb1186f34097074525497b))
+* **projecttitle:** changed ProjectTitle settings ([33ba5be](https://github.com/Coreai-org/corecontrol-web/commit/33ba5be166e1de798aa4b61d152dab009745694d))
+* **services:** added signal params ([6b91a4e](https://github.com/Coreai-org/corecontrol-web/commit/6b91a4eb4ca30957071a09326403aeae762f490e))
+* **test:** test ([9453d13](https://github.com/Coreai-org/corecontrol-web/commit/9453d13a8c05113d67fb73590e38cb333a64c92f))
 
 # [1.2.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.1.0...v1.2.0) (2022-11-09)
 
