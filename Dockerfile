@@ -1,10 +1,11 @@
-FROM node:14.19-alpine as build-stage
+FROM node:16.18.1-alpine3.16 as build-stage
 ENV PATH /app/node_modules/.bin:$PATH
 
 WORKDIR /app
 # install dependencies
-COPY package.json package-lock.json ./
-RUN npm install
+COPY package.json ./
+RUN npm install 
+RUN npm ci
 COPY . ./
 
 # build project
