@@ -69,6 +69,17 @@ export const ExperimentService = {
       display ? '?display=true' : '?display=false'
     }`,
   ),
+  getExperimentInfrastructure: (
+    projectVersion: string,
+    version: string,
+    display: boolean,
+  ) => api(
+    'GET',
+    [],
+    `${getBaseUrl(projectVersion, version)}/infrastructure${
+      display ? '?display=true' : '?display=false'
+    }`,
+  ),
   getExperimentCode: (
     projectVersion: string,
     version: string,
