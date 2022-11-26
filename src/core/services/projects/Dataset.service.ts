@@ -19,6 +19,7 @@ export const DatasetService = {
     {},
     signal,
   ),
+  getDataset: (dataVersion: string, display?: boolean) => api('GET', [], `/data/${dataVersion}${getAdditionalParams(display)}`, {}),
 };
 
 // Project Datasets

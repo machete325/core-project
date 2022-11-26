@@ -42,7 +42,6 @@ export const fetchExperiments = (
     dispatch(setErrors(false));
   } catch (e) {
     dispatch(setErrors(true));
-    console.log(e);
   } finally {
     dispatch(finishLoading());
     dispatch(setFetching(false));
