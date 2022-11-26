@@ -27,6 +27,7 @@ import StatusIndicator from '../../../components/StatusIndicator/StatusIndicator
 import { getFormattedDateFromTimeStamp } from '../../../core/helpers/dateMethods';
 import { textSlicer } from '../../../core/helpers/textMethods';
 import { getTotalCountExperiments } from '../../../core/redux/projects/experiments/selectors';
+import { getTotalCountDatasets } from '../../../core/redux/projects/datasets/selectors';
 
 const navigateProjectConfig = [
   {
@@ -93,6 +94,7 @@ function ProjectContainer() {
   const recentlyOpened = useSelector(recentlyOpenedData);
   const projectData = useSelector(oneProjectData);
   const totalExperiments = useSelector(getTotalCountExperiments);
+  const totalDatasets = useSelector(getTotalCountDatasets);
   const { pathname } = useLocation();
   const { projectId } = useParams();
   const [value, setValue] = useState('');
@@ -104,9 +106,12 @@ function ProjectContainer() {
       if (navElement.path === 'experiments') {
         navElement.totalCount = totalExperiments;
       }
+      if (navElement.path === 'datasets') {
+        navElement.totalCount = totalDatasets;
+      }
     });
     setNavigateConfig(config);
-  }, [totalExperiments]);
+  }, [totalExperiments, totalDatasets]);
 
   useEffect(() => {
     if (pathname === `/project/${projectId}`) {
