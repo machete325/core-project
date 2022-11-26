@@ -119,7 +119,7 @@ function ProjectExperimentsContainer() {
     const experiment = data[id];
     updateRecentlyOpened(
       experiment.id,
-      'experiment',
+      'experiments',
       experiment.name,
       projectData.id,
     );
