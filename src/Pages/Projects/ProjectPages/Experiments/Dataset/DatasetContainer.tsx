@@ -49,7 +49,7 @@ function DatasetContainer({ data, projectData }: Props) {
       ) : (
         expandData
         && Object.keys(expandData).map((key) => (
-          <Dataset expandData={expandData[key]} />
+          <Dataset key={key} expandData={expandData[key]} />
         ))
       )}
     </div>
