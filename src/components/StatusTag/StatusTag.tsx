@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { defineCurrency } from '../../core/helpers/textMethods';
 import s from './StatusTag.module.scss';
 
 type Props = {
@@ -24,16 +25,6 @@ function StatusTag({
     backgroundColor: '#4E4E52',
     textColor: '',
   });
-
-  const defineCurrency = (currencyType: string) => {
-    switch (currencyType) {
-      case 'USD': {
-        return '$';
-      }
-      default:
-        return '';
-    }
-  };
 
   const checkStatus = () => {
     if (usedValue && totalValue) {
