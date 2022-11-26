@@ -84,6 +84,7 @@ function ProjectTabs({
   config, defaultTab, data, projectData, page,
 }: Props) {
   const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState(defaultTab);
 
   useEffect(() => {
     const idx = Object.keys(config).findIndex((item) => item === defaultTab);
@@ -92,9 +93,25 @@ function ProjectTabs({
     }
   }, [defaultTab]);
 
+  useEffect(() => {
+    const idx = Object.keys(config).findIndex((item) => item === currentTab);
+    if (idx >= 0) {
+      setValue(idx);
+    }
+  }, [currentTab]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    const tab = Object.keys(config)[newValue];
+    setCurrentTab(tab);
   };
+
+  useEffect(() => {
+    const idx = Object.keys(config).findIndex((item) => item === defaultTab);
+    if (idx >= 0 && value !== idx) {
+      setValue(idx);
+    }
+  }, []);
 
   return (
     <Box sx={{ width: '100%' }}>
