@@ -6,51 +6,75 @@ import ExperimentMainMetrics from '../../Pages/Projects/ProjectPages/Experiments
 import ExperimentModelConfiguration from '../../Pages/Projects/ProjectPages/Experiments/ModelConfiguration/ModelConfiguration';
 import ExperimentInfrastructure from '../../Pages/Projects/ProjectPages/Experiments/Infrastructure/Infrastructure';
 import ExperimentCommitDescription from '../../Pages/Projects/ProjectPages/Experiments/CommitDescription/CommitDescription';
-import DatasetDescription from '../../Pages/Projects/ProjectPages/Datasets/Overview/Overview';
+import DatasetOverview from '../../Pages/Projects/ProjectPages/Datasets/Overview/Overview';
+import DatasetPrice from '../../Pages/Projects/ProjectPages/Datasets/Price/Price';
 import { IProjectData } from '../../components/Modal/types';
+import DatasetDailySales from '../../Pages/Projects/ProjectPages/Datasets/DailySales/DailySales';
+import DatasetItemDistribution from '../../Pages/Projects/ProjectPages/Datasets/ItemDistribution/ItemDistribution';
+import DatasetCategoryDistribution from '../../Pages/Projects/ProjectPages/Datasets/CategoryDistribution/CategoryDistribution';
+import DatasetShopDistribution from '../../Pages/Projects/ProjectPages/Datasets/ShopDistribution/ShopDistribution';
+import DatasetJupyterView from '../../Pages/Projects/ProjectPages/Datasets/JupyterView/JupyterView';
+
+// Keys to switch, obtained from the configuration file according to the specific page
 
 const returnExperimentTabs = (
   type: string,
   data: any,
   projectData: IProjectData,
 ) => {
-  switch (type) {
-    case 'description':
-      return <ExperimentDescription data={data} />;
-    case 'target':
-      return <ExperimentTarget data={data} projectData={projectData} />;
-    case 'data':
-      return (
-        <ExperimentDatasetContainer data={data} projectData={projectData} />
-      );
-    case 'metrics':
-      return <ExperimentMainMetrics data={data} projectData={projectData} />;
-    case 'configuration':
-      return (
-        <ExperimentModelConfiguration data={data} projectData={projectData} />
-      );
-    case 'infrastructure':
-      return <ExperimentInfrastructure data={data} projectData={projectData} />;
-    case 'last_commit':
-      return (
-        <ExperimentCommitDescription data={data} projectData={projectData} />
-      );
-    default:
-      return null;
+  if (data) {
+    switch (type) {
+      case 'description':
+        return <ExperimentDescription data={data} />;
+      case 'target':
+        return <ExperimentTarget data={data} projectData={projectData} />;
+      case 'data':
+        return (
+          <ExperimentDatasetContainer data={data} projectData={projectData} />
+        );
+      case 'metrics':
+        return <ExperimentMainMetrics data={data} projectData={projectData} />;
+      case 'configuration':
+        return (
+          <ExperimentModelConfiguration data={data} projectData={projectData} />
+        );
+      case 'infrastructure':
+        return (
+          <ExperimentInfrastructure data={data} projectData={projectData} />
+        );
+      case 'last_commit':
+        return (
+          <ExperimentCommitDescription data={data} projectData={projectData} />
+        );
+      default:
+        return null;
+    }
   }
+  return null;
 };
 
-const returnDatasetTabs = (
-  type: string,
-  data: any,
-  projectData: IProjectData,
-) => {
-  switch (type) {
-    case 'description':
-      return <DatasetDescription data={data} projectData={projectData} />;
-    default:
-      return null;
+const returnDatasetTabs = (type: string, data: any) => {
+  if (data) {
+    switch (type) {
+      case 'description':
+        return <DatasetOverview data={data} />;
+      case 'price':
+        return <DatasetPrice data={data} />;
+      case 'dailySales':
+        return <DatasetDailySales data={data} />;
+      case 'itemDistribution':
+        return <DatasetItemDistribution data={data} />;
+      case 'categoryDistribution':
+        return <DatasetCategoryDistribution data={data} />;
+      case 'shopDistribution':
+        return <DatasetShopDistribution data={data} />;
+      case 'jupyterView':
+        return <DatasetJupyterView data={data} />;
+      default:
+        return null;
+    }
   }
+  return null;
 };
 
 export const getTabContent = (
@@ -58,11 +82,11 @@ export const getTabContent = (
   data: any,
   projectData: IProjectData,
 ) => {
-  if (tab.page === 'experiments') {
+  if (tab.page === 'experiments' || tab.page === 'overview') {
     return returnExperimentTabs(tab.type, data, projectData);
   }
   if (tab.page === 'datasets') {
-    return returnDatasetTabs(tab.type, data, projectData);
+    return returnDatasetTabs(tab.type, data);
   }
   return '';
 };
