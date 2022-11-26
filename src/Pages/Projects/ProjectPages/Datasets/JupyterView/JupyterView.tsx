@@ -1,6 +1,12 @@
 import React from 'react';
+import { IDataset } from '../../../../../core/redux/projects/datasets/types';
 
-function JupyterView() {
+interface Props {
+  data: IDataset;
+}
+
+function JupyterView({ data }: Props) {
+  console.log(data);
   return <div>JupyterView</div>;
 }
 

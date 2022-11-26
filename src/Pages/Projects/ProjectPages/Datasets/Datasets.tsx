@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
-import DropDown from '../../../../components/DropDown/ExperimentsDropDown/DropDown';
+import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown';
 import Error from '../../../../components/Error/Error';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
@@ -67,7 +67,7 @@ function Datasets({
                 <td className={s.table_count}>{index + 1}</td>
                 <td className={s.table_text}>{data[key].name}</td>
                 <td>
-                  <ProjectVersion version={data[key].version} />
+                  <ProjectVersion version={data[key].tag} />
                 </td>
                 <td>
                   <div

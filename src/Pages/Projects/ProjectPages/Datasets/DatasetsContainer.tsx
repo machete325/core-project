@@ -117,7 +117,12 @@ function ProjectDatasetsContainer() {
 
   const handleOpenModal = (activeTab: string, id: string) => {
     const dataset = data[id];
-    updateRecentlyOpened(dataset.id, 'datasets', dataset.name, projectData.id);
+    updateRecentlyOpened(
+      dataset.id,
+      'datasets',
+      `${dataset.name} ${dataset.tag}`,
+      projectData.id,
+    );
     dispatch(getRecentlyData(projectData.id));
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: dataset });
@@ -146,7 +151,7 @@ function ProjectDatasetsContainer() {
           </Button>
           <Button>
             <img alt="Plus" src="/images/icons/Plus.svg" />
-            Datasets
+            New Dataset
           </Button>
         </div>
       </div>

@@ -1,6 +1,12 @@
 import React from 'react';
+import { IDataset } from '../../../../../core/redux/projects/datasets/types';
 
-function CategoryDistribution() {
+interface Props {
+  data: IDataset;
+}
+
+function CategoryDistribution({ data }: Props) {
+  console.log(data);
   return <div>CategoryDistribution</div>;
 }
 
