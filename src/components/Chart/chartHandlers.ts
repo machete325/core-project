@@ -9,11 +9,14 @@ export const chartHandlers = {
     Object.keys(data.value).forEach((item) => {
       const series = {
         name: data.value[item].name,
-        type: 'line',
+        type: 'scatter',
         showSymbol: false,
         data: [...genDataset(data.value[item].x, data.value[item].y)],
         areaStyle: { opacity: isFill ? 0.2 : 0 },
       };
+      if (series.data.length > 1) {
+        series.type = 'line';
+      }
       chartData.legend.push(data.value[item].name);
       chartData.series.push(series);
     });
