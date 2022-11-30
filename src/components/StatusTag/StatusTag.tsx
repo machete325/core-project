@@ -7,7 +7,7 @@ type Props = {
   totalValue: number | undefined | null;
   height?: string;
   width?: string;
-  type?: string;
+  type?: '2' | 'metrics';
   displayName?: string;
   currency?: string;
 };
@@ -70,6 +70,23 @@ function StatusTag({
           {`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}
         </div>
       </div>
+    );
+  }
+  if (type === 'metrics') {
+    return (
+      <span
+        className={s.status_tag}
+        style={{
+          backgroundColor: colors.backgroundColor,
+          color: colors.textColor,
+          height,
+          width,
+        }}
+      >
+        {`${currency ? defineCurrency(currency) : ''}${
+          Number.isInteger(usedValue) ? usedValue : usedValue?.toFixed(2) || '-'
+        }`}
+      </span>
     );
   }
   return (

@@ -3,6 +3,7 @@ import CheckBox from '../CheckBox/CheckBox';
 import ExperimentsDropDown from '../DropDown/ExperimentsDropDown/DropDown';
 import DatasetsDropDown from '../DropDown/DatasetsDropDown/DropDown';
 import s from './RecentlyOpened.module.scss';
+import { textSlicer } from '../../core/helpers/textMethods';
 
 interface IRecently {
   id: number;
@@ -52,7 +53,9 @@ const generateRecentlyItems = (
             checked={item.check}
             onChange={() => handleCheckRecentyOpened(item.id)}
           />
-          <span className={s.name}>{item.name}</span>
+          <span title={item.name} className={s.name}>
+            {textSlicer(item.name, 25)}
+          </span>
         </div>
         <div>{defineDropDownType(category)}</div>
       </div>
