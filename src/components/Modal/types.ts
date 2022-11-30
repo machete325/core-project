@@ -1,8 +1,9 @@
+import { IDataset } from '../../core/redux/projects/datasets/types';
 import { IExperiment } from '../../core/redux/projects/experiments/types';
 
 export type ChoosedTab = {
   type: string | undefined;
-  data: IExperiment | undefined;
+  data: IExperiment | IDataset | undefined;
   page: string;
 };
 
@@ -15,10 +16,8 @@ export interface IProjectData {
 }
 
 interface IConfig {
-  formattingFunction: any;
   name: string;
   path: string;
-  mainInfoFields: string[];
 }
 
 export type Props = {

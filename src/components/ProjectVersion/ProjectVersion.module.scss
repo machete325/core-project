@@ -1,0 +1,18 @@
+@import '../../colors.scss';
+
+.button {
+  padding: 0 7px;
+  min-width: 91px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: $white;
+  cursor: context-menu !important;
+}

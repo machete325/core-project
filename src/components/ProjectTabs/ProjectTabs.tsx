@@ -7,19 +7,19 @@ import s from './ProjectTabs.module.scss';
 import { getTabContent } from '../../core/helpers/getTabContent';
 import { IExperiment } from '../../core/redux/projects/experiments/types';
 import { IProjectData } from '../Modal/types';
+import { IDataset } from '../../core/redux/projects/datasets/types';
 
 interface IConfig {
-  formattingFunction: any;
   name: string;
   path: string;
-  mainInfoFields: string[];
 }
 
 interface Props {
   config: { [key: string]: IConfig };
   defaultTab: string | undefined;
-  data: IExperiment | undefined;
+  data: IExperiment | IDataset | undefined;
   projectData: IProjectData;
+  page: string;
 }
 
 interface TabPanelProps {
@@ -81,9 +81,10 @@ function TabPanel(props: TabPanelProps) {
 }
 
 function ProjectTabs({
-  config, defaultTab, data, projectData,
+  config, defaultTab, data, projectData, page,
 }: Props) {
   const [value, setValue] = useState(0);
+  const [currentTab, setCurrentTab] = useState(defaultTab);
 
   useEffect(() => {
     const idx = Object.keys(config).findIndex((item) => item === defaultTab);
@@ -92,9 +93,25 @@ function ProjectTabs({
     }
   }, [defaultTab]);
 
+  useEffect(() => {
+    const idx = Object.keys(config).findIndex((item) => item === currentTab);
+    if (idx >= 0) {
+      setValue(idx);
+    }
+  }, [currentTab]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    const tab = Object.keys(config)[newValue];
+    setCurrentTab(tab);
   };
+
+  useEffect(() => {
+    const idx = Object.keys(config).findIndex((item) => item === defaultTab);
+    if (idx >= 0 && value !== idx) {
+      setValue(idx);
+    }
+  }, []);
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -112,7 +129,7 @@ function ProjectTabs({
       {Object.keys(config).map((tab, index) => (
         <TabPanel key={tab} value={value} index={index}>
           {getTabContent(
-            { type: tab, path: config[tab].path },
+            { type: tab, path: config[tab].path, page },
             data,
             projectData,
           )}

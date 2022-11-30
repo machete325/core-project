@@ -12,11 +12,11 @@ export const fetchOverview = (projectId: string, signal: AbortSignal): AppThunk 
     dispatch(startLoading());
     const response = await getProjectOverview(projectId, false, signal);
     dispatch(setOverview(response.data));
-    dispatch(finishLoading());
     dispatch(setErrors(false));
   } catch (e) {
     console.log(e);
     dispatch(setErrors(true));
+  } finally {
     dispatch(finishLoading());
   }
 };

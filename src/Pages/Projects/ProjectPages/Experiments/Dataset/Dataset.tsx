@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import GeneralInfo from '../../../../../components/GeneralInfo/GeneralInfo';
-import StatisticProperties from '../../../../../components/StatisticProperties/StatisticProperties';
+import GeneralInfo from '../../../../../components/DatasetComponents/GeneralInfo/GeneralInfo';
+import StatisticProperties from '../../../../../components/DatasetComponents/StatisticProperties/StatisticProperties';
 import { IExpandDataset, ITagsData } from './types';
 import s from './Dataset.module.scss';
+import Outliers from '../../../../../components/DatasetComponents/Outliers/Outliers';
 
 export interface Props {
   expandData: IExpandDataset;
@@ -36,24 +37,6 @@ function Dataset({ expandData }: Props) {
     getTagsData();
   }, [expandData]);
 
-  // Return Outliers markup
-  const getOutliers = () => {
-    if (expandData) {
-      const markup = Object.entries(expandData.statistics.outliers).map(
-        (item) => (
-          <div key={item[0]} className={s.outliers_container}>
-            <div className={s.outliers_title}>{`'${item[0]}':`}</div>
-            <div className={s.outliers_value}>
-              {`${JSON.stringify(item[1])}`}
-            </div>
-          </div>
-        ),
-      );
-      return markup;
-    }
-    return null;
-  };
-
   return (
     <>
       <div className={s.title}>General information</div>
@@ -66,20 +49,12 @@ function Dataset({ expandData }: Props) {
       )}
       <div className={s.statistic}>
         {expandData && (
-          <>
-            <div className={s.title}>Statistic Properties</div>
-            {expandData.statistics.statisticProperties && (
-              <StatisticProperties
-                data={expandData.statistics.statisticProperties}
-              />
-            )}
-          </>
+          <StatisticProperties
+            data={expandData.statistics.statisticProperties}
+          />
         )}
       </div>
-      <div className={s.outliers}>
-        <div className={s.title}>Outliers</div>
-        <div>{getOutliers()}</div>
-      </div>
+      {expandData && <Outliers data={expandData.statistics.outliers} />}
     </>
   );
 }

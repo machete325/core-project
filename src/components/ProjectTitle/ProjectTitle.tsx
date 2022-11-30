@@ -14,14 +14,14 @@ type Props = {
   size?: 'small' | 'large';
   created?: boolean;
   type: 'project' | 'experiment';
-  experimentData?: any;
+  pageData?: any;
 };
 
 function ProjectTitle({
   data,
   page,
   type,
-  experimentData,
+  pageData,
   size = 'large',
   created = false,
 }: Props) {
@@ -57,19 +57,17 @@ function ProjectTitle({
   if (type === 'experiment') {
     return (
       <div className={s.title}>
-        {experimentData ? (
+        {pageData ? (
           <>
             <div
               className={`${s.name} ${
                 size === 'small' ? s.name_sm : s.name_lg
               }`}
             >
-              {`${experimentData.name} ${(page !== 'overview' && page) || ''}`}
+              {`${pageData.name} ${(page !== 'overview' && page) || ''}`}
             </div>
             <div className={s.description}>
-              {`Started in ${getFormattedDateFromTimeStamp(
-                experimentData.created,
-              )}`}
+              {`Started in ${getFormattedDateFromTimeStamp(pageData.created)}`}
             </div>
           </>
         ) : (
