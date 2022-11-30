@@ -10,6 +10,7 @@ import ProjectStatus from '../ProjectStatus/ProjectStatus';
 import OpenButton from '../OpenButton/OpenButton';
 import ProjectTabs from '../ProjectTabs/ProjectTabs';
 import { Props } from './types';
+import ProjectVersion from '../ProjectVersion/ProjectVersion';
 
 const Transition = React.forwardRef(
   (
@@ -80,7 +81,6 @@ function Modal({
       <Dialog
         open={open}
         TransitionComponent={Transition}
-        keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
       >
@@ -88,11 +88,18 @@ function Modal({
           <ProjectTitle
             type="experiment"
             data={projectData}
-            experimentData={data.data}
+            pageData={data.data}
             size="small"
           />
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <ProjectStatus status={data.data?.status} />
+            {data.data
+              && 'status' in data.data
+              && data.page === 'experiments' && (
+                <ProjectStatus status={data.data?.status} />
+            )}
+            {data.page === 'datasets' && (
+              <ProjectVersion version={data.data?.version} />
+            )}
             <OpenButton />
           </div>
         </DialogTitle>
@@ -102,6 +109,7 @@ function Modal({
             defaultTab={data.type}
             data={data.data}
             projectData={projectData}
+            page={data.page}
           />
         </DialogContent>
       </Dialog>

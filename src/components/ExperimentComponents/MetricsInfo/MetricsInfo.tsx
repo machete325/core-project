@@ -55,6 +55,7 @@ export default function MetricsInfo({
                 <td className={s.metric_title}>{metric.displayName}</td>
                 <td>
                   <StatusTag
+                    type="metrics"
                     usedValue={metric.value}
                     totalValue={metric.threshold}
                   />

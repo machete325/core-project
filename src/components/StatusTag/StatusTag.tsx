@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { defineCurrency } from '../../core/helpers/textMethods';
 import s from './StatusTag.module.scss';
 
 type Props = {
@@ -6,7 +7,7 @@ type Props = {
   totalValue: number | undefined | null;
   height?: string;
   width?: string;
-  type?: string;
+  type?: '2' | 'metrics';
   displayName?: string;
   currency?: string;
 };
@@ -24,16 +25,6 @@ function StatusTag({
     backgroundColor: '#4E4E52',
     textColor: '',
   });
-
-  const defineCurrency = (currencyType: string) => {
-    switch (currencyType) {
-      case 'USD': {
-        return '$';
-      }
-      default:
-        return '';
-    }
-  };
 
   const checkStatus = () => {
     if (usedValue && totalValue) {
@@ -79,6 +70,23 @@ function StatusTag({
           {`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}
         </div>
       </div>
+    );
+  }
+  if (type === 'metrics') {
+    return (
+      <span
+        className={s.status_tag}
+        style={{
+          backgroundColor: colors.backgroundColor,
+          color: colors.textColor,
+          height,
+          width,
+        }}
+      >
+        {`${currency ? defineCurrency(currency) : ''}${
+          Number.isInteger(usedValue) ? usedValue : usedValue?.toFixed(2) || '-'
+        }`}
+      </span>
     );
   }
   return (

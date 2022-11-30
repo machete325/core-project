@@ -24,8 +24,15 @@
   margin-bottom: 21px;
 }
 
+.item_container {
+  height: 32px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .checkbox_container {
-  margin-bottom: 22px;
   display: flex;
   align-items: center;
 }
