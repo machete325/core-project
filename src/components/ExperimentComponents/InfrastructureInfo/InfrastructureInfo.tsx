@@ -27,7 +27,7 @@ function InfrastructureInfo({
       value: (
         <>
           <span className={s.title}>Trained in:</span>
-          {` ${getFormattedDateFromSeconds(data.trainingTime)}`}
+          {` ${getFormattedDateFromSeconds(data.trainingTime as number)}`}
         </>
       ),
     },
