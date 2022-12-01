@@ -6,6 +6,7 @@
 
 .menu {
   padding: 24px 24px 0px;
+  min-width: 300px;
   width: 342px;
   display: flex;
   flex-direction: column;
@@ -17,6 +18,12 @@
   font-size: 12px;
   line-height: 16px;
   background-color: $dark_900;
+  overflow: auto;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .title_container {

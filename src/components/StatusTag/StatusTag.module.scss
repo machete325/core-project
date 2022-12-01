@@ -1,4 +1,5 @@
 .status_tag {
+  white-space: nowrap;
   padding: 4px;
   display: flex;
   align-items: center;
@@ -15,6 +16,7 @@
 }
 
 .status_tag_2 {
+  white-space: nowrap;
   display: flex;
   flex-direction: column;
   justify-content: center;

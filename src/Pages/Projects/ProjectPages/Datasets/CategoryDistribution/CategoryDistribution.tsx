@@ -1,4 +1,5 @@
 import React from 'react';
+import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
 import { IDataset } from '../../../../../core/redux/projects/datasets/types';
 
 interface Props {
@@ -7,7 +8,11 @@ interface Props {
 
 function CategoryDistribution({ data }: Props) {
   console.log(data);
-  return <div>CategoryDistribution</div>;
+  return (
+    <div>
+      <ToBeImpelemented element="Category Distribution" color="primary" />
+    </div>
+  );
 }
 
 export default CategoryDistribution;

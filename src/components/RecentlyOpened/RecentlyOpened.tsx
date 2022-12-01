@@ -20,9 +20,9 @@ type Props = {
 const defineDropDownType = (category: string) => {
   switch (category) {
     case 'experiments':
-      return <ExperimentsDropDown position="top-right" />;
+      return <ExperimentsDropDown position="top-left" />;
     case 'datasets':
-      return <DatasetsDropDown position="top-right" />;
+      return <DatasetsDropDown position="top-left" />;
     default:
       return null;
   }
