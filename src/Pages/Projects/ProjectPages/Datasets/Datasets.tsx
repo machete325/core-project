@@ -6,9 +6,10 @@ import Error from '../../../../components/Error/Error';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import s from './Datasets.module.scss';
-import { getErrors } from '../../../../core/redux/projects/experiments/selectors';
+import { getErrors } from '../../../../core/redux/projects/datasets/selectors';
 import { IDatasets } from '../../../../core/redux/projects/datasets/types';
 import ProjectVersion from '../../../../components/ProjectVersion/ProjectVersion';
+import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
 
 type Props = {
   data: IDatasets;
@@ -74,12 +75,21 @@ function Datasets({
                     role="presentation"
                     onClick={() => handleOpenModal('description', key)}
                   >
-                    Description
+                    <ToBeImpelemented element="Description" color="primary" />
                   </div>
                 </td>
-                <td>Stats</td>
-                <td>Newest sample</td>
-                <td>Latest marked sample</td>
+                <td>
+                  <ToBeImpelemented element="Stats" color="primary" />
+                </td>
+                <td>
+                  <ToBeImpelemented element="Newest sample" color="primary" />
+                </td>
+                <td>
+                  <ToBeImpelemented
+                    element="Latest marked sample"
+                    color="primary"
+                  />
+                </td>
                 <td>
                   <DropDown />
                 </td>

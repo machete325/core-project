@@ -3,6 +3,7 @@ import GeneralInfo from '../../../../../components/DatasetComponents/GeneralInfo
 import Outliers from '../../../../../components/DatasetComponents/Outliers/Outliers';
 import StatisticProperties from '../../../../../components/DatasetComponents/StatisticProperties/StatisticProperties';
 import Loader from '../../../../../components/Loader/Loader';
+import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
 import { IDataset } from '../../../../../core/redux/projects/datasets/types';
 import { DatasetService } from '../../../../../core/services/projects/Dataset.service';
 import { IExpandDataset, ITagsData } from '../types';
@@ -76,9 +77,42 @@ function Overview({ data }: Props) {
                 tagsData={tagsData}
               />
             )}
-            <div className={s.title}>Description ?</div>
-            <div className={s.title}>Newest samples ?</div>
-            <div className={s.title}>Marked samples ?</div>
+            <div className={s.mock_container}>
+              <div className={s.title}>Description</div>
+              <ToBeImpelemented
+                element={(
+                  <img
+                    alt="descritpion"
+                    src="/images/mock/datasets/description.png"
+                  />
+                )}
+                color="primary"
+              />
+            </div>
+            <div className={s.mock_container}>
+              <div className={s.title}>Newest samples</div>
+              <ToBeImpelemented
+                element={(
+                  <img
+                    alt="descritpion"
+                    src="/images/mock/datasets/newest-samples.png"
+                  />
+                )}
+                color="primary"
+              />
+            </div>
+            <div className={s.mock_container}>
+              <div className={s.title}>Marked samples</div>
+              <ToBeImpelemented
+                element={(
+                  <img
+                    alt="descritpion"
+                    src="/images/mock/datasets/marked-samples.png"
+                  />
+                )}
+                color="primary"
+              />
+            </div>
             {expandData && (
               <StatisticProperties
                 data={expandData.statistics.statisticProperties}
