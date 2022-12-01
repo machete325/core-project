@@ -8,7 +8,7 @@ interface IDropDownConfig {
 }
 
 interface Props {
-  position?: 'bottom-left' | 'top-right';
+  position?: 'bottom-left' | 'top-right' | 'top-left';
 }
 
 const dropDownConfig: IDropDownConfig[] = [
@@ -36,6 +36,8 @@ function DropDown({ position }: Props) {
         return { right: '3%' };
       case 'top-right':
         return { bottom: '3%' };
+      case 'top-left':
+        return { bottom: 0, right: 0 };
       default:
         return { right: '3%' };
     }

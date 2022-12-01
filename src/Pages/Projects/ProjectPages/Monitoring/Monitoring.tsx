@@ -5,14 +5,15 @@ import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown'
 import Error from '../../../../components/Error/Error';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
-import s from './Datasets.module.scss';
-import { getErrors } from '../../../../core/redux/projects/datasets/selectors';
-import { IDatasets } from '../../../../core/redux/projects/datasets/types';
-import ProjectVersion from '../../../../components/ProjectVersion/ProjectVersion';
+import { getErrors } from '../../../../core/redux/projects/monitoring/selectors';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
+import { IMonitoringItems } from '../../../../types/project/monitoring';
+import s from './Monitoring.module.scss';
+import MetricsInfo from '../../../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
+import { getFormattedDateFromTimeStamp } from '../../../../core/helpers/dateMethods';
 
 type Props = {
-  data: IDatasets;
+  data: IMonitoringItems;
   handleCheckAll: any;
   handleCheck: any;
   fetching: boolean;
@@ -23,7 +24,7 @@ type Props = {
   projectData: any;
 };
 
-function Datasets({
+function Monitoring({
   handleCheckAll,
   handleCheck,
   data,
@@ -47,12 +48,14 @@ function Datasets({
                 <CheckBox onChange={handleCheckAll} id="1" checked={false} />
               </td>
               <td>#</td>
-              <td>Title</td>
-              <td>Version</td>
-              <td>Description</td>
-              <td>Stats</td>
-              <td>Newest sample</td>
-              <td>Latest marked sample</td>
+              <td>Name</td>
+              <td>Model (production)</td>
+              <td>Metrics</td>
+              <td>Data drift</td>
+              <td>Concept drift</td>
+              <td>Infrastructure</td>
+              <td>Costs</td>
+              <td>Last updated</td>
             </tr>
           </thead>
           <tbody className={s.tbody}>
@@ -66,31 +69,40 @@ function Datasets({
                   />
                 </td>
                 <td className={s.table_count}>{index + 1}</td>
-                <td className={s.table_text}>{data[key].name}</td>
-                <td>
-                  <ProjectVersion version={data[key].tag} />
-                </td>
+                <td className={s.table_text}>Name</td>
                 <td>
                   <div
                     role="presentation"
                     onClick={() => handleOpenModal('description', key)}
                   >
-                    <ToBeImpelemented element="Description" color="primary" />
+                    <ToBeImpelemented
+                      element="Model (production)"
+                      color="primary"
+                    />
                   </div>
                 </td>
                 <td>
-                  <ToBeImpelemented element="Stats" color="primary" />
-                </td>
-                <td>
-                  <ToBeImpelemented element="Newest sample" color="primary" />
-                </td>
-                <td>
-                  <ToBeImpelemented
-                    element="Latest marked sample"
-                    color="primary"
+                  <MetricsInfo
+                    limiter={2}
+                    data={data[key].experiment.metrics.items}
                   />
                 </td>
                 <td>
+                  <ToBeImpelemented element="Data drift" color="primary" />
+                </td>
+                <td>
+                  <ToBeImpelemented element="Concept drift" color="primary" />
+                </td>
+                <td>
+                  <ToBeImpelemented element="Infrastructure" color="primary" />
+                </td>
+                <td>
+                  <ToBeImpelemented element="Costs" color="primary" />
+                </td>
+                <td className={s.table_text} style={{ whiteSpace: 'nowrap' }}>
+                  {getFormattedDateFromTimeStamp(data[key].edited)}
+                </td>
+                <td style={{ width: '32px' }}>
                   <DropDown />
                 </td>
               </tr>
@@ -106,4 +118,4 @@ function Datasets({
   );
 }
 
-export default Datasets;
+export default Monitoring;
