@@ -1,7 +1,7 @@
-import { IDataset, IExpandDataset } from './datasets';
-import { IInfrastructure } from './project';
+import { IDataset, IExpandDataset } from './Datasets';
+import { IInfrastructure } from './Project';
 
-interface IMetric {
+export interface IMetric {
   id: string;
   name: string;
   displayName: string;

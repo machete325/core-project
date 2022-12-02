@@ -7,7 +7,7 @@ import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import { getErrors } from '../../../../core/redux/projects/monitoring/selectors';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IMonitoringItems } from '../../../../types/project/monitoring';
+import { IMonitoringItems } from '../../../../types/project/Monitoring';
 import s from './Monitoring.module.scss';
 import MetricsInfo from '../../../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
 import { getFormattedDateFromTimeStamp } from '../../../../core/helpers/dateMethods';

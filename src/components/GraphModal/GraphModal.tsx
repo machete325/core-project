@@ -110,7 +110,7 @@ function GraphModal({
           <div className={s.title}>
             <ProjectTitle type="project" data={projectData} created />
             {projectData && (
-              <StatusIndicator isArchive={projectData.isArchive} />
+              <StatusIndicator isArchive={projectData.isArchived} />
             )}
           </div>
           <Xwrapper>

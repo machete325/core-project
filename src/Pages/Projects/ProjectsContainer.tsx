@@ -7,7 +7,7 @@ import { getLoading, projectsData } from '../../core/redux/projects/selectors';
 import InputField from '../../components/SearchField/InputField';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Project from './Project';
-import { IProject } from './types';
+import { IProject } from '../../types/project/Project';
 import s from './Projects.module.scss';
 import Loader from '../../components/Loader/Loader';
 

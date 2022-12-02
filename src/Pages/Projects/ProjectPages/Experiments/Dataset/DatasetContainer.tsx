@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { IProjectData } from '../../../../../components/Modal/types';
-import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
+import { IExperiment } from '../../../../../types/project/Experiments';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
-import { IExpandDataset } from './types';
 import Loader from '../../../../../components/Loader/Loader';
 import s from './Dataset.module.scss';
 import Dataset from './Dataset';
+import { IProject } from '../../../../../types/project/Project';
+import { IExpandDataset } from '../../../../../types/project/Datasets';
 
 export interface Props {
   data: IExperiment;
-  projectData: IProjectData;
+  projectData: IProject;
 }
 
 function DatasetContainer({ data, projectData }: Props) {

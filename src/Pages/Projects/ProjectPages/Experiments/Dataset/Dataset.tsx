@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import GeneralInfo from '../../../../../components/DatasetComponents/GeneralInfo/GeneralInfo';
 import StatisticProperties from '../../../../../components/DatasetComponents/StatisticProperties/StatisticProperties';
-import { IExpandDataset, ITagsData } from './types';
-import s from './Dataset.module.scss';
 import Outliers from '../../../../../components/DatasetComponents/Outliers/Outliers';
+import s from './Dataset.module.scss';
+import {
+  IExpandDataset,
+  ITagsData,
+} from '../../../../../types/project/Datasets';
 
 export interface Props {
   expandData: IExpandDataset;

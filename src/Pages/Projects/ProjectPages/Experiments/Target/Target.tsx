@@ -1,11 +1,11 @@
 import React from 'react';
 import s from './Target.module.scss';
-import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
-import { IProjectData } from '../../../../../components/Modal/types';
+import { IExperiment } from '../../../../../types/project/Experiments';
+import { IProject } from '../../../../../types/project/Project';
 
 interface Props {
   data: IExperiment;
-  projectData: IProjectData;
+  projectData: IProject;
 }
 
 function Target({ data, projectData }: Props) {

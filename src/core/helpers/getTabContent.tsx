@@ -8,7 +8,7 @@ import ExperimentInfrastructure from '../../Pages/Projects/ProjectPages/Experime
 import ExperimentCommitDescription from '../../Pages/Projects/ProjectPages/Experiments/CommitDescription/CommitDescription';
 import DatasetOverview from '../../Pages/Projects/ProjectPages/Datasets/Overview/Overview';
 import DatasetPrice from '../../Pages/Projects/ProjectPages/Datasets/Price/Price';
-import { IProjectData } from '../../components/Modal/types';
+import { IProject } from '../../types/project/Project';
 import DatasetDailySales from '../../Pages/Projects/ProjectPages/Datasets/DailySales/DailySales';
 import DatasetItemDistribution from '../../Pages/Projects/ProjectPages/Datasets/ItemDistribution/ItemDistribution';
 import DatasetCategoryDistribution from '../../Pages/Projects/ProjectPages/Datasets/CategoryDistribution/CategoryDistribution';
@@ -20,7 +20,7 @@ import DatasetJupyterView from '../../Pages/Projects/ProjectPages/Datasets/Jupyt
 const returnExperimentTabs = (
   type: string,
   data: any,
-  projectData: IProjectData,
+  projectData: IProject,
 ) => {
   if (data) {
     switch (type) {
@@ -80,7 +80,7 @@ const returnDatasetTabs = (type: string, data: any) => {
 export const getTabContent = (
   tab: { type: string; path: string; page: string },
   data: any,
-  projectData: IProjectData,
+  projectData: IProject,
 ) => {
   if (tab.page === 'experiments' || tab.page === 'overview') {
     return returnExperimentTabs(tab.type, data, projectData);

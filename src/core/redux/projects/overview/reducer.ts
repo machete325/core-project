@@ -1,15 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IProjectOverview } from '../../../../types/project/Project';
 
 export type OverviewState = {
   loading: boolean;
   hasErrors: boolean;
-  data: any;
+  data: IProjectOverview | undefined;
 };
 //
 export const initialState: OverviewState = {
   loading: false,
   hasErrors: false,
-  data: {},
+  data: undefined,
 };
 // A slice
 export const overviewSlice = createSlice({

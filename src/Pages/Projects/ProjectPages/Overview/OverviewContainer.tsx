@@ -26,6 +26,7 @@ import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 import Error from '../../../../components/Error/Error';
+import { IProjectOverview } from '../../../../types/project/Project';
 import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
 
 function ProjectOverviewContainer() {
@@ -46,7 +47,7 @@ function ProjectOverviewContainer() {
   const hasErrors = useSelector(getErrors);
 
   const handleOpenModal = (activeTab: string) => {
-    const experiment = data.latestExperiment;
+    const experiment = data?.latestExperiment;
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
@@ -56,7 +57,7 @@ function ProjectOverviewContainer() {
   };
 
   useEffect(() => {
-    if (projectData && Object.keys(data).length === 0 && !loading) {
+    if (projectData && !data && !loading) {
       dispatch(fetchOverview(projectData.id, signal));
     }
     return () => {
@@ -122,13 +123,13 @@ function ProjectOverviewContainer() {
       ) : (
         <div className={s.content}>
           {hasErrors && <Error />}
-          {Object.keys(data).length !== 0 && (
+          {data && (
             <>
               <div className={s.tags_container}>
-                {Object.keys(tagConfig).map((key: any) => (
+                {Object.keys(tagConfig).map((key) => (
                   <OverviewStatusTag
                     key={key}
-                    data={data[key]}
+                    data={data[key as keyof IProjectOverview]}
                     config={tagConfig[key]}
                   />
                 ))}
@@ -197,7 +198,10 @@ function ProjectOverviewContainer() {
                   <div className={s.info_title}>Latest VM</div>
                   <div className={s.vm_content}>
                     <MachineDetails
-                      data={data.latestInfrastructure.machines[0]}
+                      data={
+                        data.latestInfrastructure.machines
+                        && data.latestInfrastructure.machines[0]
+                      }
                       orientation="vertical"
                     />
                   </div>

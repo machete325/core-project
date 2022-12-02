@@ -8,18 +8,10 @@ import s from './Navigation.module.scss';
 import { clearExperimentsData } from '../../../../core/redux/projects/experiments/actions';
 import { clearOneProjectData } from '../../../../core/redux/projects/actions';
 import { clearOverview } from '../../../../core/redux/projects/overview/actions';
-
-interface IDdata {
-  id: string;
-  name: string;
-  page: string;
-  description: string;
-  created: string;
-  isArchive: boolean;
-}
+import { IProject } from '../../../../types/project/Project';
 
 type Props = {
-  data: IDdata;
+  data: IProject;
 };
 
 function Navigation({ data }: Props) {

@@ -7,7 +7,7 @@ import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import s from './Datasets.module.scss';
 import { getErrors } from '../../../../core/redux/projects/datasets/selectors';
-import { IDatasets } from '../../../../core/redux/projects/datasets/types';
+import { IDatasets } from '../../../../types/project/Datasets';
 import ProjectVersion from '../../../../components/ProjectVersion/ProjectVersion';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
 

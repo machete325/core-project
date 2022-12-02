@@ -5,9 +5,9 @@ import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 import s from './ProjectTabs.module.scss';
 import { getTabContent } from '../../core/helpers/getTabContent';
-import { IExperiment } from '../../core/redux/projects/experiments/types';
-import { IProjectData } from '../Modal/types';
-import { IDataset } from '../../core/redux/projects/datasets/types';
+import { IExperiment } from '../../types/project/Experiments';
+import { IDataset } from '../../types/project/Datasets';
+import { IProject } from '../../types/project/Project';
 
 interface IConfig {
   name: string;
@@ -18,7 +18,7 @@ interface Props {
   config: { [key: string]: IConfig };
   defaultTab: string | undefined;
   data: IExperiment | IDataset | undefined;
-  projectData: IProjectData;
+  projectData: IProject;
   page: string;
 }
 
