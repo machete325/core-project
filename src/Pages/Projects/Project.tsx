@@ -7,24 +7,24 @@ import { IProject } from './types';
 import s from './Projects.module.scss';
 import StatusTag from '../../components/StatusTag/StatusTag';
 import MetricsInfo from '../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
-import { fetchProjectOverview } from '../../core/redux/projects/actions';
-import { useAppDispatch } from '../../core/redux/store';
+// import { fetchProjectOverview } from '../../core/redux/projects/actions';
+// import { useAppDispatch } from '../../core/redux/store';
 import { getProjectOverview } from '../../core/redux/projects/selectors';
 
 type Props = {
   data: IProject;
   handleChooseProject: (id: string) => void;
   handleFavourite: (e: React.MouseEvent<HTMLImageElement>) => void;
-  signal: AbortSignal;
+  // signal: AbortSignal;
 };
 
 function Projects({
   data,
   handleChooseProject,
   handleFavourite,
-  signal,
-}: Props) {
-  const dispatch = useAppDispatch();
+}: // signal,
+Props) {
+  // const dispatch = useAppDispatch();
   const overview = useSelector(getProjectOverview)[data.id];
   const [loading, setLoading] = useState(false);
 
@@ -32,12 +32,12 @@ function Projects({
     setLoading(false);
   }, [overview]);
 
-  useEffect(() => {
-    if (!overview) {
-      setLoading(true);
-      dispatch(fetchProjectOverview(data.id, signal));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!overview) {
+  //     setLoading(true);
+  //     dispatch(fetchProjectOverview(data.id, signal));
+  //   }
+  // }, []);
 
   const returnTotalExperiments = () => {
     if (loading) {

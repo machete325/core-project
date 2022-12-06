@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Chart from '../../../../../components/Chart/Chart';
+import Loader from '../../../../../components/Loader/Loader';
 import MachineDetails from '../../../../../components/MachineDetails/MachineDetails';
 import { IProjectData } from '../../../../../components/Modal/types';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
+import { IInfrastructure, IMachine } from './types';
 
 interface Props {
   data: any;
@@ -8,11 +12,66 @@ interface Props {
 }
 
 function Infrastructure({ data, projectData }: Props) {
-  console.log(data, projectData);
+  const [expandData, setExpandData] = useState<null | IInfrastructure>(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchExpandData = async () => {
+    try {
+      setLoading(true);
+      const response = await ExperimentService.getExperimentInfrastructure(
+        projectData.id,
+        data.id,
+        false,
+      );
+      setExpandData(response.data);
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchExpandData();
+  }, []);
+
+  const genMachineChartData = (machine: IMachine) => ({
+    id: machine.id,
+    displayName: `Hours used and Costs - Cloud: ${machine.displayName}`,
+    value: { usage: machine.usage, costs: machine.costs },
+  });
+
+  const genChartData = (trainingTime: any) => ({
+    displayName: 'Training time',
+    value: { trainingTime },
+  });
+
   return (
     <div>
-      1
-      <MachineDetails />
+      {loading ? (
+        <Loader />
+      ) : (
+        expandData
+        && expandData.machines.map((machine) => (
+          <div key={machine.id}>
+            <MachineDetails orientation="horizontal" data={machine} />
+            <div style={{ marginBottom: '32px' }}>
+              <Chart
+                type="infrastructure-line"
+                isFill
+                data={genMachineChartData(machine)}
+              />
+            </div>
+          </div>
+        ))
+      )}
+      {expandData && (
+        <Chart
+          type="infrastructure-line"
+          isFill
+          data={genChartData(expandData.trainingTime)}
+        />
+      )}
     </div>
   );
 }

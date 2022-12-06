@@ -86,7 +86,7 @@ function MainMetrics({ data, projectData }: Props) {
                 <Chart
                   key={metricsDataExpand[metric].id}
                   data={metricsDataExpand[metric]}
-                  type="line"
+                  type="metric-line"
                 />
               </div>
             ))}

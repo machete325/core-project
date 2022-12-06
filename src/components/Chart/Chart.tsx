@@ -3,21 +3,17 @@ import { init, registerTheme } from 'echarts';
 import type { ECharts } from 'echarts';
 import dark from './dark.project.json';
 import s from './Chart.module.scss';
+import { chartHandlers } from './chartHandlers';
 
 type Props = {
   data: any;
   isFill?: boolean;
-  type: 'bar' | 'line' | 'pie';
+  type: 'bar' | 'line' | 'pie' | 'metric-line' | 'infrastructure-line';
 };
 
 function Chart({ data, isFill, type }: Props) {
   const chartRef = useRef<HTMLDivElement>(null);
   let chart: ECharts | undefined;
-
-  const genDataset = (x: number[], y: number[]) => {
-    const dataset = x.map((item, index) => [item, y[index]]);
-    return dataset;
-  };
 
   const option = {
     tooltip: {
@@ -32,7 +28,7 @@ function Chart({ data, isFill, type }: Props) {
     legend: {
       data: [],
       top: 24,
-      left: 18,
+      left: 'center',
     },
     xAxis: {
       splitLine: {
@@ -51,74 +47,18 @@ function Chart({ data, isFill, type }: Props) {
     series: [],
   };
 
-  const genLineChartData = () => {
-    const chartData: any = { legend: [], series: [] };
-    Object.keys(data.value).forEach((item) => {
-      const series = {
-        name: data.value[item].name,
-        type: 'line',
-        showSymbol: false,
-        data: [...genDataset(data.value[item].x, data.value[item].y)],
-        areaStyle: { opacity: isFill ? 0.2 : 0 },
-      };
-      chartData.legend.push(data.value[item].name);
-      chartData.series.push(series);
-    });
-    option.legend.data = chartData.legend;
-    option.series = chartData.series;
-  };
-
-  const genBarChartData = () => {
-    const chartData: any = {
-      xAxis: {
-        splitLine: {
-          show: false,
-        },
-        showGrid: false,
-        type: 'category',
-        data: [...data.x],
-      },
-      series: {
-        type: 'bar',
-        showSymbol: false,
-        data: [...data.y],
-      },
-    };
-    option.legend.data = chartData.legend;
-    option.series = chartData.series;
-    option.xAxis = chartData.xAxis;
-  };
-
-  const genPieData = () => {
-    const chartData: any = {
-      legend: {
-        top: '5%',
-        left: 'center',
-      },
-      series: {
-        radius: ['40%', '70%'],
-        type: 'pie',
-        showSymbol: false,
-        data: [],
-      },
-    };
-    data.x.forEach((item: any, index: number) => {
-      chartData.series.data.push({ value: data.y[index], name: item });
-    });
-
-    option.series = chartData.series;
-    option.tooltip.trigger = 'item';
-    option.legend = chartData.legend;
-  };
-
   const defineChartType = (typeChart: string) => {
     switch (typeChart) {
       case 'line':
-        return genLineChartData();
+        return chartHandlers.genLineChartData(data, option, isFill);
+      case 'metric-line':
+        return chartHandlers.genLineMetricData(data, option, isFill);
+      case 'infrastructure-line':
+        return chartHandlers.genLineInfrastructureData(data, option, isFill);
       case 'bar':
-        return genBarChartData();
+        return chartHandlers.genBarChartData(data, option);
       case 'pie':
-        return genPieData();
+        return chartHandlers.genPieData(data, option);
       default: {
         return null;
       }

@@ -16,31 +16,3 @@
 .statistic {
   margin-top: 32px;
 }
-
-.outliers {
-  margin-top: 32px;
-}
-
-.outliers_title {
-  margin-right: 10px;
-  @include text(400, 18px);
-  color: #a9adbd;
-}
-
-.outliers_value {
-  max-width: 830px;
-  @include text(600, 18px);
-  color: #ffffff;
-  word-wrap: break-word;
-  word-break: break-all;
-  text-align: end;
-}
-
-.outliers_container {
-  margin-bottom: 8px;
-  display: flex;
-  justify-content: space-between;
-  &:nth-last-child(1) {
-    margin-bottom: 0;
-  }
-}

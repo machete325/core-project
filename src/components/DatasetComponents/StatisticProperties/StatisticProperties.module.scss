@@ -1,7 +1,25 @@
+@import '../../../colors.scss';
+
+@mixin text($weight, $size) {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+}
+
 .wrapper {
+}
+
+.table_container {
   padding: 16px;
   border: 1px solid #6b6e7b;
   border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 8px;
+  @include text(600, 18px);
+  color: $white;
 }
 
 .table {
@@ -10,7 +28,7 @@
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  color: #ffffff;
+  color: $white;
   border-collapse: collapse;
 }
 

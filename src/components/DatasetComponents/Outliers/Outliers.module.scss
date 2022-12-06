@@ -1,0 +1,42 @@
+@import '../../../colors.scss';
+
+@mixin text($weight, $size) {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+}
+
+.wrapper {
+  margin-top: 32px;
+}
+
+.description {
+  margin-bottom: 8px;
+  @include text(600, 18px);
+  color: $white;
+}
+
+.title {
+  margin-right: 10px;
+  @include text(400, 18px);
+  color: #a9adbd;
+}
+
+.value {
+  max-width: 830px;
+  @include text(600, 18px);
+  color: #ffffff;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-align: end;
+}
+
+.container {
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}

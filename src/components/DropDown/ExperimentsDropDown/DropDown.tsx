@@ -7,6 +7,10 @@ interface IDropDownConfig {
   imgSrc: string;
 }
 
+interface Props {
+  position?: 'bottom-left' | 'top-right' | 'top-left';
+}
+
 const dropDownConfig: IDropDownConfig[] = [
   {
     text: 'Clone experiment',
@@ -22,9 +26,22 @@ const dropDownConfig: IDropDownConfig[] = [
   },
 ];
 
-function DropDown() {
+function DropDown({ position }: Props) {
   const [visible, setVisible] = useState(false);
   const { ref } = useComponentVisible(true, setVisible);
+
+  const definePosition = () => {
+    switch (position) {
+      case 'bottom-left':
+        return { right: '3%' };
+      case 'top-right':
+        return { bottom: '3%' };
+      case 'top-left':
+        return { bottom: 0, right: 0 };
+      default:
+        return { right: '3%' };
+    }
+  };
 
   return (
     <div className={s.wrapper}>
@@ -38,7 +55,7 @@ function DropDown() {
         </div>
       )}
       {visible && (
-        <div className={s.dropdown} ref={ref}>
+        <div className={s.dropdown} ref={ref} style={definePosition()}>
           <div className={s.container}>
             <div className={s.open}>
               <img

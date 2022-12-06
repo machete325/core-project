@@ -26,6 +26,7 @@ import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 import Error from '../../../../components/Error/Error';
+import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -34,7 +35,7 @@ function ProjectOverviewContainer() {
   const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
-    page: 'experiment',
+    page: 'overview',
   });
 
   const controller = new AbortController();
@@ -195,21 +196,10 @@ function ProjectOverviewContainer() {
                 <div className={s.info}>
                   <div className={s.info_title}>Latest VM</div>
                   <div className={s.vm_content}>
-                    <div className={s.vm_image}>
-                      <img src="/images/machine.png" alt="machine" />
-                    </div>
-                    <div>
-                      <ProjectStatus status="running" />
-                      <div className={s.vm_text}>
-                        <div>Name:</div>
-                        <div>Type:</div>
-                        <div>Cloud provider:</div>
-                        <div>Spec:</div>
-                        <div>Ongoing cost:</div>
-                        <div>Accumulated costs:</div>
-                        <div>Experiments running:</div>
-                      </div>
-                    </div>
+                    <MachineDetails
+                      data={data.latestInfrastructure.machines[0]}
+                      orientation="vertical"
+                    />
                   </div>
                 </div>
                 <div className={s.info}>

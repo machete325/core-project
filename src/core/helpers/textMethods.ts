@@ -12,3 +12,13 @@ export const formDatasetText = (data: any) => {
   }
   return 'Not available';
 };
+
+export const defineCurrency = (currencyType: string) => {
+  switch (currencyType) {
+    case 'USD': {
+      return '$';
+    }
+    default:
+      return '';
+  }
+};

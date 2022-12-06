@@ -35,12 +35,12 @@ const api = async (
     const GETheaders = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-      'Access-Control-Allow-Origin': true,
+      'Access-Control-Allow-Origin': '*',
       ...additionalHeaders,
     };
     const headers = {
       Authorization: `Bearer ${token}`,
-      'Access-Control-Allow-Origin': true,
+      'Access-Control-Allow-Origin': '*',
       ...additionalHeaders,
     };
     const res = method === 'GET'

@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 import CheckBox from '../CheckBox/CheckBox';
+import ExperimentsDropDown from '../DropDown/ExperimentsDropDown/DropDown';
+import DatasetsDropDown from '../DropDown/DatasetsDropDown/DropDown';
 import s from './RecentlyOpened.module.scss';
+import { textSlicer } from '../../core/helpers/textMethods';
 
 interface IRecently {
   id: number;
@@ -12,6 +15,17 @@ interface IRecently {
 type Props = {
   data: IRecently[] | undefined;
   handleCheckRecentyOpened: any;
+};
+
+const defineDropDownType = (category: string) => {
+  switch (category) {
+    case 'experiments':
+      return <ExperimentsDropDown position="top-left" />;
+    case 'datasets':
+      return <DatasetsDropDown position="top-left" />;
+    default:
+      return null;
+  }
 };
 
 const findCategories = (data: IRecently[]) => {
@@ -32,13 +46,18 @@ const generateRecentlyItems = (
     <div className={s.title}>{category}</div>
     {data.map(
       (item) => item.category === category && (
-      <div key={item.id} className={s.checkbox_container}>
-        <CheckBox
-          id={item.id}
-          checked={item.check}
-          onChange={() => handleCheckRecentyOpened(item.id)}
-        />
-        <span className={s.name}>{item.name}</span>
+      <div key={item.id} className={s.item_container}>
+        <div className={s.checkbox_container}>
+          <CheckBox
+            id={item.id}
+            checked={item.check}
+            onChange={() => handleCheckRecentyOpened(item.id)}
+          />
+          <span title={item.name} className={s.name}>
+            {textSlicer(item.name, 25)}
+          </span>
+        </div>
+        <div>{defineDropDownType(category)}</div>
       </div>
       ),
     )}
@@ -48,7 +67,6 @@ const generateRecentlyItems = (
 const generateJSX = (data: IRecently[], handleCheckRecentyOpened: any) => {
   const categories = useMemo(() => findCategories(data), [data]);
   const markup: any = [];
-  // eslint-disable-next-line max-len
   categories.forEach((category) => markup.push(generateRecentlyItems(data, category, handleCheckRecentyOpened)));
   return markup;
 };

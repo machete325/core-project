@@ -17,7 +17,7 @@ function ProjectsContainer() {
   const [value, setValue] = useState('');
 
   const controller = new AbortController();
-  const { signal } = controller;
+  // const { signal } = controller;
 
   const data: { [key: string]: IProject } = useSelector(projectsData);
   const loading = useSelector(getLoading);
@@ -80,7 +80,7 @@ function ProjectsContainer() {
                 data={project}
                 handleChooseProject={handleChooseProject}
                 handleFavourite={handleFavourite}
-                signal={signal}
+                // signal={signal}
               />
             ))}
           </div>
