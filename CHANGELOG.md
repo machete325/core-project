@@ -1,3 +1,58 @@
+# [1.4.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.3.0...v1.4.0) (2022-12-06)
+
+
+### Bug Fixes
+
+* **project.tsx:** disable logic for getting overview ([e70a919](https://github.com/Coreai-org/corecontrol-web/commit/e70a919970e2f391300faecf22c8d838f1a1e7e5))
+* **projecttabs.tsx:** fixed tab bug ([453ba1a](https://github.com/Coreai-org/corecontrol-web/commit/453ba1a9f5e002d21e5b9fd6bc2dcdc87f5bbd61))
+
+
+### Features
+
+* **api.ts:** changed Access-Control-Allow-Origin param ([b0bddff](https://github.com/Coreai-org/corecontrol-web/commit/b0bddff266f6b02ed916c7edee388e61d5662613))
+* **apihelpers:** added getAdditionalParams ([4d57c97](https://github.com/Coreai-org/corecontrol-web/commit/4d57c9723b5b062e0bbbdf08ceb8fb73b9fbf0fa))
+* **chart:** added scatter series for chart ([aea5e4b](https://github.com/Coreai-org/corecontrol-web/commit/aea5e4bbcd79f8dcd3c22456ff0f20a0d7c859e1))
+* **chart:** improve Chart UI and logic ([887fd36](https://github.com/Coreai-org/corecontrol-web/commit/887fd36e8e98206622f7e707c23ea8c3b8177b48))
+* **dataset.service.ts:** added getDataset ([d450872](https://github.com/Coreai-org/corecontrol-web/commit/d45087208b423a3eb2a1fff40c1d7a1157913173))
+* **dataset.tsx:** improve dataset and tabs ([4caf712](https://github.com/Coreai-org/corecontrol-web/commit/4caf7125d81f8e25e736972c0930e9522fc57f54))
+* **dataset/dropdown:** added dataset dropdown ([e1ae749](https://github.com/Coreai-org/corecontrol-web/commit/e1ae749b9ea2f62742a539438c95055ec26e7b7b))
+* **dataset/overview:** added new UI and logic ([ff70237](https://github.com/Coreai-org/corecontrol-web/commit/ff70237acf8720d1a2ca4316d8f258caf76c0b92))
+* **dataset/tabs:** added dataset tabs ([19394c5](https://github.com/Coreai-org/corecontrol-web/commit/19394c5e7d84085425a5b816e46956272e2687eb))
+* **dataset:** added config and service ([9843d2b](https://github.com/Coreai-org/corecontrol-web/commit/9843d2bc6ba8edb5a99e61c784566cc9fb9c13df))
+* **dataset:** adjusted the logic for the dataset ([0b0b3ca](https://github.com/Coreai-org/corecontrol-web/commit/0b0b3ca3ac80c8ccf13ddc8695496779e6ee87aa))
+* **datasets.tsx:** added logic and UI for datasets page ([4477dab](https://github.com/Coreai-org/corecontrol-web/commit/4477dab5080c3242171f20aeeb3d859ef83bc18f))
+* **definecurrency:** added defineCurrency ([fb3fee5](https://github.com/Coreai-org/corecontrol-web/commit/fb3fee51284c6920fe50a30925ccdc7c8d1f694d))
+* **dropdown:** added new position ([aecf791](https://github.com/Coreai-org/corecontrol-web/commit/aecf791d04987483946a0e18c96867035f6c0161))
+* **experiment.service.ts:** added getExperimentInfrastructure ([b1b89ce](https://github.com/Coreai-org/corecontrol-web/commit/b1b89ce11046807c2ea90b3904a0b1744b00dbf4))
+* **experiments/dataset:** refactoring ([c7a2d5b](https://github.com/Coreai-org/corecontrol-web/commit/c7a2d5b745a3b425f4120f712fe1312848710a1c))
+* **experiments/dropdown:** added new improvments ([35a2dbd](https://github.com/Coreai-org/corecontrol-web/commit/35a2dbdaca6527bce1fc8eb19c9b23a514a40be7))
+* **experiments/infrastructure:** added new logic and UI ([8253085](https://github.com/Coreai-org/corecontrol-web/commit/825308576bd2e1e9850d1ccf6641a8beb45222b9))
+* **experiments:** improve code for experiments ([c8fdc3a](https://github.com/Coreai-org/corecontrol-web/commit/c8fdc3a9c88e8070a44b0ec6c53b294e660f70eb))
+* **generalinfo.tsx:** added GeneralInfo ([b701a3f](https://github.com/Coreai-org/corecontrol-web/commit/b701a3fe9cf18b384d616dd230bd28f2eaba1592))
+* **gettabcontent.tsx:** added Dataset logic ([95eb695](https://github.com/Coreai-org/corecontrol-web/commit/95eb6954a03ac00cad3807a6d6c6034b0e2f5203))
+* **gettabcontent:** adjusted the logic for the dataset ([a21b0db](https://github.com/Coreai-org/corecontrol-web/commit/a21b0dba706a035911175f5405fd3f63db479592))
+* **infrastructureinfo.tsx:** added getFormattedDateFromSeconds ([5496c3c](https://github.com/Coreai-org/corecontrol-web/commit/5496c3cde36e1172038f99d99c836a241ca5a8f0))
+* **machinedetails.tsx:** added new properties ([09c05d3](https://github.com/Coreai-org/corecontrol-web/commit/09c05d35785bc54a03d2037f4f5a983844e3e572))
+* **mixins.scss:** added mixins ([e94470d](https://github.com/Coreai-org/corecontrol-web/commit/e94470d0428c837219443da99f1cbd3a0e9a73aa))
+* **monitoring.tsx:** added Monitoring logic and UI ([981723b](https://github.com/Coreai-org/corecontrol-web/commit/981723b827f23bb85d7d4d934d1175bce715d586))
+* **monitoring:** added monitoring redux-logic ([ee82150](https://github.com/Coreai-org/corecontrol-web/commit/ee82150d3a29b47ec7007e319e386f219a07e0b1))
+* **outliers.tsx:** added Outliers ([10a224a](https://github.com/Coreai-org/corecontrol-web/commit/10a224a11c8b6c1e1dfcdd4f3d5f2305592c558d))
+* **project/pages:** added new params and refactoring ([168f3ac](https://github.com/Coreai-org/corecontrol-web/commit/168f3acedd962b1609cb50be9fcee0bc10bcc9da))
+* **project/styles:** changed scrollbar styles ([919b468](https://github.com/Coreai-org/corecontrol-web/commit/919b46847f878ccac12c3ac8e95ffd538589f2e6))
+* **projectcontainer.tsx:** added getTotalCountDatasets ([0141ad6](https://github.com/Coreai-org/corecontrol-web/commit/0141ad65c19d6f1503a2bc9a3ed50d95daad98d0))
+* **projectversion/styles:** changed button styles ([87764b4](https://github.com/Coreai-org/corecontrol-web/commit/87764b4fd869d861309004eb3923009ce8ff5b78))
+* **projectversion:** added ProjectVersion ([7211efd](https://github.com/Coreai-org/corecontrol-web/commit/7211efdf7afcfd1286b2773e5ac8e1d1ed1ad5c4))
+* **recentlyopened.tsx:** added new props ([97fcd42](https://github.com/Coreai-org/corecontrol-web/commit/97fcd42aa0ae10c18a236ec787f122f1a32331aa))
+* **recentlyopened.tsx:** changed position dropdown ([1c08568](https://github.com/Coreai-org/corecontrol-web/commit/1c085685055ad96789ad6c1a24f6d08a9613198d))
+* **redux/dataset:** added redux logic for dataset page ([1eedc1f](https://github.com/Coreai-org/corecontrol-web/commit/1eedc1fd1cbda89e886dc17949cc30c6555fb4db))
+* **statisticproperties.tsx:** added StatisticProperties ([d3b3d66](https://github.com/Coreai-org/corecontrol-web/commit/d3b3d664aff8ce0de10fc0a598c9ca0d22504455))
+* **statustag.ts:** added type metrics ([ac6f290](https://github.com/Coreai-org/corecontrol-web/commit/ac6f290a35a2033cfda14a0044ae69a6d2438802))
+* **statustag/styles:** added white-space ([33dd2ef](https://github.com/Coreai-org/corecontrol-web/commit/33dd2ef331e1b071e7f3618f8f51416185df3fb5))
+* **tab modal:** added project version ([e80251f](https://github.com/Coreai-org/corecontrol-web/commit/e80251fee0c158d4caeae69812ed37ff206b891f))
+* **tobeimpelemented.tsx:** added ToBeImpelemented ([2a64885](https://github.com/Coreai-org/corecontrol-web/commit/2a64885ce67a8a743066e332b6b5f9ed7e0d59ec))
+* **tobeimplemented.tsx:** created ToBeImpelemented ([504585a](https://github.com/Coreai-org/corecontrol-web/commit/504585ad4946a271a8d8eb0282117b5f027b8770))
+* **types:** added common types ([3d2f763](https://github.com/Coreai-org/corecontrol-web/commit/3d2f7635d0fc90b44cfa707fdf3215ba66bcd514))
+
 # [1.3.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.2.0...v1.3.0) (2022-11-22)
 
 
