@@ -28,6 +28,7 @@ import { ChoosedTab } from '../../../../components/Modal/types';
 import Error from '../../../../components/Error/Error';
 import { IProjectOverview } from '../../../../types/project/Project';
 import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
+import getOverviewLabel from '../../../../components/OverviewStatusTag/getOverviewLabel';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -69,31 +70,36 @@ function ProjectOverviewContainer() {
     totalNumberOfExperiments: {
       displayName: 'experiments',
       color: '#0D5DEC',
-      label: 'label',
+      label: 'experimentStatusFrequency',
+      labelType: 'experiments',
       inPercents: false,
     },
     totalNumberOfDatasets: {
       displayName: 'data sets',
       color: '#57DAD7',
-      label: 'label',
+      label: 'totalNumberOfDatasetVersions',
+      labelType: 'datasets',
       inPercents: false,
     },
     totalNumberOfMonitoringModels: {
       displayName: 'monitoring models',
       color: '#5237FB',
-      label: 'label',
+      label: 'totalNumberOfMonitoringDrifts',
+      labelType: 'monitoring',
       inPercents: false,
     },
     errorReporting: {
       displayName: 'error reporting',
       color: '#F51D44',
-      label: 'label',
+      label: 'errorReportingTrend',
+      labelType: 'trend',
       inPercents: true,
     },
     userFit: {
       displayName: 'User fit',
       color: '#1DF580',
-      label: 'label',
+      label: 'userFitTrend',
+      labelType: 'trend',
       inPercents: true,
     },
   };
@@ -131,6 +137,7 @@ function ProjectOverviewContainer() {
                     key={key}
                     data={data[key as keyof IProjectOverview]}
                     config={tagConfig[key]}
+                    label={getOverviewLabel(data, tagConfig[key])}
                   />
                 ))}
               </div>
@@ -184,12 +191,12 @@ function ProjectOverviewContainer() {
                       <ModelConfigurationInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.configuration.items}
-                        marginBottom="4px"
+                        marginBottom="8px"
                       />
                       <InfrastructureInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.infrastructure}
-                        marginBottom="4px"
+                        marginBottom="8px"
                       />
                     </div>
                   </div>
