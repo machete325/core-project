@@ -1,6 +1,10 @@
+import axios from 'axios';
 import { ExperimentService } from '../../../services/projects/Experiment.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { experimentSlice } from './reducer';
+
+const { CancelToken } = axios;
+let cancel: any;
 
 const {
   setExperiments,
@@ -27,12 +31,16 @@ export const fetchExperiments = (
     if (currentPage === 0) {
       dispatch(startLoading());
     }
+    const cancelToken = new CancelToken((c) => {
+      cancel = c;
+    });
     const response = await getProjectExperiments(
       projectId,
       true,
       currentPage,
       pageSize,
       signal,
+      cancelToken,
     );
     if (Object.keys(response.data.items).length !== 0) {
       dispatch(setExperiments(response.data.items));
@@ -66,4 +74,10 @@ export const setExperimentsFetching = (fetching: boolean) => (dispatch: AppDispa
 
 export const resetErrors = () => (dispatch: AppDispatch) => {
   dispatch(setErrors(false));
+};
+
+export const cancelRequest = () => () => {
+  if (cancel) {
+    cancel();
+  }
 };

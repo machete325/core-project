@@ -1,12 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
 import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown';
-import Error from '../../../../components/Error/Error';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import s from './Datasets.module.scss';
-import { getErrors } from '../../../../core/redux/projects/datasets/selectors';
 import { IDatasets } from '../../../../types/project/Datasets';
 import ProjectVersion from '../../../../components/ProjectVersion/ProjectVersion';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
@@ -34,11 +31,8 @@ function Datasets({
   projectData,
   handleOpenModal,
 }: Props) {
-  const hasErrors = useSelector(getErrors);
-
   return (
     <div className={s.content}>
-      {hasErrors && <Error />}
       {amountDatasets !== 0 && (
         <table className={s.table}>
           <thead className={s.thead}>

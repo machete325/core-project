@@ -66,9 +66,7 @@ function StatusTag({
         }}
       >
         <div>{displayName}</div>
-        <div className={s.value_2}>
-          {`${usedValue?.toFixed(2) || '-'} / ${totalValue}`}
-        </div>
+        <div className={s.value_2}>{`${usedValue?.toFixed(2) || '-'}`}</div>
       </div>
     );
   }

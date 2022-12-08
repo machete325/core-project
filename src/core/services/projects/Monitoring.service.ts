@@ -8,6 +8,7 @@ export const MonitoringService = {
     page?: number,
     size?: number,
     signal?: AbortSignal,
+    cancelToken?: any,
   ) => api(
     'GET',
     [],
@@ -18,6 +19,7 @@ export const MonitoringService = {
     )}`,
     {},
     signal,
+    cancelToken,
   ),
   getMonitoring: (dataVersion: string, display?: boolean) => api(
     'GET',

@@ -4,13 +4,13 @@ import { IProjectOverview } from '../../../../types/project/Project';
 export type OverviewState = {
   loading: boolean;
   hasErrors: boolean;
-  data: IProjectOverview | undefined;
+  data: IProjectOverview | null;
 };
 //
 export const initialState: OverviewState = {
   loading: false,
   hasErrors: false,
-  data: undefined,
+  data: null,
 };
 // A slice
 export const overviewSlice = createSlice({

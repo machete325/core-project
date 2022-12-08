@@ -9,6 +9,7 @@ import {
   checkExperiment,
   setExperimentsFetching,
   resetErrors,
+  cancelRequest,
 } from '../../../../core/redux/projects/experiments/actions';
 import {
   experimentsSelector,
@@ -69,6 +70,7 @@ function ProjectExperimentsContainer() {
     }
     return () => {
       controller.abort();
+      dispatch(cancelRequest());
     };
   }, [projectData]);
 

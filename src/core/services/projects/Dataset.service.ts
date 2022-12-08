@@ -8,6 +8,7 @@ export const DatasetService = {
     page?: number,
     size?: number,
     signal?: AbortSignal,
+    cancelToken?: any,
   ) => api(
     'GET',
     [],
@@ -18,6 +19,7 @@ export const DatasetService = {
     )}`,
     {},
     signal,
+    cancelToken,
   ),
   getDataset: (dataVersion: string, display?: boolean) => api('GET', [], `/data/${dataVersion}${getAdditionalParams(display)}`, {}),
 };

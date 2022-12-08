@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
 import DropDown from '../../../../components/DropDown/ExperimentsDropDown/DropDown';
 import ProjectStatus from '../../../../components/ProjectStatus/ProjectStatus';
@@ -10,8 +9,6 @@ import { formDatasetText } from '../../../../core/helpers/textMethods';
 import MetricsInfo from '../../../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
 import ModelConfigurationInfo from '../../../../components/ExperimentComponents/ModelConfigurationInfo/ModelConfigurationInfo';
 import InfrastructureInfo from '../../../../components/ExperimentComponents/InfrastructureInfo/InfrastructureInfo';
-import Error from '../../../../components/Error/Error';
-import { getErrors } from '../../../../core/redux/projects/experiments/selectors';
 import { checkCodeMessage } from '../../../../core/helpers/objectMethods';
 import GetMore from '../../../../components/GetMore/GetMore';
 
@@ -38,11 +35,8 @@ function ProjectExperiments({
   amountExperiments,
   projectData,
 }: Props) {
-  const hasErrors = useSelector(getErrors);
-
   return (
     <div className={s.content}>
-      {hasErrors && <Error />}
       {amountExperiments !== 0 && (
         <table className={s.table}>
           <thead className={s.thead}>
