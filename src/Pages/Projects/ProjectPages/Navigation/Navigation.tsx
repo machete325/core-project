@@ -9,6 +9,8 @@ import { clearExperimentsData } from '../../../../core/redux/projects/experiment
 import { clearOneProjectData } from '../../../../core/redux/projects/actions';
 import { clearOverview } from '../../../../core/redux/projects/overview/actions';
 import { IProject } from '../../../../types/project/Project';
+import { clearDatasetsData } from '../../../../core/redux/projects/datasets/actions';
+import { clearMonitoringData } from '../../../../core/redux/projects/monitoring/actions';
 
 type Props = {
   data: IProject;
@@ -23,6 +25,8 @@ function Navigation({ data }: Props) {
     dispatch(clearOverview());
     dispatch(clearExperimentsData());
     dispatch(clearOneProjectData());
+    dispatch(clearDatasetsData());
+    dispatch(clearMonitoringData());
   };
 
   return (
