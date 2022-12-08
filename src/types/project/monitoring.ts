@@ -7,9 +7,9 @@ export interface IMonitoring {
   model: IModel;
   experiment: IExpandExperiment;
   infrastructure: IInfrastructure;
-  dataDriftStatus: string;
-  conceptDriftStatus: string;
-  infrastructureStatus: string;
+  dataDriftStatus: 'GREEN' | 'RED' | any;
+  conceptDriftStatus: 'GREEN' | 'RED' | any;
+  infrastructureStatus: 'GREEN' | 'RED' | any;
   edited: string;
 }
 

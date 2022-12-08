@@ -14,6 +14,10 @@ import DatasetItemDistribution from '../../Pages/Projects/ProjectPages/Datasets/
 import DatasetCategoryDistribution from '../../Pages/Projects/ProjectPages/Datasets/CategoryDistribution/CategoryDistribution';
 import DatasetShopDistribution from '../../Pages/Projects/ProjectPages/Datasets/ShopDistribution/ShopDistribution';
 import DatasetJupyterView from '../../Pages/Projects/ProjectPages/Datasets/JupyterView/JupyterView';
+import MonitoringOverview from '../../Pages/Projects/ProjectPages/Monitoring/Overview/Overview';
+import DataDrift from '../../Pages/Projects/ProjectPages/Monitoring/DataDrift/DataDrift';
+import ConceptDrift from '../../Pages/Projects/ProjectPages/Monitoring/ConceptDrift/ConceptDrift';
+import MonitoringInfrastructure from '../../Pages/Projects/ProjectPages/Monitoring/Infrastructure/Infrastructure';
 
 // Keys to switch, obtained from the configuration file according to the specific page
 
@@ -77,6 +81,24 @@ const returnDatasetTabs = (type: string, data: any) => {
   return null;
 };
 
+const returnMonitoringTabs = (type: string, data: any) => {
+  if (data) {
+    switch (type) {
+      case 'overview':
+        return <MonitoringOverview data={data} />;
+      case 'dataDrift':
+        return <DataDrift data={data} />;
+      case 'conceptDrift':
+        return <ConceptDrift data={data} />;
+      case 'infrastructure':
+        return <MonitoringInfrastructure data={data} />;
+      default:
+        return null;
+    }
+  }
+  return null;
+};
+
 export const getTabContent = (
   tab: { type: string; path: string; page: string },
   data: any,
@@ -87,6 +109,9 @@ export const getTabContent = (
   }
   if (tab.page === 'datasets') {
     return returnDatasetTabs(tab.type, data);
+  }
+  if (tab.page === 'monitoring') {
+    return returnMonitoringTabs(tab.type, data);
   }
   return '';
 };

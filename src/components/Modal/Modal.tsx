@@ -11,6 +11,7 @@ import OpenButton from '../OpenButton/OpenButton';
 import ProjectTabs from '../ProjectTabs/ProjectTabs';
 import { Props } from './types';
 import ProjectVersion from '../ProjectVersion/ProjectVersion';
+import MonitoringLastUpdate from '../MonitoringComponents/MonitoringLastUpdate/MonitoringLastUpdate';
 
 const Transition = React.forwardRef(
   (
@@ -97,8 +98,15 @@ function Modal({
               && data.page === 'experiments' && (
                 <ProjectStatus status={data.data?.status} />
             )}
-            {data.page === 'datasets' && (
-              <ProjectVersion version={data.data?.version} />
+            {data.data
+              && 'version' in data.data
+              && data.page === 'datasets' && (
+                <ProjectVersion version={data.data?.version} />
+            )}
+            {data.data
+              && 'edited' in data.data
+              && data.page === 'monitoring' && (
+                <MonitoringLastUpdate date={data.data.edited} />
             )}
             <OpenButton />
           </div>

@@ -2,22 +2,26 @@ import React, { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { styled } from '@mui/material/styles';
-import s from './ProjectTabs.module.scss';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { getTabContent } from '../../core/helpers/getTabContent';
 import { IExperiment } from '../../types/project/Experiments';
 import { IDataset } from '../../types/project/Datasets';
 import { IProject } from '../../types/project/Project';
+import MonitoringStatus from '../MonitoringComponents/MonitoringStatus/MonitoringStatus';
+import { IMonitoring } from '../../types/project/Monitoring';
+import { convertToString } from '../../core/helpers/objectMethods';
+import s from './ProjectTabs.module.scss';
 
 interface IConfig {
   name: string;
   path: string;
+  iconTab?: string;
 }
 
 interface Props {
   config: { [key: string]: IConfig };
   defaultTab: string | undefined;
-  data: IExperiment | IDataset | undefined;
+  data: IExperiment | IDataset | IMonitoring | undefined;
   projectData: IProject;
   page: string;
 }
@@ -30,6 +34,8 @@ interface TabPanelProps {
 
 interface StyledTabProps {
   label: string;
+  icon?: any;
+  iconPosition?: any;
 }
 
 // Styled Mui components
@@ -86,6 +92,18 @@ function ProjectTabs({
   const [value, setValue] = useState(0);
   const [currentTab, setCurrentTab] = useState(defaultTab);
 
+  const theme = createTheme({
+    components: {
+      MuiTabs: {
+        styleOverrides: {
+          root: {
+            height: page === 'monitoring' ? '60px' : '',
+          },
+        },
+      },
+    },
+  });
+
   useEffect(() => {
     const idx = Object.keys(config).findIndex((item) => item === defaultTab);
     if (idx >= 0) {
@@ -114,28 +132,42 @@ function ProjectTabs({
   }, []);
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <AntTabs
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          {Object.keys(config).map((tab) => (
-            <AntTab key={tab} label={config[tab].name} />
-          ))}
-        </AntTabs>
+    <ThemeProvider theme={theme}>
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+          <AntTabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            {Object.keys(config).map((tab) => (
+              <AntTab
+                iconPosition="end"
+                icon={
+                  config[tab].iconTab && (
+                    <MonitoringStatus
+                      status={convertToString(data, config[tab].iconTab)}
+                      variant="modal"
+                    />
+                  )
+                }
+                key={tab}
+                label={config[tab].name}
+              />
+            ))}
+          </AntTabs>
+        </Box>
+        {Object.keys(config).map((tab, index) => (
+          <TabPanel key={tab} value={value} index={index}>
+            {getTabContent(
+              { type: tab, path: config[tab].path, page },
+              data,
+              projectData,
+            )}
+          </TabPanel>
+        ))}
       </Box>
-      {Object.keys(config).map((tab, index) => (
-        <TabPanel key={tab} value={value} index={index}>
-          {getTabContent(
-            { type: tab, path: config[tab].path, page },
-            data,
-            projectData,
-          )}
-        </TabPanel>
-      ))}
-    </Box>
+    </ThemeProvider>
   );
 }
 

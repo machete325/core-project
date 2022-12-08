@@ -1,16 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
 import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown';
-import Error from '../../../../components/Error/Error';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
-import { getErrors } from '../../../../core/redux/projects/monitoring/selectors';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
 import { IMonitoringItems } from '../../../../types/project/Monitoring';
 import s from './Monitoring.module.scss';
 import MetricsInfo from '../../../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
 import { getFormattedDateFromTimeStamp } from '../../../../core/helpers/dateMethods';
+import MonitoringStatus from '../../../../components/MonitoringComponents/MonitoringStatus/MonitoringStatus';
+import MonitoringInfrastructure from '../../../../components/MonitoringComponents/MonitoringInfrastructure/MonitoringInfrastructure';
 
 type Props = {
   data: IMonitoringItems;
@@ -35,11 +34,8 @@ function Monitoring({
   projectData,
   handleOpenModal,
 }: Props) {
-  const hasErrors = useSelector(getErrors);
-
   return (
     <div className={s.content}>
-      {hasErrors && <Error />}
       {amountDatasets !== 0 && (
         <table className={s.table}>
           <thead className={s.thead}>
@@ -51,9 +47,9 @@ function Monitoring({
               <td>Name</td>
               <td>Model (production)</td>
               <td>Metrics</td>
-              <td>Data drift</td>
-              <td>Concept drift</td>
-              <td>Infrastructure</td>
+              <td style={{ textAlign: 'center' }}>Data drift</td>
+              <td style={{ textAlign: 'center' }}>Concept drift</td>
+              <td style={{ textAlign: 'center' }}>Infrastructure</td>
               <td>Costs</td>
               <td>Last updated</td>
             </tr>
@@ -69,7 +65,9 @@ function Monitoring({
                   />
                 </td>
                 <td className={s.table_count}>{index + 1}</td>
-                <td className={s.table_text}>Name</td>
+                <td className={s.table_text}>
+                  <ToBeImpelemented element="Name" color="primary" />
+                </td>
                 <td>
                   <div
                     role="presentation"
@@ -88,16 +86,19 @@ function Monitoring({
                   />
                 </td>
                 <td>
-                  <ToBeImpelemented element="Data drift" color="primary" />
+                  <MonitoringStatus status={data[key].dataDriftStatus} />
                 </td>
                 <td>
-                  <ToBeImpelemented element="Concept drift" color="primary" />
+                  <MonitoringStatus status={data[key].conceptDriftStatus} />
                 </td>
                 <td>
-                  <ToBeImpelemented element="Infrastructure" color="primary" />
+                  <MonitoringStatus status={data[key].infrastructureStatus} />
                 </td>
                 <td>
-                  <ToBeImpelemented element="Costs" color="primary" />
+                  <MonitoringInfrastructure
+                    data={data[key]}
+                    marginBottom="8px"
+                  />
                 </td>
                 <td className={s.table_text} style={{ whiteSpace: 'nowrap' }}>
                   {getFormattedDateFromTimeStamp(data[key].edited)}
