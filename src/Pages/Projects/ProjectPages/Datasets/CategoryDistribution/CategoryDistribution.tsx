@@ -12,7 +12,7 @@ function CategoryDistribution({ data }: Props) {
   return (
     <div>
       <div className={s.mock_container}>
-        <div className={s.title}>item_id distribution</div>
+        <div className={s.title}>item_category_id distribution</div>
         <ToBeImpelemented
           element={(
             <img
