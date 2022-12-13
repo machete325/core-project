@@ -1,19 +1,13 @@
-import { IDataset } from '../../core/redux/projects/datasets/types';
-import { IExperiment } from '../../core/redux/projects/experiments/types';
+import { IExperiment } from '../../types/project/Experiments';
+import { IDataset } from '../../types/project/Datasets';
+import { IProject } from '../../types/project/Project';
+import { IMonitoring } from '../../types/project/Monitoring';
 
 export type ChoosedTab = {
   type: string | undefined;
-  data: IExperiment | IDataset | undefined;
+  data: IExperiment | IDataset | IMonitoring | undefined;
   page: string;
 };
-
-export interface IProjectData {
-  id: string;
-  name: string;
-  page: string;
-  description: string;
-  created: string;
-}
 
 interface IConfig {
   name: string;
@@ -25,6 +19,6 @@ export type Props = {
   handleClose: () => void;
   data: ChoosedTab;
   fullScreen?: boolean;
-  projectData: IProjectData;
+  projectData: IProject;
   config: { [key: string]: IConfig };
 };

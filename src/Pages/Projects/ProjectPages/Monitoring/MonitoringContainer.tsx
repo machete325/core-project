@@ -6,6 +6,7 @@ import { oneProjectData } from '../../../../core/redux/projects/selectors';
 
 import { useAppDispatch } from '../../../../core/redux/store';
 import {
+  cancelRequest,
   checkAllMonitoring,
   checkMonitoring,
   fetchMonitoring,
@@ -36,10 +37,10 @@ function ProjectMonitoringContainer() {
   const [isExistScroll, setIsExistScroll] = useState(false);
   const [isGetMoreActive, setIsGetMoreActive] = useState(false);
   const [open, setOpen] = useState(false);
-  const [choosedTab] = useState<ChoosedTab>({
+  const [choosedTab, setChoosedTab] = useState<ChoosedTab>({
     type: undefined,
     data: undefined,
-    page: 'datasets',
+    page: 'monitoring',
   });
   const initialPageSize = 3;
   const pageSize = 3;
@@ -77,6 +78,7 @@ function ProjectMonitoringContainer() {
     }
     return () => {
       controller.abort();
+      dispatch(cancelRequest());
     };
   }, [projectData]);
 
@@ -119,7 +121,7 @@ function ProjectMonitoringContainer() {
     const monitoring = data[id];
     console.log(monitoring);
     setOpen(true);
-    // setChoosedTab({ ...choosedTab, type: activeTab, data: monitoring });
+    setChoosedTab({ ...choosedTab, type: activeTab, data: monitoring });
   };
 
   const handleCloseModal = () => {

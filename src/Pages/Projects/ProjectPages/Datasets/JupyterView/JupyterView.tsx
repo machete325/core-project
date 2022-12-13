@@ -1,6 +1,7 @@
 import React from 'react';
 import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IDataset } from '../../../../../core/redux/projects/datasets/types';
+import { IDataset } from '../../../../../types/project/Datasets';
+import s from './JupyterView.module.scss';
 
 interface Props {
   data: IDataset;
@@ -10,7 +11,17 @@ function JupyterView({ data }: Props) {
   console.log(data);
   return (
     <div>
-      <ToBeImpelemented element="JupyterView" color="primary" />
+      <div className={s.mock_container}>
+        <ToBeImpelemented
+          element={(
+            <img
+              alt="descritpion"
+              src="/images/mock/datasets/jupyter-view.png"
+            />
+          )}
+          color="primary"
+        />
+      </div>
     </div>
   );
 }

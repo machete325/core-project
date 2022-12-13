@@ -1,16 +1,7 @@
 import React from 'react';
 import s from './MetricsInfo.module.scss';
 import StatusTag from '../../StatusTag/StatusTag';
-
-export interface IMetric {
-  id: string;
-  name: string;
-  displayName: string;
-  display: boolean;
-  value: number;
-  threshold: number;
-  aggregationOperation: string;
-}
+import { IMetric } from '../../../types/project/Experiments';
 
 type Props = {
   data: { [key: string]: IMetric };

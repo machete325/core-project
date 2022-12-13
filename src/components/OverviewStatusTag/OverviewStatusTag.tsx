@@ -7,11 +7,13 @@ type Props = {
     displayName: string;
     color: string;
     label: string;
+    labelType: 'monitoring' | 'experiments' | 'trend' | 'datasets';
     inPercents: boolean;
   };
+  label: any;
 };
 
-export default function OverviewStatusTag({ data, config }: Props) {
+export default function OverviewStatusTag({ data, config, label }: Props) {
   const formattedData = (value: any) => {
     if (config.inPercents) {
       return `${value * 100}%`;
@@ -31,7 +33,9 @@ export default function OverviewStatusTag({ data, config }: Props) {
             <div className={s.value}>{formattedData(data)}</div>
             <div>{config.displayName}</div>
           </div>
-          <div className={s.label}>{config.label}</div>
+          <div className={s.label} style={{ color: label.color }}>
+            {label.text}
+          </div>
         </div>
       </div>
     </div>

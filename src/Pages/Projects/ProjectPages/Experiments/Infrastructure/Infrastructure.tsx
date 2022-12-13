@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
 import Loader from '../../../../../components/Loader/Loader';
 import MachineDetails from '../../../../../components/MachineDetails/MachineDetails';
-import { IProjectData } from '../../../../../components/Modal/types';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
-import { IInfrastructure, IMachine } from './types';
+import {
+  IProject,
+  IInfrastructure,
+  IMachine,
+} from '../../../../../types/project/Project';
 
 interface Props {
   data: any;
-  projectData: IProjectData;
+  projectData: IProject;
 }
 
 function Infrastructure({ data, projectData }: Props) {
@@ -52,7 +55,7 @@ function Infrastructure({ data, projectData }: Props) {
         <Loader />
       ) : (
         expandData
-        && expandData.machines.map((machine) => (
+        && expandData.machines?.map((machine) => (
           <div key={machine.id}>
             <MachineDetails orientation="horizontal" data={machine} />
             <div style={{ marginBottom: '32px' }}>

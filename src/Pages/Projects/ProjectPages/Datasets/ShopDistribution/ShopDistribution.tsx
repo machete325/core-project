@@ -1,6 +1,7 @@
 import React from 'react';
 import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IDataset } from '../../../../../core/redux/projects/datasets/types';
+import { IDataset } from '../../../../../types/project/Datasets';
+import s from './ShopDistribution.module.scss';
 
 interface Props {
   data: IDataset;
@@ -10,7 +11,18 @@ function ShopDistribution({ data }: Props) {
   console.log(data);
   return (
     <div>
-      <ToBeImpelemented element="Shop Distribution" color="primary" />
+      <div className={s.mock_container}>
+        <div className={s.title}>Shop_id distribution</div>
+        <ToBeImpelemented
+          element={(
+            <img
+              alt="descritpion"
+              src="/images/mock/datasets/shop-distribution.png"
+            />
+          )}
+          color="primary"
+        />
+      </div>
     </div>
   );
 }

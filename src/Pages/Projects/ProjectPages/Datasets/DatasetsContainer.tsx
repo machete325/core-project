@@ -6,6 +6,7 @@ import s from './Datasets.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
 import {
+  cancelRequest,
   checkAllDatasets,
   checkDataset,
   fetchDatasets,
@@ -77,6 +78,7 @@ function ProjectDatasetsContainer() {
     }
     return () => {
       controller.abort();
+      dispatch(cancelRequest());
     };
   }, [projectData]);
 

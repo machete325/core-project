@@ -29,6 +29,7 @@ const api = async (
   url: string,
   additionalHeaders?: { [key: string]: string },
   signal?: any,
+  cancelToken?: any,
 ) => {
   try {
     const token = localStorage.getItem('accessToken');
@@ -50,6 +51,7 @@ const api = async (
         url: baseURL + url,
         headers: GETheaders,
         withCredentials: true,
+        cancelToken,
       })
       : await axios({
         signal,

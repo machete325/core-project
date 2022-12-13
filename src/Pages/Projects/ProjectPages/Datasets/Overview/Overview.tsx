@@ -4,9 +4,12 @@ import Outliers from '../../../../../components/DatasetComponents/Outliers/Outli
 import StatisticProperties from '../../../../../components/DatasetComponents/StatisticProperties/StatisticProperties';
 import Loader from '../../../../../components/Loader/Loader';
 import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IDataset } from '../../../../../core/redux/projects/datasets/types';
+import {
+  IDataset,
+  IExpandDataset,
+  ITagsData,
+} from '../../../../../types/project/Datasets';
 import { DatasetService } from '../../../../../core/services/projects/Dataset.service';
-import { IExpandDataset, ITagsData } from '../types';
 import s from './Overview.module.scss';
 
 interface Props {

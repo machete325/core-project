@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMonitoringItems } from '../../../../types/project/monitoring';
+import { IMonitoringItems } from '../../../../types/project/Monitoring';
 
 export type MonitoringState = {
   loading: boolean;

@@ -1,6 +1,10 @@
+import axios from 'axios';
 import { MonitoringService } from '../../../services/projects/Monitoring.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { monitoringSlice } from './reducer';
+
+const { CancelToken } = axios;
+let cancel: any;
 
 const {
   setMonitoring,
@@ -27,12 +31,16 @@ export const fetchMonitoring = (
     if (currentPage === 0) {
       dispatch(startLoading());
     }
+    const cancelToken = new CancelToken((c) => {
+      cancel = c;
+    });
     const response = await getProjectMonitoring(
       projectId,
       true,
       currentPage,
       pageSize,
       signal,
+      cancelToken,
     );
     if (Object.keys(response.data.items).length !== 0) {
       dispatch(setMonitoring(response.data.items));
@@ -67,4 +75,10 @@ export const setMonitoringFetching = (fetching: boolean) => (dispatch: AppDispat
 
 export const resetErrors = () => (dispatch: AppDispatch) => {
   dispatch(setErrors(false));
+};
+
+export const cancelRequest = () => () => {
+  if (cancel) {
+    cancel();
+  }
 };
