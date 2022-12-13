@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { IExperiment } from '../../../../../types/project/Experiments';
+import { IExperiment } from '../../../../../types/project/experiments';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import Loader from '../../../../../components/Loader/Loader';
 import s from './Dataset.module.scss';
 import Dataset from './Dataset';
-import { IProject } from '../../../../../types/project/Project';
-import { IExpandDataset } from '../../../../../types/project/Datasets';
+import { IProject } from '../../../../../types/project/project';
+import { IExpandDataset } from '../../../../../types/project/datasets';
 
 export interface Props {
   data: IExperiment;

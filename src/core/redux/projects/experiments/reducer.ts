@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IExperimentData } from '../../../../types/project/Experiments';
+import { IExperimentData } from '../../../../types/project/experiments';
 
 export type ExperimentsState = {
   loading: boolean;

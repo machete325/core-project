@@ -6,7 +6,7 @@ import s from './Dataset.module.scss';
 import {
   IExpandDataset,
   ITagsData,
-} from '../../../../../types/project/Datasets';
+} from '../../../../../types/project/datasets';
 
 export interface Props {
   expandData: IExpandDataset;

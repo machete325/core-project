@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import GraphModal from '../../../../components/GraphModal/GraphModal';
-import { IProject } from '../../../../types/project/Project';
+import { IProject } from '../../../../types/project/project';
 import Graph from './Graph';
 import s from './GraphNavigation.module.scss';
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IExpandDatasets } from '../../../../types/project/Datasets';
+import { IExpandDatasets } from '../../../../types/project/datasets';
 
 export type DatasetsState = {
   loading: boolean;

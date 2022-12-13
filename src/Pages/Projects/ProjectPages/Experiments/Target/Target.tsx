@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Target.module.scss';
-import { IExperiment } from '../../../../../types/project/Experiments';
-import { IProject } from '../../../../../types/project/Project';
+import { IExperiment } from '../../../../../types/project/experiments';
+import { IProject } from '../../../../../types/project/project';
 
 interface Props {
   data: IExperiment;

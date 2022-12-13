@@ -1,6 +1,6 @@
 import React from 'react';
 import ToBeImpelemented from '../../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IDataset } from '../../../../../types/project/Datasets';
+import { IDataset } from '../../../../../types/project/datasets';
 import s from './DailySales.module.scss';
 
 interface Props {

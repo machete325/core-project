@@ -4,7 +4,7 @@ import { ExperimentService } from '../../../../../core/services/projects/Experim
 import { textSlicer } from '../../../../../core/helpers/textMethods';
 import s from './CommitDescription.module.scss';
 import Loader from '../../../../../components/Loader/Loader';
-import { IProject } from '../../../../../types/project/Project';
+import { IProject } from '../../../../../types/project/project';
 
 interface Props {
   data: any;

@@ -2,7 +2,7 @@ import React from 'react';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
 import DropDown from '../../../../components/DropDown/ExperimentsDropDown/DropDown';
 import ProjectStatus from '../../../../components/ProjectStatus/ProjectStatus';
-import { IExperimentData } from '../../../../types/project/Experiments';
+import { IExperimentData } from '../../../../types/project/experiments';
 import s from './Experiments.module.scss';
 import Loader from '../../../../components/Loader/Loader';
 import { formDatasetText } from '../../../../core/helpers/textMethods';

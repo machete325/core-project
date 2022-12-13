@@ -1,5 +1,5 @@
-import { IExpandExperiment } from './Experiments';
-import { IInfrastructure, IProject } from './Project';
+import { IExpandExperiment } from './experiments';
+import { IInfrastructure, IProject } from './project';
 
 export interface IMonitoring {
   id: string;

@@ -8,7 +8,7 @@ import s from './Navigation.module.scss';
 import { clearExperimentsData } from '../../../../core/redux/projects/experiments/actions';
 import { clearOneProjectData } from '../../../../core/redux/projects/actions';
 import { clearOverview } from '../../../../core/redux/projects/overview/actions';
-import { IProject } from '../../../../types/project/Project';
+import { IProject } from '../../../../types/project/project';
 import { clearDatasetsData } from '../../../../core/redux/projects/datasets/actions';
 import { clearMonitoringData } from '../../../../core/redux/projects/monitoring/actions';
 

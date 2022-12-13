@@ -8,7 +8,7 @@ import {
   IDataset,
   IExpandDataset,
   ITagsData,
-} from '../../../../../types/project/Datasets';
+} from '../../../../../types/project/datasets';
 import { DatasetService } from '../../../../../core/services/projects/Dataset.service';
 import s from './Overview.module.scss';
 
