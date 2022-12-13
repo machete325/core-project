@@ -1,3 +1,20 @@
+# [1.5.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.4.0...v1.5.0) (2022-12-13)
+
+
+### Bug Fixes
+
+* **project:** fixed bug related to visualize one project and go to another projec data not refreshed ([01ea681](https://github.com/Coreai-org/corecontrol-web/commit/01ea681ffcca37cd2555f0ef2cbd654c20454239))
+
+
+### Features
+
+* **.eslintrc.json:** disable import/extensions ([43ed073](https://github.com/Coreai-org/corecontrol-web/commit/43ed073e57ad39ba9ae3415e05490df5ab2f07d1))
+* **mock-data:** added mock data ([982019d](https://github.com/Coreai-org/corecontrol-web/commit/982019dc7966835c99dfbbf54b8ebaa0779a603e))
+* **monitoring:** added new logic and UI for monitoring page ([55d5df2](https://github.com/Coreai-org/corecontrol-web/commit/55d5df2cb2e6ef01ec6b2d935140928a150fd8cd))
+* **navigation:** added clear data functions ([104435b](https://github.com/Coreai-org/corecontrol-web/commit/104435b14cf6ba987675c970b1dce2f8905e57ca))
+* **overview.tsx:** added overview labels ([08da6ed](https://github.com/Coreai-org/corecontrol-web/commit/08da6ed3c0f9798e196879d3d37b7f6b58da9965))
+* **overview.tsx:** updated overview label config ([35245b4](https://github.com/Coreai-org/corecontrol-web/commit/35245b49755a3ac8228d5b152af9b71a0edab3c3))
+
 # [1.4.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.3.0...v1.4.0) (2022-12-06)
 
 
