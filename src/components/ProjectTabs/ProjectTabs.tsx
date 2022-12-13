@@ -4,11 +4,11 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import { getTabContent } from '../../core/helpers/getTabContent';
-import { IExperiment } from '../../types/project/Experiments';
-import { IDataset } from '../../types/project/Datasets';
-import { IProject } from '../../types/project/Project';
+import { IExperiment } from '../../types/project/experiments';
+import { IDataset } from '../../types/project/datasets';
+import { IProject } from '../../types/project/project';
 import MonitoringStatus from '../MonitoringComponents/MonitoringStatus/MonitoringStatus';
-import { IMonitoring } from '../../types/project/Monitoring';
+import { IMonitoring } from '../../types/project/monitoring';
 import { convertToString } from '../../core/helpers/objectMethods';
 import s from './ProjectTabs.module.scss';
 

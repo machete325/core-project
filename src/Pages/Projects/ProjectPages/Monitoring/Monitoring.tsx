@@ -4,7 +4,7 @@ import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown'
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
-import { IMonitoringItems } from '../../../../types/project/Monitoring';
+import { IMonitoringItems } from '../../../../types/project/monitoring';
 import s from './Monitoring.module.scss';
 import MetricsInfo from '../../../../components/ExperimentComponents/MetricsInfo/MetricsInfo';
 import { getFormattedDateFromTimeStamp } from '../../../../core/helpers/dateMethods';

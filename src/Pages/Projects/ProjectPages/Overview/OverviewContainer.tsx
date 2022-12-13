@@ -26,7 +26,7 @@ import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 import Error from '../../../../components/Error/Error';
-import { IProjectOverview } from '../../../../types/project/Project';
+import { IProjectOverview } from '../../../../types/project/project';
 import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
 import getOverviewLabel from '../../../../components/OverviewStatusTag/getOverviewLabel';
 
