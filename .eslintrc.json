@@ -25,6 +25,7 @@
     "react/jsx-props-no-spreading": "off",
     "no-plusplus": "off",
     "import/no-cycle": "off",
+    "import/extensions": 0,
     "react/no-unknown-property": [
       2,
       {
