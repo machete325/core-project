@@ -1,10 +1,6 @@
 import React from 'react';
+import { ITagsData } from '../../../types/project/Datasets';
 import s from './GeneralInfo.module.scss';
-
-interface ITagsData {
-  displayName: string;
-  value: number | string;
-}
 
 type Props = {
   tagsData: ITagsData[];

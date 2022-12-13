@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOverview, IRecently } from './types';
+import { IProjectOverview, IRecently } from '../../../types/project/Project';
 
 export type InitialState = {
   loading: boolean;
@@ -7,7 +7,7 @@ export type InitialState = {
   hasErrors: boolean;
   data: any;
   projectData: any;
-  overviewProjectData: { [key: string]: IOverview };
+  overviewProjectData: { [key: string]: IProjectOverview };
   recentlyOpenedData: IRecently[];
 };
 //

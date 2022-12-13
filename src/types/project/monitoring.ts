@@ -1,5 +1,5 @@
-import { IExpandExperiment } from './experiments';
-import { IInfrastructure, IProject } from './project';
+import { IExpandExperiment } from './Experiments';
+import { IInfrastructure, IProject } from './Project';
 
 export interface IMonitoring {
   id: string;
@@ -7,9 +7,9 @@ export interface IMonitoring {
   model: IModel;
   experiment: IExpandExperiment;
   infrastructure: IInfrastructure;
-  dataDriftStatus: string;
-  conceptDriftStatus: string;
-  infrastructureStatus: string;
+  dataDriftStatus: 'GREEN' | 'RED' | any;
+  conceptDriftStatus: 'GREEN' | 'RED' | any;
+  infrastructureStatus: 'GREEN' | 'RED' | any;
   edited: string;
 }
 

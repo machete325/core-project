@@ -1,0 +1,13 @@
+@import '../../../colors.scss';
+@import '../../../mixins.scss';
+
+.wrapper {
+  @include text(600, 12px, normal);
+  color: $white;
+}
+
+.title {
+  margin-right: 4px;
+  font-weight: 400;
+  color: $dark_300;
+}

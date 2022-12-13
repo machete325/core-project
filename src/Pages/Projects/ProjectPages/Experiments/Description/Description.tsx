@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Description.module.scss';
-import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
+import { IExperiment } from '../../../../../types/project/Experiments';
 
 interface Props {
   data: IExperiment;

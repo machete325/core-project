@@ -1,0 +1,35 @@
+@import '../../../colors.scss';
+
+@mixin container {
+  width: 16px;
+  height: 16px;
+  border-radius: 100px;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.red {
+  @include container();
+  background-color: $red;
+}
+
+.green {
+  @include container();
+  background-color: $active_green;
+}
+
+.red_modal {
+  margin-left: 10px;
+  @include container();
+  background-color: $red;
+}
+
+.green_modal {
+  margin-left: 10px;
+  @include container();
+  background-color: $active_green;
+}

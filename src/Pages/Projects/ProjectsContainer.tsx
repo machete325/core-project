@@ -2,14 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../core/redux/store';
-import { fetchProjects } from '../../core/redux/projects/actions';
+import {
+  clearOneProjectData,
+  fetchProjects,
+} from '../../core/redux/projects/actions';
 import { getLoading, projectsData } from '../../core/redux/projects/selectors';
 import InputField from '../../components/SearchField/InputField';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import Project from './Project';
-import { IProject } from './types';
+import { IProject } from '../../types/project/Project';
 import s from './Projects.module.scss';
 import Loader from '../../components/Loader/Loader';
+import { clearOverview } from '../../core/redux/projects/overview/actions';
+import { clearExperimentsData } from '../../core/redux/projects/experiments/actions';
+import { clearDatasetsData } from '../../core/redux/projects/datasets/actions';
+import { clearMonitoringData } from '../../core/redux/projects/monitoring/actions';
 
 function ProjectsContainer() {
   const dispatch = useAppDispatch();
@@ -26,6 +33,11 @@ function ProjectsContainer() {
     if (Object.keys(data).length === 0) {
       dispatch(fetchProjects());
     }
+    dispatch(clearOverview());
+    dispatch(clearExperimentsData());
+    dispatch(clearOneProjectData());
+    dispatch(clearDatasetsData());
+    dispatch(clearMonitoringData());
   }, []);
 
   const handleChange = (e: any) => {

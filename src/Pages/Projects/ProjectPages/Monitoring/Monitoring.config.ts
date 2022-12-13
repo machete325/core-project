@@ -5,32 +5,22 @@
   */
 
 const datasetConfig = {
-  description: {
+  overview: {
     name: 'Overview',
     path: '.description',
   },
-  price: {
-    name: 'Price',
+  dataDrift: {
+    name: 'Data drift',
     path: '.description',
+    iconTab: '.dataDriftStatus',
   },
-  dailySales: {
-    name: 'Daily sales',
+  conceptDrift: {
+    name: 'Concept drift',
     path: '.description',
+    iconTab: '.conceptDriftStatus',
   },
-  itemDistribution: {
-    name: 'Item distribution',
-    path: '.description',
-  },
-  categoryDistribution: {
-    name: 'Category distribution',
-    path: '.description',
-  },
-  shopDistribution: {
-    name: 'Shop distribution',
-    path: '.description',
-  },
-  jupyterView: {
-    name: 'Jupyter view',
+  infrastructure: {
+    name: 'Infrastucture',
     path: '.description',
   },
 };

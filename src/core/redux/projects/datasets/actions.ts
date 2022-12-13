@@ -1,6 +1,10 @@
+import axios from 'axios';
 import { DatasetService } from '../../../services/projects/Dataset.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { datasetSlice } from './reducer';
+
+const { CancelToken } = axios;
+let cancel: any;
 
 const {
   setDatasets,
@@ -27,12 +31,16 @@ export const fetchDatasets = (
     if (currentPage === 0) {
       dispatch(startLoading());
     }
+    const cancelToken = new CancelToken((c) => {
+      cancel = c;
+    });
     const response = await getProjectDatasets(
       projectId,
       true,
       currentPage,
       pageSize,
       signal,
+      cancelToken,
     );
     if (Object.keys(response.data.items).length !== 0) {
       dispatch(setDatasets(response.data.items));
@@ -67,4 +75,10 @@ export const setDatasetsFetching = (fetching: boolean) => (dispatch: AppDispatch
 
 export const resetErrors = () => (dispatch: AppDispatch) => {
   dispatch(setErrors(false));
+};
+
+export const cancelRequest = () => () => {
+  if (cancel) {
+    cancel();
+  }
 };

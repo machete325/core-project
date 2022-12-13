@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import s from './ToBeImpelemented.module.scss';
 
-const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+const ImplementedTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(() => ({
   [`& .${tooltipClasses.tooltip}`]: {
@@ -29,14 +29,14 @@ interface Props {
 function ToBeImpelemented({ element, color }: Props) {
   return (
     <div className={s.wrapper}>
-      <HtmlTooltip
+      <ImplementedTooltip
         placement="top-start"
         title={<div color="inherit">To be customized</div>}
       >
         <div style={{ color: color === 'primary' ? 'white' : 'balck' }}>
           {element}
         </div>
-      </HtmlTooltip>
+      </ImplementedTooltip>
     </div>
   );
 }

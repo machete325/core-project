@@ -42,10 +42,15 @@ export interface IExpandDataset extends IDataset {
   };
 }
 
+export interface ITagsData {
+  displayName: string;
+  value: number | string;
+}
+
 export interface IExpandDatasets {
   [key: string]: IExpandDataset & { checked: boolean };
 }
 
 export interface IDatasets {
-  [key: string]: IDataset;
+  [key: string]: IDataset & { checked: boolean };
 }
