@@ -1,7 +1,7 @@
-import { IExperiment } from '../../types/project/Experiments';
-import { IDataset } from '../../types/project/Datasets';
-import { IProject } from '../../types/project/Project';
-import { IMonitoring } from '../../types/project/Monitoring';
+import { IExperiment } from '../../types/project/experiments';
+import { IDataset } from '../../types/project/datasets';
+import { IProject } from '../../types/project/project';
+import { IMonitoring } from '../../types/project/monitoring';
 
 export type ChoosedTab = {
   type: string | undefined;

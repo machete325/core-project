@@ -1,4 +1,4 @@
-import { IExperiment } from './Experiments';
+import { IExperiment } from './experiments';
 
 export interface IProject {
   id: string;

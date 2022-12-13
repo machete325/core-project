@@ -7,7 +7,7 @@ import {
   IProject,
   IInfrastructure,
   IMachine,
-} from '../../../../../types/project/Project';
+} from '../../../../../types/project/project';
 
 interface Props {
   data: any;

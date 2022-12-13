@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProjectOverview } from '../../../../types/project/Project';
+import { IProjectOverview } from '../../../../types/project/project';
 
 export type OverviewState = {
   loading: boolean;

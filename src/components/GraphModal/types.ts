@@ -1,4 +1,4 @@
-import { IProject } from '../../types/project/Project';
+import { IProject } from '../../types/project/project';
 
 export type Props = {
   open: boolean;

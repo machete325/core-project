@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITagsData } from '../../../types/project/Datasets';
+import { ITagsData } from '../../../types/project/datasets';
 import s from './GeneralInfo.module.scss';
 
 type Props = {

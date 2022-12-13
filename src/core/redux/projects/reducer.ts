@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProjectOverview, IRecently } from '../../../types/project/Project';
+import { IProjectOverview, IRecently } from '../../../types/project/project';
 
 export type InitialState = {
   loading: boolean;

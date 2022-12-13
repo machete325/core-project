@@ -8,7 +8,7 @@ import ExperimentInfrastructure from '../../Pages/Projects/ProjectPages/Experime
 import ExperimentCommitDescription from '../../Pages/Projects/ProjectPages/Experiments/CommitDescription/CommitDescription';
 import DatasetOverview from '../../Pages/Projects/ProjectPages/Datasets/Overview/Overview';
 import DatasetPrice from '../../Pages/Projects/ProjectPages/Datasets/Price/Price';
-import { IProject } from '../../types/project/Project';
+import { IProject } from '../../types/project/project';
 import DatasetDailySales from '../../Pages/Projects/ProjectPages/Datasets/DailySales/DailySales';
 import DatasetItemDistribution from '../../Pages/Projects/ProjectPages/Datasets/ItemDistribution/ItemDistribution';
 import DatasetCategoryDistribution from '../../Pages/Projects/ProjectPages/Datasets/CategoryDistribution/CategoryDistribution';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IMonitoring } from '../../../../../types/project/Monitoring';
+import { IMonitoring } from '../../../../../types/project/monitoring';
 import s from './Overview.module.scss';
 
 interface Props {
