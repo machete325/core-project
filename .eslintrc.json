@@ -24,13 +24,12 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/jsx-props-no-spreading": "off",
     "no-plusplus": "off",
+    "import/no-cycle": "off",
     "react/no-unknown-property": [
-        2,
-        {
-          "ignore": [
-            "active"
-          ]
-        }
-      ]
+      2,
+      {
+        "ignore": ["active"]
+      }
+    ]
   }
 }

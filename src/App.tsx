@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import { SnackbarProvider } from 'notistack';
-import './App.scss';
 
 import ProjectDatasetsContainer from './Pages/Projects/ProjectPages/Datasets/DatasetsContainer';
 import ProjectOverviewContainer from './Pages/Projects/ProjectPages/Overview/OverviewContainer';
@@ -12,6 +11,8 @@ import ProjectInfrastructureContainer from './Pages/Projects/ProjectPages/Infras
 import ProjectReportsContainer from './Pages/Projects/ProjectPages/Reports/ReportsContainer';
 import ProjectCodeContainer from './Pages/Projects/ProjectPages/Code/CodeContainer';
 import DismissAction from './components/DismissAction/DismissAction';
+
+import './App.scss';
 
 const ProjectsContainer = React.lazy(
   () => import('./Pages/Projects/ProjectsContainer'),

@@ -1,0 +1,18 @@
+@import '../../../../../colors.scss';
+
+@mixin text($weight, $size) {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $weight;
+  font-size: $size;
+}
+
+.title {
+  margin-bottom: 8px;
+  @include text(600, 18px);
+  color: $white;
+}
+
+.mock_container {
+  margin-bottom: 32px;
+}

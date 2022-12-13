@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
 import Loader from '../../../../../components/Loader/Loader';
-import { IProjectData } from '../../../../../components/Modal/types';
 import StatusTag from '../../../../../components/StatusTag/StatusTag';
-import { IExperiment } from '../../../../../core/redux/projects/experiments/types';
+import { IExperiment } from '../../../../../types/project/Experiments';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
+import { IProject } from '../../../../../types/project/Project';
 import s from './MainMetrics.module.scss';
 
 interface Props {
   data: IExperiment;
-  projectData: IProjectData;
+  projectData: IProject;
 }
 
 function MainMetrics({ data, projectData }: Props) {

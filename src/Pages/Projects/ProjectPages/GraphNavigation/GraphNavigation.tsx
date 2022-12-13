@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import GraphModal from '../../../../components/GraphModal/GraphModal';
+import { IProject } from '../../../../types/project/Project';
 import Graph from './Graph';
 import s from './GraphNavigation.module.scss';
 
-interface IDdata {
-  id: string;
-  name: string;
-  page: string;
-  description: string;
-  created: string;
-  isArchive: boolean;
-}
-
 type Props = {
-  data: IDdata;
+  data: IProject;
 };
 
 function GraphNavigation({ data }: Props) {

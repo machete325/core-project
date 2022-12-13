@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import Breadcrumbs from './Breadcrumbs';
+import { IProject } from '../../types/project/Project';
 
 interface IBreadcrumb {
   name: string | undefined;
@@ -9,15 +10,8 @@ interface IBreadcrumb {
   active: boolean;
 }
 
-interface IData {
-  id: string;
-  name: string;
-  page: string;
-  description: string;
-}
-
 type Props = {
-  data: IData;
+  data: IProject;
 };
 
 function BreadcrumbsContainer({ data }: Props) {

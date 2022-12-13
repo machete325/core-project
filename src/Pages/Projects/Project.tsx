@@ -3,7 +3,7 @@ import { Skeleton } from '@mui/material';
 import { useSelector } from 'react-redux';
 import StatusIndicator from '../../components/StatusIndicator/StatusIndicator';
 import { getFormattedDateFromTimeStamp } from '../../core/helpers/dateMethods';
-import { IProject } from './types';
+import { IProject } from '../../types/project/Project';
 import s from './Projects.module.scss';
 import StatusTag from '../../components/StatusTag/StatusTag';
 import MetricsInfo from '../../components/ExperimentComponents/MetricsInfo/MetricsInfo';

@@ -26,7 +26,9 @@ import Loader from '../../../../components/Loader/Loader';
 import Modal from '../../../../components/Modal/Modal';
 import { ChoosedTab } from '../../../../components/Modal/types';
 import Error from '../../../../components/Error/Error';
+import { IProjectOverview } from '../../../../types/project/Project';
 import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
+import getOverviewLabel from '../../../../components/OverviewStatusTag/getOverviewLabel';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -46,7 +48,7 @@ function ProjectOverviewContainer() {
   const hasErrors = useSelector(getErrors);
 
   const handleOpenModal = (activeTab: string) => {
-    const experiment = data.latestExperiment;
+    const experiment = data?.latestExperiment;
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
@@ -56,7 +58,7 @@ function ProjectOverviewContainer() {
   };
 
   useEffect(() => {
-    if (projectData && Object.keys(data).length === 0 && !loading) {
+    if (projectData && !data && !loading) {
       dispatch(fetchOverview(projectData.id, signal));
     }
     return () => {
@@ -68,31 +70,36 @@ function ProjectOverviewContainer() {
     totalNumberOfExperiments: {
       displayName: 'experiments',
       color: '#0D5DEC',
-      label: 'label',
+      label: 'experimentStatusFrequency',
+      labelType: 'experiments',
       inPercents: false,
     },
     totalNumberOfDatasets: {
       displayName: 'data sets',
       color: '#57DAD7',
-      label: 'label',
+      label: 'totalNumberOfDatasetVersions',
+      labelType: 'datasets',
       inPercents: false,
     },
     totalNumberOfMonitoringModels: {
       displayName: 'monitoring models',
       color: '#5237FB',
-      label: 'label',
+      label: 'totalNumberOfMonitoringDrifts',
+      labelType: 'monitoring',
       inPercents: false,
     },
     errorReporting: {
       displayName: 'error reporting',
       color: '#F51D44',
-      label: 'label',
+      label: 'errorReportingTrend',
+      labelType: 'trend',
       inPercents: true,
     },
     userFit: {
       displayName: 'User fit',
       color: '#1DF580',
-      label: 'label',
+      label: 'userFitTrend',
+      labelType: 'trend',
       inPercents: true,
     },
   };
@@ -122,14 +129,15 @@ function ProjectOverviewContainer() {
       ) : (
         <div className={s.content}>
           {hasErrors && <Error />}
-          {Object.keys(data).length !== 0 && (
+          {data && (
             <>
               <div className={s.tags_container}>
-                {Object.keys(tagConfig).map((key: any) => (
+                {Object.keys(tagConfig).map((key) => (
                   <OverviewStatusTag
                     key={key}
-                    data={data[key]}
+                    data={data[key as keyof IProjectOverview]}
                     config={tagConfig[key]}
+                    label={getOverviewLabel(data, tagConfig[key])}
                   />
                 ))}
               </div>
@@ -183,12 +191,12 @@ function ProjectOverviewContainer() {
                       <ModelConfigurationInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.configuration.items}
-                        marginBottom="4px"
+                        marginBottom="8px"
                       />
                       <InfrastructureInfo
                         modalHandler={handleOpenModal}
                         data={data.latestExperiment.infrastructure}
-                        marginBottom="4px"
+                        marginBottom="8px"
                       />
                     </div>
                   </div>
@@ -197,7 +205,10 @@ function ProjectOverviewContainer() {
                   <div className={s.info_title}>Latest VM</div>
                   <div className={s.vm_content}>
                     <MachineDetails
-                      data={data.latestInfrastructure.machines[0]}
+                      data={
+                        data.latestInfrastructure.machines
+                        && data.latestInfrastructure.machines[0]
+                      }
                       orientation="vertical"
                     />
                   </div>
