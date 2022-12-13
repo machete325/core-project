@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
 import Loader from '../../../../../components/Loader/Loader';
 import StatusTag from '../../../../../components/StatusTag/StatusTag';
-import { IExperiment } from '../../../../../types/project/Experiments';
+import { IExperiment } from '../../../../../types/project/experiments';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
-import { IProject } from '../../../../../types/project/Project';
+import { IProject } from '../../../../../types/project/project';
 import s from './MainMetrics.module.scss';
 
 interface Props {

@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './MetricsInfo.module.scss';
 import StatusTag from '../../StatusTag/StatusTag';
-import { IMetric } from '../../../types/project/Experiments';
+import { IMetric } from '../../../types/project/experiments';
 
 type Props = {
   data: { [key: string]: IMetric };

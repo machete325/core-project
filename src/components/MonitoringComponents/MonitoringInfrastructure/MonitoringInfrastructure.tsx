@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { defineCurrency } from '../../../core/helpers/textMethods';
-import { IMonitoring } from '../../../types/project/Monitoring';
+import { IMonitoring } from '../../../types/project/monitoring';
 import StatusTag from '../../StatusTag/StatusTag';
 import s from './MonitoringInfrastructure.module.scss';
 

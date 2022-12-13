@@ -4,7 +4,7 @@ import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown'
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import s from './Datasets.module.scss';
-import { IDatasets } from '../../../../types/project/Datasets';
+import { IDatasets } from '../../../../types/project/datasets';
 import ProjectVersion from '../../../../components/ProjectVersion/ProjectVersion';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
 

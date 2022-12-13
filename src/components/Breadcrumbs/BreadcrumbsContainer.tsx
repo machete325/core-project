@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Skeleton } from '@mui/material';
 import Breadcrumbs from './Breadcrumbs';
-import { IProject } from '../../types/project/Project';
+import { IProject } from '../../types/project/project';
 
 interface IBreadcrumb {
   name: string | undefined;

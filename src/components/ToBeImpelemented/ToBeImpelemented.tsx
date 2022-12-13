@@ -9,15 +9,14 @@ const ImplementedTooltip = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#f5f5f9',
-    color: 'rgba(0, 0, 0, 0.87)',
+    backgroundColor: 'gray',
+    color: 'white',
     maxWidth: 240,
     height: '40px',
     boxSizing: 'border-box',
     fontSize: '16px',
     fontFamily: 'Open Sans',
     fontWeight: '600',
-    border: '1px solid #dadde9',
   },
 }));
 
@@ -33,7 +32,16 @@ function ToBeImpelemented({ element, color }: Props) {
         placement="top-start"
         title={<div color="inherit">To be customized</div>}
       >
-        <div style={{ color: color === 'primary' ? 'white' : 'balck' }}>
+        <div
+          className={s.element}
+          style={{
+            color: color === 'primary' ? 'white' : 'black',
+            backgroundColor:
+              typeof element === 'string' || typeof element === 'number'
+                ? 'gray'
+                : 'inherit',
+          }}
+        >
           {element}
         </div>
       </ImplementedTooltip>

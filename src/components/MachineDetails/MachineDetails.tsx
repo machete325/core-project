@@ -1,6 +1,6 @@
 import React from 'react';
 import { defineCurrency } from '../../core/helpers/textMethods';
-import { IMachine } from '../../types/project/Project';
+import { IMachine } from '../../types/project/project';
 import ProjectStatus from '../ProjectStatus/ProjectStatus';
 import StatusTag from '../StatusTag/StatusTag';
 import s from './MachineDetails.module.scss';
