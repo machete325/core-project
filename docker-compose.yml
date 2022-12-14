@@ -1,23 +1,23 @@
 version: '3.5'
 services:
   web-corecontrol-prod:
-    build: .
+    build:
+      args:
+        - REACT_APP_API_URL=http://3.126.123.50:8000/api/v1
     ports:
       - '80:80'
     restart: always
-    environment:
-      - 'REACT_APP_API_URL=http://3.126.123.50:8000/api/v1'
   web-corecontrol-qa:
-    build: .
+    build:
+      args:
+        - REACT_APP_API_URL=http://3.126.123.50:8001/api/v1
     ports:
       - '801:80'
     restart: always
-    environment:
-      - 'REACT_APP_API_URL=http://3.126.123.50:8001/api/v1'
   web-corecontrol-dev:
-    build: .
+    build:
+      args:
+        - REACT_APP_API_URL=http://3.126.123.50:8002/api/v1
     ports:
       - '802:80'
     restart: always
-    environment:
-      - 'REACT_APP_API_URL=http://3.126.123.50:8002/api/v1'
