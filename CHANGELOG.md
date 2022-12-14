@@ -1,3 +1,11 @@
+## [1.5.1](https://github.com/Coreai-org/corecontrol-web/compare/v1.5.0...v1.5.1) (2022-12-14)
+
+
+### Bug Fixes
+
+* **docker-compose.yml:** added context ([96954d8](https://github.com/Coreai-org/corecontrol-web/commit/96954d85dfc911f2180711715dad0ddac9d92e2b))
+* **docker:** fixed docker build ([2bca2c8](https://github.com/Coreai-org/corecontrol-web/commit/2bca2c8b42f2d415af4c9ae8eb54163a19d481ab))
+
 # [1.5.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.4.0...v1.5.0) (2022-12-13)
 
 
