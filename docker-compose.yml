@@ -2,6 +2,7 @@ version: '3.5'
 services:
   web-corecontrol-prod:
     build:
+      context: .
       args:
         - REACT_APP_API_URL=http://3.126.123.50:8000/api/v1
     ports:
@@ -9,6 +10,7 @@ services:
     restart: always
   web-corecontrol-qa:
     build:
+      context: .
       args:
         - REACT_APP_API_URL=http://3.126.123.50:8001/api/v1
     ports:
@@ -16,6 +18,7 @@ services:
     restart: always
   web-corecontrol-dev:
     build:
+      context: .
       args:
         - REACT_APP_API_URL=http://3.126.123.50:8002/api/v1
     ports:
