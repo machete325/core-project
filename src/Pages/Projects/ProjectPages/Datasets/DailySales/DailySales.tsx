@@ -21,6 +21,7 @@ function DailySales({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
       <div className={s.mock_container}>
@@ -35,6 +36,7 @@ function DailySales({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>
