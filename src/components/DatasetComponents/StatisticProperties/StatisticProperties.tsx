@@ -2,12 +2,17 @@
 import React from 'react';
 import s from './StatisticProperties.module.scss';
 
-function StatisticProperties({ data }: any) {
+interface Props {
+  data: any;
+  title?: string;
+}
+
+function StatisticProperties({ data, title }: Props) {
   const tbodyConf = data && Object.keys(data[Object.keys(data)[0]]);
 
   return (
     <div className={s.wrapper}>
-      <div className={s.title}>Statistic Properties</div>
+      <div className={s.title}>{title || 'Statistic Properties'}</div>
       {data && (
         <div className={s.table_container}>
           <table className={s.table}>
