@@ -9,10 +9,10 @@ const ImplementedTooltip = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: 'gray',
     color: 'white',
+    backgroundColor: 'rgba(97, 97, 97, 0.8)',
     maxWidth: 240,
-    height: '40px',
+    height: '30px',
     boxSizing: 'border-box',
     fontSize: '16px',
     fontFamily: 'Open Sans',
@@ -23,18 +23,30 @@ const ImplementedTooltip = styled(({ className, ...props }: TooltipProps) => (
 interface Props {
   element: any;
   color: 'primary' | 'secondary';
+  blur?: boolean;
+  backgroundBlur?: boolean;
+  justifyContent?: 'start' | 'end' | 'center';
 }
 
-function ToBeImpelemented({ element, color }: Props) {
+function ToBeImpelemented({
+  element,
+  color,
+  blur,
+  backgroundBlur,
+  justifyContent = 'start',
+}: Props) {
   return (
     <div className={s.wrapper}>
       <ImplementedTooltip
-        placement="top-start"
+        followCursor
         title={<div color="inherit">To be customized</div>}
       >
         <div
-          className={s.element}
+          className={`${s.element} ${blur && s.blur} ${
+            backgroundBlur && s.backgroundBlur
+          }`}
           style={{
+            justifyContent,
             color: color === 'primary' ? 'white' : 'black',
             backgroundColor:
               typeof element === 'string' || typeof element === 'number'
