@@ -1,0 +1,29 @@
+@import '../../../../../colors.scss';
+@import '../../../../../mixins.scss';
+
+.wrapper {
+  @include text(600, 18px);
+  color: $white;
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.data_container {
+  margin-bottom: 32px;
+}
+
+.name {
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+
+.config_line {
+  margin-bottom: 32px;
+}
+
+.config_line_data {
+  display: flex;
+  justify-content: space-between;
+}
