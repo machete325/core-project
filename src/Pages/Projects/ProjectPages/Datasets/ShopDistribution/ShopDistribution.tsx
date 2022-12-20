@@ -21,6 +21,7 @@ function ShopDistribution({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>

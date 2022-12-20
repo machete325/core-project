@@ -21,7 +21,7 @@ export const DatasetService = {
     signal,
     cancelToken,
   ),
-  getDataset: (dataVersion: string, display?: boolean) => api('GET', [], `/data/${dataVersion}${getAdditionalParams(display)}`, {}),
+  getDataset: (version: string, display?: boolean) => api('GET', [], `/data/${version}${getAdditionalParams(display)}`, {}),
 };
 
 // Project Datasets

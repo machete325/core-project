@@ -21,6 +21,7 @@ type Props = {
   isExistScroll: boolean;
   getMoreHandler: () => void;
   amountExperiments: number;
+  totalCount: number | undefined;
   projectData: any;
 };
 
@@ -33,6 +34,7 @@ function ProjectExperiments({
   isExistScroll,
   getMoreHandler,
   amountExperiments,
+  totalCount,
   projectData,
 }: Props) {
   return (
@@ -144,8 +146,12 @@ function ProjectExperiments({
         </table>
       )}
       {fetching && <Loader variant="down" />}
-      {!isExistScroll && amountExperiments < 10 && !fetching && projectData && (
-        <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
+      {totalCount !== amountExperiments
+        && !isExistScroll
+        && amountExperiments < 10
+        && !fetching
+        && projectData && (
+          <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
       )}
     </div>
   );

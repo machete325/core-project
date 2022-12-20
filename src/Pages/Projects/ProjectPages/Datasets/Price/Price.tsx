@@ -18,6 +18,7 @@ function Price({ data }: Props) {
             <img alt="descritpion" src="/images/mock/datasets/item-price.png" />
           }
           color="primary"
+          backgroundBlur
         />
       </div>
       <div className={s.mock_container}>
@@ -30,6 +31,7 @@ function Price({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>

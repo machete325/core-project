@@ -11,7 +11,7 @@ const {
   startLoading,
   finishLoading,
   setCheckAllMonitoring,
-  setCheckDataset,
+  setCheckMonitoring,
   setFetching,
   setCurrentPage,
   clearData,
@@ -62,7 +62,7 @@ export const checkAllMonitoring = (checked: boolean) => (dispatch: AppDispatch) 
 };
 
 export const checkMonitoring = (id: string) => (dispatch: AppDispatch) => {
-  dispatch(setCheckDataset(id));
+  dispatch(setCheckMonitoring(id));
 };
 
 export const clearMonitoringData = () => (dispatch: AppDispatch) => {

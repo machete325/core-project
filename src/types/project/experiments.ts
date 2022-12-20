@@ -1,5 +1,5 @@
 import { IDataset, IExpandDataset } from './datasets';
-import { IInfrastructure } from './project';
+import { IInfrastructure } from './infrastructure';
 
 export interface IMetric {
   id: string;
