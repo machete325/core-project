@@ -8,7 +8,14 @@ import { chartHandlers } from './chartHandlers';
 type Props = {
   data: any;
   isFill?: boolean;
-  type: 'bar' | 'line' | 'pie' | 'metric-line' | 'infrastructure-line';
+  type:
+  | 'bar'
+  | 'line'
+  | 'pie'
+  | 'metric-line'
+  | 'infrastructure-line'
+  | 'monitoring-drift'
+  | 'monitoring-distribution';
 };
 
 function Chart({ data, isFill, type }: Props) {
@@ -59,6 +66,14 @@ function Chart({ data, isFill, type }: Props) {
         return chartHandlers.genBarChartData(data, option);
       case 'pie':
         return chartHandlers.genPieData(data, option);
+      case 'monitoring-drift':
+        return chartHandlers.genMonitoringDriftData(data, option, isFill);
+      case 'monitoring-distribution':
+        return chartHandlers.genMonitoringDistributionData(
+          data,
+          option,
+          isFill,
+        );
       default: {
         return null;
       }

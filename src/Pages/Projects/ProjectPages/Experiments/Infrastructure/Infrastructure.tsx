@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Chart from '../../../../../components/Chart/Chart';
 import Loader from '../../../../../components/Loader/Loader';
 import MachineDetails from '../../../../../components/MachineDetails/MachineDetails';
-import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import {
-  IProject,
-  IInfrastructure,
-  IMachine,
-} from '../../../../../types/project/project';
+  genMachineChartData,
+  genTrainingTime,
+} from '../../../../../core/helpers/infrastructureMethods';
+import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
+import { IInfrastructure } from '../../../../../types/project/infrastructure';
+import { IProject } from '../../../../../types/project/project';
 
 interface Props {
   data: any;
@@ -38,17 +39,6 @@ function Infrastructure({ data, projectData }: Props) {
     fetchExpandData();
   }, []);
 
-  const genMachineChartData = (machine: IMachine) => ({
-    id: machine.id,
-    displayName: `Hours used and Costs - Cloud: ${machine.displayName}`,
-    value: { usage: machine.usage, costs: machine.costs },
-  });
-
-  const genChartData = (trainingTime: any) => ({
-    displayName: 'Training time',
-    value: { trainingTime },
-  });
-
   return (
     <div>
       {loading ? (
@@ -72,7 +62,7 @@ function Infrastructure({ data, projectData }: Props) {
         <Chart
           type="infrastructure-line"
           isFill
-          data={genChartData(expandData.trainingTime)}
+          data={genTrainingTime(expandData.trainingTime)}
         />
       )}
     </div>

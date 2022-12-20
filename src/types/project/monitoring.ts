@@ -1,5 +1,6 @@
 import { IExpandExperiment } from './experiments';
-import { IInfrastructure, IProject } from './project';
+import { IInfrastructure } from './infrastructure';
+import { IProject } from './project';
 
 export interface IMonitoring {
   id: string;

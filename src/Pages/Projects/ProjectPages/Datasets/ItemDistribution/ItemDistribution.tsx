@@ -21,6 +21,7 @@ function ItemDistribution({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>

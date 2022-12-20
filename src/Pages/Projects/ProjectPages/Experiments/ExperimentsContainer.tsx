@@ -169,6 +169,7 @@ function ProjectExperimentsContainer() {
           getMoreHandler={getMoreHandler}
           projectData={projectData}
           amountExperiments={amountExperiments}
+          totalCount={totalCount}
           data={data}
         />
       )}
