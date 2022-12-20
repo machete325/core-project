@@ -25,22 +25,33 @@ function Overview({ data }: Props) {
   return (
     <div className={s.wrapper}>
       <div className={s.title}>Name</div>
-      <div className={s.name}>{mockData.displayName}</div>
+      <ToBeImpelemented
+        element={<div className={s.name}>{mockData.displayName}</div>}
+        color="primary"
+        blur
+      />
       <div className={s.config_line}>
         <div className={s.title}>Metrics</div>
         <div className={s.config_line_data}>
-          {metricsData
-            && metricsData.map((metric: any) => (
-              <StatusTag
-                key={metric.id}
-                usedValue={metric.value}
-                totalValue={2}
-                displayName={metric.displayName}
-                width="100%"
-                height="68px"
-                type="2"
-              />
-            ))}
+          <ToBeImpelemented
+            element={
+              metricsData
+              && metricsData.map((metric: any) => (
+                <StatusTag
+                  key={metric.id}
+                  usedValue={metric.value}
+                  totalValue={2}
+                  displayName={metric.displayName}
+                  width="100%"
+                  height="68px"
+                  type="2"
+                />
+              ))
+            }
+            color="primary"
+            backgroundBlur
+            width="100%"
+          />
         </div>
       </div>
       <div className={s.title}>Outliers</div>

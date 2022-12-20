@@ -44,7 +44,7 @@ export const monitoringSlice = createSlice({
         state.data[key].checked = action.payload;
       });
     },
-    setCheckDataset: (state, action: PayloadAction<string>) => {
+    setCheckMonitoring: (state, action: PayloadAction<string>) => {
       const id = action.payload;
       state.data[id].checked = !state.data[id].checked;
     },

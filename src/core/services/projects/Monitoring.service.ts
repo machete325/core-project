@@ -21,14 +21,9 @@ export const MonitoringService = {
     signal,
     cancelToken,
   ),
-  getMonitoring: (dataVersion: string, display?: boolean) => api(
-    'GET',
-    [],
-    `/monitoring/${dataVersion}${getAdditionalParams(display)}`,
-    {},
-  ),
+  getMonitoring: (version: string, display?: boolean) => api('GET', [], `/monitoring/${version}${getAdditionalParams(display)}`, {}),
 };
 
-// Project Datasets
+// Project Monitoring
 // GET /projects/<project_version>/monitoring
 // GET /projects/<project_version>/monitoring/<monitoring_version>

@@ -3,12 +3,15 @@ import s from './Outliers.module.scss';
 
 type Props = {
   data: { [key: string]: number[] | string[] };
+  description?: string | null;
 };
 
-function Outliers({ data }: Props) {
+function Outliers({ data, description }: Props) {
   return (
     <div className={s.wrapper}>
-      <div className={s.description}>Outliers</div>
+      {description !== null && (
+        <div className={s.description}>{description || 'Outliers'}</div>
+      )}
       {data
         && Object.entries(data).map((item) => (
           <div key={item[0]} className={s.container}>

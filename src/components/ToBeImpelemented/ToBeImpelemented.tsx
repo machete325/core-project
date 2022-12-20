@@ -26,6 +26,7 @@ interface Props {
   blur?: boolean;
   backgroundBlur?: boolean;
   justifyContent?: 'start' | 'end' | 'center';
+  width?: string;
 }
 
 function ToBeImpelemented({
@@ -34,9 +35,10 @@ function ToBeImpelemented({
   blur,
   backgroundBlur,
   justifyContent = 'start',
+  width,
 }: Props) {
   return (
-    <div className={s.wrapper}>
+    <div className={s.wrapper} style={{ width: width || 'inherit' }}>
       <ImplementedTooltip
         followCursor
         title={<div color="inherit">To be customized</div>}
