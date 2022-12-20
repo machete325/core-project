@@ -11,6 +11,7 @@ import MonitoringStatus from '../MonitoringComponents/MonitoringStatus/Monitorin
 import { IMonitoring } from '../../types/project/monitoring';
 import { convertToString } from '../../core/helpers/objectMethods';
 import s from './ProjectTabs.module.scss';
+import { IInfrastructure } from '../../types/project/infrastructure';
 
 interface IConfig {
   name: string;
@@ -21,7 +22,7 @@ interface IConfig {
 interface Props {
   config: { [key: string]: IConfig };
   defaultTab: string | undefined;
-  data: IExperiment | IDataset | IMonitoring | undefined;
+  data: IExperiment | IDataset | IMonitoring | IInfrastructure | undefined;
   projectData: IProject;
   page: string;
 }

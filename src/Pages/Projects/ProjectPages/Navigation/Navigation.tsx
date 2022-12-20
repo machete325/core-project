@@ -11,6 +11,7 @@ import { clearOverview } from '../../../../core/redux/projects/overview/actions'
 import { IProject } from '../../../../types/project/project';
 import { clearDatasetsData } from '../../../../core/redux/projects/datasets/actions';
 import { clearMonitoringData } from '../../../../core/redux/projects/monitoring/actions';
+import { clearInfrastructureData } from '../../../../core/redux/projects/infrastructure/actions';
 
 type Props = {
   data: IProject;
@@ -27,6 +28,7 @@ function Navigation({ data }: Props) {
     dispatch(clearOneProjectData());
     dispatch(clearDatasetsData());
     dispatch(clearMonitoringData());
+    dispatch(clearInfrastructureData());
   };
 
   return (
