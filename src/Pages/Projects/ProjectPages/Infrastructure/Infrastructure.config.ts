@@ -1,26 +1,20 @@
 /* {
-      name: name of experiment section,
-      path: path to information on experiment data,
+      name: name of infrastructure section,
+      path: path to information on infrastructure data,
     }
   */
 
 const infrastructureConfig = {
-  overview: {
+  details_and_costs: {
     name: 'Overview',
     path: '.description',
   },
-  dataDrift: {
+  hardware: {
     name: 'Data drift',
     path: '.description',
-    iconTab: '.dataDriftStatus',
   },
-  conceptDrift: {
+  operating_system: {
     name: 'Concept drift',
-    path: '.description',
-    iconTab: '.conceptDriftStatus',
-  },
-  infrastructure: {
-    name: 'Infrastucture',
     path: '.description',
   },
 };

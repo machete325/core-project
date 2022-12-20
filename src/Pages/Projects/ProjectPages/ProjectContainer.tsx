@@ -29,6 +29,7 @@ import { textSlicer } from '../../../core/helpers/textMethods';
 import { getTotalCountExperiments } from '../../../core/redux/projects/experiments/selectors';
 import { getTotalCountDatasets } from '../../../core/redux/projects/datasets/selectors';
 import { getTotalCountMonitoring } from '../../../core/redux/projects/monitoring/selectors';
+import { getTotalCountInfrastructure } from '../../../core/redux/projects/infrastructure/selectors';
 
 const navigateProjectConfig = [
   {
@@ -97,6 +98,7 @@ function ProjectContainer() {
   const totalExperiments = useSelector(getTotalCountExperiments);
   const totalDatasets = useSelector(getTotalCountDatasets);
   const totalMonitoring = useSelector(getTotalCountMonitoring);
+  const totalInfrastructure = useSelector(getTotalCountInfrastructure);
   const { pathname } = useLocation();
   const { projectId } = useParams();
   const [value, setValue] = useState('');
@@ -114,9 +116,12 @@ function ProjectContainer() {
       if (navElement.path === 'monitoring') {
         navElement.totalCount = totalMonitoring;
       }
+      if (navElement.path === 'infrastructure') {
+        navElement.totalCount = totalInfrastructure;
+      }
     });
     setNavigateConfig(config);
-  }, [totalExperiments, totalDatasets, totalMonitoring]);
+  }, [totalExperiments, totalDatasets, totalMonitoring, totalInfrastructure]);
 
   useEffect(() => {
     if (pathname === `/project/${projectId}`) {
