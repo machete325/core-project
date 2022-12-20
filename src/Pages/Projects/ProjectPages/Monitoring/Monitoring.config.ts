@@ -4,7 +4,7 @@
     }
   */
 
-const datasetConfig = {
+const monitoringConfig = {
   overview: {
     name: 'Overview',
     path: '.description',
@@ -25,4 +25,4 @@ const datasetConfig = {
   },
 };
 
-export default datasetConfig;
+export default monitoringConfig;
