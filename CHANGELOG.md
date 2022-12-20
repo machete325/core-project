@@ -1,3 +1,31 @@
+# [1.6.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.5.1...v1.6.0) (2022-12-20)
+
+
+### Bug Fixes
+
+* **experiments:** fixed width status column ([92d630d](https://github.com/Coreai-org/corecontrol-web/commit/92d630dd67f052d62345749e5efe0cd65dfd5a38))
+* **monitoring:** fixed monitoring config ([e3e4b36](https://github.com/Coreai-org/corecontrol-web/commit/e3e4b36e121f709b4cfd960d2a19e8eb3dae1ca3))
+* **project:** remove button get more when we don't have any items ([df8740b](https://github.com/Coreai-org/corecontrol-web/commit/df8740b0bc45a70ea561f27138b4ca9858263b49))
+
+
+### Features
+
+* **chart.tsx:** added monitoring handlers ([b245b4a](https://github.com/Coreai-org/corecontrol-web/commit/b245b4ab6e24d25782d5445400deab043a252f71))
+* **datasets:** added background blur effect ([30c3068](https://github.com/Coreai-org/corecontrol-web/commit/30c3068b589eac911c557fd363f2cb046defc770))
+* **dropdown:** added dropdown ([2e58592](https://github.com/Coreai-org/corecontrol-web/commit/2e58592b27d2c925c712750a3fa4e61b70d9e424))
+* **infrastructure:** added common methods ([73b41cc](https://github.com/Coreai-org/corecontrol-web/commit/73b41cc2799445040cf7533cbbc52bb75401b7aa))
+* **infrastructure:** added redux logic ([f1d9f4f](https://github.com/Coreai-org/corecontrol-web/commit/f1d9f4f83304a428e6b86f766c69fa1c14900084))
+* **infrastructure:** added UI and logic for Infrastructure page ([6416acd](https://github.com/Coreai-org/corecontrol-web/commit/6416acd02ceb9b922ab424826a06b23313b4099b))
+* **monitoring.tsx:** added DropDown ([89f9e9a](https://github.com/Coreai-org/corecontrol-web/commit/89f9e9a40111ff928b66c44f5fe38271bedcf5b3))
+* **monitoring:** added logic and UI for monitoring tabs ([5f4b142](https://github.com/Coreai-org/corecontrol-web/commit/5f4b142ad30a4fa1a8d9280e9fd79e1573c477e5))
+* **monitoring:** added mock data ([f76ef70](https://github.com/Coreai-org/corecontrol-web/commit/f76ef70aab3c81c387a9b2de5620008df3143668))
+* **monitoring:** added mock data and refactor ([b79a344](https://github.com/Coreai-org/corecontrol-web/commit/b79a3442094bc3a81dc808d0c5e39f6ff577192f))
+* **monitoring:** added monitoring mock data ([1dfc25a](https://github.com/Coreai-org/corecontrol-web/commit/1dfc25a2db1b23d4f3d3f1da408ab90595d71e82))
+* **navigation:** added infrastructure clear function ([144d0cd](https://github.com/Coreai-org/corecontrol-web/commit/144d0cda0a8de01397d34dc92834cef0bc21a780))
+* **project:** added total count of monitoring items ([55ac2fb](https://github.com/Coreai-org/corecontrol-web/commit/55ac2fbfa192bbdbe55487d2023b1272c7002868))
+* **statisticproperties.tsx:** added title param ([26893ff](https://github.com/Coreai-org/corecontrol-web/commit/26893ff9d4c8af4fc0743d863f792a0140dba846))
+* **tobeimplemented.tsx:** added blur ([dca7f6a](https://github.com/Coreai-org/corecontrol-web/commit/dca7f6a2bf7264c579a67f1f9786a56fbf5e0995))
+
 ## [1.5.1](https://github.com/Coreai-org/corecontrol-web/compare/v1.5.0...v1.5.1) (2022-12-14)
 
 
