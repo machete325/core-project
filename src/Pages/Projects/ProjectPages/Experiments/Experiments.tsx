@@ -55,7 +55,7 @@ function ProjectExperiments({
               <td>Model configuration</td>
               <td>Infrastructure</td>
               <td>Commit Description</td>
-              <td style={{ textAlign: 'center' }}>Status</td>
+              <td style={{ textAlign: 'center', width: '35px' }}>Status</td>
             </tr>
           </thead>
           <tbody className={s.tbody}>
@@ -135,7 +135,9 @@ function ProjectExperiments({
                   </div>
                 </td>
                 <td>
-                  <ProjectStatus status={data[key].status} />
+                  <div className={s.project_status}>
+                    <ProjectStatus status={data[key].status} />
+                  </div>
                 </td>
                 <td>
                   <DropDown />

@@ -1,6 +1,104 @@
+@import '../../../../colors.scss';
+
 .header {
   margin: 40px 24px 0px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+}
+
+.content {
+  margin: 24px;
+}
+
+.thead {
+  tr {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: $dark_200;
+    td {
+      padding-right: 20px;
+      &:first-child {
+        padding-left: 20px;
+      }
+    }
+  }
+}
+
+.tbody {
+  tr {
+    td {
+      border: solid 1px $dark_600;
+      border-style: solid none;
+      padding-right: 20px;
+      background: $dark_600;
+      &:first-child {
+        padding-left: 20px;
+        border-left-style: solid;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      &:last-child {
+        border-right-style: solid;
+        border-bottom-right-radius: 10px;
+        border-top-right-radius: 10px;
+      }
+      div {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.table_row {
+  height: 94px;
+}
+
+.table_count {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: $white;
+}
+
+.table_text {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+  color: $white;
+  overflow-wrap: anywhere;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 16px;
+}
+
+.obj_container {
+  margin-bottom: 4px;
+  height: 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+  font-size: 12px;
+  &:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}
+
+.status {
+  display: flex;
+  justify-content: center;
 }
