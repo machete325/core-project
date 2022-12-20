@@ -1,4 +1,4 @@
-import { IMachine } from '../../types/project/project';
+import { IMachine } from '../../types/project/infrastructure';
 
 export const genMachineChartData = (machine: IMachine) => ({
   id: machine.id,

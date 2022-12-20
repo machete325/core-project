@@ -7,10 +7,8 @@ import {
   genTrainingTime,
 } from '../../../../../core/helpers/infrastructureMethods';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
-import {
-  IProject,
-  IInfrastructure,
-} from '../../../../../types/project/project';
+import { IInfrastructure } from '../../../../../types/project/infrastructure';
+import { IProject } from '../../../../../types/project/project';
 
 interface Props {
   data: any;

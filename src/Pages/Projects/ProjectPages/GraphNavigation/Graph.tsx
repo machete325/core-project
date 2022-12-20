@@ -673,4 +673,4 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
   return <div className={s.navigation_wrapper}>{page && markup}</div>;
 }
 
-export default Graph;
+export default React.memo(Graph);
