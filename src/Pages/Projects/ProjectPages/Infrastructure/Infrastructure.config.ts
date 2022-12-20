@@ -4,7 +4,7 @@
     }
   */
 
-const monitoringConfig = {
+const infrastructureConfig = {
   overview: {
     name: 'Overview',
     path: '.description',
@@ -25,4 +25,4 @@ const monitoringConfig = {
   },
 };
 
-export default monitoringConfig;
+export default infrastructureConfig;
