@@ -17,6 +17,7 @@ type Props = {
   handleOpenModal: (tab: string, id: string) => void;
   getMoreHandler: () => void;
   amountDatasets: number;
+  totalCount: number | undefined;
   projectData: any;
 };
 
@@ -28,6 +29,7 @@ function Datasets({
   isExistScroll,
   getMoreHandler,
   amountDatasets,
+  totalCount,
   projectData,
   handleOpenModal,
 }: Props) {
@@ -69,19 +71,32 @@ function Datasets({
                     role="presentation"
                     onClick={() => handleOpenModal('description', key)}
                   >
-                    <ToBeImpelemented element="Description" color="primary" />
+                    <ToBeImpelemented
+                      element="Description"
+                      color="primary"
+                      justifyContent="center"
+                    />
                   </div>
                 </td>
                 <td>
-                  <ToBeImpelemented element="Stats" color="primary" />
+                  <ToBeImpelemented
+                    element="Stats"
+                    color="primary"
+                    justifyContent="center"
+                  />
                 </td>
                 <td>
-                  <ToBeImpelemented element="Newest sample" color="primary" />
+                  <ToBeImpelemented
+                    element="Newest sample"
+                    color="primary"
+                    justifyContent="center"
+                  />
                 </td>
                 <td>
                   <ToBeImpelemented
                     element="Latest marked sample"
                     color="primary"
+                    justifyContent="center"
                   />
                 </td>
                 <td>
@@ -93,8 +108,12 @@ function Datasets({
         </table>
       )}
       {fetching && <Loader variant="down" />}
-      {!isExistScroll && amountDatasets < 10 && !fetching && projectData && (
-        <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
+      {totalCount !== amountDatasets
+        && !isExistScroll
+        && amountDatasets < 10
+        && !fetching
+        && projectData && (
+          <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
       )}
     </div>
   );

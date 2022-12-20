@@ -21,6 +21,7 @@ function CategoryDistribution({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>

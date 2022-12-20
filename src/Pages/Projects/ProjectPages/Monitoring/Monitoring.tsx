@@ -1,6 +1,6 @@
 import React from 'react';
 import CheckBox from '../../../../components/CheckBox/CheckBox';
-import DropDown from '../../../../components/DropDown/DatasetsDropDown/DropDown';
+import DropDown from '../../../../components/DropDown/MonitoringDropDown/DropDown';
 import GetMore from '../../../../components/GetMore/GetMore';
 import Loader from '../../../../components/Loader/Loader';
 import ToBeImpelemented from '../../../../components/ToBeImpelemented/ToBeImpelemented';
@@ -20,6 +20,7 @@ type Props = {
   handleOpenModal: (tab: string, id: string) => void;
   getMoreHandler: () => void;
   amountDatasets: number;
+  totalCount: number | undefined;
   projectData: any;
 };
 
@@ -31,6 +32,7 @@ function Monitoring({
   isExistScroll,
   getMoreHandler,
   amountDatasets,
+  totalCount,
   projectData,
   handleOpenModal,
 }: Props) {
@@ -66,7 +68,11 @@ function Monitoring({
                 </td>
                 <td className={s.table_count}>{index + 1}</td>
                 <td className={s.table_text}>
-                  <ToBeImpelemented element="Name" color="primary" />
+                  <ToBeImpelemented
+                    element="Name"
+                    color="primary"
+                    justifyContent="center"
+                  />
                 </td>
                 <td>
                   <div
@@ -76,6 +82,7 @@ function Monitoring({
                     <ToBeImpelemented
                       element="Model (production)"
                       color="primary"
+                      justifyContent="center"
                     />
                   </div>
                 </td>
@@ -112,8 +119,12 @@ function Monitoring({
         </table>
       )}
       {fetching && <Loader variant="down" />}
-      {!isExistScroll && amountDatasets < 10 && !fetching && projectData && (
-        <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
+      {totalCount !== amountDatasets
+        && !isExistScroll
+        && amountDatasets < 10
+        && !fetching
+        && projectData && (
+          <GetMore disabled={fetching} getMoreHandler={getMoreHandler} />
       )}
     </div>
   );

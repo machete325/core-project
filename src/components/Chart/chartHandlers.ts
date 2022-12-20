@@ -30,13 +30,14 @@ export const chartHandlers = {
     isFill: boolean | undefined,
   ) => {
     const chartData: any = { legend: [], series: [] };
-    Object.keys(data.value).forEach((item) => {
+    Object.keys(data.value).forEach((item, index) => {
       const series = {
         name: item,
         type: 'line',
         showSymbol: false,
         data: [...genDataset(data.value[item].x, data.value[item].y)],
-        areaStyle: { opacity: isFill ? 0.2 : 0 },
+        // eslint-disable-next-line no-nested-ternary
+        areaStyle: { opacity: isFill ? (index > 0 ? 0.4 : 0.2) : 0 },
       };
 
       chartData.legend.push(item);
@@ -45,6 +46,7 @@ export const chartHandlers = {
     option.legend.data = chartData.legend;
     option.series = chartData.series;
     option.xAxis.type = 'time';
+    option.color = ['#F51D44', '#468BF3'];
   },
 
   genLineChartData: (data: any, option: any, isFill: boolean | undefined) => {
@@ -106,5 +108,59 @@ export const chartHandlers = {
     option.series = chartData.series;
     option.tooltip.trigger = 'item';
     option.legend = chartData.legend;
+  },
+
+  genMonitoringDriftData: (
+    data: any,
+    option: any,
+    isFill: boolean | undefined,
+  ) => {
+    const chartData: any = { legend: [], series: [] };
+    data.forEach((item: any, index: number) => {
+      const series = {
+        name: item.displayName,
+        type: 'scatter',
+        showSymbol: false,
+        data: [...genDataset(item.x, item.y)],
+        areaStyle: { opacity: isFill ? 0.2 : 0 },
+      };
+      if (index > 0) {
+        series.type = 'line';
+      }
+      chartData.legend.push(item.displayName);
+      chartData.series.push(series);
+    });
+
+    option.legend.data = chartData.legend;
+    option.series = chartData.series;
+    option.xAxis.type = 'time';
+    option.color = ['#468BF3', '#F51D44', '#57DAD7'];
+  },
+
+  genMonitoringDistributionData: (
+    data: any,
+    option: any,
+    isFill: boolean | undefined,
+  ) => {
+    const chartData: any = { legend: [], series: [] };
+    data.forEach((item: any, index: number) => {
+      const series = {
+        name: item.displayName,
+        type: 'bar',
+        showSymbol: false,
+        data: [...genDataset(item.x, item.y)],
+        areaStyle: { opacity: isFill ? 0.2 : 0 },
+      };
+      if (index > 0) {
+        series.type = 'line';
+      }
+      chartData.legend.push(item.displayName);
+      chartData.series.push(series);
+    });
+
+    option.legend.data = chartData.legend;
+    option.series = chartData.series;
+    option.xAxis.type = 'time';
+    option.color = ['#468BF3', '#FFD600'];
   },
 };

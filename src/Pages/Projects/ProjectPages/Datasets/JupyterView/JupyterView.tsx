@@ -20,6 +20,7 @@ function JupyterView({ data }: Props) {
             />
           )}
           color="primary"
+          backgroundBlur
         />
       </div>
     </div>

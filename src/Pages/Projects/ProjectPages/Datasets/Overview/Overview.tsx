@@ -84,12 +84,15 @@ function Overview({ data }: Props) {
               <div className={s.title}>Description</div>
               <ToBeImpelemented
                 element={(
-                  <img
-                    alt="descritpion"
-                    src="/images/mock/datasets/description.png"
-                  />
+                  <div className={s.description}>
+                    <ul>
+                      <li>Added raw version of the data.</li>
+                      <li>It contains daily item sales from various shops.</li>
+                    </ul>
+                  </div>
                 )}
                 color="primary"
+                blur
               />
             </div>
             <div className={s.mock_container}>
@@ -102,6 +105,7 @@ function Overview({ data }: Props) {
                   />
                 )}
                 color="primary"
+                backgroundBlur
               />
             </div>
             <div className={s.mock_container}>
@@ -114,6 +118,7 @@ function Overview({ data }: Props) {
                   />
                 )}
                 color="primary"
+                backgroundBlur
               />
             </div>
             {expandData && (

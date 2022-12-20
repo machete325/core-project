@@ -169,6 +169,7 @@ function ProjectDatasetsContainer() {
           getMoreHandler={getMoreHandler}
           projectData={projectData}
           amountDatasets={amountDatasets}
+          totalCount={totalCount}
           data={data}
         />
       )}
