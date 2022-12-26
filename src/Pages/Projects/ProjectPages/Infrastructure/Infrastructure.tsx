@@ -63,11 +63,16 @@ function Infrastructure({
                 </td>
                 <td className={s.table_count}>{index + 1}</td>
                 <td className={s.table_text}>
-                  <ToBeImpelemented
-                    element="Name"
-                    color="primary"
-                    justifyContent="center"
-                  />
+                  <div
+                    role="presentation"
+                    onClick={() => handleOpenModal('description', key)}
+                  >
+                    <ToBeImpelemented
+                      element="Name"
+                      color="primary"
+                      justifyContent="center"
+                    />
+                  </div>
                 </td>
                 <td>
                   <div

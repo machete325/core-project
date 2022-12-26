@@ -2,7 +2,6 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
-import s from './Datasets.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
 import {
@@ -20,11 +19,13 @@ import {
 import Datasets from './Datasets';
 import Loader from '../../../../components/Loader/Loader';
 import Button from '../../../../components/Button/Button';
-import { ChoosedTab } from '../../../../components/Modal/types';
+import { ChoosedTab } from '../../../../components/ModalTabs/types';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import { getRecentlyData } from '../../../../core/redux/projects/actions';
 import datasetConfig from './Dataset.config';
-import Modal from '../../../../components/Modal/Modal';
+import ModalTabs from '../../../../components/ModalTabs/ModalTabs';
+
+import s from './Datasets.module.scss';
 
 function ProjectDatasetsContainer() {
   const dispatch = useAppDispatch();
@@ -136,7 +137,7 @@ function ProjectDatasetsContainer() {
 
   return (
     <div className={s.wrapper}>
-      <Modal
+      <ModalTabs
         open={open}
         handleClose={handleCloseModal}
         data={choosedTab}
