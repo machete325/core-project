@@ -12,9 +12,11 @@ interface IBreadcrumb {
 
 type Props = {
   data: IProject;
+  lastElement?: string;
+  projectData?: any;
 };
 
-function BreadcrumbsContainer({ data }: Props) {
+function BreadcrumbsContainer({ data, lastElement, projectData }: Props) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -34,13 +36,20 @@ function BreadcrumbsContainer({ data }: Props) {
       } else if (path === 'project') {
         obj = { ...obj, name: 'Projects', href: '/main/projects' };
       } else {
-        obj = { ...obj, name: path, href: `${pathsArr[1].href}/${path}` };
+        obj = {
+          ...obj,
+          name: path[0].toUpperCase() + path.slice(1),
+          href: `${pathsArr[1].href}/${path}`,
+        };
       }
       if (obj.name !== 'overview') {
         pathsArr.push(obj);
       }
     });
     pathsArr[pathsArr.length - 1].active = true;
+    if (lastElement) {
+      pathsArr[pathsArr.length - 1].name = `${projectData.name} ${lastElement}`;
+    }
     return pathsArr;
   };
 
