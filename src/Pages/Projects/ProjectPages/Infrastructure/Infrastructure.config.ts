@@ -6,15 +6,15 @@
 
 const infrastructureConfig = {
   details_and_costs: {
-    name: 'Overview',
+    name: 'Details and costs',
     path: '.description',
   },
   hardware: {
-    name: 'Data drift',
+    name: 'Hardware',
     path: '.description',
   },
   operating_system: {
-    name: 'Concept drift',
+    name: 'Operating system',
     path: '.description',
   },
 };
