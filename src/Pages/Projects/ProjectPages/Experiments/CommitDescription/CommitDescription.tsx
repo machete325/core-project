@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { VariantType, useSnackbar } from 'notistack';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import { textSlicer } from '../../../../../core/helpers/textMethods';
 import s from './CommitDescription.module.scss';
@@ -20,8 +21,20 @@ interface ICommit {
 }
 
 function CommitDescription({ data, projectData }: Props) {
+  const { enqueueSnackbar } = useSnackbar();
   const [commitData, setCommitData] = useState<ICommit | undefined>(undefined);
   const [loading, setLoading] = useState(false);
+
+  const handleShowSnackBar = (variant: VariantType, text: string) => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar(text, {
+      variant,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'center',
+      },
+    });
+  };
 
   const fetchCommitData = async (projectId: string, experimentId: string) => {
     try {
@@ -42,6 +55,10 @@ function CommitDescription({ data, projectData }: Props) {
     setCommitData(undefined);
     fetchCommitData(projectData.id, data.id);
   }, [data.id]);
+
+  const handleCopy = () => {
+    handleShowSnackBar('default', 'Github link copied to clipboard');
+  };
 
   return (
     <div className={s.wrapper}>
@@ -65,7 +82,7 @@ function CommitDescription({ data, projectData }: Props) {
                   {textSlicer(commitData.url, 85)}
                 </a>
                 <div style={{ marginLeft: '4px' }}>
-                  <CopyToClipboard text={commitData.url}>
+                  <CopyToClipboard onCopy={handleCopy} text={commitData.url}>
                     <img
                       style={{ cursor: 'pointer' }}
                       src="/images/icons/Copy.svg"
