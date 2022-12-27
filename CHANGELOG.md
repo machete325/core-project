@@ -1,3 +1,18 @@
+# [1.7.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.6.0...v1.7.0) (2022-12-27)
+
+
+### Features
+
+* **breadcrumbs:** improve logic ([432025a](https://github.com/Coreai-org/corecontrol-web/commit/432025a210f78e41e33d08814fce867687403c85))
+* **commit:** added snackbar for copy ([4a47a8d](https://github.com/Coreai-org/corecontrol-web/commit/4a47a8d89372b31413e64accdfb906d51a991f41))
+* **comparemodaltabs:** added logic and UI for compare mechanism ([8a0adf9](https://github.com/Coreai-org/corecontrol-web/commit/8a0adf9c0158ed336de3db6a18a53cd44e5320be))
+* **experiments:** added snackbar and compare mechanism ([1a8bd42](https://github.com/Coreai-org/corecontrol-web/commit/1a8bd423ffb0ac3687b033c3657825f2f4a55faa))
+* **infrastructure:** added infrastructure UI and logic ([1994560](https://github.com/Coreai-org/corecontrol-web/commit/1994560804fffcfa4315cde3125a68d460ed1831))
+* **infrastructure:** added mock data ([87781c3](https://github.com/Coreai-org/corecontrol-web/commit/87781c35f5e8e08b03b918014f038d022a108bb6))
+* **infrastructure:** changed config ([babd1e0](https://github.com/Coreai-org/corecontrol-web/commit/babd1e0ee6ad5a4dc750c984f007017415f6929d))
+* **infrastructure:** update config and added count infrastructure items to navigaion ([f4a253a](https://github.com/Coreai-org/corecontrol-web/commit/f4a253a283156d6bcf691ae18cf251369af2c394))
+* **projecttitle:** added new type prop ([18367da](https://github.com/Coreai-org/corecontrol-web/commit/18367da710d2fd7dfbe450ebfe6165ee0d525acc))
+
 # [1.6.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.5.1...v1.6.0) (2022-12-20)
 
 
