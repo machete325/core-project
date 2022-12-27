@@ -13,7 +13,7 @@ type Props = {
   page?: string;
   size?: 'small' | 'large';
   created?: boolean;
-  type: 'project' | 'experiment';
+  type: 'project' | 'experiment' | 'comparising';
   pageData?: any;
 };
 
@@ -68,6 +68,35 @@ function ProjectTitle({
             </div>
             <div className={s.description}>
               {`Started in ${getFormattedDateFromTimeStamp(pageData.created)}`}
+            </div>
+          </>
+        ) : (
+          <Skeleton
+            variant="rounded"
+            width="400px"
+            animation="wave"
+            height="75px"
+          />
+        )}
+      </div>
+    );
+  }
+  if (type === 'comparising') {
+    return (
+      <div className={s.title}>
+        {data ? (
+          <>
+            <div
+              className={`${s.name} ${
+                size === 'small' ? s.name_sm : s.name_lg
+              }`}
+            >
+              {`${data.name} ${page}`}
+            </div>
+            <div className={s.description}>
+              {created
+                ? `Created in ${getFormattedDateFromTimeStamp(data.created)}`
+                : data.description}
             </div>
           </>
         ) : (

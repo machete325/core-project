@@ -15,6 +15,7 @@ function Button({
     <button
       onClick={onClick}
       className={`${disabled ? s.button_disabled : s.button}`}
+      disabled={disabled}
       style={style}
       type="button"
     >

@@ -9,7 +9,7 @@ import {
   getTotalCountInfrastructure,
   infrastructureSelector,
 } from '../../../../core/redux/projects/infrastructure/selectors';
-import { ChoosedTab } from '../../../../components/Modal/types';
+import { ChoosedTab } from '../../../../components/ModalTabs/types';
 import {
   cancelRequest,
   checkAllInfrastructure,
@@ -18,7 +18,7 @@ import {
   resetErrors,
   setInfrastructureFetching,
 } from '../../../../core/redux/projects/infrastructure/actions';
-import Modal from '../../../../components/Modal/Modal';
+import ModalTabs from '../../../../components/ModalTabs/ModalTabs';
 import infrastructureConfig from './Infrastructure.config';
 import Button from '../../../../components/Button/Button';
 import Loader from '../../../../components/Loader/Loader';
@@ -131,7 +131,7 @@ function ProjectInfrastructureContainer() {
 
   return (
     <div className={s.wrapper}>
-      <Modal
+      <ModalTabs
         open={open}
         handleClose={handleCloseModal}
         data={choosedTab}

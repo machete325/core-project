@@ -1,0 +1,30 @@
+@import '../../colors.scss';
+
+.button_close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 40px;
+  background: $dark_600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.navigation_bar {
+  display: flex;
+  flex-direction: row;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project_title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

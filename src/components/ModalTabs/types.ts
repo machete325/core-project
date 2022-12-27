@@ -10,6 +10,18 @@ export type ChoosedTab = {
   page: string;
 };
 
+export type ChoosedCompareTab = {
+  type: string | undefined;
+  data:
+  | IExperiment[]
+  | IDataset[]
+  | IMonitoring[]
+  | IInfrastructure[]
+  | undefined;
+  page: string;
+  amountCompareItems: number | undefined;
+};
+
 interface IConfig {
   name: string;
   path: string;
@@ -19,6 +31,15 @@ export type Props = {
   open: boolean;
   handleClose: () => void;
   data: ChoosedTab;
+  fullScreen?: boolean;
+  projectData: IProject;
+  config: { [key: string]: IConfig };
+};
+
+export type CompareProps = {
+  open: boolean;
+  handleClose: () => void;
+  data: ChoosedCompareTab;
   fullScreen?: boolean;
   projectData: IProject;
   config: { [key: string]: IConfig };
