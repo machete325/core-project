@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
-import s from './Overview.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
 import DropDown from '../../../../components/DropDown/OverviewDropdown/DropDown';
 import Button from '../../../../components/Button/Button';
@@ -23,12 +22,14 @@ import { formDatasetText } from '../../../../core/helpers/textMethods';
 import Chart from '../../../../components/Chart/Chart';
 import Alert from '../../../../components/Alert/Alert';
 import Loader from '../../../../components/Loader/Loader';
-import Modal from '../../../../components/Modal/Modal';
-import { ChoosedTab } from '../../../../components/Modal/types';
+import ModalTabs from '../../../../components/ModalTabs/ModalTabs';
+import { ChoosedTab } from '../../../../components/ModalTabs/types';
 import Error from '../../../../components/Error/Error';
 import { IProjectOverview } from '../../../../types/project/project';
 import MachineDetails from '../../../../components/MachineDetails/MachineDetails';
 import getOverviewLabel from '../../../../components/OverviewStatusTag/getOverviewLabel';
+
+import s from './Overview.module.scss';
 
 function ProjectOverviewContainer() {
   const dispatch = useAppDispatch();
@@ -106,7 +107,7 @@ function ProjectOverviewContainer() {
 
   return (
     <div className={s.wrapper}>
-      <Modal
+      <ModalTabs
         open={open}
         handleClose={handleClose}
         data={choosedTab}

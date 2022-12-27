@@ -16,7 +16,7 @@ const dropDownConfig: IDropDownConfig[] = [
     imgSrc: '/images/icons/Copy.svg',
   },
   {
-    id: 'favourites',
+    id: 'favorites',
     text: 'Add to favorites',
     imgSrc: '/images/icons/Star.svg',
   },
@@ -43,13 +43,13 @@ function DropDown() {
   const defineHandler = (id: string) => {
     switch (id) {
       case 'clone':
-        return handleOpenThumbnail;
-      case 'favourites':
-        return handleOpenThumbnail;
+        return undefined;
+      case 'favorites':
+        return undefined;
       case 'thumbnail':
         return handleOpenThumbnail;
       default:
-        return handleOpenThumbnail;
+        return undefined;
     }
   };
 
