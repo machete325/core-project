@@ -18,6 +18,9 @@ import MonitoringOverview from '../../Pages/Projects/ProjectPages/Monitoring/Ove
 import DataDrift from '../../Pages/Projects/ProjectPages/Monitoring/DataDrift/DataDrift';
 import ConceptDrift from '../../Pages/Projects/ProjectPages/Monitoring/ConceptDrift/ConceptDrift';
 import MonitoringInfrastructure from '../../Pages/Projects/ProjectPages/Monitoring/Infrastructure/Infrastructure';
+import InfrastructureDetails from '../../Pages/Projects/ProjectPages/Infrastructure/Details/Details';
+import InfrastructureHardware from '../../Pages/Projects/ProjectPages/Infrastructure/Hardware/Hardware';
+import InfrastructureOperationSystem from '../../Pages/Projects/ProjectPages/Infrastructure/OperationSystem/OperationSystem';
 
 // Keys to switch, obtained from the configuration file according to the specific page
 
@@ -99,6 +102,22 @@ const returnMonitoringTabs = (type: string, data: any) => {
   return null;
 };
 
+const returnInfrastructureTabs = (type: string, data: any) => {
+  if (data) {
+    switch (type) {
+      case 'details_and_costs':
+        return <InfrastructureDetails data={data} />;
+      case 'hardware':
+        return <InfrastructureHardware data={data} />;
+      case 'operating_system':
+        return <InfrastructureOperationSystem data={data} />;
+      default:
+        return null;
+    }
+  }
+  return null;
+};
+
 export const getTabContent = (
   tab: { type: string; path: string; page: string },
   data: any,
@@ -112,6 +131,9 @@ export const getTabContent = (
   }
   if (tab.page === 'monitoring') {
     return returnMonitoringTabs(tab.type, data);
+  }
+  if (tab.page === 'infrastructure') {
+    return returnInfrastructureTabs(tab.type, data);
   }
   return '';
 };

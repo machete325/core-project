@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Navigation from '../Navigation/Navigation';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
-
 import { useAppDispatch } from '../../../../core/redux/store';
 import {
   cancelRequest,
@@ -19,12 +18,12 @@ import {
 } from '../../../../core/redux/projects/monitoring/selectors';
 import Loader from '../../../../components/Loader/Loader';
 import Button from '../../../../components/Button/Button';
-import { ChoosedTab } from '../../../../components/Modal/types';
+import { ChoosedTab } from '../../../../components/ModalTabs/types';
 import monitoringConfig from './Monitoring.config';
-import Modal from '../../../../components/Modal/Modal';
+import ModalTabs from '../../../../components/ModalTabs/ModalTabs';
+import Monitoring from './Monitoring';
 
 import s from './Monitoring.module.scss';
-import Monitoring from './Monitoring';
 
 function ProjectMonitoringContainer() {
   const dispatch = useAppDispatch();
@@ -130,7 +129,7 @@ function ProjectMonitoringContainer() {
 
   return (
     <div className={s.wrapper}>
-      <Modal
+      <ModalTabs
         open={open}
         handleClose={handleCloseModal}
         data={choosedTab}

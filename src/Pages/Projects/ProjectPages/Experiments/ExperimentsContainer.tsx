@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useSelector } from 'react-redux';
+import { VariantType, useSnackbar } from 'notistack';
 import Button from '../../../../components/Button/Button';
-import Modal from '../../../../components/Modal/Modal';
-import { ChoosedTab } from '../../../../components/Modal/types';
+import ModalTabs from '../../../../components/ModalTabs/ModalTabs';
+import {
+  ChoosedCompareTab,
+  ChoosedTab,
+} from '../../../../components/ModalTabs/types';
 import {
   checkAllExperiments,
   fetchExperiments,
@@ -25,8 +29,10 @@ import Experiments from './Experiments';
 import s from './Experiments.module.scss';
 import { oneProjectData } from '../../../../core/redux/projects/selectors';
 import Loader from '../../../../components/Loader/Loader';
+import CompareModalTabs from '../../../../components/ModalTabs/CompareModalTabs';
 
 function ProjectExperimentsContainer() {
+  const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
   const {
@@ -38,12 +44,32 @@ function ProjectExperimentsContainer() {
     data: undefined,
     page: 'experiments',
   });
+  const [choosedCompareTab, setChoosedCompareTab] = useState<ChoosedCompareTab>(
+    {
+      type: undefined,
+      data: undefined,
+      page: 'experiments',
+      amountCompareItems: undefined,
+    },
+  );
   const [isExistScroll, setIsExistScroll] = useState(false);
   const [open, setOpen] = useState(false);
+  const [openCompare, setOpenCompare] = useState(false);
   const [isGetMoreActive, setIsGetMoreActive] = useState(false);
   const initialPageSize = 3;
   const pageSize = 3;
   const amountExperiments = useMemo(() => Object.keys(data).length, [data]);
+
+  const handleShowSnackBar = (variant: VariantType, text: string) => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar(text, {
+      variant,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'center',
+      },
+    });
+  };
 
   const controller = new AbortController();
   const { signal } = controller;
@@ -109,6 +135,11 @@ function ProjectExperimentsContainer() {
     };
   }, [totalCount, data]);
 
+  const amountCheckedExperiments = useMemo(
+    () => Object.values(data).filter((experiment) => experiment.checked).length,
+    [data],
+  );
+
   const handleCheckAll = (checked: boolean) => {
     dispatch(checkAllExperiments(checked));
   };
@@ -130,13 +161,43 @@ function ProjectExperimentsContainer() {
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
   };
 
+  const handleOpenCompareModal = () => {
+    const experiments = Object.values(data).filter(
+      (experiment) => experiment.checked,
+    );
+    if (experiments.length <= 4) {
+      setChoosedCompareTab({
+        ...choosedTab,
+        data: experiments,
+        amountCompareItems: experiments.length,
+      });
+      setOpenCompare(true);
+    } else {
+      handleShowSnackBar(
+        'error',
+        'Comparison elements must be equal to or less than 4',
+      );
+    }
+  };
+
   const handleCloseModal = () => {
     setOpen(false);
   };
 
+  const handleCloseCompareModal = () => {
+    setOpenCompare(false);
+  };
+
   return (
     <div className={s.wrapper}>
-      <Modal
+      <CompareModalTabs
+        open={openCompare}
+        handleClose={handleCloseCompareModal}
+        data={choosedCompareTab}
+        projectData={projectData}
+        config={experimentConfig}
+      />
+      <ModalTabs
         open={open}
         handleClose={handleCloseModal}
         data={choosedTab}
@@ -147,9 +208,17 @@ function ProjectExperimentsContainer() {
       <div className={s.header}>
         <ProjectTitle type="project" data={projectData} page="experiments" />
         <div className={s.buttons}>
-          <Button disabled style={{ marginRight: '20px' }}>
+          <Button
+            disabled={amountCheckedExperiments < 2}
+            style={{ marginRight: '20px', minWidth: '276px' }}
+            onClick={handleOpenCompareModal}
+          >
             <img alt="BoundingBox" src="/images/icons/BoundingBox.svg" />
-            Compare experiments
+            {`Compare experiments ${
+              amountCheckedExperiments > 1
+                ? `(${amountCheckedExperiments})`
+                : ''
+            }`}
           </Button>
           <Button>
             <img alt="Plus" src="/images/icons/Plus.svg" />
