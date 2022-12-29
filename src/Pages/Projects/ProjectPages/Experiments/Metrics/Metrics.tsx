@@ -5,14 +5,14 @@ import StatusTag from '../../../../../components/StatusTag/StatusTag';
 import { IExperiment } from '../../../../../types/project/experiments';
 import { ExperimentService } from '../../../../../core/services/projects/Experiment.service';
 import { IProject } from '../../../../../types/project/project';
-import s from './MainMetrics.module.scss';
+import s from './Metrics.module.scss';
 
 interface Props {
   data: IExperiment;
   projectData: IProject;
 }
 
-function MainMetrics({ data, projectData }: Props) {
+function Metrics({ data, projectData }: Props) {
   const [metricsData, setMetricsData] = useState<any>();
   const [metricsDataExpand, setMetricsDataExpand] = useState<any>();
   const [loading, setLoading] = useState<boolean>(false);
@@ -97,4 +97,4 @@ function MainMetrics({ data, projectData }: Props) {
   );
 }
 
-export default MainMetrics;
+export default Metrics;

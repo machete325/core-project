@@ -4,17 +4,11 @@ import ExperimentsDropDown from '../DropDown/ExperimentsDropDown/DropDown';
 import DatasetsDropDown from '../DropDown/DatasetsDropDown/DropDown';
 import s from './RecentlyOpened.module.scss';
 import { textSlicer } from '../../core/helpers/textMethods';
-
-interface IRecently {
-  id: number;
-  category: string;
-  name: string;
-  check: boolean;
-}
+import { IRecently } from '../../types/project/project';
 
 type Props = {
   data: IRecently[] | undefined;
-  handleCheckRecentyOpened: any;
+  handleCheckRecentlyOpened: any;
 };
 
 const defineDropDownType = (category: string) => {
@@ -40,7 +34,7 @@ const findCategories = (data: IRecently[]) => {
 const generateRecentlyItems = (
   data: IRecently[],
   category: string,
-  handleCheckRecentyOpened: any,
+  handleCheckRecentlyOpened: any,
 ) => (
   <div key={category} className={s.category_container}>
     <div className={s.title}>{category}</div>
@@ -51,7 +45,7 @@ const generateRecentlyItems = (
           <CheckBox
             id={item.id}
             checked={item.check}
-            onChange={() => handleCheckRecentyOpened(item.id)}
+            onChange={() => handleCheckRecentlyOpened(item.id, item.category)}
           />
           <span title={item.name} className={s.name}>
             {textSlicer(item.name, 25)}
@@ -64,17 +58,19 @@ const generateRecentlyItems = (
   </div>
 );
 
-const generateJSX = (data: IRecently[], handleCheckRecentyOpened: any) => {
+const generateJSX = (data: IRecently[], handleCheckRecentlyOpened: any) => {
   const categories = useMemo(() => findCategories(data), [data]);
   const markup: any = [];
-  categories.forEach((category) => markup.push(generateRecentlyItems(data, category, handleCheckRecentyOpened)));
+  categories.forEach((category) => markup.push(
+    generateRecentlyItems(data, category, handleCheckRecentlyOpened),
+  ));
   return markup;
 };
 
-function RecentlyOpened({ data, handleCheckRecentyOpened }: Props) {
+function RecentlyOpened({ data, handleCheckRecentlyOpened }: Props) {
   return (
     <div className={s.wrapper}>
-      {data && generateJSX(data, handleCheckRecentyOpened)}
+      {data && generateJSX(data, handleCheckRecentlyOpened)}
     </div>
   );
 }

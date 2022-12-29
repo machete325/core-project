@@ -297,7 +297,7 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       isActive: false,
       isClickable: false,
       backgroundColor: null,
-      text: 'API data',
+      text: 'Data stream',
       bottomBar: false,
       arrowConfig: [
         {
@@ -317,7 +317,7 @@ const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
       img: '/images/project/graph/data_monitoring.png',
       imageBackgroundColor: '#4e4e52',
       isActive: false,
-      isClickable: false,
+      isClickable: true,
       backgroundColor: '#333333',
       text: 'Data monitoring',
       bottomBar: true,
@@ -406,6 +406,13 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
           pageConfiguration[actualPage],
         );
         setCardConfiguration(configurationCopy);
+        if (actualPage === 'monitoring') {
+          const dataMonitoring = convertToString(
+            configurationCopy,
+            pageConfiguration['data-monitoring'],
+          );
+          dataMonitoring.isActive = true;
+        }
         card.isActive = true;
       } else {
         setCardConfiguration(configuration);

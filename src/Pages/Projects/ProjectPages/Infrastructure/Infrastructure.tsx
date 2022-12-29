@@ -71,6 +71,7 @@ function Infrastructure({
                       element="Name"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
@@ -83,6 +84,7 @@ function Infrastructure({
                       element="Type"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
@@ -92,6 +94,7 @@ function Infrastructure({
                       element="Details"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
@@ -101,6 +104,7 @@ function Infrastructure({
                       element="Costs"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
@@ -110,12 +114,18 @@ function Infrastructure({
                       element="Hardware ussage"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
                 <td>
                   <div className={s.status}>
-                    <ProjectStatus status="completed" />
+                    <ToBeImpelemented
+                      element={<ProjectStatus status="completed" />}
+                      color="primary"
+                      justifyContent="center"
+                      backgroundBlur
+                    />
                   </div>
                 </td>
                 <td style={{ width: '32px' }}>
