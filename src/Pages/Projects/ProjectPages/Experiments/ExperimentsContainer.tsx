@@ -20,7 +20,10 @@ import {
   getTotalCountExperiments,
 } from '../../../../core/redux/projects/experiments/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
-import { getRecentlyData } from '../../../../core/redux/projects/actions';
+import {
+  checkRecentlyData,
+  getRecentlyData,
+} from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
@@ -146,6 +149,7 @@ function ProjectExperimentsContainer() {
 
   const handleCheck = (id: string) => {
     dispatch(checkExperiment(id));
+    dispatch(checkRecentlyData(id));
   };
 
   const handleOpenModal = (activeTab: string, id: string) => {
@@ -156,6 +160,7 @@ function ProjectExperimentsContainer() {
       experiment.name,
       projectData.id,
     );
+    dispatch(checkAllExperiments(false));
     dispatch(getRecentlyData(projectData.id));
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
