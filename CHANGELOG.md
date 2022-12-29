@@ -1,3 +1,14 @@
+# [1.8.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.7.0...v1.8.0) (2022-12-29)
+
+
+### Features
+
+* **experiments:** added logic for sync experiment table and recently opened items ([7c9665e](https://github.com/Coreai-org/corecontrol-web/commit/7c9665e276ced0cc257bfad7472a5172063108d8))
+* **experiments:** changed config for tabs ([7c1955b](https://github.com/Coreai-org/corecontrol-web/commit/7c1955b703e536466d68b04bad4f23b03e825623))
+* **experiments:** synced recently opened items with experiments ([516b785](https://github.com/Coreai-org/corecontrol-web/commit/516b7859c4bb2c8277b925d15661761c425db48d))
+* **graph:** changed config ([079570f](https://github.com/Coreai-org/corecontrol-web/commit/079570f7f8328d61acdcb7c652b1a192db42c3a4))
+* **project:** added blur effect for mock table elements ([35ab7f1](https://github.com/Coreai-org/corecontrol-web/commit/35ab7f1477bf31032dbc10c1009598a04f4c6b49))
+
 # [1.7.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.6.0...v1.7.0) (2022-12-27)
 
 
