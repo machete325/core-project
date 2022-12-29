@@ -22,8 +22,8 @@ interface IContent {
 
 interface IArrowConfig {
   end: string;
-  startAnchor: 'bottom' | 'top' | 'left' | 'right' | 'middle';
-  endAnchor: 'bottom' | 'top' | 'left' | 'right' | 'middle';
+  startAnchor: 'bottom' | 'top' | 'left' | 'right' | 'middle' | 'auto';
+  endAnchor: 'bottom' | 'top' | 'left' | 'right' | 'middle' | 'auto';
   showTail?: boolean;
   showHead?: boolean;
   path?: 'smooth' | 'grid' | 'straight';

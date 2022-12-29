@@ -30,6 +30,8 @@ import { getTotalCountExperiments } from '../../../core/redux/projects/experimen
 import { getTotalCountDatasets } from '../../../core/redux/projects/datasets/selectors';
 import { getTotalCountMonitoring } from '../../../core/redux/projects/monitoring/selectors';
 import { getTotalCountInfrastructure } from '../../../core/redux/projects/infrastructure/selectors';
+import { checkExperiment } from '../../../core/redux/projects/experiments/actions';
+import { checkDataset } from '../../../core/redux/projects/datasets/actions';
 
 const navigateProjectConfig = [
   {
@@ -134,8 +136,16 @@ function ProjectContainer() {
     dispatch(getRecentlyData(projectId!));
   }, []);
 
-  const handleCheckRecentyOpened = (id: string) => {
+  const handleCheckRecentlyOpened = (id: string, category?: string) => {
     dispatch(checkRecentlyData(id));
+    switch (category) {
+      case 'experiments':
+        return dispatch(checkExperiment(id));
+      case 'datasets':
+        return dispatch(checkDataset(id));
+      default:
+        return '';
+    }
   };
 
   const checkLinkPath = (linkPath: string) => {
@@ -209,7 +219,7 @@ function ProjectContainer() {
           <div className={s.recently_title}>Recently opened</div>
           <RecentlyOpened
             data={recentlyOpened}
-            handleCheckRecentyOpened={handleCheckRecentyOpened}
+            handleCheckRecentlyOpened={handleCheckRecentlyOpened}
           />
         </div>
       </div>

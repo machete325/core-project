@@ -20,14 +20,20 @@ import {
   getTotalCountExperiments,
 } from '../../../../core/redux/projects/experiments/selectors';
 import { useAppDispatch } from '../../../../core/redux/store';
-import { getRecentlyData } from '../../../../core/redux/projects/actions';
+import {
+  checkRecentlyData,
+  getRecentlyData,
+} from '../../../../core/redux/projects/actions';
 import Navigation from '../Navigation/Navigation';
 import ProjectTitle from '../../../../components/ProjectTitle/ProjectTitle';
 import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
-import { oneProjectData } from '../../../../core/redux/projects/selectors';
+import {
+  oneProjectData,
+  recentlyOpenedData,
+} from '../../../../core/redux/projects/selectors';
 import Loader from '../../../../components/Loader/Loader';
 import CompareModalTabs from '../../../../components/ModalTabs/CompareModalTabs';
 
@@ -35,6 +41,7 @@ function ProjectExperimentsContainer() {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
+  const recentlyOpenedItems = useSelector(recentlyOpenedData);
   const {
     data, loading, currentPage, fetching,
   } = useSelector(experimentsSelector);
@@ -76,7 +83,13 @@ function ProjectExperimentsContainer() {
 
   const fetchData = (pageSizeArg: number) => {
     dispatch(
-      fetchExperiments(projectData.id, currentPage, pageSizeArg, signal),
+      fetchExperiments(
+        projectData.id,
+        currentPage,
+        pageSizeArg,
+        signal,
+        recentlyOpenedItems,
+      ),
     );
   };
 
@@ -146,6 +159,7 @@ function ProjectExperimentsContainer() {
 
   const handleCheck = (id: string) => {
     dispatch(checkExperiment(id));
+    dispatch(checkRecentlyData(id));
   };
 
   const handleOpenModal = (activeTab: string, id: string) => {
@@ -156,6 +170,7 @@ function ProjectExperimentsContainer() {
       experiment.name,
       projectData.id,
     );
+    dispatch(checkAllExperiments(false));
     dispatch(getRecentlyData(projectData.id));
     setOpen(true);
     setChoosedTab({ ...choosedTab, type: activeTab, data: experiment });
