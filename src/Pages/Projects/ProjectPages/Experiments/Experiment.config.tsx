@@ -18,7 +18,11 @@ const experimentConfig = {
     path: '.data',
   },
   metrics: {
-    name: 'Main Metrics',
+    name: 'Metrics',
+    path: '.metrics.items',
+  },
+  plots: {
+    name: 'Plots',
     path: '.metrics.items',
   },
   configuration: {

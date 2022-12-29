@@ -2,7 +2,8 @@ import React from 'react';
 import ExperimentDescription from '../../Pages/Projects/ProjectPages/Experiments/Description/Description';
 import ExperimentTarget from '../../Pages/Projects/ProjectPages/Experiments/Target/Target';
 import ExperimentDatasetContainer from '../../Pages/Projects/ProjectPages/Experiments/Dataset/DatasetContainer';
-import ExperimentMainMetrics from '../../Pages/Projects/ProjectPages/Experiments/MainMetrics/MainMetrics';
+import ExperimentMetrics from '../../Pages/Projects/ProjectPages/Experiments/Metrics/Metrics';
+import ExperimentPlotsMetrics from '../../Pages/Projects/ProjectPages/Experiments/Plots/Plots';
 import ExperimentModelConfiguration from '../../Pages/Projects/ProjectPages/Experiments/ModelConfiguration/ModelConfiguration';
 import ExperimentInfrastructure from '../../Pages/Projects/ProjectPages/Experiments/Infrastructure/Infrastructure';
 import ExperimentCommitDescription from '../../Pages/Projects/ProjectPages/Experiments/CommitDescription/CommitDescription';
@@ -40,7 +41,9 @@ const returnExperimentTabs = (
           <ExperimentDatasetContainer data={data} projectData={projectData} />
         );
       case 'metrics':
-        return <ExperimentMainMetrics data={data} projectData={projectData} />;
+        return <ExperimentMetrics data={data} projectData={projectData} />;
+      case 'plots':
+        return <ExperimentPlotsMetrics data={data} projectData={projectData} />;
       case 'configuration':
         return (
           <ExperimentModelConfiguration data={data} projectData={projectData} />
