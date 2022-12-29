@@ -72,6 +72,7 @@ function Monitoring({
                     element="Name"
                     color="primary"
                     justifyContent="center"
+                    blur
                   />
                 </td>
                 <td>
@@ -83,6 +84,7 @@ function Monitoring({
                       element="Model (production)"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>

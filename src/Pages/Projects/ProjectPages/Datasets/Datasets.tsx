@@ -75,6 +75,7 @@ function Datasets({
                       element="Description"
                       color="primary"
                       justifyContent="center"
+                      blur
                     />
                   </div>
                 </td>
@@ -83,6 +84,7 @@ function Datasets({
                     element="Stats"
                     color="primary"
                     justifyContent="center"
+                    blur
                   />
                 </td>
                 <td>
@@ -90,6 +92,7 @@ function Datasets({
                     element="Newest sample"
                     color="primary"
                     justifyContent="center"
+                    blur
                   />
                 </td>
                 <td>
@@ -97,6 +100,7 @@ function Datasets({
                     element="Latest marked sample"
                     color="primary"
                     justifyContent="center"
+                    blur
                   />
                 </td>
                 <td>
