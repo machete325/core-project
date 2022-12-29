@@ -30,7 +30,10 @@ import experimentConfig from './Experiment.config';
 import updateRecentlyOpened from '../../../../core/helpers/updateRecentlyOpened';
 import Experiments from './Experiments';
 import s from './Experiments.module.scss';
-import { oneProjectData } from '../../../../core/redux/projects/selectors';
+import {
+  oneProjectData,
+  recentlyOpenedData,
+} from '../../../../core/redux/projects/selectors';
 import Loader from '../../../../components/Loader/Loader';
 import CompareModalTabs from '../../../../components/ModalTabs/CompareModalTabs';
 
@@ -38,6 +41,7 @@ function ProjectExperimentsContainer() {
   const { enqueueSnackbar } = useSnackbar();
   const dispatch = useAppDispatch();
   const projectData = useSelector(oneProjectData);
+  const recentlyOpenedItems = useSelector(recentlyOpenedData);
   const {
     data, loading, currentPage, fetching,
   } = useSelector(experimentsSelector);
@@ -79,7 +83,13 @@ function ProjectExperimentsContainer() {
 
   const fetchData = (pageSizeArg: number) => {
     dispatch(
-      fetchExperiments(projectData.id, currentPage, pageSizeArg, signal),
+      fetchExperiments(
+        projectData.id,
+        currentPage,
+        pageSizeArg,
+        signal,
+        recentlyOpenedItems,
+      ),
     );
   };
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IRecently } from '../../../../types/project/project';
 import { ExperimentService } from '../../../services/projects/Experiment.service';
 import { AppThunk, AppDispatch } from '../../store';
 import { experimentSlice } from './reducer';
@@ -26,6 +27,7 @@ export const fetchExperiments = (
   currentPage: number,
   pageSize: number,
   signal: AbortSignal,
+  recentlyOpenedItems: IRecently[],
 ): AppThunk => async (dispatch: AppDispatch) => {
   try {
     if (currentPage === 0) {
@@ -43,7 +45,12 @@ export const fetchExperiments = (
       cancelToken,
     );
     if (Object.keys(response.data.items).length !== 0) {
-      dispatch(setExperiments(response.data.items));
+      dispatch(
+        setExperiments({
+          data: response.data.items,
+          recentlyItems: recentlyOpenedItems,
+        }),
+      );
       dispatch(setCurrentPage(currentPage + 1));
       dispatch(setTotalCount(response.data.metadata.totalCount));
     }

@@ -4,13 +4,7 @@ import ExperimentsDropDown from '../DropDown/ExperimentsDropDown/DropDown';
 import DatasetsDropDown from '../DropDown/DatasetsDropDown/DropDown';
 import s from './RecentlyOpened.module.scss';
 import { textSlicer } from '../../core/helpers/textMethods';
-
-interface IRecently {
-  id: number;
-  category: string;
-  name: string;
-  check: boolean;
-}
+import { IRecently } from '../../types/project/project';
 
 type Props = {
   data: IRecently[] | undefined;

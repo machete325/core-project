@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IExperimentData } from '../../../../types/project/experiments';
+import { IRecently } from '../../../../types/project/project';
 
 export type ExperimentsState = {
   loading: boolean;
@@ -24,11 +25,14 @@ export const experimentSlice = createSlice({
   initialState,
   reducers: {
     setExperiments: (state, action: PayloadAction<any>) => {
-      const data = action.payload;
+      const { data, recentlyItems } = action.payload;
       Object.keys(data).forEach((key: string) => {
-        data[key].checked = false;
+        const recently = recentlyItems
+          .filter((item: IRecently) => item.category === 'experiments')
+          .find((item: IRecently) => item.id === key);
+        data[key].checked = recently?.check || false;
       });
-      state.data = { ...state.data, ...action.payload };
+      state.data = { ...state.data, ...action.payload.data };
     },
     startLoading: (state) => {
       state.loading = true;

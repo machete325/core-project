@@ -33,7 +33,7 @@ export interface IProjectOverview {
 }
 
 export interface IRecently {
-  id: number;
+  id: string;
   category: string;
   name: string;
   check: boolean;
