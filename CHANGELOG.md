@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/Coreai-org/corecontrol-web/compare/v1.8.0...v1.8.1) (2023-01-04)
+
+
+### Bug Fixes
+
+* **graph.tsx:** fixed arrows curvenes ([b91e6ee](https://github.com/Coreai-org/corecontrol-web/commit/b91e6eef72158d8feb84cbfcbde2b0a54e196a05))
+
 # [1.8.0](https://github.com/Coreai-org/corecontrol-web/compare/v1.7.0...v1.8.0) (2022-12-29)
 
 
