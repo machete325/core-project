@@ -5,11 +5,12 @@ import { convertToString } from '../../../../core/helpers/objectMethods';
 import { hexToRgba } from '../../../../core/helpers/colorMethods';
 import { IConfiguration } from './types';
 import s from './GraphNavigation.module.scss';
+import { returnGraphNavigationMargins } from '../../../../core/helpers/graphNavigationMethods';
 
 const configuration: { [key: string]: { [key: string]: IConfiguration } } = {
   infrastructure: {
     datasets: {
-      marginLeft: 0.136,
+      marginLeft: 0.128,
       width: 0.116,
       height: 0.641,
       img: '/images/project/graph/dataset.png',
@@ -544,7 +545,15 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
             style={{
               width: `${cardContainerSize.width * card.width}px`,
               height: `${cardContainerSize.height * card.height}px`,
-              marginLeft: `${cardContainerSize.width * card.marginLeft}px`,
+              marginLeft: `${
+                key === 'database'
+                || key === 'experiments'
+                || key === 'data_monitoring'
+                || key === 'monitoring'
+                || key === 'model_serving'
+                  ? card.marginLeft
+                  : cardContainerSize.width * card.marginLeft
+              }px`,
               backgroundColor: card.backgroundColor
                 ? card.backgroundColor
                 : 'inherit',
@@ -632,6 +641,7 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
               _extendSVGcanvas={item.extendSVGcanvas || 0}
             />
           ))}
+
         <div
           id={`graph-navigation-${key}`}
           className={s.card_container}
@@ -663,7 +673,9 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
   const generateMarkup = (config: any) => {
     const jsx = Object.keys(config).map((key) => (
       <div id="graph-content" key={key} className={s.graph_content}>
-        <div className={s.status_tag_container}>{key}</div>
+        <div id={`graph-${key}-key`} className={s.status_tag_container}>
+          {key}
+        </div>
         <div className={s.card_wrapper}>
           {Object.keys(config[key]).map((item) => handleCreateCard(config[key][item], item))}
         </div>
@@ -671,6 +683,23 @@ function Graph({ cardContainerSize, handleGetCardContainerSize }: any) {
     ));
     return jsx;
   };
+
+  useEffect(() => {
+    const {
+      databaseMarginLeft,
+      experimentsMarginLeft,
+      dataMonitoringMarginLeft,
+      modelMonitoringMarginLeft,
+      modelServingMarginLeft,
+    }: any = returnGraphNavigationMargins();
+    const cardConfigurationCopy = JSON.parse(JSON.stringify(cardConfiguration));
+    cardConfigurationCopy.research.database.marginLeft = databaseMarginLeft;
+    cardConfigurationCopy.infrastructure.experiments.marginLeft = experimentsMarginLeft;
+    cardConfigurationCopy.production.data_monitoring.marginLeft = dataMonitoringMarginLeft;
+    cardConfigurationCopy.production.monitoring.marginLeft = modelMonitoringMarginLeft;
+    cardConfigurationCopy.production.model_serving.marginLeft = modelServingMarginLeft;
+    setCardConfiguration(cardConfigurationCopy);
+  }, [cardContainerSize]);
 
   const markup = useMemo(
     () => generateMarkup(cardConfiguration),
